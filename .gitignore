@@ -1,0 +1,11 @@
+CMakeCache.txt
+*.cmake
+Makefile
+
+*~
+
+klondike
+
+CMakeFiles/
+proj/
+
