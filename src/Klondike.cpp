@@ -3,7 +3,7 @@
 #include "LocalOperationController.hpp"
 
 Klondike::Klondike()
-   : logic(), view()
+   : logicM(), viewM()
 {
 }
 
@@ -13,13 +13,13 @@ Klondike::~Klondike()
 
 void Klondike::play()
 {
-   LocalOperationController* controller;
+   Controllers::LocalOperationController* controller;
    do
    {
-      controller = logic.getController();
+      controller = logicM.getController();
       if (nullptr != controller)
       {
-         view.interact(controller);
+         viewM.interact(controller);
       }
    } while(nullptr != controller);
 }

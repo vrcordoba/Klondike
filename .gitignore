@@ -5,7 +5,11 @@ Makefile
 *~
 
 klondike
+test/*Tests
 
 CMakeFiles/
 proj/
 
+.cproject
+.project
+.settings/

@@ -15,6 +15,10 @@ set(HEADER_FILES
    controllers/local/LocalOperationController.hpp
    controllers/local/Logic.hpp
 
+   models/Deck.hpp
+
+   utils/Card.hpp
+
    views/KlondikeView.hpp
 )
 
@@ -25,11 +29,13 @@ set(SOURCE_FILES
    controllers/local/LocalOperationController.cpp
    controllers/local/Logic.cpp
 
+   models/Deck.cpp
+
+   utils/Card.cpp
+
    views/KlondikeView.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")
 
 add_executable(klondike ${HEADER_FILES} ${SOURCE_FILES})
-
-

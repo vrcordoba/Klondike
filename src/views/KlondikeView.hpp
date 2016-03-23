@@ -1,5 +1,13 @@
+#ifndef VIEWS_KLONDIKEVIEW_HPP_
+#define VIEWS_KLONDIKEVIEW_HPP_
 
-class OperationController;
+namespace Controllers
+{
+   class OperationController;
+}
+
+namespace Views
+{
 
 class KlondikeView final
 {
@@ -7,6 +15,9 @@ public:
    explicit KlondikeView();
    ~KlondikeView();
 
-   void interact(const OperationController* operationController);
+   void interact(const Controllers::OperationController* operationController);
 };
 
+}
+
+#endif

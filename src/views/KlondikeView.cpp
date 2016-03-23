@@ -3,6 +3,9 @@
 
 #include "OperationController.hpp"
 
+namespace Views
+{
+
 KlondikeView::KlondikeView()
 {
 }
@@ -11,7 +14,9 @@ KlondikeView::~KlondikeView()
 {
 }
 
-void KlondikeView::interact(const OperationController* operationController)
+void KlondikeView::interact(const Controllers::OperationController*
+   operationController)
 {
 }
 
+}
