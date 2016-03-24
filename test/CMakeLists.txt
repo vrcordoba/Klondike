@@ -15,3 +15,6 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(DeckTests DeckTests.cpp ../src/models/Deck.cpp ../src/models/Deck.hpp ../src/utils/Card.cpp ../src/utils/Card.hpp)
 target_link_libraries(DeckTests ${GTEST_LIBRARIES} pthread)
+
+add_executable(ClosedIntervalTests ClosedIntervalTests.cpp ../src/utils/ClosedInterval.cpp ../src/utils/ClosedInterval.hpp)
+target_link_libraries(ClosedIntervalTests ${GTEST_LIBRARIES} pthread)

@@ -12,8 +12,11 @@ namespace Views
 class KlondikeView final
 {
 public:
-   explicit KlondikeView();
+   KlondikeView();
    ~KlondikeView();
+
+   KlondikeView(const KlondikeView&) = delete;
+   KlondikeView& operator=(const KlondikeView&) = delete;
 
    void interact(const Controllers::OperationController* operationController);
 };

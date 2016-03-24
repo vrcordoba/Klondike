@@ -11,9 +11,10 @@ class Card final
 public:
    Card(std::uint16_t number, std::uint16_t suit);
    ~Card();
-   Card& operator=(const Card&);
 
+   Card& operator=(const Card&);
    bool operator==(const Card&) const;
+
    bool isSameSuit(const Card&) const;
    bool isOneAbove(const Card&) const;
    bool isOneBelow(const Card&) const;

@@ -18,6 +18,10 @@ set(HEADER_FILES
    models/Deck.hpp
 
    utils/Card.hpp
+   utils/ClosedInterval.hpp
+   utils/IO.hpp
+   utils/LimitedIntDialog.hpp
+   utils/YesNoDialog.hpp
 
    views/KlondikeView.hpp
 )
@@ -32,6 +36,10 @@ set(SOURCE_FILES
    models/Deck.cpp
 
    utils/Card.cpp
+   utils/ClosedInterval.cpp
+   utils/IO.cpp
+   utils/LimitedIntDialog.cpp
+   utils/YesNoDialog.cpp
 
    views/KlondikeView.cpp
 )

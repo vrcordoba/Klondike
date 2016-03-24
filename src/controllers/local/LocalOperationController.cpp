@@ -4,7 +4,7 @@
 namespace Controllers
 {
 
-LocalOperationController::LocalOperationController()
+LocalOperationController::LocalOperationController(/*const Game&*/)
 {
 }
 

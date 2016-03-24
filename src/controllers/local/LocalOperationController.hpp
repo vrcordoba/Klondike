@@ -9,10 +9,10 @@ namespace Controllers
 class OperationControllerVisitor;
 
 class LocalOperationController :
-   public Controllers::OperationController
+   public OperationController
 {
 protected:
-   explicit LocalOperationController();
+   LocalOperationController(/*const Game&*/);
    virtual ~LocalOperationController();
 public:
    virtual void accept(const OperationControllerVisitor&

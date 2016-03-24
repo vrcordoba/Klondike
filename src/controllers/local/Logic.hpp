@@ -12,6 +12,9 @@ public:
    Logic();
    ~Logic();
 
+   Logic(const Logic&) = delete;
+   Logic& operator=(const Logic&) = delete;
+
    LocalOperationController* getController() const;
 };
 
