@@ -21,12 +21,12 @@ public:
    Deck& operator=(const Deck&) = delete;
 
    void shuffle();
-   void addCard(const Utils::Card& card);
-   Utils::Card takeCard();
+   void addCard(const Card* card);
+   const Card* takeCard();
    std::size_t getNumCards() const;
 
 private:
-   std::vector<Utils::Card> cardsM;
+   std::vector<const Card*> cardsM;
 };
 
 }

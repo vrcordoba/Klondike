@@ -22,15 +22,15 @@ void Deck::shuffle()
 	std::shuffle(cardsM.begin(), cardsM.end(), g);
 }
 
-void Deck::addCard(const Utils::Card& card)
+void Deck::addCard(const Card* const card)
 {
    cardsM.push_back(card);
 }
 
-Utils::Card Deck::takeCard()
+const Card* Deck::takeCard()
 {
    assert(!cardsM.empty());
-   Utils::Card card = cardsM.back();
+   const Card* card = cardsM.back();
    cardsM.pop_back();
    return card;
 }

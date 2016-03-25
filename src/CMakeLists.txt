@@ -15,9 +15,10 @@ set(HEADER_FILES
    controllers/local/LocalOperationController.hpp
    controllers/local/Logic.hpp
 
+   models/Card.hpp
    models/Deck.hpp
+   models/SpanishCard.hpp
 
-   utils/Card.hpp
    utils/ClosedInterval.hpp
    utils/IO.hpp
    utils/LimitedIntDialog.hpp
@@ -33,9 +34,10 @@ set(SOURCE_FILES
    controllers/local/LocalOperationController.cpp
    controllers/local/Logic.cpp
 
+   models/Card.cpp
    models/Deck.cpp
+   models/SpanishCard.cpp
 
-   utils/Card.cpp
    utils/ClosedInterval.cpp
    utils/IO.cpp
    utils/LimitedIntDialog.cpp
