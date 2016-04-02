@@ -1,56 +1,46 @@
 
 #include "gtest/gtest.h"
 
-#include "Deck.hpp"
+#include "Suit.hpp"
 #include "Card.hpp"
-#include "SpanishCard.hpp"
-#include <set>
+#include "Pile.hpp"
+#include "Deck.hpp"
+#include <vector>
 
 TEST(DeckTests, addCard)
 {
    Models::Deck deck;
-   const Models::Card* card = new Models::SpanishCard(1, 1);
-   deck.addCard(card);
+   deck.addCard(Models::Card(0, Models::Suit(0, 1), true));
    EXPECT_EQ(1, deck.getNumCards());
-   delete card;
 }
 
 TEST(DeckTests, addSeveralCards)
 {
    Models::Deck deck;
-   const Models::Card* card1 = new Models::SpanishCard(1, 4);
-   const Models::Card* card2 = new Models::SpanishCard(2, 3);
-   const Models::Card* card3 = new Models::SpanishCard(3, 2);
-   const Models::Card* card4 = new Models::SpanishCard(4, 1);
-   deck.addCard(card1);
-   deck.addCard(card2);
-   deck.addCard(card3);
-   deck.addCard(card4);
+   deck.addCard(Models::Card(0, Models::Suit(0, 1), true));
+   deck.addCard(Models::Card(1, Models::Suit(1, 0), true));
+   deck.addCard(Models::Card(2, Models::Suit(2, 1), true));
+   deck.addCard(Models::Card(3, Models::Suit(3, 0), true));
    EXPECT_EQ(4, deck.getNumCards());
-   delete card1;
-   delete card2;
-   delete card3;
-   delete card4;
 }
 
 TEST(DeckTests, addAndTakeCard)
 {
    Models::Deck deck;
-   const Models::Card* card = new Models::SpanishCard(1, 4);
+   Models::Card card(0, Models::Suit(0, 1), true);
    deck.addCard(card);
    EXPECT_EQ(card, deck.takeCard());
    EXPECT_EQ(0, deck.getNumCards());
-   delete card;
 }
 
 TEST(DeckTests, addAndTakeSeveralCards)
 {
    Models::Deck deck;
-   const Models::Card* card1 = new Models::SpanishCard(1, 4);
-   const Models::Card* card2 = new Models::SpanishCard(2, 3);
-   const Models::Card* card3 = new Models::SpanishCard(3, 2);
-   const Models::Card* card4 = new Models::SpanishCard(4, 1);
-   const Models::Card* card5 = new Models::SpanishCard(5, 5);
+   Models::Card card1(0, Models::Suit(0, 1), true);
+   Models::Card card2(1, Models::Suit(0, 0), true);
+   Models::Card card3(2, Models::Suit(0, 1), true);
+   Models::Card card4(3, Models::Suit(0, 0), true);
+   Models::Card card5(4, Models::Suit(0, 1), true);
    deck.addCard(card1);
    deck.addCard(card2);
    deck.addCard(card3);
@@ -67,40 +57,40 @@ TEST(DeckTests, addAndTakeSeveralCards)
    EXPECT_EQ(1, deck.getNumCards());
    EXPECT_EQ(card1, deck.takeCard());
    EXPECT_EQ(0, deck.getNumCards());
-   delete card1;
-   delete card2;
-   delete card3;
-   delete card4;
-   delete card5;
 }
 
 TEST(DeckTests, shuffle)
 {
    Models::Deck deck;
-   std::set<const Models::Card*> cards;
-   const Models::Card* card1 = new Models::SpanishCard(1, 4);
-   const Models::Card* card2 = new Models::SpanishCard(2, 3);
-   const Models::Card* card3 = new Models::SpanishCard(3, 2);
-   const Models::Card* card4 = new Models::SpanishCard(4, 1);
+   std::vector<Models::Card> cards;
+   Models::Card card1(0, Models::Suit(0, 1), true);
+   Models::Card card2(1, Models::Suit(1, 0), true);
+   Models::Card card3(2, Models::Suit(2, 1), true);
+   Models::Card card4(3, Models::Suit(3, 0), true);
    deck.addCard(card1);
    deck.addCard(card2);
    deck.addCard(card3);
    deck.addCard(card4);
-   cards.insert(card1);
-   cards.insert(card2);
-   cards.insert(card3);
-   cards.insert(card4);
+   cards.push_back(card1);
+   cards.push_back(card2);
+   cards.push_back(card3);
+   cards.push_back(card4);
    deck.shuffle();
    EXPECT_EQ(4, deck.getNumCards());
    size_t initialSize = cards.size();
    for (unsigned i = 0; i < initialSize; ++i)
    {
-	   const Models::Card* card = deck.takeCard();
-	   std::set<const Models::Card*>::iterator cardsIt = cards.find(card);
-	   EXPECT_TRUE(cardsIt != cards.end());
-	   delete *cardsIt;
-	   cards.erase(cardsIt);
-	   deck.shuffle();
+	   Models::Card card = deck.takeCard();
+	   std::vector<Models::Card>::iterator cardsIt = cards.begin();
+	   for (; cardsIt != cards.end(); ++ cardsIt)
+	   {
+	      if (*cardsIt == card)
+	      {
+	         break;
+	      }
+	   }
+      EXPECT_TRUE(cardsIt != cards.end());
+      cards.erase(cardsIt);
    }
 }
 

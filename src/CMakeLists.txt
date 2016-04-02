@@ -15,9 +15,10 @@ set(HEADER_FILES
    controllers/local/LocalOperationController.hpp
    controllers/local/Logic.hpp
 
+   models/Suit.hpp
    models/Card.hpp
+   models/Pile.hpp
    models/Deck.hpp
-   models/SpanishCard.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -34,9 +35,10 @@ set(SOURCE_FILES
    controllers/local/LocalOperationController.cpp
    controllers/local/Logic.cpp
 
+   models/Suit.cpp
    models/Card.cpp
+   models/Pile.cpp
    models/Deck.cpp
-   models/SpanishCard.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp

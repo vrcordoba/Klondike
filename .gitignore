@@ -13,3 +13,6 @@ proj/
 .cproject
 .project
 .settings/
+
+Debug/
+Release/

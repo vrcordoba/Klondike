@@ -1,15 +1,12 @@
 #ifndef MODELS_DECK_HPP_
 #define MODELS_DECK_HPP_
 
-#include <cstdint>
-#include <vector>
-
-#include "Card.hpp"
+#include "Pile.hpp"
 
 namespace Models
 {
 
-class Deck
+class Deck : public Pile
 {
 private:
 
@@ -21,12 +18,7 @@ public:
    Deck& operator=(const Deck&) = delete;
 
    void shuffle();
-   void addCard(const Card* card);
-   const Card* takeCard();
-   std::size_t getNumCards() const;
 
-private:
-   std::vector<const Card*> cardsM;
 };
 
 }

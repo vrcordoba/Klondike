@@ -14,9 +14,10 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(DeckTests DeckTests.cpp
-   ../src/models/Deck.cpp ../src/models/Deck.hpp
-   ../src/models/SpanishCard.cpp ../src/models/SpanishCard.hpp
-   ../src/models/Card.cpp ../src/models/Card.hpp)
+   ../src/models/Suit.cpp ../src/models/Suit.hpp
+   ../src/models/Card.cpp ../src/models/Card.hpp
+   ../src/models/Pile.cpp ../src/models/Pile.hpp
+   ../src/models/Deck.cpp ../src/models/Deck.hpp)
 target_link_libraries(DeckTests ${GTEST_LIBRARIES} pthread)
 
 add_executable(ClosedIntervalTests ClosedIntervalTests.cpp

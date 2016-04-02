@@ -1,14 +1,13 @@
 
 #include "Card.hpp"
 
-#include <cstddef>
-#include <cassert>
+#include "Suit.hpp"
 
 namespace Models
 {
 
-Card::Card(std::uint16_t number, std::uint16_t suit)
-   : numberM(number), suitM(suit)
+Card::Card(std::uint8_t number, Suit suit, bool upturned)
+   : numberM(number), suitM(suit), upturnedM(upturned)
 {
 }
 
@@ -28,22 +27,34 @@ bool Card::operator==(const Card& otherCard) const
    return (numberM == otherCard.numberM) and (suitM == otherCard.suitM);
 }
 
-bool Card::isSameSuit(const Card* const otherCard) const
+bool Card::isUpturned() const
 {
-   assert(nullptr != otherCard);
-   return suitM == otherCard->suitM;
+   return upturnedM;
 }
 
-bool Card::isOneAbove(const Card* const otherCard) const
+void Card::setUpturned(bool upturned)
 {
-   assert(nullptr != otherCard);
-   return numberM == (otherCard->numberM + 1);
+   upturnedM = upturned;
 }
 
-bool Card::isOneBelow(const Card* const otherCard) const
+bool Card::isSameSuit(const Card& otherCard) const
 {
-   assert(nullptr != otherCard);
-   return numberM == (otherCard->numberM - 1);
+   return suitM.sameSuit(otherCard.suitM);
+}
+
+bool Card::isSameColor(const Card& otherCard) const
+{
+   return suitM.sameColor(otherCard.suitM);
+}
+
+bool Card::isOneAbove(const Card& otherCard) const
+{
+   return numberM == (otherCard.numberM + 1);
+}
+
+bool Card::isOneBelow(const Card& otherCard) const
+{
+   return numberM == (otherCard.numberM - 1);
 }
 
 }

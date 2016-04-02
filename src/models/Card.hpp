@@ -2,27 +2,32 @@
 #define MODELS_CARD_HPP_
 
 #include <cstdint>
+#include "Suit.hpp"
 
 namespace Models
 {
 
-class Card
+class Card final
 {
 public:
-   Card(std::uint16_t number, std::uint16_t suit);
-   virtual ~Card();
+   Card(std::uint8_t number, Suit suit, bool upturned);
+   ~Card();
 
    Card& operator=(const Card& otherCard);
    bool operator==(const Card& otherCard) const;
 
-   virtual bool isSameColor(const Card* const otherCard) const = 0;
-   virtual bool isSameSuit(const Card* const otherCard) const;
-   virtual bool isOneAbove(const Card* const otherCard) const;
-   virtual bool isOneBelow(const Card* const otherCard) const;
+   bool isUpturned() const;
+   void setUpturned(bool upturned);
 
-protected:
-   std::uint16_t numberM;
-   std::uint16_t suitM;
+   bool isSameColor(const Card& otherCard) const;
+   bool isSameSuit(const Card& otherCard) const;
+   bool isOneAbove(const Card& otherCard) const;
+   bool isOneBelow(const Card& otherCard) const;
+
+private:
+   std::uint8_t numberM;
+   Suit suitM;
+   bool upturnedM;
 };
 
 }

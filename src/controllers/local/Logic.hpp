@@ -16,6 +16,9 @@ public:
    Logic& operator=(const Logic&) = delete;
 
    LocalOperationController* getController() const;
+
+private:
+
 };
 
 }
