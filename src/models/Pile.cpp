@@ -6,7 +6,7 @@
 namespace Models
 {
 
-Pile::Pile()
+Pile::Pile() : cardsM()
 {
 }
 
@@ -22,9 +22,15 @@ void Pile::addCard(const Card& card)
 Card Pile::takeCard()
 {
    assert(!cardsM.empty());
-   const Card card = cardsM.back();
+   const Card card = getTopCard();
    cardsM.pop_back();
    return card;
+}
+
+Card Pile::getTopCard() const
+{
+   assert(!cardsM.empty());
+   return cardsM.back();
 }
 
 std::size_t Pile::getNumCards() const
@@ -34,6 +40,7 @@ std::size_t Pile::getNumCards() const
 
 std::deque<Card> Pile::getCards() const
 {
+   assert(!cardsM.empty());
    return cardsM;
 }
 

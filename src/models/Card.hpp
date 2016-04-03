@@ -10,7 +10,7 @@ namespace Models
 class Card final
 {
 public:
-   Card(std::uint8_t number, Suit suit, bool upturned);
+   Card(std::uint8_t number, Suit suit, bool upturned = false);
    ~Card();
 
    Card& operator=(const Card& otherCard);
@@ -23,6 +23,8 @@ public:
    bool isSameSuit(const Card& otherCard) const;
    bool isOneAbove(const Card& otherCard) const;
    bool isOneBelow(const Card& otherCard) const;
+
+   std::uint8_t getNumber() const;
 
 private:
    std::uint8_t numberM;

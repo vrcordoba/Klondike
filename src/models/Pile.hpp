@@ -22,6 +22,7 @@ public:
 
 protected:
    std::deque<Card> getCards() const;
+   Card getTopCard() const;
 
 private:
    std::deque<Card> cardsM;

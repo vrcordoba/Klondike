@@ -1,6 +1,7 @@
 
 #include "Card.hpp"
 
+#include <cstdint>
 #include "Suit.hpp"
 
 namespace Models
@@ -19,6 +20,7 @@ Card& Card::operator=(const Card& otherCard)
 {
    numberM = otherCard.numberM;
    suitM = otherCard.suitM;
+   upturnedM = otherCard.upturnedM;
    return *this;
 }
 
@@ -55,6 +57,11 @@ bool Card::isOneAbove(const Card& otherCard) const
 bool Card::isOneBelow(const Card& otherCard) const
 {
    return numberM == (otherCard.numberM - 1);
+}
+
+std::uint8_t Card::getNumber() const
+{
+   return numberM;
 }
 
 }

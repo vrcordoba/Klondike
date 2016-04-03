@@ -19,6 +19,9 @@ set(HEADER_FILES
    models/Card.hpp
    models/Pile.hpp
    models/Deck.hpp
+   models/SpanishDeck.hpp
+   models/FrenchDeck.hpp
+   models/Foundation.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -39,6 +42,9 @@ set(SOURCE_FILES
    models/Card.cpp
    models/Pile.cpp
    models/Deck.cpp
+   models/SpanishDeck.cpp
+   models/FrenchDeck.cpp
+   models/Foundation.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp
