@@ -15,17 +15,19 @@ Foundation::~Foundation()
 {
 }
 
-bool Foundation::validTarget(const Card& card) const
+bool Foundation::validDestination(const Card& card) const
 {
+   bool validDest;
    if (0 != getNumCards())
    {
       Card topCard = getTopCard();
-      return (topCard.isSameSuit(card) and topCard.isOneBelow(card));
+      validDest = (topCard.isSameSuit(card) and topCard.isOneBelow(card));
    }
    else
    {
-      return deckM.isTheLowestCardInTheSuit(card);
+      validDest = deckM.isTheLowestCardInTheSuit(card);
    }
+   return validDest;
 }
 
 bool Foundation::isFoundationComplete() const

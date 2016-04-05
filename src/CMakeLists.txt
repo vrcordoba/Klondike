@@ -21,7 +21,10 @@ set(HEADER_FILES
    models/Deck.hpp
    models/SpanishDeck.hpp
    models/FrenchDeck.hpp
+   models/MovementDestination.hpp
    models/Foundation.hpp
+   models/Tableau.hpp
+   models/CardTable.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -45,6 +48,8 @@ set(SOURCE_FILES
    models/SpanishDeck.cpp
    models/FrenchDeck.cpp
    models/Foundation.cpp
+   models/Tableau.cpp
+   models/CardTable.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp

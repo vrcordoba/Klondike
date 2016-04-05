@@ -2,6 +2,7 @@
 #define MODELS_FOUNDATION_HPP_
 
 #include "Pile.hpp"
+#include "MovementDestination.hpp"
 
 namespace Models
 {
@@ -9,7 +10,7 @@ namespace Models
 class Deck;
 class Card;
 
-class Foundation final : public Pile
+class Foundation final : public Pile, MovementDestination
 {
 public:
    explicit Foundation(const Deck& deck);
@@ -18,7 +19,7 @@ public:
    Foundation(const Foundation&) = delete;
    Foundation& operator=(const Foundation&) = delete;
 
-   bool validTarget(const Card& card) const;
+   bool validDestination(const Card& card) const;
    bool isFoundationComplete() const;
 
 private:

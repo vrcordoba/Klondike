@@ -43,6 +43,19 @@ add_executable(FoundationTests FoundationTests.cpp
    ../src/models/Pile.cpp ../src/models/Pile.hpp
    ../src/models/Deck.cpp ../src/models/Deck.hpp
    ../src/models/FrenchDeck.cpp ../src/models/FrenchDeck.hpp
+   ../src/models/MovementDestination.hpp
    ../src/models/Foundation.cpp ../src/models/Foundation.hpp)
 target_link_libraries(FoundationTests ${GTEST_LIBRARIES} pthread)
+
+add_executable(TableauTests TableauTests.cpp
+   ../src/utils/ClosedInterval.cpp ../src/utils/ClosedInterval.hpp
+   ../src/models/Suit.cpp ../src/models/Suit.hpp
+   ../src/models/Card.cpp ../src/models/Card.hpp
+   ../src/models/Pile.cpp ../src/models/Pile.hpp
+   ../src/models/Deck.cpp ../src/models/Deck.hpp
+   ../src/models/SpanishDeck.cpp ../src/models/SpanishDeck.hpp
+   ../src/models/MovementDestination.hpp
+   ../src/models/Tableau.cpp ../src/models/Tableau.hpp)
+target_link_libraries(TableauTests ${GTEST_LIBRARIES} pthread)
+
 

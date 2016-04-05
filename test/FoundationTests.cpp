@@ -3,12 +3,11 @@
 
 #include "Suit.hpp"
 #include "Card.hpp"
-#include "Pile.hpp"
 #include "Deck.hpp"
 #include "FrenchDeck.hpp"
 #include "Foundation.hpp"
 
-TEST(FoundationTests, validTarget)
+TEST(FoundationTests, validDestination)
 {
    Models::Card card1(0, Models::Suit(1, 1));
    Models::Card card2(1, Models::Suit(2, 1));
@@ -16,18 +15,18 @@ TEST(FoundationTests, validTarget)
    Models::FrenchDeck deck;
    Models::Foundation foundation(deck);
    foundation.addCard(card1);
-   EXPECT_FALSE(foundation.validTarget(card2));
-   EXPECT_TRUE(foundation.validTarget(card3));
+   EXPECT_FALSE(foundation.validDestination(card2));
+   EXPECT_TRUE(foundation.validDestination(card3));
 }
 
-TEST(FoundationTests, validTargetEmptyFoundation)
+TEST(FoundationTests, validDestinationEmptyFoundation)
 {
    Models::Card card1(0, Models::Suit(1, 1));
    Models::Card card2(1, Models::Suit(1, 1));
    Models::FrenchDeck deck;
    Models::Foundation foundation(deck);
-   EXPECT_TRUE(foundation.validTarget(card1));
-   EXPECT_FALSE(foundation.validTarget(card2));
+   EXPECT_TRUE(foundation.validDestination(card1));
+   EXPECT_FALSE(foundation.validDestination(card2));
 }
 
 TEST(FoundationTests, isFoundationComplete)
