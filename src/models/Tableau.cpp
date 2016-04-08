@@ -15,6 +15,10 @@ Tableau::~Tableau()
 {
 }
 
+Tableau::Tableau(const Tableau& otherTableau) : deckM(otherTableau.deckM)
+{
+}
+
 bool Tableau::validDestination(const Card& card) const
 {
    bool validDest;

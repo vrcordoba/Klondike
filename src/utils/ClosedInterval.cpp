@@ -13,6 +13,11 @@ ClosedInterval::ClosedInterval(std::int64_t min, std::int64_t max)
    assert(min <= max);
 }
 
+ClosedInterval::ClosedInterval(std::int64_t max)
+   : ClosedInterval(0, max)
+{
+}
+
 ClosedInterval::~ClosedInterval()
 {
 }

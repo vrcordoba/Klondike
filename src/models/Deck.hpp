@@ -1,8 +1,8 @@
 #ifndef MODELS_DECK_HPP_
 #define MODELS_DECK_HPP_
 
-#include "Pile.hpp"
 #include <cstdint>
+#include "Pile.hpp"
 
 namespace Models
 {
@@ -17,6 +17,9 @@ public:
    Deck(std::uint8_t numCards, std::uint8_t numCardsPerSuit);
    virtual ~Deck();
 
+   Deck(const Deck&);
+   Deck& operator=(const Deck&) = delete;
+
    void shuffle();
    virtual void buildDeck() = 0;
 
@@ -25,6 +28,7 @@ public:
 
    std::uint8_t getTotalNumCards() const;
    std::uint8_t getNumCardsPerSuit() const;
+   std::uint8_t getNumSuits() const;
 
 private:
    const std::uint8_t TOTAL_NUM_CARDS;

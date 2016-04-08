@@ -1,6 +1,7 @@
 #ifndef MODELS_FRENCHDECK_HPP_
 #define MODELS_FRENCHDECK_HPP_
 
+#include <cstdint>
 #include "Deck.hpp"
 
 namespace Models

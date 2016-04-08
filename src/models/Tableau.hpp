@@ -16,7 +16,7 @@ public:
    explicit Tableau(const Deck& deck);
    ~Tableau();
 
-   Tableau(const Tableau&) = delete;
+   Tableau(const Tableau&);
    Tableau& operator=(const Tableau&) = delete;
 
    bool validDestination(const Card& card) const;

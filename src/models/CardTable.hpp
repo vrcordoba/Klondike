@@ -1,12 +1,11 @@
 #ifndef MODELS_CARDTABLE_HPP_
 #define MODELS_CARDTABLE_HPP_
 
-#include "Pile.hpp"
 #include <vector>
-#include "Tableau.hpp"
-#include <list>
-#include "Foundation.hpp"
 #include <cstdint>
+#include "Pile.hpp"
+#include "Tableau.hpp"
+#include "Foundation.hpp"
 
 namespace Models
 {
@@ -16,19 +15,29 @@ class Deck;
 class CardTable final
 {
 public:
-   CardTable(const Deck& deck, std::uint8_t numTableaus);
+   CardTable(Deck& deck, std::uint8_t numTableaus);
    ~CardTable();
 
    CardTable(const CardTable&) = delete;
    CardTable& operator=(const CardTable&) = delete;
 
+   void transferCard(Pile& originPile, Pile& destinationPile);
+
+   bool isGameWon() const;
+
+   Deck& getDeck();
+   Pile& getWaste();
+   Tableau& getTableau(std::uint8_t tableauIndex);
+   Foundation& getFoundation(std::uint8_t foundationIndex);
+
 private:
    void buildTableaus(std::uint8_t numTableaus);
+   void buildFoundations();
 
-   const Deck& deckM;
+   Deck& deckM;
    Pile wasteM;
    std::vector<Tableau> tableausM;
-   std::list<Foundation> foundationsM;
+   std::vector<Foundation> foundationsM;
 };
 
 }

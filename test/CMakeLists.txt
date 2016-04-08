@@ -58,4 +58,17 @@ add_executable(TableauTests TableauTests.cpp
    ../src/models/Tableau.cpp ../src/models/Tableau.hpp)
 target_link_libraries(TableauTests ${GTEST_LIBRARIES} pthread)
 
+add_executable(CardTableTests CardTableTests.cpp
+   ../src/utils/ClosedInterval.cpp ../src/utils/ClosedInterval.hpp
+   ../src/models/Suit.cpp ../src/models/Suit.hpp
+   ../src/models/Deck.cpp ../src/models/Deck.hpp
+   ../src/models/Tableau.cpp ../src/models/Tableau.hpp
+   ../src/models/Card.cpp ../src/models/Card.hpp
+   ../src/models/Pile.cpp ../src/models/Pile.hpp
+   ../src/models/Foundation.cpp ../src/models/Foundation.hpp
+   ../src/models/SpanishDeck.cpp ../src/models/SpanishDeck.hpp
+   ../src/models/MovementDestination.hpp
+   ../src/models/CardTable.cpp ../src/models/CardTable.hpp)
+target_link_libraries(CardTableTests ${GTEST_LIBRARIES} pthread)
+
 

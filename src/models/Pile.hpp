@@ -13,9 +13,6 @@ public:
    Pile();
    virtual ~Pile();
 
-   Pile(const Pile&) = delete;
-   Pile& operator=(const Pile&) = delete;
-
    void addCard(const Card& card);
    Card takeCard();
    std::size_t getNumCards() const;

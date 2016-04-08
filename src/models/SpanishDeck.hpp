@@ -1,6 +1,7 @@
 #ifndef MODELS_SPANISHDECK_HPP_
 #define MODELS_SPANISHDECK_HPP_
 
+#include <cstdint>
 #include "Deck.hpp"
 
 namespace Models

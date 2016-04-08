@@ -2,25 +2,89 @@
 #include "CardTable.hpp"
 
 #include <cstdint>
+#include <cassert>
+#include "Deck.hpp"
+#include "Tableau.hpp"
+#include "Card.hpp"
+#include "Foundation.hpp"
+#include "ClosedInterval.hpp"
 
 namespace Models
 {
 
-CardTable::CardTable(const Deck& deck, std::uint8_t numTableaus)
+CardTable::CardTable(Deck& deck, std::uint8_t numTableaus)
    : deckM(deck), wasteM(), tableausM(), foundationsM()
 {
    buildTableaus(numTableaus);
+   buildFoundations();
 }
 
 CardTable::~CardTable()
 {
 }
 
+bool CardTable::isGameWon() const
+{
+   for (std::vector<Foundation>::const_iterator it = foundationsM.begin();
+      it != foundationsM.end(); ++it)
+   {
+      if (not it->isFoundationComplete())
+      {
+         return false;
+      }
+   }
+   return true;
+}
+
 void CardTable::buildTableaus(std::uint8_t numTableaus)
 {
    for (std::uint8_t i = 0; i < numTableaus; ++i)
    {
+      Tableau tableau(deckM);
+      for (std::uint8_t j = 0; j < i; ++j)
+      {
+         transferCard(deckM, tableau);
+      }
+      Card firstCardInTableau = deckM.takeCard();
+      firstCardInTableau.setUpturned(true);
+      tableau.addCard(firstCardInTableau);
+      tableausM.push_back(tableau);
    }
+}
+
+void CardTable::transferCard(Pile& originPile, Pile& destinationPile)
+{
+   destinationPile.addCard(originPile.takeCard());
+}
+
+void CardTable::buildFoundations()
+{
+   for (std::uint8_t i = 0; i < deckM.getNumSuits(); ++i)
+   {
+      foundationsM.push_back(Foundation(deckM));
+   }
+}
+
+Deck& CardTable::getDeck()
+{
+   return deckM;
+}
+
+Pile& CardTable::getWaste()
+{
+   return wasteM;
+}
+
+Tableau& CardTable::getTableau(std::uint8_t tableauIndex)
+{
+   assert(Utils::ClosedInterval(tableausM.size() - 1).includes(tableauIndex));
+   return tableausM[tableauIndex];
+}
+
+Foundation& CardTable::getFoundation(std::uint8_t foundationIndex)
+{
+   assert(Utils::ClosedInterval(foundationsM.size() - 1).includes(foundationIndex));
+   return foundationsM[foundationIndex];
 }
 
 }

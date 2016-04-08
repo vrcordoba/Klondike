@@ -1,6 +1,7 @@
 
 #include "SpanishDeck.hpp"
 
+#include <cstdint>
 #include "Deck.hpp"
 #include "Card.hpp"
 #include "Suit.hpp"

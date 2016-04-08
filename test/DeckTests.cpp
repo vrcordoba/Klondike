@@ -1,13 +1,14 @@
 
 #include "gtest/gtest.h"
 
+#include <vector>
+#include <cstdint>
 #include "Suit.hpp"
 #include "Card.hpp"
 #include "Pile.hpp"
 #include "Deck.hpp"
 #include "FrenchDeck.hpp"
 #include "SpanishDeck.hpp"
-#include <vector>
 
 TEST(DeckTests, addCard)
 {
@@ -101,7 +102,7 @@ TEST(DeckTests, shuffle)
    delete deck;
 }
 
-TEST(DeckTest, SpanishDeck)
+TEST(DeckTests, SpanishDeck)
 {
    Models::Deck* deck = new Models::SpanishDeck();
    deck->buildDeck();
@@ -109,6 +110,8 @@ TEST(DeckTest, SpanishDeck)
    EXPECT_TRUE(40 == totalNumCards);
    std::uint8_t numCardsPerSuit = deck->getNumCardsPerSuit();
    EXPECT_TRUE(10 == numCardsPerSuit);
+   std::uint8_t numSuits = deck->getNumSuits();
+   EXPECT_TRUE(4 == numSuits);
    for (std::int8_t i = 3; i >= 0; --i)
    {
       for (std::int8_t j = 9; j >= 0; --j)
@@ -120,7 +123,7 @@ TEST(DeckTest, SpanishDeck)
    delete deck;
 }
 
-TEST(DeckTest, FrenchDeck)
+TEST(DeckTests, FrenchDeck)
 {
    Models::Deck* deck = new Models::FrenchDeck();
    deck->buildDeck();
@@ -128,6 +131,8 @@ TEST(DeckTest, FrenchDeck)
    EXPECT_TRUE(52 == totalNumCards);
    std::uint8_t numCardsPerSuit = deck->getNumCardsPerSuit();
    EXPECT_TRUE(13 == numCardsPerSuit);
+   std::uint8_t numSuits = deck->getNumSuits();
+   EXPECT_TRUE(4 == numSuits);
    for (std::int8_t i = 3; i >= 0; --i)
    {
       for (std::int8_t j = 12; j >= 0; --j)
@@ -139,7 +144,7 @@ TEST(DeckTest, FrenchDeck)
    delete deck;
 }
 
-TEST(DeckTest, isTheLowestCardInTheSuit)
+TEST(DeckTests, isTheLowestCardInTheSuit)
 {
    Models::Deck* deck = new Models::FrenchDeck();
    Models::Card card1(0, Models::Suit(0, 0));
@@ -149,7 +154,7 @@ TEST(DeckTest, isTheLowestCardInTheSuit)
    delete deck;
 }
 
-TEST(DeckTest, isTheHighestCardInTheSuit)
+TEST(DeckTests, isTheHighestCardInTheSuit)
 {
    Models::Deck* spanishDeck = new Models::SpanishDeck();
    Models::Deck* frenchDeck = new Models::FrenchDeck();

@@ -16,7 +16,7 @@ public:
    explicit Foundation(const Deck& deck);
    ~Foundation();
 
-   Foundation(const Foundation&) = delete;
+   Foundation(const Foundation&);
    Foundation& operator=(const Foundation&) = delete;
 
    bool validDestination(const Card& card) const;

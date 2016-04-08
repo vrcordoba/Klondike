@@ -11,6 +11,7 @@ class ClosedInterval final
 {
 public:
    ClosedInterval(std::int64_t min, std::int64_t max);
+   explicit ClosedInterval(std::int64_t max);
    ~ClosedInterval();
 
    ClosedInterval(const ClosedInterval&) = delete;

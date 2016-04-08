@@ -1,10 +1,10 @@
 
 #include "Deck.hpp"
 
-#include "Card.hpp"
-#include <cstdint>
 #include <algorithm>
 #include <cassert>
+#include <cstdint>
+#include "Card.hpp"
 #include "ClosedInterval.hpp"
 
 namespace Models
@@ -16,6 +16,11 @@ Deck::Deck(std::uint8_t numCards, std::uint8_t numCardsPerSuit)
 }
 
 Deck::~Deck()
+{
+}
+
+Deck::Deck(const Deck& otherDeck) : TOTAL_NUM_CARDS(otherDeck.TOTAL_NUM_CARDS),
+   NUM_CARDS_PER_SUIT(otherDeck.NUM_CARDS_PER_SUIT)
 {
 }
 
@@ -49,6 +54,11 @@ std::uint8_t Deck::getNumCardsPerSuit() const
 std::uint8_t Deck::getTotalNumCards() const
 {
    return TOTAL_NUM_CARDS;
+}
+
+std::uint8_t Deck::getNumSuits() const
+{
+   return TOTAL_NUM_CARDS / NUM_CARDS_PER_SUIT;
 }
 
 }

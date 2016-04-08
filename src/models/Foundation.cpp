@@ -15,6 +15,11 @@ Foundation::~Foundation()
 {
 }
 
+Foundation::Foundation(const Foundation& otherFoundation)
+   : deckM(otherFoundation.deckM)
+{
+}
+
 bool Foundation::validDestination(const Card& card) const
 {
    bool validDest;
