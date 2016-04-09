@@ -14,9 +14,6 @@ public:
    TextMenu(const std::string& title);
    ~TextMenu();
 
-   TextMenu(const TextMenu&) = delete;
-   TextMenu& operator=(const TextMenu&) = delete;
-
    void show() const;
    std::int64_t read() const;
 
@@ -24,7 +21,7 @@ public:
    void setAdditionalInformation(const std::string& additionalInformation);
 
 private:
-   const std::string titleM;
+   std::string titleM;
    std::list<std::string> optionsM;
    std::string additionalInformationM;
 };

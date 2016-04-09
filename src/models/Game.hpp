@@ -16,14 +16,17 @@ class Foundation;
 class Game final
 {
 public:
-   Game(Deck& deck);
+   Game();
    ~Game();
+
+   std::uint8_t getNumTableaus() const;
 
    State getState() const;
    void setState(State newState);
 
-   void transferCard(Pile& originPile, Pile& destinationPile);
+   void setCardTable(CardTable* cardTable);
 
+   void transferCard(Pile& originPile, Pile& destinationPile);
    bool isGameWon() const;
 
    Deck& getDeck();
@@ -34,7 +37,7 @@ public:
 private:
    State stateM;
    const std::uint8_t NUM_TABLEAUS = 7;
-   CardTable cardTableM;
+   CardTable* cardTableM;
 };
 
 }

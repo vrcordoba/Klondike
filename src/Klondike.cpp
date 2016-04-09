@@ -1,9 +1,9 @@
 
 #include "Klondike.hpp"
-#include "LocalOperationController.hpp"
+#include "OperationController.hpp"
 
-Klondike::Klondike()
-   : logicM(), viewM()
+Klondike::Klondike(Views::KlondikeView& view)
+   : logicM(), viewM(view)
 {
 }
 
@@ -13,7 +13,7 @@ Klondike::~Klondike()
 
 void Klondike::play()
 {
-   Controllers::LocalOperationController* controller;
+   Controllers::OperationController* controller;
    do
    {
       controller = logicM.getController();

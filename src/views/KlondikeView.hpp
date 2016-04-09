@@ -9,16 +9,11 @@ namespace Controllers
 namespace Views
 {
 
-class KlondikeView final
+class KlondikeView
 {
 public:
-   KlondikeView();
-   ~KlondikeView();
-
-   KlondikeView(const KlondikeView&) = delete;
-   KlondikeView& operator=(const KlondikeView&) = delete;
-
-   void interact(const Controllers::OperationController* operationController);
+   virtual ~KlondikeView() {};
+   virtual void interact(const Controllers::OperationController* operationController) = 0;
 };
 
 }

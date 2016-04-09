@@ -7,13 +7,16 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/controllers/local)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/models)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/utils)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/views)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/views/text)
 
 set(HEADER_FILES
    Klondike.hpp
 
    controllers/OperationController.hpp
-   controllers/local/LocalOperationController.hpp
+   controllers/OperationControllerVisitor.hpp
+   controllers/StartController.hpp
    controllers/local/Logic.hpp
+   controllers/local/LocalStartController.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -27,6 +30,7 @@ set(HEADER_FILES
    models/CardTable.hpp
    models/State.hpp
    models/Game.hpp
+   models/DeckBuilder.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -35,14 +39,17 @@ set(HEADER_FILES
    utils/TextMenu.hpp
 
    views/KlondikeView.hpp
+   views/StartView.hpp
+   views/text/KlondikeTextView.hpp
+   views/text/StartTextView.hpp
 )
 
 set(SOURCE_FILES
    main.cpp
    Klondike.cpp
 
-   controllers/local/LocalOperationController.cpp
    controllers/local/Logic.cpp
+   controllers/local/LocalStartController.cpp
 
    models/Suit.cpp
    models/Card.cpp
@@ -53,7 +60,8 @@ set(SOURCE_FILES
    models/Foundation.cpp
    models/Tableau.cpp
    models/CardTable.cpp
-   models/Game.hpp
+   models/Game.cpp
+   models/DeckBuilder.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp
@@ -61,7 +69,8 @@ set(SOURCE_FILES
    utils/YesNoDialog.cpp
    utils/TextMenu.cpp
 
-   views/KlondikeView.cpp
+   views/text/KlondikeTextView.cpp
+   views/text/StartTextView.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")

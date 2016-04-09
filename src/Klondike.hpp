@@ -7,14 +7,14 @@
 class Klondike final
 {
 public:
-   Klondike();
+   explicit Klondike(Views::KlondikeView& view);
    ~Klondike();
 
    void play();
 
 private:
    Controllers::Logic logicM;
-   Views::KlondikeView viewM;
+   Views::KlondikeView& viewM;
 };
 
 #endif

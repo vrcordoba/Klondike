@@ -1,8 +1,10 @@
 
 #include "Klondike.hpp"
+#include "KlondikeTextView.hpp"
 
 int main()
 {
-   Klondike().play();
+   Views::KlondikeTextView klondikeView;
+   Klondike(klondikeView).play();
    return 0;
 }

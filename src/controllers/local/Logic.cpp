@@ -1,22 +1,31 @@
 
 #include "Logic.hpp"
 
-#include "LocalOperationController.hpp"
+#include "OperationController.hpp"
+#include "LocalStartController.hpp"
 
 namespace Controllers
 {
 
-Logic::Logic()
+Logic::Logic() : gameM(), deckBuilderM()
 {
+   startControllerM = new LocalStartController(gameM, deckBuilderM);
 }
 
 Logic::~Logic()
 {
+   delete startControllerM;
 }
 
-LocalOperationController* Logic::getController() const
+OperationController* Logic::getController() const
 {
-   return nullptr;
+   switch (gameM.getState())
+   {
+      case Models::State::INITIAL:
+         return startControllerM;
+      default:
+         return nullptr;
+   }
 }
 
 }
