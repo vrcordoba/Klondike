@@ -9,6 +9,7 @@ namespace Controllers
 
 class OperationController;
 class StartController;
+class ContinueController;
 
 class Logic final
 {
@@ -25,6 +26,7 @@ private:
    Models::Game gameM;
    Models::DeckBuilder deckBuilderM;
    StartController* startControllerM;
+   ContinueController* continueControllerM;
 };
 
 }

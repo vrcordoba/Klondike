@@ -2,6 +2,7 @@
 #define VIEWS_TEXT_KLONDIKETEXTVIEW_HPP_
 
 #include "KlondikeView.hpp"
+#include "StartTextView.hpp"
 
 namespace Controllers
 {
@@ -20,7 +21,12 @@ public:
    KlondikeTextView(const KlondikeTextView&) = delete;
    KlondikeTextView& operator=(const KlondikeTextView&) = delete;
 
-   void interact(const Controllers::OperationController* operationController);
+   void interact(Controllers::OperationController* operationController);
+
+   void visit(Controllers::StartController* startController);
+
+private:
+   StartTextView startViewM;
 };
 
 }

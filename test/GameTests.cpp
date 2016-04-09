@@ -16,7 +16,9 @@ TEST(GameTests, setGetState)
 {
    Models::FrenchDeck deck;
    deck.buildDeck();
-   Models::Game game(deck);
+   Models::Game game;
+   Models::CardTable cardTable(deck, game.getNumTableaus());
+   game.setCardTable(&cardTable);
    EXPECT_TRUE(Models::State::INITIAL == game.getState());
    game.setState(Models::State::MOVE);
    EXPECT_TRUE(Models::State::MOVE == game.getState());
@@ -28,7 +30,9 @@ TEST(GameTests, transferCards)
 {
    Models::FrenchDeck deck;
    deck.buildDeck();
-   Models::Game game(deck);
+   Models::Game game;
+   Models::CardTable cardTable(deck, game.getNumTableaus());
+   game.setCardTable(&cardTable);
    Models::Deck& deckFromGame = game.getDeck();
    Models::Pile waste = game.getWaste();
    std::uint8_t numCardsDeck = deckFromGame.getNumCards();
@@ -49,7 +53,9 @@ TEST (GameTests, isGameWon)
 {
    Models::FrenchDeck deck;
    deck.buildDeck();
-   Models::Game game(deck);
+   Models::Game game;
+   Models::CardTable cardTable(deck, game.getNumTableaus());
+   game.setCardTable(&cardTable);
    EXPECT_FALSE(game.isGameWon());
    std::vector<Models::Pile> piles;
    for (std::uint8_t i = 0; i < 4; ++i)

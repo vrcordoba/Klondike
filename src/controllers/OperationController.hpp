@@ -1,7 +1,7 @@
 #ifndef CONTROLLERS_OPERATIONCONTROLLER_HPP_
 #define CONTROLLERS_OPERATIONCONTROLLER_HPP_
 
-class OperationControllerVisitor;
+#include "OperationControllerVisitor.hpp"
 
 namespace Controllers
 {
@@ -10,8 +10,7 @@ class OperationController
 {
 public:
    virtual ~OperationController() {};
-   virtual void accept(const OperationControllerVisitor&
-      operationControllerVisitor) = 0;
+   virtual void accept(OperationControllerVisitor* operationControllerVisitor) = 0;
 };
 
 }

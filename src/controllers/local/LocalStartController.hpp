@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "StartController.hpp"
+#include "OperationController.hpp"
 
 namespace Models
 {
@@ -23,11 +24,11 @@ public:
    LocalStartController(Models::Game& game, Models::DeckBuilder& deckBuilder);
    ~LocalStartController();
 
-   void start(std::uint8_t numPlayers, std::uint8_t newOrSavedOption,
-      std::uint8_t typeDeck) const;
-   void accept(const OperationControllerVisitor& operationControllerVisitor);
+   void accept(OperationControllerVisitor* operationControllerVisitor);
 
    std::vector<std::string> getDecks() const;
+   void start(std::uint8_t numPlayers, std::uint8_t newOrSavedOption,
+      std::uint8_t typeDeck) const;
 
 private:
    Models::Game& gameM;

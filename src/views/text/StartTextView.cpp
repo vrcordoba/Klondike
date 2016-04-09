@@ -23,7 +23,7 @@ void StartTextView::interact(const Controllers::StartController* startController
 {
    Utils::IO io;
    io.writeString("Welcome to Klondike game");
-   std::uint8_t numPlayers = Utils::LimitedIntDialog("How many players?", 1).read();
+   std::uint8_t numPlayers = Utils::LimitedIntDialog("How many players?", 0, 1).read();
    std::uint8_t newOrSavedOption = 1;
    if (1 == numPlayers)
    {
@@ -54,7 +54,7 @@ Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::vector<std::string> d
    {
       menuTitle += decks[i] + "/";
    }
-   menuTitle += decks[i] + "?";
+   menuTitle += decks[i] + " deck?";
    Utils::TextMenu menu(menuTitle);
    for (std::string deck : decks)
    {

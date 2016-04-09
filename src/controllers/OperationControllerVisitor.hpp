@@ -10,7 +10,7 @@ class OperationControllerVisitor
 {
 public:
    virtual ~OperationControllerVisitor() {};
-   void visit(StartController& startController);
+   virtual void visit(StartController* startController) = 0;
 };
 
 }

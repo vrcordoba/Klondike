@@ -1,12 +1,11 @@
 
 #include "LocalStartController.hpp"
 
-#include <cstdint>
-#include <vector>
-#include <string>
-#include "OperationControllerVisitor.hpp"
 #include "Game.hpp"
+#include "State.hpp"
 #include "DeckBuilder.hpp"
+#include "Deck.hpp"
+#include "OperationControllerVisitor.hpp"
 
 namespace Controllers
 {
@@ -24,6 +23,12 @@ LocalStartController::~LocalStartController()
 void LocalStartController::start(std::uint8_t numPlayers,
    std::uint8_t newOrSavedOption, std::uint8_t typeDeck) const
 {
+   // moveControllerBuilder
+   // newOrSave
+   //Models::Deck* deck = deckBuilderM.build(typeDeck);
+   //gameM.setCardTable();
+   gameM.setState(Models::State::MOVE);
+   return;
 }
 
 std::vector<std::string> LocalStartController::getDecks() const
@@ -31,10 +36,9 @@ std::vector<std::string> LocalStartController::getDecks() const
    return deckBuilderM.getDecks();
 }
 
-void LocalStartController::accept(const OperationControllerVisitor&
-   operationControllerVisitor)
+void LocalStartController::accept(OperationControllerVisitor* operationControllerVisitor)
 {
-   return;
+   operationControllerVisitor->visit(this);
 }
 
 }

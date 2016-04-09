@@ -36,7 +36,7 @@ void TextMenu::show() const
 
 std::int64_t TextMenu::read() const
 {
-   return LimitedIntDialog("What do you want to do next?", optionsM.size()).read();
+   return LimitedIntDialog("Choose option", optionsM.size()).read();
 }
 
 void TextMenu::addOption(const std::string& option)

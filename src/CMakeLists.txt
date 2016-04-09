@@ -15,8 +15,10 @@ set(HEADER_FILES
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
    controllers/StartController.hpp
+   controllers/ContinueController.hpp
    controllers/local/Logic.hpp
    controllers/local/LocalStartController.hpp
+   controllers/local/LocalContinueController.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -50,6 +52,7 @@ set(SOURCE_FILES
 
    controllers/local/Logic.cpp
    controllers/local/LocalStartController.cpp
+   controllers/local/LocalContinueController.cpp
 
    models/Suit.cpp
    models/Card.cpp
@@ -73,6 +76,6 @@ set(SOURCE_FILES
    views/text/StartTextView.cpp
 )
 
-set(CMAKE_CXX_FLAGS "-std=c++11 -Wall")
+set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")
 
 add_executable(klondike ${HEADER_FILES} ${SOURCE_FILES})
