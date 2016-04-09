@@ -27,6 +27,15 @@ TEST(ClosedIntervalTests, inTheMaxEdge)
    EXPECT_TRUE(interval.includes(2354435426));
 }
 
+TEST(ClosedIntervalTests, OneParameterConstructor)
+{
+   Utils::ClosedInterval interval(2354435426);
+   EXPECT_TRUE(interval.includes(0));
+   EXPECT_TRUE(interval.includes(128));
+   EXPECT_TRUE(interval.includes(2354435426));
+   EXPECT_FALSE(interval.includes(-1));
+}
+
 int main(int argc, char **argv)
 {
    ::testing::InitGoogleTest(&argc, argv);

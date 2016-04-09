@@ -25,11 +25,14 @@ set(HEADER_FILES
    models/Foundation.hpp
    models/Tableau.hpp
    models/CardTable.hpp
+   models/State.hpp
+   models/Game.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
    utils/LimitedIntDialog.hpp
    utils/YesNoDialog.hpp
+   utils/TextMenu.hpp
 
    views/KlondikeView.hpp
 )
@@ -50,11 +53,13 @@ set(SOURCE_FILES
    models/Foundation.cpp
    models/Tableau.cpp
    models/CardTable.cpp
+   models/Game.hpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp
    utils/LimitedIntDialog.cpp
    utils/YesNoDialog.cpp
+   utils/TextMenu.cpp
 
    views/KlondikeView.cpp
 )

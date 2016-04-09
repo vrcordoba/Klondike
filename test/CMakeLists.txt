@@ -71,4 +71,19 @@ add_executable(CardTableTests CardTableTests.cpp
    ../src/models/CardTable.cpp ../src/models/CardTable.hpp)
 target_link_libraries(CardTableTests ${GTEST_LIBRARIES} pthread)
 
+add_executable(GameTests GameTests.cpp
+   ../src/utils/ClosedInterval.cpp ../src/utils/ClosedInterval.hpp
+   ../src/models/Suit.cpp ../src/models/Suit.hpp
+   ../src/models/Deck.cpp ../src/models/Deck.hpp
+   ../src/models/Tableau.cpp ../src/models/Tableau.hpp
+   ../src/models/Card.cpp ../src/models/Card.hpp
+   ../src/models/Pile.cpp ../src/models/Pile.hpp
+   ../src/models/Foundation.cpp ../src/models/Foundation.hpp
+   ../src/models/FrenchDeck.cpp ../src/models/FrenchDeck.hpp
+   ../src/models/MovementDestination.hpp
+   ../src/models/CardTable.cpp ../src/models/CardTable.hpp
+   ../src/models/State.hpp
+   ../src/models/Game.cpp ../src/models/Game.hpp)
+target_link_libraries(GameTests ${GTEST_LIBRARIES} pthread)
+
 
