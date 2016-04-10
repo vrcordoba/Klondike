@@ -2,7 +2,6 @@
 #include "ClosedInterval.hpp"
 
 #include <cassert>
-#include <string>
 
 namespace Utils
 {

@@ -1,8 +1,6 @@
 
 #include "Suit.hpp"
 
-#include <cstdint>
-
 namespace Models
 {
 

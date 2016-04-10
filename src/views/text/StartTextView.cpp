@@ -3,7 +3,6 @@
 
 #include <cstdint>
 #include <cassert>
-#include "IO.hpp"
 #include "LimitedIntDialog.hpp"
 #include "TextMenu.hpp"
 #include "StartController.hpp"
@@ -21,9 +20,19 @@ StartTextView::~StartTextView()
 
 void StartTextView::interact(Controllers::StartController* startController)
 {
-   Utils::IO io;
-   io.writeString("Welcome to Klondike game");
-   std::uint8_t numPlayers = Utils::LimitedIntDialog("How many players?", 0, 1).read();
+   std::uint8_t numPlayers = getNumPlayers();
+   std::uint8_t newOrSavedOption = getNewOrSaveOption(numPlayers);
+   std::uint8_t typeDeck = getTypeOfDeck(startController->getDecks());
+   startController->start(numPlayers, newOrSavedOption, typeDeck);
+}
+
+std::uint8_t StartTextView::getNumPlayers()
+{
+   return Utils::LimitedIntDialog("How many players?", 0, 1).read();
+}
+
+std::uint8_t StartTextView::getNewOrSaveOption(std::uint8_t numPlayers)
+{
    std::uint8_t newOrSavedOption = 1;
    if (1 == numPlayers)
    {
@@ -31,10 +40,7 @@ void StartTextView::interact(Controllers::StartController* startController)
       newSavedMenu.show();
       newOrSavedOption = newSavedMenu.read();
    }
-   Utils::TextMenu newSavedMenu = buildDeckSelectionMenu(startController->getDecks());
-   newSavedMenu.show();
-   std::uint8_t typeDeck = newSavedMenu.read();
-   startController->start(numPlayers, newOrSavedOption, typeDeck);
+   return newOrSavedOption;
 }
 
 Utils::TextMenu StartTextView::buildNewSavedGameMenu()
@@ -43,6 +49,13 @@ Utils::TextMenu StartTextView::buildNewSavedGameMenu()
    menu.addOption("New game");
    menu.addOption("Saved game");
    return menu;
+}
+
+std::uint8_t StartTextView::getTypeOfDeck(std::vector<std::string> decks)
+{
+   Utils::TextMenu newSavedMenu = buildDeckSelectionMenu(decks);
+   newSavedMenu.show();
+   return newSavedMenu.read();
 }
 
 Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::vector<std::string> decks)

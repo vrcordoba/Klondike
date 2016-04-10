@@ -1,8 +1,6 @@
 
 #include "DeckBuilder.hpp"
 
-#include <vector>
-#include <string>
 #include <cassert>
 #include "SpanishDeck.hpp"
 #include "FrenchDeck.hpp"

@@ -2,7 +2,6 @@
 #include "LocalController.hpp"
 
 #include "Game.hpp"
-#include "State.hpp"
 
 namespace Controllers
 {

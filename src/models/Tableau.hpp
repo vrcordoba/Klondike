@@ -10,7 +10,7 @@ namespace Models
 class Deck;
 class Card;
 
-class Tableau final: public Pile, MovementDestination
+class Tableau final: public Pile, public MovementDestination
 {
 public:
    explicit Tableau(const Deck& deck);

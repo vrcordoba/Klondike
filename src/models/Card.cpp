@@ -1,9 +1,6 @@
 
 #include "Card.hpp"
 
-#include <cstdint>
-#include "Suit.hpp"
-
 namespace Models
 {
 

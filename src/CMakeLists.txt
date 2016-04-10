@@ -36,6 +36,8 @@ set(HEADER_FILES
    models/State.hpp
    models/Game.hpp
    models/DeckBuilder.hpp
+   models/Movement.hpp
+   models/MovementHistory.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -45,11 +47,11 @@ set(HEADER_FILES
 
    views/KlondikeView.hpp
    views/StartView.hpp
-   views/MoveView.hpp
+   views/GameView.hpp
    views/ContinueView.hpp
    views/text/KlondikeTextView.hpp
    views/text/StartTextView.hpp
-   views/text/MoveTextView.hpp
+   views/text/GameTextView.hpp
    views/text/ContinueTextView.hpp
 )
 
@@ -74,6 +76,8 @@ set(SOURCE_FILES
    models/CardTable.cpp
    models/Game.cpp
    models/DeckBuilder.cpp
+   models/Movement.cpp
+   models/MovementHistory.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp
@@ -83,7 +87,7 @@ set(SOURCE_FILES
 
    views/text/KlondikeTextView.cpp
    views/text/StartTextView.cpp
-   views/text/MoveTextView.cpp
+   views/text/GameTextView.cpp
    views/text/ContinueTextView.cpp
 )
 

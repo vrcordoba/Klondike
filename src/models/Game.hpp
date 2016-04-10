@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "State.hpp"
 #include "CardTable.hpp"
+#include "MovementHistory.hpp"
 
 namespace Models
 {
@@ -36,11 +37,14 @@ public:
 
    std::uint8_t getNumPlayers() const;
 
+   void execute(const Movement& movement);
+
 private:
-   State stateM;
    const std::uint8_t NUM_TABLEAUS = 7;
    const std::uint8_t NUM_PLAYERS = 1;
+   State stateM;
    CardTable* cardTableM;
+   MovementHistory historyM;
 };
 
 }

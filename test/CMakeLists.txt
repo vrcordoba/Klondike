@@ -83,6 +83,8 @@ add_executable(GameTests GameTests.cpp
    ../src/models/MovementDestination.hpp
    ../src/models/CardTable.cpp ../src/models/CardTable.hpp
    ../src/models/State.hpp
+   ../src/models/Movement.cpp ../src/models/Movement.hpp
+   ../src/models/MovementHistory.cpp ../src/models/MovementHistory.hpp
    ../src/models/Game.cpp ../src/models/Game.hpp)
 target_link_libraries(GameTests ${GTEST_LIBRARIES} pthread)
 

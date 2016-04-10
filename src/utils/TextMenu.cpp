@@ -1,9 +1,6 @@
 
 #include "TextMenu.hpp"
 
-#include <string>
-#include <list>
-#include <cstdint>
 #include "IO.hpp"
 #include "LimitedIntDialog.hpp"
 

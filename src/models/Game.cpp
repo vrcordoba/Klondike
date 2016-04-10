@@ -1,9 +1,6 @@
 
 #include "Game.hpp"
 
-#include "State.hpp"
-#include "CardTable.hpp"
-
 namespace Models
 {
 
@@ -12,7 +9,7 @@ class Pile;
 class Tableau;
 class Foundation;
 
-Game::Game() : stateM(State::INITIAL), cardTableM(nullptr)
+Game::Game() : stateM(State::INITIAL), cardTableM(nullptr), historyM()
 {
 }
 
@@ -73,6 +70,11 @@ Foundation& Game::getFoundation(std::uint8_t foundationIndex) const
 std::uint8_t Game::getNumPlayers() const
 {
    return NUM_PLAYERS;
+}
+
+void Game::execute(const Movement& movement)
+{
+   historyM.storeAndExecute(movement);
 }
 
 }

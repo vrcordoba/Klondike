@@ -4,7 +4,6 @@
 #include <cassert>
 #include "Game.hpp"
 #include "State.hpp"
-#include "DeckBuilder.hpp"
 #include "Deck.hpp"
 #include "OperationControllerVisitor.hpp"
 #include "ClosedInterval.hpp"
@@ -47,6 +46,7 @@ void LocalStartController::accept(OperationControllerVisitor* operationControlle
 void LocalStartController::buildCardTable(std::uint8_t typeDeck)
 {
    Models::Deck* deck = deckBuilderM.build(typeDeck);
+   deck->buildDeck();
    cardTableM = new Models::CardTable(*deck, LocalController::getNumTableaus());
    LocalController::setCardTable(cardTableM);
 }

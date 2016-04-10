@@ -27,6 +27,9 @@ public:
    void interact(Controllers::StartController* startController);
 
 private:
+   std::uint8_t getNumPlayers();
+   std::uint8_t getNewOrSaveOption(std::uint8_t numPlayers);
+   std::uint8_t getTypeOfDeck(std::vector<std::string> decks);
    Utils::TextMenu buildNewSavedGameMenu();
    Utils::TextMenu buildDeckSelectionMenu(std::vector<std::string> decks);
 };

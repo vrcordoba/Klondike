@@ -1,9 +1,9 @@
 #ifndef VIEWS_TEXT_KLONDIKETEXTVIEW_HPP_
 #define VIEWS_TEXT_KLONDIKETEXTVIEW_HPP_
 
+#include "GameTextView.hpp"
 #include "KlondikeView.hpp"
 #include "StartTextView.hpp"
-#include "MoveTextView.hpp"
 #include "ContinueTextView.hpp"
 
 namespace Controllers
@@ -31,7 +31,7 @@ public:
 
 private:
    StartTextView startViewM;
-   MoveTextView moveViewM;
+   GameTextView gameViewM;
    ContinueTextView continueViewM;
 };
 

@@ -2,10 +2,9 @@
 #define MODELS_CARDTABLE_HPP_
 
 #include <vector>
-#include <cstdint>
+#include "Foundation.hpp"
 #include "Pile.hpp"
 #include "Tableau.hpp"
-#include "Foundation.hpp"
 
 namespace Models
 {

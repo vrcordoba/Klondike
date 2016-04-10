@@ -9,6 +9,7 @@ class Card;
 class MovementDestination
 {
 public:
+   virtual ~MovementDestination() {};
    virtual bool validDestination(const Card& card) const = 0;
 };
 

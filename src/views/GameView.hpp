@@ -1,5 +1,5 @@
-#ifndef VIEWS_MOVEVIEW_HPP_
-#define VIEWS_MOVEVIEW_HPP_
+#ifndef VIEWS_GAMEVIEW_HPP_
+#define VIEWS_GAMEVIEW_HPP_
 
 namespace Controllers
 {
@@ -9,10 +9,10 @@ namespace Controllers
 namespace Views
 {
 
-class MoveView
+class GameView
 {
 public:
-   virtual ~MoveView() {};
+   virtual ~GameView() {};
    virtual void interact(Controllers::MoveController* moveController) = 0;
 };
 

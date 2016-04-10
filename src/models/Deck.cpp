@@ -3,7 +3,6 @@
 
 #include <algorithm>
 #include <cassert>
-#include <cstdint>
 #include "Card.hpp"
 #include "ClosedInterval.hpp"
 

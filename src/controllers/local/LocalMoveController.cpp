@@ -16,7 +16,7 @@ LocalMoveController::~LocalMoveController()
 
 void LocalMoveController::accept(OperationControllerVisitor* operationControllerVisitor)
 {
-
+   operationControllerVisitor->visit(this);
 }
 
 void LocalMoveController::move()

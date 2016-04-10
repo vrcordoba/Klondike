@@ -24,7 +24,7 @@ private:
 
    enum
    {
-      SPANISH,
+      SPANISH = 1,
       FRENCH
    };
 
