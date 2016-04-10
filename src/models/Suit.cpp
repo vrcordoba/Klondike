@@ -27,4 +27,9 @@ bool Suit::sameColor(const Suit& otherSuit) const
    return colorM == otherSuit.colorM;
 }
 
+std::uint8_t Suit::getSuit() const
+{
+   return suitM;
+}
+
 }

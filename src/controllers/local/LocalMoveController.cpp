@@ -2,11 +2,13 @@
 #include "LocalMoveController.hpp"
 
 #include "OperationControllerVisitor.hpp"
+#include "CardTableController.hpp"
 
 namespace Controllers
 {
 
-LocalMoveController::LocalMoveController(Models::Game& game) : LocalController(game)
+LocalMoveController::LocalMoveController(Models::Game& game) : LocalController(game),
+   cardTableControllerM(game)
 {
 }
 
@@ -21,6 +23,11 @@ void LocalMoveController::accept(OperationControllerVisitor* operationController
 
 void LocalMoveController::move()
 {
+}
+
+CardTableController* LocalMoveController::getCardTableController()
+{
+   return &cardTableControllerM;
 }
 
 }

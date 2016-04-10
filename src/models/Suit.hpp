@@ -17,6 +17,8 @@ public:
    bool sameSuit(const Suit& otherSuit) const;
    bool sameColor(const Suit& otherSuit) const;
 
+   std::uint8_t getSuit() const;
+
 private:
    std::uint8_t suitM;
    std::uint8_t colorM;

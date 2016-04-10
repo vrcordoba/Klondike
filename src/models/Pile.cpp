@@ -40,7 +40,6 @@ std::size_t Pile::getNumCards() const
 
 std::deque<Card> Pile::getCards() const
 {
-   assert(!cardsM.empty());
    return cardsM;
 }
 

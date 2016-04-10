@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "State.hpp"
+#include "DeckType.hpp"
 
 namespace Models
 {
@@ -27,7 +28,11 @@ public:
    std::uint8_t getNumPlayers() const;
    std::uint8_t getNumTableaus() const;
 
+   Models::CardTable* getCardTable() const;
    void setCardTable(Models::CardTable* cardTable);
+
+   Models::DeckType::Name getDeckType() const;
+   void setDeckType(Models::DeckType::Name name);
 
 private:
    Models::Game& gameM;

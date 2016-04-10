@@ -2,6 +2,7 @@
 #include "GameTextView.hpp"
 
 #include "MoveController.hpp"
+#include "CardTableTextView.hpp"
 
 namespace Views
 {
@@ -32,11 +33,14 @@ void GameTextView::interact(Controllers::MoveController* moveController)
 {
    showGame(moveController);
    menuM.show();
+   menuM.read();
    moveController->move();
 }
 
 void GameTextView::showGame(Controllers::MoveController* moveController) const
 {
+   CardTableTextView cardTableTextView(moveController->getCardTableController());
+   cardTableTextView.show();
 }
 
 }

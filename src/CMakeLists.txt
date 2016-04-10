@@ -17,11 +17,13 @@ set(HEADER_FILES
    controllers/StartController.hpp
    controllers/MoveController.hpp
    controllers/ContinueController.hpp
+   controllers/CardTableController.hpp
    controllers/local/Logic.hpp
    controllers/local/LocalController.hpp
    controllers/local/LocalStartController.hpp
    controllers/local/LocalMoveController.hpp
    controllers/local/LocalContinueController.hpp
+   controllers/local/LocalCardTableController.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -35,6 +37,7 @@ set(HEADER_FILES
    models/CardTable.hpp
    models/State.hpp
    models/Game.hpp
+   models/DeckType.hpp
    models/DeckBuilder.hpp
    models/Movement.hpp
    models/MovementHistory.hpp
@@ -49,10 +52,17 @@ set(HEADER_FILES
    views/StartView.hpp
    views/GameView.hpp
    views/ContinueView.hpp
+   views/CardTableView.hpp
+   views/CardView.hpp
    views/text/KlondikeTextView.hpp
    views/text/StartTextView.hpp
    views/text/GameTextView.hpp
    views/text/ContinueTextView.hpp
+   views/text/CardTableTextView.hpp
+   views/text/CardTextViewBuilder.hpp
+   views/text/CardTextView.hpp
+   views/text/FrenchCardTextView.hpp
+   views/text/SpanishCardTextView.hpp
 )
 
 set(SOURCE_FILES
@@ -64,6 +74,7 @@ set(SOURCE_FILES
    controllers/local/LocalStartController.cpp
    controllers/local/LocalMoveController.cpp
    controllers/local/LocalContinueController.cpp
+   controllers/local/LocalCardTableController.cpp
 
    models/Suit.cpp
    models/Card.cpp
@@ -75,6 +86,7 @@ set(SOURCE_FILES
    models/Tableau.cpp
    models/CardTable.cpp
    models/Game.cpp
+   models/DeckType.cpp
    models/DeckBuilder.cpp
    models/Movement.cpp
    models/MovementHistory.cpp
@@ -89,6 +101,11 @@ set(SOURCE_FILES
    views/text/StartTextView.cpp
    views/text/GameTextView.cpp
    views/text/ContinueTextView.cpp
+   views/text/CardTableTextView.cpp
+   views/text/CardTextViewBuilder.cpp
+   views/text/CardTextView.cpp
+   views/text/FrenchCardTextView.cpp
+   views/text/SpanishCardTextView.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")

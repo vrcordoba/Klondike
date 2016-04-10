@@ -32,6 +32,11 @@ void Game::setState(State newState)
    stateM = newState;
 }
 
+CardTable* Game::getCardTable() const
+{
+   return cardTableM;
+}
+
 void Game::setCardTable(CardTable* cardTable)
 {
    cardTableM = cardTable;
@@ -75,6 +80,16 @@ std::uint8_t Game::getNumPlayers() const
 void Game::execute(const Movement& movement)
 {
    historyM.storeAndExecute(movement);
+}
+
+DeckType::Name Game::getDeckType() const
+{
+   return deckTypeNameM;
+}
+
+void Game::setDeckType(DeckType::Name name)
+{
+   deckTypeNameM = name;
 }
 
 }

@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <vector>
 #include <string>
+#include "DeckType.hpp"
 
 namespace Models
 {
@@ -19,17 +20,11 @@ public:
    Deck* build(std::uint8_t deckType);
 
    std::vector<std::string> getDecks() const;
+   DeckType::Name getDeckType() const;
 
 private:
-
-   enum
-   {
-      SPANISH = 1,
-      FRENCH
-   };
-
-   std::vector<std::string> deckTypesDescriptionM;
    Deck* deckM;
+   DeckType deckTypeM;
 };
 
 }

@@ -25,6 +25,7 @@ public:
    bool isOneBelow(const Card& otherCard) const;
 
    std::uint8_t getNumber() const;
+   std::uint8_t getSuit() const;
 
 private:
    std::uint8_t numberM;

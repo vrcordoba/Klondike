@@ -48,6 +48,7 @@ void LocalStartController::buildCardTable(std::uint8_t typeDeck)
    Models::Deck* deck = deckBuilderM.build(typeDeck);
    deck->buildDeck();
    cardTableM = new Models::CardTable(*deck, LocalController::getNumTableaus());
+   LocalController::setDeckType(deckBuilderM.getDeckType());
    LocalController::setCardTable(cardTableM);
 }
 

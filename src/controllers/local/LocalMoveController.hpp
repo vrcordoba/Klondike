@@ -3,11 +3,13 @@
 
 #include "MoveController.hpp"
 #include "LocalController.hpp"
+#include "LocalCardTableController.hpp"
 
 namespace Controllers
 {
 
 class OperationControllerVisitor;
+class CardTableController;
 
 class LocalMoveController final : public MoveController, public LocalController
 {
@@ -21,6 +23,11 @@ public:
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
    void move();
+
+   CardTableController* getCardTableController();
+
+private:
+   LocalCardTableController cardTableControllerM;
 };
 
 }

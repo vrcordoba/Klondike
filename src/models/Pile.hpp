@@ -17,8 +17,9 @@ public:
    Card takeCard();
    std::size_t getNumCards() const;
 
-protected:
    std::deque<Card> getCards() const;
+
+protected:
    Card getTopCard() const;
 
 private:

@@ -4,14 +4,13 @@
 #include <cassert>
 #include "SpanishDeck.hpp"
 #include "FrenchDeck.hpp"
+#include "DeckType.hpp"
 
 namespace Models
 {
 
-DeckBuilder::DeckBuilder() : deckTypesDescriptionM(), deckM(nullptr)
+DeckBuilder::DeckBuilder() : deckM(nullptr), deckTypeM()
 {
-   deckTypesDescriptionM.push_back("Spanish");
-   deckTypesDescriptionM.push_back("French");
 }
 
 DeckBuilder::~DeckBuilder()
@@ -21,18 +20,25 @@ DeckBuilder::~DeckBuilder()
 
 std::vector<std::string> DeckBuilder::getDecks() const
 {
-   return deckTypesDescriptionM;
+   return deckTypeM.getDecks();
+}
+
+DeckType::Name DeckBuilder::getDeckType() const
+{
+   return deckTypeM.getDeckType();
 }
 
 Deck* DeckBuilder::build(std::uint8_t deckType)
 {
    switch(deckType)
    {
-      case SPANISH:
+      case DeckType::SPANISH:
          deckM = new SpanishDeck();
+         deckTypeM.setDeckType(DeckType::SPANISH);
          break;
-      case FRENCH:
+      case DeckType::FRENCH:
          deckM = new FrenchDeck();
+         deckTypeM.setDeckType(DeckType::FRENCH);
          break;
       default:
          assert(false);

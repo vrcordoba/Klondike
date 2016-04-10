@@ -61,4 +61,9 @@ std::uint8_t Card::getNumber() const
    return numberM;
 }
 
+std::uint8_t Card::getSuit() const
+{
+   return suitM.getSuit();
+}
+
 }

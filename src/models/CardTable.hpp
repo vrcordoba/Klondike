@@ -29,6 +29,8 @@ public:
    Tableau& getTableau(std::uint8_t tableauIndex);
    Foundation& getFoundation(std::uint8_t foundationIndex);
 
+   std::uint8_t getNumSuits() const;
+
 private:
    void buildTableaus(std::uint8_t numTableaus);
    void buildFoundations();

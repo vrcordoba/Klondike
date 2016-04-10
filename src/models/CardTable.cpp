@@ -87,4 +87,9 @@ Foundation& CardTable::getFoundation(std::uint8_t foundationIndex)
    return foundationsM[foundationIndex];
 }
 
+std::uint8_t CardTable::getNumSuits() const
+{
+   return deckM.getNumSuits();
+}
+
 }

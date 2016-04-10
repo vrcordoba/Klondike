@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "State.hpp"
 #include "CardTable.hpp"
+#include "DeckType.hpp"
 #include "MovementHistory.hpp"
 
 namespace Models
@@ -25,6 +26,7 @@ public:
    State getState() const;
    void setState(State newState);
 
+   CardTable* getCardTable() const;
    void setCardTable(CardTable* cardTable);
 
    void transferCard(Pile& originPile, Pile& destinationPile);
@@ -37,6 +39,9 @@ public:
 
    std::uint8_t getNumPlayers() const;
 
+   DeckType::Name getDeckType() const;
+   void setDeckType(DeckType::Name name);
+
    void execute(const Movement& movement);
 
 private:
@@ -45,6 +50,7 @@ private:
    State stateM;
    CardTable* cardTableM;
    MovementHistory historyM;
+   DeckType::Name deckTypeNameM;
 };
 
 }
