@@ -24,7 +24,7 @@ public:
    StartTextView(const StartTextView&) = delete;
    StartTextView& operator=(const StartTextView&) = delete;
 
-   void interact(const Controllers::StartController* startController);
+   void interact(Controllers::StartController* startController);
 
 private:
    Utils::TextMenu buildNewSavedGameMenu();

@@ -13,7 +13,7 @@ class StartView
 {
 public:
    virtual ~StartView() {};
-   virtual void interact(const Controllers::StartController* startController) = 0;
+   virtual void interact(Controllers::StartController* startController) = 0;
 };
 
 }

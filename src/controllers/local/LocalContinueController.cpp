@@ -1,11 +1,14 @@
 
 #include "LocalContinueController.hpp"
+
 #include "OperationControllerVisitor.hpp"
+#include "Game.hpp"
 
 namespace Controllers
 {
 
-LocalContinueController::LocalContinueController()
+LocalContinueController::LocalContinueController(Models::Game& game)
+   : LocalController(game)
 {
 }
 

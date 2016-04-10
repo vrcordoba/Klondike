@@ -2,18 +2,26 @@
 #define CONTROLLERS_LOCAL_LOCALCONTINUECONTROLLER_HPP_
 
 #include "ContinueController.hpp"
-#include "OperationController.hpp"
+#include "LocalController.hpp"
+
+namespace Models
+{
+   class Game;
+}
 
 namespace Controllers
 {
 
 class OperationControllerVisitor;
 
-class LocalContinueController: public ContinueController
+class LocalContinueController: public ContinueController, public LocalController
 {
 public:
-   LocalContinueController();
+   LocalContinueController(Models::Game& game);
    ~LocalContinueController();
+
+   LocalContinueController(const LocalContinueController&) = delete;
+   LocalContinueController& operator=(const LocalContinueController&) = delete;
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 

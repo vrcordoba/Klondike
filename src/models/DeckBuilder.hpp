@@ -29,6 +29,7 @@ private:
    };
 
    std::vector<std::string> deckTypesDescriptionM;
+   Deck* deckM;
 };
 
 }

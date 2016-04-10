@@ -5,12 +5,13 @@
 #include <vector>
 #include <string>
 #include "StartController.hpp"
-#include "OperationController.hpp"
+#include "LocalController.hpp"
+#include "DeckBuilder.hpp"
 
 namespace Models
 {
    class Game;
-   class DeckBuilder;
+   class CardTable;
 }
 
 namespace Controllers
@@ -18,21 +19,26 @@ namespace Controllers
 
 class OperationControllerVisitor;
 
-class LocalStartController final : public StartController
+class LocalStartController final : public StartController, public LocalController
 {
 public:
-   LocalStartController(Models::Game& game, Models::DeckBuilder& deckBuilder);
+   LocalStartController(Models::Game& game);
    ~LocalStartController();
+
+   LocalStartController(const LocalStartController&) = delete;
+   LocalStartController& operator=(const LocalStartController&) = delete;
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
    std::vector<std::string> getDecks() const;
    void start(std::uint8_t numPlayers, std::uint8_t newOrSavedOption,
-      std::uint8_t typeDeck) const;
+      std::uint8_t typeDeck);
 
 private:
-   Models::Game& gameM;
-   Models::DeckBuilder& deckBuilderM;
+   void buildCardTable(std::uint8_t typeDeck);
+
+   Models::DeckBuilder deckBuilderM;
+   Models::CardTable* cardTableM;
 };
 
 }

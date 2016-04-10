@@ -19,7 +19,7 @@ StartTextView::~StartTextView()
 {
 }
 
-void StartTextView::interact(const Controllers::StartController* startController)
+void StartTextView::interact(Controllers::StartController* startController)
 {
    Utils::IO io;
    io.writeString("Welcome to Klondike game");

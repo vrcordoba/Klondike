@@ -2,13 +2,13 @@
 #define CONTROLLERS_LOCAL_LOGIC_HPP_
 
 #include "Game.hpp"
-#include "DeckBuilder.hpp"
 
 namespace Controllers
 {
 
 class OperationController;
 class StartController;
+class MoveController;
 class ContinueController;
 
 class Logic final
@@ -24,8 +24,8 @@ public:
 
 private:
    Models::Game gameM;
-   Models::DeckBuilder deckBuilderM;
    StartController* startControllerM;
+   MoveController* moveControllerM;
    ContinueController* continueControllerM;
 };
 

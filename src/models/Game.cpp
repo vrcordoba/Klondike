@@ -50,24 +50,29 @@ bool Game::isGameWon() const
    return cardTableM->isGameWon();
 }
 
-Deck& Game::getDeck()
+Deck& Game::getDeck() const
 {
    return cardTableM->getDeck();
 }
 
-Pile& Game::getWaste()
+Pile& Game::getWaste() const
 {
    return cardTableM->getWaste();
 }
 
-Tableau& Game::getTableau(std::uint8_t tableauIndex)
+Tableau& Game::getTableau(std::uint8_t tableauIndex) const
 {
    return cardTableM->getTableau(tableauIndex);
 }
 
-Foundation& Game::getFoundation(std::uint8_t foundationIndex)
+Foundation& Game::getFoundation(std::uint8_t foundationIndex) const
 {
    return cardTableM->getFoundation(foundationIndex);
+}
+
+std::uint8_t Game::getNumPlayers() const
+{
+   return NUM_PLAYERS;
 }
 
 }

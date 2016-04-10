@@ -15,9 +15,12 @@ set(HEADER_FILES
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
    controllers/StartController.hpp
+   controllers/MoveController.hpp
    controllers/ContinueController.hpp
    controllers/local/Logic.hpp
+   controllers/local/LocalController.hpp
    controllers/local/LocalStartController.hpp
+   controllers/local/LocalMoveController.hpp
    controllers/local/LocalContinueController.hpp
 
    models/Suit.hpp
@@ -42,8 +45,12 @@ set(HEADER_FILES
 
    views/KlondikeView.hpp
    views/StartView.hpp
+   views/MoveView.hpp
+   views/ContinueView.hpp
    views/text/KlondikeTextView.hpp
    views/text/StartTextView.hpp
+   views/text/MoveTextView.hpp
+   views/text/ContinueTextView.hpp
 )
 
 set(SOURCE_FILES
@@ -51,7 +58,9 @@ set(SOURCE_FILES
    Klondike.cpp
 
    controllers/local/Logic.cpp
+   controllers/local/LocalController.cpp
    controllers/local/LocalStartController.cpp
+   controllers/local/LocalMoveController.cpp
    controllers/local/LocalContinueController.cpp
 
    models/Suit.cpp
@@ -74,6 +83,8 @@ set(SOURCE_FILES
 
    views/text/KlondikeTextView.cpp
    views/text/StartTextView.cpp
+   views/text/MoveTextView.cpp
+   views/text/ContinueTextView.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")

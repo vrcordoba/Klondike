@@ -3,6 +3,8 @@
 
 #include "KlondikeView.hpp"
 #include "StartTextView.hpp"
+#include "MoveTextView.hpp"
+#include "ContinueTextView.hpp"
 
 namespace Controllers
 {
@@ -24,9 +26,13 @@ public:
    void interact(Controllers::OperationController* operationController);
 
    void visit(Controllers::StartController* startController);
+   void visit(Controllers::MoveController* moveController);
+   void visit(Controllers::ContinueController* continueController);
 
 private:
    StartTextView startViewM;
+   MoveTextView moveViewM;
+   ContinueTextView continueViewM;
 };
 
 }

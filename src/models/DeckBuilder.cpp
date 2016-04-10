@@ -10,7 +10,7 @@
 namespace Models
 {
 
-DeckBuilder::DeckBuilder() : deckTypesDescriptionM()
+DeckBuilder::DeckBuilder() : deckTypesDescriptionM(), deckM(nullptr)
 {
    deckTypesDescriptionM.push_back("Spanish");
    deckTypesDescriptionM.push_back("French");
@@ -18,6 +18,7 @@ DeckBuilder::DeckBuilder() : deckTypesDescriptionM()
 
 DeckBuilder::~DeckBuilder()
 {
+   delete deckM;
 }
 
 std::vector<std::string> DeckBuilder::getDecks() const
@@ -27,19 +28,18 @@ std::vector<std::string> DeckBuilder::getDecks() const
 
 Deck* DeckBuilder::build(std::uint8_t deckType)
 {
-   Deck* deck;
    switch(deckType)
    {
       case SPANISH:
-         deck = new SpanishDeck();
+         deckM = new SpanishDeck();
          break;
       case FRENCH:
-         deck = new FrenchDeck();
+         deckM = new FrenchDeck();
          break;
       default:
          assert(false);
    }
-   return deck;
+   return deckM;
 }
 
 }

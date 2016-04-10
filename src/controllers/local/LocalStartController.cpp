@@ -1,33 +1,36 @@
 
 #include "LocalStartController.hpp"
 
+#include <cassert>
 #include "Game.hpp"
 #include "State.hpp"
 #include "DeckBuilder.hpp"
 #include "Deck.hpp"
 #include "OperationControllerVisitor.hpp"
+#include "ClosedInterval.hpp"
+#include "CardTable.hpp"
 
 namespace Controllers
 {
 
-LocalStartController::LocalStartController(Models::Game& game,
-   Models::DeckBuilder& deckBuilder) : gameM(game),
-   deckBuilderM(deckBuilder)
+LocalStartController::LocalStartController(Models::Game& game)
+   : LocalController(game), cardTableM(nullptr)
 {
 }
 
 LocalStartController::~LocalStartController()
 {
+   delete cardTableM;
 }
 
 void LocalStartController::start(std::uint8_t numPlayers,
-   std::uint8_t newOrSavedOption, std::uint8_t typeDeck) const
+   std::uint8_t newOrSavedOption, std::uint8_t typeDeck)
 {
+   assert(Utils::ClosedInterval(LocalController::getNumPlayers()).includes(numPlayers));
    // moveControllerBuilder
    // newOrSave
-   //Models::Deck* deck = deckBuilderM.build(typeDeck);
-   //gameM.setCardTable();
-   gameM.setState(Models::State::MOVE);
+   buildCardTable(typeDeck);
+   LocalController::setState(Models::State::MOVE);
    return;
 }
 
@@ -39,6 +42,13 @@ std::vector<std::string> LocalStartController::getDecks() const
 void LocalStartController::accept(OperationControllerVisitor* operationControllerVisitor)
 {
    operationControllerVisitor->visit(this);
+}
+
+void LocalStartController::buildCardTable(std::uint8_t typeDeck)
+{
+   Models::Deck* deck = deckBuilderM.build(typeDeck);
+   cardTableM = new Models::CardTable(*deck, LocalController::getNumTableaus());
+   LocalController::setCardTable(cardTableM);
 }
 
 }

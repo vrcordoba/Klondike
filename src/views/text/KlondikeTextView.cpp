@@ -27,4 +27,14 @@ void KlondikeTextView::visit(Controllers::StartController* startController)
    startViewM.interact(startController);
 }
 
+void KlondikeTextView::visit(Controllers::MoveController* moveController)
+{
+   moveViewM.interact(moveController);
+}
+
+void KlondikeTextView::visit(Controllers::ContinueController* continueController)
+{
+   continueViewM.interact(continueController);
+}
+
 }
