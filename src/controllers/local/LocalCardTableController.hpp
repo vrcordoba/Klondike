@@ -34,7 +34,7 @@ public:
 
 private:
 
-   void lazyInitCardTablePtr();
+   void lazyInitCardTable();
 
    Models::CardTable* cardTableM;
 };

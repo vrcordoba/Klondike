@@ -110,4 +110,6 @@ set(SOURCE_FILES
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")
 
+include(cppcheck.cmake)
+
 add_executable(klondike ${HEADER_FILES} ${SOURCE_FILES})

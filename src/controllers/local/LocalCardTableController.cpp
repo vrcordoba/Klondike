@@ -26,7 +26,7 @@ Models::Deck& LocalCardTableController::getDeck()
 {
    if (nullptr == cardTableM)
    {
-      lazyInitCardTablePtr();
+      lazyInitCardTable();
    }
    return cardTableM->getDeck();
 }
@@ -35,7 +35,7 @@ Models::Pile& LocalCardTableController::getWaste()
 {
    if (nullptr == cardTableM)
    {
-      lazyInitCardTablePtr();
+      lazyInitCardTable();
    }
    return cardTableM->getWaste();
 }
@@ -44,7 +44,7 @@ std::vector<Models::Pile> LocalCardTableController::getTableaus()
 {
    if (nullptr == cardTableM)
    {
-      lazyInitCardTablePtr();
+      lazyInitCardTable();
    }
    std::vector<Models::Pile> tableaus;
    for (std::uint8_t i = 0; i < LocalController::getNumTableaus(); ++i)
@@ -58,7 +58,7 @@ std::vector<Models::Pile> LocalCardTableController::getFoundations()
 {
    if (nullptr == cardTableM)
    {
-      lazyInitCardTablePtr();
+      lazyInitCardTable();
    }
    std::vector<Models::Pile> foundations;
    for (std::uint8_t i = 0; i < cardTableM->getNumSuits(); ++i)
@@ -68,7 +68,7 @@ std::vector<Models::Pile> LocalCardTableController::getFoundations()
    return foundations;
 }
 
-void LocalCardTableController::lazyInitCardTablePtr()
+void LocalCardTableController::lazyInitCardTable()
 {
    cardTableM = LocalController::getCardTable();
 }
