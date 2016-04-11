@@ -7,7 +7,7 @@
 namespace Models
 {
 
-Foundation::Foundation(const Deck& deck) : deckM(deck)
+Foundation::Foundation(Deck& deck) : deckM(deck)
 {
 }
 
@@ -15,9 +15,15 @@ Foundation::~Foundation()
 {
 }
 
-Foundation::Foundation(const Foundation& otherFoundation)
-   : deckM(otherFoundation.deckM)
+Foundation::Foundation(const Foundation& otherFoundation) : Pile(otherFoundation),
+   deckM(otherFoundation.deckM)
 {
+}
+
+Foundation& Foundation::operator=(const Foundation& otherFoundation)
+{
+   deckM = otherFoundation.deckM;
+   return *this;
 }
 
 bool Foundation::validDestination(const Card& card) const

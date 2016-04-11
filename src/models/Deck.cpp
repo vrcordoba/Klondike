@@ -10,7 +10,7 @@ namespace Models
 {
 
 Deck::Deck(std::uint8_t numCards, std::uint8_t numCardsPerSuit)
-   : TOTAL_NUM_CARDS(numCards), NUM_CARDS_PER_SUIT(numCardsPerSuit)
+   : totalNumCardsM(numCards), numCardsPerSuitM(numCardsPerSuit)
 {
 }
 
@@ -18,9 +18,16 @@ Deck::~Deck()
 {
 }
 
-Deck::Deck(const Deck& otherDeck) : TOTAL_NUM_CARDS(otherDeck.TOTAL_NUM_CARDS),
-   NUM_CARDS_PER_SUIT(otherDeck.NUM_CARDS_PER_SUIT)
+Deck::Deck(const Deck& otherDeck) : totalNumCardsM(otherDeck.totalNumCardsM),
+   numCardsPerSuitM(otherDeck.numCardsPerSuitM)
 {
+}
+
+Deck& Deck::operator=(const Deck& otherDeck)
+{
+   totalNumCardsM = otherDeck.totalNumCardsM;
+   numCardsPerSuitM = otherDeck.numCardsPerSuitM;
+   return *this;
 }
 
 void Deck::shuffle()
@@ -47,17 +54,17 @@ bool Deck::isTheHighestCardInTheSuit(const Card& card) const
 
 std::uint8_t Deck::getNumCardsPerSuit() const
 {
-   return NUM_CARDS_PER_SUIT;
+   return numCardsPerSuitM;
 }
 
 std::uint8_t Deck::getTotalNumCards() const
 {
-   return TOTAL_NUM_CARDS;
+   return totalNumCardsM;
 }
 
 std::uint8_t Deck::getNumSuits() const
 {
-   return TOTAL_NUM_CARDS / NUM_CARDS_PER_SUIT;
+   return totalNumCardsM / numCardsPerSuitM;
 }
 
 }

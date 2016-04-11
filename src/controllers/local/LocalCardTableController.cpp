@@ -63,7 +63,7 @@ std::vector<Models::Pile> LocalCardTableController::getFoundations()
    std::vector<Models::Pile> foundations;
    for (std::uint8_t i = 0; i < cardTableM->getNumSuits(); ++i)
    {
-      foundations.push_back(cardTableM->getTableau(i));
+      foundations.push_back(cardTableM->getFoundation(i));
    }
    return foundations;
 }

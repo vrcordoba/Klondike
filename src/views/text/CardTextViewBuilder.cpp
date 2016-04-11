@@ -35,6 +35,7 @@ CardView* CardTextViewBuilder::build() const
    {
       assert(false);
    }
+   cardView->constructRepresentation();
    return cardView;
 }
 

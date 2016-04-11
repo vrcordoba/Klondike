@@ -7,7 +7,7 @@
 namespace Models
 {
 
-Tableau::Tableau(const Deck& deck) : deckM(deck)
+Tableau::Tableau(Deck& deck) : deckM(deck)
 {
 }
 
@@ -15,8 +15,15 @@ Tableau::~Tableau()
 {
 }
 
-Tableau::Tableau(const Tableau& otherTableau) : deckM(otherTableau.deckM)
+Tableau::Tableau(const Tableau& otherTableau) : Pile(otherTableau),
+   deckM(otherTableau.deckM)
 {
+}
+
+Tableau& Tableau::operator=(const Tableau& otherTableau)
+{
+   deckM = otherTableau.deckM;
+   return *this;
 }
 
 bool Tableau::validDestination(const Card& card) const

@@ -18,7 +18,7 @@ public:
    virtual ~Deck();
 
    Deck(const Deck&);
-   Deck& operator=(const Deck&) = delete;
+   Deck& operator=(const Deck&);
 
    void shuffle();
    virtual void buildDeck() = 0;
@@ -31,8 +31,8 @@ public:
    std::uint8_t getNumSuits() const;
 
 private:
-   const std::uint8_t TOTAL_NUM_CARDS;
-   const std::uint8_t NUM_CARDS_PER_SUIT;
+   std::uint8_t totalNumCardsM;
+   std::uint8_t numCardsPerSuitM;
    static const std::uint8_t LOWEST_CARD_IN_THE_SUIT = 0;
 };
 

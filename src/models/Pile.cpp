@@ -14,6 +14,16 @@ Pile::~Pile()
 {
 }
 
+Pile::Pile(const Pile& otherPile) : cardsM(otherPile.cardsM)
+{
+}
+
+Pile& Pile::operator=(const Pile& otherPile)
+{
+   cardsM = otherPile.cardsM;
+   return *this;
+}
+
 void Pile::addCard(const Card& card)
 {
    cardsM.push_back(card);

@@ -15,6 +15,7 @@ class CardView
 {
 public:
    virtual ~CardView() {};
+   virtual void constructRepresentation() = 0;
    virtual std::string show(const Models::Card& card) const = 0;
 };
 

@@ -13,17 +13,17 @@ class Card;
 class Foundation final : public Pile, MovementDestination
 {
 public:
-   explicit Foundation(const Deck& deck);
+   explicit Foundation(Deck& deck);
    ~Foundation();
 
-   Foundation(const Foundation&);
-   Foundation& operator=(const Foundation&) = delete;
+   Foundation(const Foundation& otherFoundation);
+   Foundation& operator=(const Foundation& otherFoundation);
 
    bool validDestination(const Card& card) const;
    bool isFoundationComplete() const;
 
 private:
-   const Deck& deckM;
+   Deck& deckM;
 };
 
 }

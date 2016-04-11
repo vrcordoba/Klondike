@@ -13,16 +13,16 @@ class Card;
 class Tableau final: public Pile, public MovementDestination
 {
 public:
-   explicit Tableau(const Deck& deck);
+   explicit Tableau(Deck& deck);
    ~Tableau();
 
-   Tableau(const Tableau&);
-   Tableau& operator=(const Tableau&) = delete;
+   Tableau(const Tableau& otherTableau);
+   Tableau& operator=(const Tableau& otherTableau);
 
    bool validDestination(const Card& card) const;
 
 private:
-   const Deck& deckM;
+   Deck& deckM;
 };
 
 }
