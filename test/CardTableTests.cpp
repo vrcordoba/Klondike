@@ -11,6 +11,23 @@
 #include "Foundation.hpp"
 #include "CardTable.hpp"
 
+TEST(CardTableTests, buildDeck)
+{
+   Models::SpanishDeck deck;
+   deck.buildDeck();
+   Models::CardTable cardTable(deck, 7);
+   EXPECT_TRUE(12 == cardTable.getDeck().getNumCards());
+   EXPECT_TRUE(0 == cardTable.getWaste().getNumCards());
+   for (std::uint8_t i = 0; i < 4; ++i)
+   {
+      EXPECT_TRUE(0 == cardTable.getFoundation(i).getNumCards());
+   }
+   for (std::uint8_t i = 0; i < 7; ++i)
+   {
+      EXPECT_TRUE( (i + 1u) == cardTable.getTableau(i).getNumCards());
+   }
+}
+
 TEST(CardTableTests, transferCard)
 {
    Models::SpanishDeck deck;
