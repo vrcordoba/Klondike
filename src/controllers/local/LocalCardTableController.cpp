@@ -24,34 +24,30 @@ LocalCardTableController::~LocalCardTableController()
 
 std::vector<FacadeCard> LocalCardTableController::getDeck()
 {
-   if (nullptr == cardTableM)
-   {
-      lazyInitCardTable();
-   }
+   lazyInitCardTable();
    return getFacadePile(cardTableM->getDeck());
 }
 
 std::vector<FacadeCard> LocalCardTableController::getWaste()
 {
+   lazyInitCardTable();
    return getFacadePile(cardTableM->getWaste());
 }
 
 std::vector<FacadeCard> LocalCardTableController::getTableau(std::uint8_t i)
 {
+   lazyInitCardTable();
    return getFacadePile(cardTableM->getTableau(i));
 }
 
 std::vector<FacadeCard> LocalCardTableController::getFoundation(std::uint8_t i)
 {
+   lazyInitCardTable();
    return getFacadePile(cardTableM->getFoundation(i));
 }
 
 std::vector<FacadeCard> LocalCardTableController::getFacadePile(const Models::Pile& pile)
 {
-   if (nullptr == cardTableM)
-   {
-      lazyInitCardTable();
-   }
    std::vector<FacadeCard> facadePile;
    for (Models::Card card : pile.getCards())
    {
@@ -63,7 +59,10 @@ std::vector<FacadeCard> LocalCardTableController::getFacadePile(const Models::Pi
 
 void LocalCardTableController::lazyInitCardTable()
 {
-   cardTableM = LocalController::getCardTable();
+   if (nullptr == cardTableM)
+   {
+      cardTableM = LocalController::getCardTable();
+   }
 }
 
 std::uint8_t LocalCardTableController::getNumTableaus() const

@@ -12,8 +12,18 @@ class MoveController : public OperationController
 {
 public:
    virtual ~MoveController() {};
-   virtual void move() = 0;
+
+   virtual void isValidMove() const = 0;
+   virtual void move() const = 0;
    virtual CardTableController* getCardTableController() = 0;
+
+   enum class CommandType
+   {
+      ERROR,
+      HELP,
+      MOVE,
+      DRAWCARD
+   };
 };
 
 }

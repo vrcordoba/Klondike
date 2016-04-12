@@ -11,7 +11,7 @@ namespace Models
 namespace Controllers
 {
 
-class FacadeCard
+class FacadeCard final
 {
 public:
    explicit FacadeCard(const Models::Card& card);

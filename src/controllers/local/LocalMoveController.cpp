@@ -21,7 +21,11 @@ void LocalMoveController::accept(OperationControllerVisitor* operationController
    operationControllerVisitor->visit(this);
 }
 
-void LocalMoveController::move()
+void LocalMoveController::isValidMove() const
+{
+}
+
+void LocalMoveController::move() const
 {
 }
 

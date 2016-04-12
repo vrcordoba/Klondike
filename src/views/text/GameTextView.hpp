@@ -1,13 +1,11 @@
 #ifndef VIEWS_TEXT_GAMETEXTVIEW_HPP_
 #define VIEWS_TEXT_GAMETEXTVIEW_HPP_
 
+#include <cstdint>
+#include <vector>
+#include <string>
 #include "GameView.hpp"
-#include "TextMenu.hpp"
-
-namespace Controllers
-{
-   class MoveController;
-}
+#include "MoveController.hpp"
 
 namespace Views
 {
@@ -23,10 +21,17 @@ public:
 
    void interact(Controllers::MoveController* moveController);
 
+   void showGame(Controllers::MoveController* moveController);
+   void showHelp() const;
+
 private:
-   void buildMenu();
-   void showGame(Controllers::MoveController* moveController) const;
-   Utils::TextMenu menuM;
+   std::vector<std::string> askForCommand(Controllers::MoveController* moveController);
+   std::vector<std::string> captureCommand() const;
+   Controllers::MoveController::CommandType typeOfCommand(
+      std::vector<std::string> command) const;
+   bool isWrongNumberOfParameters(std::vector<std::string> command) const;
+   bool isWrongCommand(const Controllers::MoveController::CommandType& commandType) const;
+   bool isHelpCommand(const Controllers::MoveController::CommandType& commandType) const;
 };
 
 }

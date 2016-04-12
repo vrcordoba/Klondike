@@ -22,7 +22,8 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   void move();
+   void isValidMove() const;
+   void move() const;
 
    CardTableController* getCardTableController();
 

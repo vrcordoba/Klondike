@@ -48,6 +48,7 @@ set(HEADER_FILES
    utils/LimitedIntDialog.hpp
    utils/YesNoDialog.hpp
    utils/TextMenu.hpp
+   utils/CommandReader.hpp
 
    views/KlondikeView.hpp
    views/StartView.hpp
@@ -98,6 +99,7 @@ set(SOURCE_FILES
    utils/LimitedIntDialog.cpp
    utils/YesNoDialog.cpp
    utils/TextMenu.cpp
+   utils/CommandReader.cpp
 
    views/text/KlondikeTextView.cpp
    views/text/StartTextView.cpp
