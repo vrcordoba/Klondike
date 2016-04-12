@@ -14,7 +14,7 @@ class CardTableController;
 class LocalMoveController final : public MoveController, public LocalController
 {
 public:
-   LocalMoveController(Models::Game& game);
+   explicit LocalMoveController(Models::Game& game);
    ~LocalMoveController();
 
    LocalMoveController(const LocalMoveController&) = delete;

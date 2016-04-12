@@ -17,7 +17,7 @@ namespace Controllers
 class LocalController
 {
 public:
-   LocalController(Models::Game& game);
+   explicit LocalController(Models::Game& game);
    virtual ~LocalController();
 
    LocalController(const LocalController&) = delete;

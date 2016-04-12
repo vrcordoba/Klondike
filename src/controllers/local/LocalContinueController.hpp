@@ -17,7 +17,7 @@ class OperationControllerVisitor;
 class LocalContinueController: public ContinueController, public LocalController
 {
 public:
-   LocalContinueController(Models::Game& game);
+   explicit LocalContinueController(Models::Game& game);
    ~LocalContinueController();
 
    LocalContinueController(const LocalContinueController&) = delete;

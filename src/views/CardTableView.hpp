@@ -1,10 +1,8 @@
 #ifndef VIEWS_CARDTABLEVIEW_HPP_
 #define VIEWS_CARDTABLEVIEW_HPP_
 
-namespace Controllers
-{
-   class CardTableController;
-}
+#include "CardTableController.hpp"
+#include "CardView.hpp"
 
 namespace Views
 {
@@ -12,12 +10,15 @@ namespace Views
 class CardTableView
 {
 public:
+   explicit CardTableView(Controllers::CardTableController* cardTableController)
+      : cardTableControllerM(cardTableController), cardViewM(nullptr) {};
    virtual ~CardTableView() {};
 
    virtual void show() = 0;
 
-private:
-   Controllers::CardTableController& cardTableControllerM;
+protected:
+   Controllers::CardTableController* cardTableControllerM;
+   CardView* cardViewM;
 };
 
 }

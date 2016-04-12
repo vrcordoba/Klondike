@@ -22,7 +22,7 @@ class OperationControllerVisitor;
 class LocalStartController final : public StartController, public LocalController
 {
 public:
-   LocalStartController(Models::Game& game);
+   explicit LocalStartController(Models::Game& game);
    ~LocalStartController();
 
    LocalStartController(const LocalStartController&) = delete;

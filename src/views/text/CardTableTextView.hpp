@@ -2,6 +2,7 @@
 #define VIEWS_TEXT_CARDTABLETEXTVIEW_HPP_
 
 #include "IO.hpp"
+#include "CardTableView.hpp"
 
 namespace Controllers
 {
@@ -18,7 +19,7 @@ namespace Views
 
 class CardView;
 
-class CardTableTextView final
+class CardTableTextView final : public CardTableView
 {
 public:
    explicit CardTableTextView(Controllers::CardTableController* cardTableController);
@@ -39,8 +40,6 @@ private:
    std::string showPile(const Models::Pile& pile);
 
    Utils::IO ioM;
-   Controllers::CardTableController* cardTableControllerM;
-   CardView* cardViewM;
 };
 
 }

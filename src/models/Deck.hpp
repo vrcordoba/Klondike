@@ -17,7 +17,7 @@ public:
    Deck(std::uint8_t numCards, std::uint8_t numCardsPerSuit);
    virtual ~Deck();
 
-   Deck(const Deck&);
+   explicit Deck(const Deck&);
    Deck& operator=(const Deck&);
 
    void shuffle();

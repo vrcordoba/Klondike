@@ -9,7 +9,7 @@ class Pile;
 class Tableau;
 class Foundation;
 
-Game::Game() : stateM(State::INITIAL), cardTableM(nullptr), historyM()
+Game::Game() : stateM(State::INITIAL), cardTableM(nullptr), historyM(), deckTypeNameM(DeckType::SPANISH)
 {
 }
 

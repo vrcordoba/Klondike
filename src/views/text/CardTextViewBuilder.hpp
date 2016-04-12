@@ -14,7 +14,7 @@ class CardView;
 class CardTextViewBuilder final
 {
 public:
-   CardTextViewBuilder(const Controllers::CardTableController* cardTableController);
+   explicit CardTextViewBuilder(const Controllers::CardTableController* cardTableController);
    ~CardTextViewBuilder();
 
    CardView* build() const;

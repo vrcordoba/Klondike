@@ -15,7 +15,7 @@ namespace Views
 {
 
 CardTableTextView::CardTableTextView(Controllers::CardTableController* cardTableController)
-   : ioM(), cardTableControllerM(cardTableController)
+   : CardTableView(cardTableController), ioM()
 {
    buildCardView();
 }

@@ -19,7 +19,7 @@ class LocalCardTableController final : public CardTableController,
    public LocalController
 {
 public:
-   LocalCardTableController(Models::Game& game);
+   explicit LocalCardTableController(Models::Game& game);
    ~LocalCardTableController();
 
    LocalCardTableController(const LocalCardTableController&) = delete;
