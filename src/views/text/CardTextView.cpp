@@ -3,6 +3,7 @@
 
 #include "Card.hpp"
 #include "IO.hpp"
+#include "FacadeCard.hpp"
 
 namespace Views
 {
@@ -11,7 +12,7 @@ CardTextView::~CardTextView()
 {
 }
 
-std::string CardTextView::show(const Models::Card& card) const
+std::string CardTextView::show(const Controllers::FacadeCard& card) const
 {
    std::string cardRepresentation;
    if (not card.isUpturned())

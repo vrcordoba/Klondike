@@ -22,6 +22,11 @@ std::uint8_t Game::getNumTableaus() const
    return NUM_TABLEAUS;
 }
 
+std::uint8_t Game::getNumFoundations() const
+{
+   return cardTableM->getNumSuits();
+}
+
 State Game::getState() const
 {
    return stateM;

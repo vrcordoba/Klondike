@@ -6,10 +6,6 @@
 #include "CardTableController.hpp"
 #include "CardTextViewBuilder.hpp"
 #include "CardView.hpp"
-#include "IO.hpp"
-#include "Deck.hpp"
-#include "Card.hpp"
-#include "Pile.hpp"
 
 namespace Views
 {
@@ -47,41 +43,36 @@ void CardTableTextView::showDelimiter()
 
 void CardTableTextView::showDeck()
 {
-   Models::Deck& deck = cardTableControllerM->getDeck();
-   ioM.writeString("Deck: " + showPile(deck));
+   ioM.writeString("Deck: " + showPile(cardTableControllerM->getDeck()));
 }
 
 void CardTableTextView::showWaste()
 {
-   Models::Pile& waste = cardTableControllerM->getWaste();
-   ioM.writeString("Waste: " + showPile(waste));
+   ioM.writeString("Waste: " + showPile(cardTableControllerM->getWaste()));
 }
 
 void CardTableTextView::showFoundations()
 {
-   std::vector<Models::Pile> foundations = cardTableControllerM->getFoundations();
-   std::uint8_t i = 1;
-   for (Models::Pile pile : foundations)
+   for (std::uint8_t i = 0; i < cardTableControllerM->getNumFoundations(); ++i)
    {
-      ioM.writeString("Foundation " + std::to_string(i++) + ": " + showPile(pile));
+      ioM.writeString("Foundation " + std::to_string(i + 1) + ": "
+         + showPile(cardTableControllerM->getFoundation(i)));
    }
 }
 
 void CardTableTextView::showTableaus()
 {
-   std::vector<Models::Pile> tableaus = cardTableControllerM->getTableaus();
-   std::uint8_t i = 1;
-   for (Models::Pile pile : tableaus)
+   for (std::uint8_t i = 0; i < cardTableControllerM->getNumTableaus(); ++i)
    {
-      ioM.writeString("Tableau " + std::to_string(i++) + ": " + showPile(pile));
+      ioM.writeString("Tableau " + std::to_string(i + 1) + ": "
+         + showPile(cardTableControllerM->getTableau(i)));
    }
 }
 
-std::string CardTableTextView::showPile(const Models::Pile& pile)
+std::string CardTableTextView::showPile(const std::vector<Controllers::FacadeCard>& pile)
 {
-   std::deque<Models::Card> cards = pile.getCards();
    std::string pileString;
-   for (Models::Card card : cards)
+   for (Controllers::FacadeCard card : pile)
    {
       pileString += cardViewM->show(card);
    }

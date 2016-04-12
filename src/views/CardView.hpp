@@ -3,9 +3,9 @@
 
 #include <string>
 
-namespace Models
+namespace Controllers
 {
-   class Card;
+   class FacadeCard;
 }
 
 namespace Views
@@ -16,7 +16,7 @@ class CardView
 public:
    virtual ~CardView() {};
    virtual void constructRepresentation() = 0;
-   virtual std::string show(const Models::Card& card) const = 0;
+   virtual std::string show(const Controllers::FacadeCard& card) const = 0;
 };
 
 }

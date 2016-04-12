@@ -22,6 +22,7 @@ public:
    ~Game();
 
    std::uint8_t getNumTableaus() const;
+   std::uint8_t getNumFoundations() const;
 
    State getState() const;
    void setState(State newState);

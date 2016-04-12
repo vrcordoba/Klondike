@@ -1,17 +1,14 @@
 #ifndef VIEWS_TEXT_CARDTABLETEXTVIEW_HPP_
 #define VIEWS_TEXT_CARDTABLETEXTVIEW_HPP_
 
+#include <vector>
 #include "IO.hpp"
 #include "CardTableView.hpp"
+#include "FacadeCard.hpp"
 
 namespace Controllers
 {
    class CardTableController;
-}
-
-namespace Models
-{
-   class Pile;
 }
 
 namespace Views
@@ -37,7 +34,7 @@ private:
    void showWaste();
    void showFoundations();
    void showTableaus();
-   std::string showPile(const Models::Pile& pile);
+   std::string showPile(const std::vector<Controllers::FacadeCard>& pile);
 
    Utils::IO ioM;
 };

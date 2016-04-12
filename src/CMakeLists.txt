@@ -18,6 +18,7 @@ set(HEADER_FILES
    controllers/MoveController.hpp
    controllers/ContinueController.hpp
    controllers/CardTableController.hpp
+   controllers/FacadeCard.hpp
    controllers/local/Logic.hpp
    controllers/local/LocalController.hpp
    controllers/local/LocalStartController.hpp
@@ -69,6 +70,7 @@ set(SOURCE_FILES
    main.cpp
    Klondike.cpp
 
+   controllers/FacadeCard.cpp
    controllers/local/Logic.cpp
    controllers/local/LocalController.cpp
    controllers/local/LocalStartController.cpp

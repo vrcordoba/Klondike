@@ -5,9 +5,9 @@
 #include <string>
 #include "CardView.hpp"
 
-namespace Models
+namespace Controllers
 {
-   class Card;
+   class FacadeCard;
 }
 
 namespace Views
@@ -17,7 +17,7 @@ class CardTextView : public CardView
 {
 public:
    virtual ~CardTextView();
-   virtual std::string show(const Models::Card& card) const;
+   virtual std::string show(const Controllers::FacadeCard& card) const;
    virtual void constructRepresentation() = 0;
 
 protected:
