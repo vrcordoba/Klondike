@@ -23,9 +23,8 @@ public:
    bool isWrongCommand() const;
    bool isHelpCommand() const;
 
-   void interpretTypeOfCommand();
-
 private:
+   void interpretTypeOfCommand();
 
    std::list<std::string> parsedCommandM;
    Controllers::GameController::CommandType commandTypeM;

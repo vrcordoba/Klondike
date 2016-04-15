@@ -18,11 +18,16 @@ CommandInterpreter::~CommandInterpreter()
 void CommandInterpreter::setCommand(std::list<std::string> parsedCommand)
 {
    parsedCommandM = parsedCommand;
+   interpretTypeOfCommand();
 }
 
 void CommandInterpreter::interpretTypeOfCommand()
 {
-   assert(parsedCommandM.size() > 0);
+   if (parsedCommandM.size() == 0)
+   {
+      commandTypeM = Controllers::GameController::CommandType::ERROR;
+      return;
+   }
    std::string order = (*parsedCommandM.begin());
    if ((order == "h") or (order == "help"))
       commandTypeM = Controllers::GameController::CommandType::HELP;

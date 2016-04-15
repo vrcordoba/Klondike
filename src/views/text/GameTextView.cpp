@@ -33,18 +33,17 @@ std::list<std::string> GameTextView::askForCommand(
    {
       command = captureCommand();
       commandInterpreter.setCommand(command);
-   } while (errorInCommand(commandInterpreter));
+   } while (errorOrHelpInCommand(commandInterpreter));
    return command;
 }
 
-bool GameTextView::errorInCommand(CommandInterpreter& commandInterpreter) const
+bool GameTextView::errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const
 {
    if (commandInterpreter.isWrongNumberOfParameters())
    {
       showWrongNumberOfParameters();
       return true;
    }
-   commandInterpreter.interpretTypeOfCommand();
    if (commandInterpreter.isWrongCommand())
    {
       showWrongCommand();

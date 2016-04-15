@@ -26,7 +26,7 @@ public:
    void showGame(Controllers::GameController* gameController);
 
 private:
-   bool errorInCommand(CommandInterpreter& commandInterpreter) const;
+   bool errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const;
    void showWrongCommand() const;
    void showWrongNumberOfParameters() const;
    void showHelp() const;
