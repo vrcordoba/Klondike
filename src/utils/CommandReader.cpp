@@ -18,7 +18,7 @@ CommandReader::~CommandReader()
 
 std::vector<std::string> CommandReader::getCommand(const std::string& message) const
 {
-   std::string command = IO().readString(message);
+   std::string command = IO::getInstance().readString(message);
    return tokenizeCommand(command);
 }
 

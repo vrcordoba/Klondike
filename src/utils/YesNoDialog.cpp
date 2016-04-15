@@ -21,7 +21,7 @@ bool YesNoDialog::read() const
    bool isOk;
    do
    {
-      IO io;
+      IO& io = IO::getInstance();
       answer = io.readChar(titleM);
       isOk = (answer == 'y') || (answer == 'Y') || (answer == 'n')
          || (answer == 'N');

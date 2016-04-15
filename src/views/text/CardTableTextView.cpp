@@ -6,12 +6,13 @@
 #include "CardTextViewManager.hpp"
 #include "CardTableController.hpp"
 #include "CardView.hpp"
+#include "IO.hpp"
 
 namespace Views
 {
 
 CardTableTextView::CardTableTextView(Controllers::CardTableController* cardTableController)
-   : CardTableView(cardTableController), ioM()
+   : CardTableView(cardTableController), ioM(Utils::IO::getInstance())
 {
    buildCardView();
 }

@@ -81,8 +81,7 @@ bool GameTextView::isWrongNumberOfParameters(std::vector<std::string> command) c
    errorInCommand |= (command.size() > 4);
    if (errorInCommand)
    {
-      Utils::IO io;
-      io.writeString("Wrong number of parameters.");
+      Utils::IO::getInstance().writeString("Wrong number of parameters.");
    }
    return errorInCommand;
 }
@@ -92,8 +91,7 @@ bool GameTextView::isWrongCommand(const Controllers::MoveController::CommandType
    bool isWrongCommand = (Controllers::MoveController::CommandType::ERROR == commandType);
    if (isWrongCommand)
    {
-      Utils::IO io;
-      io.writeString("Wrong command.");
+      Utils::IO::getInstance().writeString("Wrong command.");
    }
    return isWrongCommand;
 }
@@ -110,7 +108,7 @@ bool GameTextView::isHelpCommand(const Controllers::MoveController::CommandType&
 
 void GameTextView::showHelp() const
 {
-   Utils::IO io;
+   Utils::IO& io = Utils::IO::getInstance();
    io.writeString("These are the available commands:");
    io.writeString("h/help - Shows this help.");
    io.writeString("m/move <origin> <destination> <num_cards> - Move \"num_cards\" cards "

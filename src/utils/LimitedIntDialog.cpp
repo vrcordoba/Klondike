@@ -23,7 +23,7 @@ LimitedIntDialog::~LimitedIntDialog()
 
 std::int64_t LimitedIntDialog::read() const
 {
-   IO io;
+   IO& io = IO::getInstance();
    int value;
    bool isOk;
    do

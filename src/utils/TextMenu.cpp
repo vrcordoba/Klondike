@@ -17,7 +17,7 @@ TextMenu::~TextMenu()
 
 void TextMenu::show() const
 {
-   IO io;
+   IO& io = IO::getInstance();
    io.writeString(titleM);
    std::uint8_t optionIndex = 1;
    for (std::string option : optionsM)

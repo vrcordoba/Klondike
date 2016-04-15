@@ -10,8 +10,13 @@ namespace Utils
 class IO final
 {
 public:
-   IO();
    ~IO();
+
+   static IO& getInstance()
+   {
+      static IO instance;
+      return instance;
+   }
 
    IO(const IO&) = delete;
    IO& operator=(const IO&) = delete;
@@ -23,6 +28,7 @@ public:
    void writeString(const std::string& text) const;
 
 private:
+   IO();
    void writeError(const std::string& format) const;
 };
 

@@ -2,9 +2,13 @@
 #define VIEWS_TEXT_CARDTABLETEXTVIEW_HPP_
 
 #include <vector>
-#include "IO.hpp"
 #include "CardTableView.hpp"
 #include "FacadeCard.hpp"
+
+namespace Utils
+{
+   class IO;
+}
 
 namespace Controllers
 {
@@ -36,7 +40,7 @@ private:
    void showTableaus();
    std::string showPile(const std::vector<Controllers::FacadeCard>& pile);
 
-   Utils::IO ioM;
+   Utils::IO& ioM;
 };
 
 }
