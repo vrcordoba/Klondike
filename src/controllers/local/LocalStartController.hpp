@@ -2,7 +2,7 @@
 #define CONTROLLERS_LOCAL_LOCALSTARTCONTROLLER_HPP_
 
 #include <cstdint>
-#include <vector>
+#include <list>
 #include <string>
 #include "StartController.hpp"
 #include "LocalController.hpp"
@@ -30,7 +30,7 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   std::vector<std::string> getDeckDescriptions() const;
+   std::list<std::string> getDeckDescriptions() const;
    void start(std::uint8_t numPlayers, std::uint8_t newOrSavedOption,
       std::uint8_t typeDeck);
 

@@ -2,13 +2,15 @@
 #define VIEWS_TEXT_GAMETEXTVIEW_HPP_
 
 #include <cstdint>
-#include <vector>
+#include <list>
 #include <string>
 #include "GameView.hpp"
-#include "MoveController.hpp"
+#include "GameController.hpp"
 
 namespace Views
 {
+
+class CommandInterpreter;
 
 class GameTextView final : public GameView
 {
@@ -19,19 +21,18 @@ public:
    GameTextView(const GameTextView&) = delete;
    GameTextView& operator=(const GameTextView&) = delete;
 
-   void interact(Controllers::MoveController* moveController);
+   void interact(Controllers::GameController* gameController);
 
-   void showGame(Controllers::MoveController* moveController);
-   void showHelp() const;
+   void showGame(Controllers::GameController* gameController);
 
 private:
-   std::vector<std::string> askForCommand(Controllers::MoveController* moveController);
-   std::vector<std::string> captureCommand() const;
-   Controllers::MoveController::CommandType typeOfCommand(
-      std::vector<std::string> command) const;
-   bool isWrongNumberOfParameters(std::vector<std::string> command) const;
-   bool isWrongCommand(const Controllers::MoveController::CommandType& commandType) const;
-   bool isHelpCommand(const Controllers::MoveController::CommandType& commandType) const;
+   bool errorInCommand(CommandInterpreter& commandInterpreter) const;
+   void showWrongCommand() const;
+   void showWrongNumberOfParameters() const;
+   void showHelp() const;
+
+   std::list<std::string> askForCommand(Controllers::GameController* gameController);
+   std::list<std::string> captureCommand() const;
 };
 
 }

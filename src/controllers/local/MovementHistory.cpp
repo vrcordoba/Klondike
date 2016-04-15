@@ -1,7 +1,7 @@
 
 #include "MovementHistory.hpp"
 
-namespace Models
+namespace Controllers
 {
 
 MovementHistory::MovementHistory() : historyM()

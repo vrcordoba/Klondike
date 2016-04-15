@@ -3,7 +3,7 @@
 
 #include "StartView.hpp"
 
-#include <vector>
+#include <list>
 #include <string>
 #include "TextMenu.hpp"
 
@@ -29,9 +29,9 @@ public:
 private:
    std::uint8_t getNumPlayers();
    std::uint8_t getNewOrSaveOption(std::uint8_t numPlayers);
-   std::uint8_t getTypeOfDeck(std::vector<std::string> decks);
+   std::uint8_t getTypeOfDeck(std::list<std::string> deckDescriptions);
    Utils::TextMenu buildNewSavedGameMenu();
-   Utils::TextMenu buildDeckSelectionMenu(std::vector<std::string> decks);
+   Utils::TextMenu buildDeckSelectionMenu(std::list<std::string> deckDescriptions);
 };
 
 }

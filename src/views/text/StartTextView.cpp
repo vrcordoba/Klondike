@@ -51,25 +51,25 @@ Utils::TextMenu StartTextView::buildNewSavedGameMenu()
    return menu;
 }
 
-std::uint8_t StartTextView::getTypeOfDeck(std::vector<std::string> decks)
+std::uint8_t StartTextView::getTypeOfDeck(std::list<std::string> deckDescriptions)
 {
-   Utils::TextMenu newSavedMenu = buildDeckSelectionMenu(decks);
+   Utils::TextMenu newSavedMenu = buildDeckSelectionMenu(deckDescriptions);
    newSavedMenu.show();
    return newSavedMenu.read();
 }
 
-Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::vector<std::string> decks)
+Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::list<std::string> deckDescriptions)
 {
-   assert(decks.size() > 0);
+   assert(deckDescriptions.size() > 0);
    std::string menuTitle = "Do you want to play with ";
-   std::uint8_t i = 0;
-   for (; i < decks.size() - 1; ++i)
+   std::list<std::string>::const_iterator itDeckDescriptions = deckDescriptions.begin();
+   for (std::uint8_t i = 0; i < deckDescriptions.size() - 1; ++i, ++itDeckDescriptions)
    {
-      menuTitle += decks[i] + "/";
+      menuTitle += (*itDeckDescriptions) + "/";
    }
-   menuTitle += decks[i] + " deck?";
+   menuTitle += (*itDeckDescriptions) + " deck?";
    Utils::TextMenu menu(menuTitle);
-   for (std::string deck : decks)
+   for (std::string deck : deckDescriptions)
    {
       menu.addOption(deck + " deck");
    }

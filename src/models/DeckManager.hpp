@@ -2,7 +2,7 @@
 #define MODELS_DECKMANAGER_HPP_
 
 #include <cstdint>
-#include <vector>
+#include <list>
 #include <string>
 #include "DeckType.hpp"
 
@@ -19,7 +19,7 @@ public:
 
    Deck* getDeck(std::uint8_t deckType);
 
-   std::vector<std::string> getDeckDescriptions() const;
+   std::list<std::string> getDeckDescriptions() const;
    DeckType::Name getDeckType() const;
 
 private:

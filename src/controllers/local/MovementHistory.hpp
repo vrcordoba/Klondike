@@ -1,11 +1,11 @@
-#ifndef MODELS_MOVEMENTHISTORY_HPP_
-#define MODELS_MOVEMENTHISTORY_HPP_
+#ifndef CONTROLLERS_MOVEMENTHISTORY_HPP_
+#define CONTROLLERS_MOVEMENTHISTORY_HPP_
 
 #include <deque>
 #include <cstdint>
 #include "Movement.hpp"
 
-namespace Models
+namespace Controllers
 {
 
 class MovementHistory final

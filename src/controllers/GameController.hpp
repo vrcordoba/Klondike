@@ -1,6 +1,7 @@
-#ifndef CONTROLLERS_MOVECONTROLLER_HPP_
-#define CONTROLLERS_MOVECONTROLLER_HPP_
+#ifndef CONTROLLERS_GAMECONTROLLER_HPP_
+#define CONTROLLERS_GAMECONTROLLER_HPP_
 
+#include <cstdint>
 #include "OperationController.hpp"
 
 namespace Controllers
@@ -8,16 +9,16 @@ namespace Controllers
 
 class CardTableController;
 
-class MoveController : public OperationController
+class GameController : public OperationController
 {
 public:
-   virtual ~MoveController() {};
+   virtual ~GameController() {};
 
    virtual void isValidMove() const = 0;
    virtual void move() const = 0;
    virtual CardTableController* getCardTableController() = 0;
 
-   enum class CommandType
+   enum class CommandType :std::uint8_t
    {
       ERROR,
       HELP,

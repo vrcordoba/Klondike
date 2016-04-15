@@ -8,7 +8,7 @@ namespace Controllers
 
 class OperationController;
 class StartController;
-class MoveController;
+class GameController;
 class ContinueController;
 
 class Logic final
@@ -25,7 +25,7 @@ public:
 private:
    Models::Game gameM;
    StartController* startControllerM;
-   MoveController* moveControllerM;
+   GameController* gameControllerM;
    ContinueController* continueControllerM;
 };
 

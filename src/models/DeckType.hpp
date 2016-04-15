@@ -2,7 +2,7 @@
 #define MODELS_DECKTYPE_HPP_
 
 #include <cstdint>
-#include <vector>
+#include <list>
 #include <string>
 
 namespace Models
@@ -23,12 +23,12 @@ public:
       FRENCH
    };
 
-   std::vector<std::string> getDeckDescriptions() const;
+   std::list<std::string> getDeckDescriptions() const;
    DeckType::Name getDeckType() const;
    void setDeckType(Name name);
 
 private:
-   std::vector<std::string> deckTypesDescriptionM;
+   std::list<std::string> deckTypesDescriptionM;
    Name nameM;
 };
 

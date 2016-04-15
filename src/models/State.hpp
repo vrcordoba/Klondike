@@ -10,7 +10,7 @@ namespace Models
 enum class State : std::uint8_t
 {
    INITIAL,
-   MOVE,
+   GAME,
    UNDO_MOVE,
    REDO_MOVE,
    SAVE,

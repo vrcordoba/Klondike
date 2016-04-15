@@ -1,7 +1,7 @@
-#ifndef MODELS_MOVEMENT_HPP_
-#define MODELS_MOVEMENT_HPP_
+#ifndef CONTROLLERS_MOVEMENT_HPP_
+#define CONTROLLERS_MOVEMENT_HPP_
 
-namespace Models
+namespace Controllers
 {
 
 class Pile;

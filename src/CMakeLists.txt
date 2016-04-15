@@ -15,16 +15,18 @@ set(HEADER_FILES
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
    controllers/StartController.hpp
-   controllers/MoveController.hpp
+   controllers/GameController.hpp
    controllers/ContinueController.hpp
    controllers/CardTableController.hpp
    controllers/FacadeCard.hpp
    controllers/local/Logic.hpp
    controllers/local/LocalController.hpp
    controllers/local/LocalStartController.hpp
-   controllers/local/LocalMoveController.hpp
+   controllers/local/LocalGameController.hpp
    controllers/local/LocalContinueController.hpp
    controllers/local/LocalCardTableController.hpp
+   controllers/local/Movement.hpp
+   controllers/local/MovementHistory.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -40,8 +42,6 @@ set(HEADER_FILES
    models/Game.hpp
    models/DeckType.hpp
    models/DeckManager.hpp
-   models/Movement.hpp
-   models/MovementHistory.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -65,6 +65,7 @@ set(HEADER_FILES
    views/text/CardTextView.hpp
    views/text/FrenchCardTextView.hpp
    views/text/SpanishCardTextView.hpp
+   views/text/CommandInterpreter.hpp
 )
 
 set(SOURCE_FILES
@@ -75,9 +76,11 @@ set(SOURCE_FILES
    controllers/local/Logic.cpp
    controllers/local/LocalController.cpp
    controllers/local/LocalStartController.cpp
-   controllers/local/LocalMoveController.cpp
+   controllers/local/LocalGameController.cpp
    controllers/local/LocalContinueController.cpp
    controllers/local/LocalCardTableController.cpp
+   controllers/local/Movement.cpp
+   controllers/local/MovementHistory.cpp
 
    models/Suit.cpp
    models/Card.cpp
@@ -91,8 +94,6 @@ set(SOURCE_FILES
    models/Game.cpp
    models/DeckType.cpp
    models/DeckManager.cpp
-   models/Movement.cpp
-   models/MovementHistory.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp
@@ -110,6 +111,7 @@ set(SOURCE_FILES
    views/text/CardTextView.cpp
    views/text/FrenchCardTextView.cpp
    views/text/SpanishCardTextView.cpp
+   views/text/CommandInterpreter.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")

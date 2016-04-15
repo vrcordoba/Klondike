@@ -18,7 +18,7 @@ DeckManager::~DeckManager()
    delete deckM;
 }
 
-std::vector<std::string> DeckManager::getDeckDescriptions() const
+std::list<std::string> DeckManager::getDeckDescriptions() const
 {
    return deckTypeM.getDeckDescriptions();
 }
@@ -43,6 +43,7 @@ Deck* DeckManager::getDeck(std::uint8_t deckType)
       default:
          assert(false);
    }
+   deckM->buildDeck();
    return deckM;
 }
 

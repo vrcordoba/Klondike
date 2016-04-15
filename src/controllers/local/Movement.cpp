@@ -1,7 +1,7 @@
 
 #include "Movement.hpp"
 
-namespace Models
+namespace Controllers
 {
 
 Movement::Movement(Pile& origin, Pile& destination) : originM(origin), destinationM(destination)

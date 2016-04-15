@@ -1,10 +1,10 @@
 
 #include "GameTextView.hpp"
 
-#include <cassert>
 #include "CardTableTextView.hpp"
 #include "CommandReader.hpp"
 #include "IO.hpp"
+#include "CommandInterpreter.hpp"
 
 namespace Views
 {
@@ -17,93 +17,68 @@ GameTextView::~GameTextView()
 {
 }
 
-void GameTextView::interact(Controllers::MoveController* moveController)
+void GameTextView::interact(Controllers::GameController* gameController)
 {
-   std::vector<std::string> command = askForCommand(moveController);
-   moveController->move();
+   std::list<std::string> command = askForCommand(gameController);
+   gameController->move();
 }
 
-// TODO: Return a parsed command
-std::vector<std::string> GameTextView::askForCommand(
-   Controllers::MoveController* moveController)
+std::list<std::string> GameTextView::askForCommand(
+   Controllers::GameController* gameController)
 {
-   showGame(moveController);
-   std::vector<std::string> command;
-   Controllers::MoveController::CommandType commandType;
-   bool wrongNumberOfParameters;
+   showGame(gameController);
+   std::list<std::string> command;
+   CommandInterpreter commandInterpreter;
    do
    {
       command = captureCommand();
-      wrongNumberOfParameters = isWrongNumberOfParameters(command);
-      if (not wrongNumberOfParameters)
-      {
-         commandType = typeOfCommand(command);
-      }
-   } while (wrongNumberOfParameters or isWrongCommand(commandType)
-      or isHelpCommand(commandType));
+      commandInterpreter.setCommand(command);
+   } while (errorInCommand(commandInterpreter));
    return command;
 }
 
-void GameTextView::showGame(Controllers::MoveController* moveController)
+bool GameTextView::errorInCommand(CommandInterpreter& commandInterpreter) const
 {
-   CardTableTextView cardTableTextView(moveController->getCardTableController());
+   if (commandInterpreter.isWrongNumberOfParameters())
+   {
+      showWrongNumberOfParameters();
+      return true;
+   }
+   commandInterpreter.interpretTypeOfCommand();
+   if (commandInterpreter.isWrongCommand())
+   {
+      showWrongCommand();
+      return true;
+   }
+   if (commandInterpreter.isHelpCommand())
+   {
+      showHelp();
+      return true;
+   }
+   return false;
+}
+
+void GameTextView::showGame(Controllers::GameController* gameController)
+{
+   CardTableTextView cardTableTextView(gameController->getCardTableController());
    cardTableTextView.show();
 }
 
-std::vector<std::string> GameTextView::captureCommand() const
+std::list<std::string> GameTextView::captureCommand() const
 {
    Utils::CommandReader commandReader;
    return commandReader.getCommand("Please, introduce the command (For a list "
       "of the available commands, type h/help)");
 }
 
-Controllers::MoveController::CommandType GameTextView::typeOfCommand(
-   std::vector<std::string> command) const
+void GameTextView::showWrongCommand() const
 {
-   assert(command.size() > 0);
-   Controllers::MoveController::CommandType commandType;
-   std::string order = command[0];
-   if ((order == "h") or (order == "help"))
-      commandType = Controllers::MoveController::CommandType::HELP;
-   else if ((order == "d") or (order == "draw"))
-      commandType = Controllers::MoveController::CommandType::DRAWCARD;
-   else if ((order == "m") or (order == "move"))
-      commandType = Controllers::MoveController::CommandType::MOVE;
-   else
-      commandType = Controllers::MoveController::CommandType::ERROR;
-   return commandType;
+   Utils::IO::getInstance().writeString("Wrong command.");
 }
 
-bool GameTextView::isWrongNumberOfParameters(std::vector<std::string> command) const
+void GameTextView::showWrongNumberOfParameters() const
 {
-   bool errorInCommand = false;
-   errorInCommand |= (command.size() == 0);
-   errorInCommand |= (command.size() > 4);
-   if (errorInCommand)
-   {
-      Utils::IO::getInstance().writeString("Wrong number of parameters.");
-   }
-   return errorInCommand;
-}
-
-bool GameTextView::isWrongCommand(const Controllers::MoveController::CommandType& commandType) const
-{
-   bool isWrongCommand = (Controllers::MoveController::CommandType::ERROR == commandType);
-   if (isWrongCommand)
-   {
-      Utils::IO::getInstance().writeString("Wrong command.");
-   }
-   return isWrongCommand;
-}
-
-bool GameTextView::isHelpCommand(const Controllers::MoveController::CommandType& commandType) const
-{
-   bool isHelpCommand = (Controllers::MoveController::CommandType::HELP == commandType);
-   if (isHelpCommand)
-   {
-      showHelp();
-   }
-   return isHelpCommand;
+   Utils::IO::getInstance().writeString("Wrong number of parameters.");
 }
 
 void GameTextView::showHelp() const

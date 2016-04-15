@@ -43,14 +43,11 @@ public:
    DeckType::Name getDeckType() const;
    void setDeckType(DeckType::Name name);
 
-   void execute(const Movement& movement);
-
 private:
    const std::uint8_t NUM_TABLEAUS = 7;
    const std::uint8_t NUM_PLAYERS = 1;
    State stateM;
    CardTable* cardTableM;
-   MovementHistory historyM;
    DeckType::Name deckTypeNameM;
 };
 

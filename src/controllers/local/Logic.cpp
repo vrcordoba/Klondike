@@ -3,7 +3,7 @@
 
 #include "OperationController.hpp"
 #include "LocalStartController.hpp"
-#include "LocalMoveController.hpp"
+#include "LocalGameController.hpp"
 #include "LocalContinueController.hpp"
 
 namespace Controllers
@@ -12,14 +12,14 @@ namespace Controllers
 Logic::Logic() : gameM()
 {
    startControllerM = new LocalStartController(gameM);
-   moveControllerM = new LocalMoveController(gameM);
+   gameControllerM = new LocalGameController(gameM);
    continueControllerM = new LocalContinueController(gameM);
 }
 
 Logic::~Logic()
 {
    delete startControllerM;
-   delete moveControllerM;
+   delete gameControllerM;
    delete continueControllerM;
 }
 
@@ -29,8 +29,8 @@ OperationController* Logic::getController() const
    {
       case Models::State::INITIAL:
          return startControllerM;
-      case Models::State::MOVE:
-         return moveControllerM;
+      case Models::State::GAME:
+         return gameControllerM;
       case Models::State::CONTINUE_GAME:
          return continueControllerM;
       case Models::State::END_GAME:

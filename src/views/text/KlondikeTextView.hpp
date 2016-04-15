@@ -26,7 +26,7 @@ public:
    void interact(Controllers::OperationController* operationController);
 
    void visit(Controllers::StartController* startController);
-   void visit(Controllers::MoveController* moveController);
+   void visit(Controllers::GameController* gameController);
    void visit(Controllers::ContinueController* continueController);
 
 private:

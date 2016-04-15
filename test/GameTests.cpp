@@ -20,8 +20,8 @@ TEST(GameTests, setGetState)
    Models::CardTable cardTable(deck, game.getNumTableaus());
    game.setCardTable(&cardTable);
    EXPECT_TRUE(Models::State::INITIAL == game.getState());
-   game.setState(Models::State::MOVE);
-   EXPECT_TRUE(Models::State::MOVE == game.getState());
+   game.setState(Models::State::GAME);
+   EXPECT_TRUE(Models::State::GAME == game.getState());
    game.setState(Models::State::END_GAME);
    EXPECT_TRUE(Models::State::END_GAME == game.getState());
 }
