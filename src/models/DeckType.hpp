@@ -23,7 +23,7 @@ public:
       FRENCH
    };
 
-   std::vector<std::string> getDecks() const;
+   std::vector<std::string> getDeckDescriptions() const;
    DeckType::Name getDeckType() const;
    void setDeckType(Name name);
 

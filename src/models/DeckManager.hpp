@@ -1,5 +1,5 @@
-#ifndef MODELS_DECKBUILDER_HPP_
-#define MODELS_DECKBUILDER_HPP_
+#ifndef MODELS_DECKMANAGER_HPP_
+#define MODELS_DECKMANAGER_HPP_
 
 #include <cstdint>
 #include <vector>
@@ -11,15 +11,15 @@ namespace Models
 
 class Deck;
 
-class DeckBuilder final
+class DeckManager final
 {
 public:
-   DeckBuilder();
-   ~DeckBuilder();
+   DeckManager();
+   ~DeckManager();
 
-   Deck* build(std::uint8_t deckType);
+   Deck* getDeck(std::uint8_t deckType);
 
-   std::vector<std::string> getDecks() const;
+   std::vector<std::string> getDeckDescriptions() const;
    DeckType::Name getDeckType() const;
 
 private:

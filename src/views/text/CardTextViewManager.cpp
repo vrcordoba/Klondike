@@ -1,5 +1,5 @@
 
-#include "CardTextViewBuilder.hpp"
+#include "CardTextViewManager.hpp"
 
 #include <cassert>
 #include "CardTableController.hpp"
@@ -10,17 +10,17 @@
 namespace Views
 {
 
-CardTextViewBuilder::CardTextViewBuilder(
+CardTextViewManager::CardTextViewManager(
    const Controllers::CardTableController* cardTableController) :
    cardTableControllerM(cardTableController)
 {
 }
 
-CardTextViewBuilder::~CardTextViewBuilder()
+CardTextViewManager::~CardTextViewManager()
 {
 }
 
-CardView* CardTextViewBuilder::build() const
+CardView* CardTextViewManager::getView() const
 {
    CardView* cardView;
    if (Models::DeckType::SPANISH == cardTableControllerM->getDeckType())

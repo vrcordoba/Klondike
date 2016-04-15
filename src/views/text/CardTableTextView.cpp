@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <string>
+#include "CardTextViewManager.hpp"
 #include "CardTableController.hpp"
-#include "CardTextViewBuilder.hpp"
 #include "CardView.hpp"
 
 namespace Views
@@ -23,7 +23,7 @@ CardTableTextView::~CardTableTextView()
 
 void CardTableTextView::buildCardView()
 {
-   cardViewM = CardTextViewBuilder(cardTableControllerM).build();
+   cardViewM = CardTextViewManager(cardTableControllerM).getView();
 }
 
 void CardTableTextView::show()

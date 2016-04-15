@@ -14,7 +14,7 @@ DeckType::~DeckType()
 {
 }
 
-std::vector<std::string> DeckType::getDecks() const
+std::vector<std::string> DeckType::getDeckDescriptions() const
 {
    return deckTypesDescriptionM;
 }

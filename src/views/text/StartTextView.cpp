@@ -22,7 +22,7 @@ void StartTextView::interact(Controllers::StartController* startController)
 {
    std::uint8_t numPlayers = 1; //getNumPlayers();
    std::uint8_t newOrSavedOption = 1; //getNewOrSaveOption(numPlayers);
-   std::uint8_t typeDeck = getTypeOfDeck(startController->getDecks());
+   std::uint8_t typeDeck = getTypeOfDeck(startController->getDeckDescriptions());
    startController->start(numPlayers, newOrSavedOption, typeDeck);
 }
 

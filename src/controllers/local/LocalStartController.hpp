@@ -6,7 +6,7 @@
 #include <string>
 #include "StartController.hpp"
 #include "LocalController.hpp"
-#include "DeckBuilder.hpp"
+#include "DeckManager.hpp"
 
 namespace Models
 {
@@ -30,14 +30,14 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   std::vector<std::string> getDecks() const;
+   std::vector<std::string> getDeckDescriptions() const;
    void start(std::uint8_t numPlayers, std::uint8_t newOrSavedOption,
       std::uint8_t typeDeck);
 
 private:
    void buildCardTable(std::uint8_t typeDeck);
 
-   Models::DeckBuilder deckBuilderM;
+   Models::DeckManager deckManagerM;
    Models::CardTable* cardTableM;
 };
 

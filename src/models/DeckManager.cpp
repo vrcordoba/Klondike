@@ -1,5 +1,5 @@
 
-#include "DeckBuilder.hpp"
+#include "DeckManager.hpp"
 
 #include <cassert>
 #include "SpanishDeck.hpp"
@@ -9,26 +9,26 @@
 namespace Models
 {
 
-DeckBuilder::DeckBuilder() : deckM(nullptr), deckTypeM()
+DeckManager::DeckManager() : deckM(nullptr), deckTypeM()
 {
 }
 
-DeckBuilder::~DeckBuilder()
+DeckManager::~DeckManager()
 {
    delete deckM;
 }
 
-std::vector<std::string> DeckBuilder::getDecks() const
+std::vector<std::string> DeckManager::getDeckDescriptions() const
 {
-   return deckTypeM.getDecks();
+   return deckTypeM.getDeckDescriptions();
 }
 
-DeckType::Name DeckBuilder::getDeckType() const
+DeckType::Name DeckManager::getDeckType() const
 {
    return deckTypeM.getDeckType();
 }
 
-Deck* DeckBuilder::build(std::uint8_t deckType)
+Deck* DeckManager::getDeck(std::uint8_t deckType)
 {
    switch(deckType)
    {

@@ -39,7 +39,7 @@ set(HEADER_FILES
    models/State.hpp
    models/Game.hpp
    models/DeckType.hpp
-   models/DeckBuilder.hpp
+   models/DeckManager.hpp
    models/Movement.hpp
    models/MovementHistory.hpp
 
@@ -61,7 +61,7 @@ set(HEADER_FILES
    views/text/GameTextView.hpp
    views/text/ContinueTextView.hpp
    views/text/CardTableTextView.hpp
-   views/text/CardTextViewBuilder.hpp
+   views/text/CardTextViewManager.hpp
    views/text/CardTextView.hpp
    views/text/FrenchCardTextView.hpp
    views/text/SpanishCardTextView.hpp
@@ -90,7 +90,7 @@ set(SOURCE_FILES
    models/CardTable.cpp
    models/Game.cpp
    models/DeckType.cpp
-   models/DeckBuilder.cpp
+   models/DeckManager.cpp
    models/Movement.cpp
    models/MovementHistory.cpp
 
@@ -106,7 +106,7 @@ set(SOURCE_FILES
    views/text/GameTextView.cpp
    views/text/ContinueTextView.cpp
    views/text/CardTableTextView.cpp
-   views/text/CardTextViewBuilder.cpp
+   views/text/CardTextViewManager.cpp
    views/text/CardTextView.cpp
    views/text/FrenchCardTextView.cpp
    views/text/SpanishCardTextView.cpp
