@@ -15,6 +15,9 @@ public:
    explicit CommandInterpreter();
    ~CommandInterpreter();
 
+   CommandInterpreter(const CommandInterpreter&) = delete;
+   CommandInterpreter& operator=(const CommandInterpreter&) = delete;
+
    void setCommand(std::vector<std::string> parsedCommand);
    Controllers::Command getCommand() const;
 

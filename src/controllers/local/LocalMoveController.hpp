@@ -16,6 +16,9 @@ public:
    explicit LocalMoveController(Models::Game& game);
    ~LocalMoveController();
 
+   LocalMoveController(const LocalMoveController&) = delete;
+   LocalMoveController& operator=(const LocalMoveController&) = delete;
+
    bool isValidMovement(const Command& command) const;
    void applyMovement(const Command& command);
    void applyDrawCard(const Command& command);

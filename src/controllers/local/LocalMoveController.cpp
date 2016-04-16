@@ -20,46 +20,32 @@ LocalMoveController::~LocalMoveController()
 bool LocalMoveController::isValidMovement(const Command& command) const
 {
    std::vector<std::uint8_t> additionalArguments = command.getAdditionalArguments();
-   if (not isValidOrigin(additionalArguments))
-      return false;
-   if (not isValidDestination(additionalArguments))
-      return false;
-   return true;
+   return isValidOrigin(additionalArguments) and isValidDestination(additionalArguments);
 }
 
 bool LocalMoveController::isValidOrigin(
    const std::vector<std::uint8_t>& additionalArguments) const
 {
-   if (not isIndexValid(additionalArguments[0], additionalArguments[1]))
-      return false;
-   if (not pileCompatibleWithNumberOfCards(additionalArguments[0], additionalArguments[4]))
-      return false;
-   if (not areEnoughCardsInPile(additionalArguments[0], additionalArguments[1],
-         additionalArguments[4]))
-      return false;
-   return true;
+   return isIndexValid(additionalArguments[0], additionalArguments[1]) and
+      pileCompatibleWithNumberOfCards(additionalArguments[0], additionalArguments[4]) and
+      areEnoughCardsInPile(additionalArguments[0], additionalArguments[1],
+         additionalArguments[4]);
 }
 
 bool LocalMoveController::isIndexValid(std::uint8_t pile, std::uint8_t index) const
 {
    bool isIndexValid = true;
    if (MovementOriginDestinationType::TABLEAU == pile)
-   {
       isIndexValid = (LocalController::getNumTableaus() >= index and 0 < index);
-   }
    else if (MovementOriginDestinationType::FOUNDATION == pile)
-   {
       isIndexValid = (LocalController::getNumFoundations() >= index and 0 < index);
-   }
    return isIndexValid;
 }
 
 bool LocalMoveController::pileCompatibleWithNumberOfCards(
    std::uint8_t pile, std::uint8_t numCards) const
 {
-   if (numCards > 1 and MovementOriginDestinationType::TABLEAU != pile)
-      return false;
-   return true;
+   return (numCards <= 1) or (MovementOriginDestinationType::TABLEAU == pile);
 }
 
 bool LocalMoveController::areEnoughCardsInPile(
@@ -72,13 +58,9 @@ bool LocalMoveController::areEnoughCardsInPile(
 bool LocalMoveController::isValidDestination(
    const std::vector<std::uint8_t>& additionalArguments) const
 {
-   if (not isIndexValid(additionalArguments[2], additionalArguments[3]))
-      return false;
-   if (not pileCompatibleWithNumberOfCards(additionalArguments[2], additionalArguments[4]))
-      return false;
-   if (not isCardStackableInDestination(additionalArguments))
-      return false;
-   return true;
+   return isIndexValid(additionalArguments[2], additionalArguments[3]) and
+      pileCompatibleWithNumberOfCards(additionalArguments[2], additionalArguments[4]) and
+      isCardStackableInDestination(additionalArguments);
 }
 
 bool LocalMoveController::isCardStackableInDestination(
@@ -104,17 +86,11 @@ Models::Pile* LocalMoveController::getPile(std::uint8_t pileId,
 {
    Models::Pile* pile;
    if (MovementOriginDestinationType::WASTE == pileId)
-   {
       pile = LocalController::getWaste();
-   }
    else if (MovementOriginDestinationType::FOUNDATION == pileId)
-   {
       pile = LocalController::getFoundation(pileIndex - 1);
-   }
    else
-   {
       pile = LocalController::getTableau(pileIndex - 1);
-   }
    return pile;
 }
 
@@ -136,13 +112,9 @@ void LocalMoveController::moveCards(Models::Pile* originPile,
 {
    Models::Pile cardsToMove;
    for (std::uint8_t i = 0; i < numCards; ++i)
-   {
       cardsToMove.addCard(originPile->takeCard());
-   }
    for (std::uint8_t i = 0; i < numCards; ++i)
-   {
       LocalController::transferCard(cardsToMove, *destinationPile);
-   }
 }
 
 void LocalMoveController::applyDrawCard(const Command& command)

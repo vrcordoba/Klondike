@@ -112,7 +112,10 @@ void GameTextView::showHelp() const
 
 void GameTextView::showCongratulations() const
 {
-   Utils::IO::getInstance().writeString("Congratulations! You have won.");
+   Utils::IO& io = Utils::IO::getInstance();
+   io.writeString("=================================================");
+   io.writeString("========= Congratulations! You have won =========");
+   io.writeString("=================================================");
 }
 
 }

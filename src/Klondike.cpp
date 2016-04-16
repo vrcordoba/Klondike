@@ -1,10 +1,12 @@
 
 #include "Klondike.hpp"
 #include "OperationController.hpp"
+#include "KlondikeConfiguration.hpp"
 
 Klondike::Klondike(Views::KlondikeView& view)
    : logicM(), viewM(view)
 {
+   Configuration::KlondikeConfiguration::getInstance();
 }
 
 Klondike::~Klondike()

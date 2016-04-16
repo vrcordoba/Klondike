@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(Klondike)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/configuration)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/controllers)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/controllers/local)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/models)
@@ -11,6 +12,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/views/text)
 
 set(HEADER_FILES
    Klondike.hpp
+
+   configuration/KlondikeConfiguration.hpp
 
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
@@ -51,6 +54,7 @@ set(HEADER_FILES
    utils/YesNoDialog.hpp
    utils/TextMenu.hpp
    utils/CommandReader.hpp
+   utils/FileReader.hpp
 
    views/KlondikeView.hpp
    views/StartView.hpp
@@ -73,6 +77,8 @@ set(HEADER_FILES
 set(SOURCE_FILES
    main.cpp
    Klondike.cpp
+
+   configuration/KlondikeConfiguration.cpp
 
    controllers/FacadeCard.cpp
    controllers/local/Logic.cpp
@@ -104,6 +110,7 @@ set(SOURCE_FILES
    utils/YesNoDialog.cpp
    utils/TextMenu.cpp
    utils/CommandReader.cpp
+   utils/FileReader.cpp
 
    views/text/KlondikeTextView.cpp
    views/text/StartTextView.cpp
