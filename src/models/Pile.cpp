@@ -64,4 +64,11 @@ bool Pile::isValidDestination(const Card& card) const
    return false;
 }
 
+void Pile::upturnTopCard()
+{
+   Card card = takeCard();
+   card.setUpturned(true);
+   addCard(card);
+}
+
 }

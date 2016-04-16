@@ -49,7 +49,7 @@ void CardTableTextView::showDeck()
 
 void CardTableTextView::showWaste()
 {
-   ioM.writeString("Waste: " + showPile(cardTableControllerM->getWaste()));
+   ioM.writeString("Waste: " + showOnlyFirstCardInPile(cardTableControllerM->getWaste()));
 }
 
 void CardTableTextView::showFoundations()
@@ -57,7 +57,7 @@ void CardTableTextView::showFoundations()
    for (std::uint8_t i = 0; i < cardTableControllerM->getNumFoundations(); ++i)
    {
       ioM.writeString("Foundation " + std::to_string(i + 1) + ": "
-         + showPile(cardTableControllerM->getFoundation(i)));
+         + showOnlyFirstCardInPile(cardTableControllerM->getFoundation(i)));
    }
 }
 
@@ -80,4 +80,12 @@ std::string CardTableTextView::showPile(const std::vector<Controllers::FacadeCar
    return pileString;
 }
 
+std::string CardTableTextView::showOnlyFirstCardInPile(const std::vector<Controllers::FacadeCard>& pile)
+{
+   std::string pileString;
+   std::size_t pileSize = pile.size();
+   if (pileSize > 0)
+      pileString += cardViewM->show(pile[pileSize - 1]);
+   return pileString;
+}
 }

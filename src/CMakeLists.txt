@@ -27,6 +27,7 @@ set(HEADER_FILES
    controllers/local/LocalCardTableController.hpp
    controllers/local/CommandType.hpp
    controllers/local/Command.hpp
+   controllers/local/LocalMoveController.hpp
    controllers/local/MovementHistory.hpp
 
    models/Suit.hpp
@@ -81,6 +82,7 @@ set(SOURCE_FILES
    controllers/local/LocalContinueController.cpp
    controllers/local/LocalCardTableController.cpp
    controllers/local/Command.cpp
+   controllers/local/LocalMoveController.cpp
    controllers/local/MovementHistory.cpp
 
    models/Suit.cpp

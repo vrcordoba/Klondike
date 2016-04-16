@@ -12,10 +12,9 @@ MovementHistory::~MovementHistory()
 {
 }
 
-void MovementHistory::storeAndExecute(const Command& movement)
+void MovementHistory::store(const Command& movement)
 {
    historyM.push_back(movement);
-   //movement.execute();
 }
 
 Command MovementHistory::undo()

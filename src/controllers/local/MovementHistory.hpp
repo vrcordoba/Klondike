@@ -17,7 +17,7 @@ public:
    MovementHistory(const MovementHistory&) = delete;
    MovementHistory& operator=(const MovementHistory&) = delete;
 
-   void storeAndExecute(const Command& movement);
+   void store(const Command& movement);
 
    Command undo();
 

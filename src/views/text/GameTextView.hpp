@@ -36,6 +36,7 @@ private:
    void showWrongCommand() const;
    void showWrongNumberOfParameters() const;
    void showHelp() const;
+   void showCongratulations() const;
 
    Controllers::Command getCommandFromUser(Controllers::GameController* gameController);
    std::vector<std::string> captureCommand() const;

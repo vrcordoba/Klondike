@@ -43,6 +43,8 @@ public:
 
    void transferCard(Models::Pile& originPile, Models::Pile& destinationPile);
 
+   bool isGameWon() const;
+
 private:
    Models::Game& gameM;
 };

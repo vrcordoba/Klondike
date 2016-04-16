@@ -27,6 +27,8 @@ public:
 
    virtual bool isValidDestination(const Card& card) const;
 
+   void upturnTopCard();
+
 protected:
    Card getTopCard() const;
 

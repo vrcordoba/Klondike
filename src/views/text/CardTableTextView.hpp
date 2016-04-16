@@ -39,6 +39,7 @@ private:
    void showFoundations();
    void showTableaus();
    std::string showPile(const std::vector<Controllers::FacadeCard>& pile);
+   std::string showOnlyFirstCardInPile(const std::vector<Controllers::FacadeCard>& pile);
 
    Utils::IO& ioM;
 };

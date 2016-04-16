@@ -4,6 +4,7 @@
 #include "GameController.hpp"
 #include "LocalController.hpp"
 #include "LocalCardTableController.hpp"
+#include "LocalMoveController.hpp"
 
 namespace Controllers
 {
@@ -25,25 +26,12 @@ public:
 
    bool isValidCommand(const Command& command) const;
    void applyCommand(const Command& command);
+   bool isGameWon() const;
 
    CardTableController* getCardTableController();
 
 private:
-   bool isValidMovement(const Command& command) const;
-   bool isValidOrigin(
-      std::uint8_t originPile, std::uint8_t originIndex) const;
-   bool isValidDestination(
-      const std::vector<std::uint8_t>& additionalArguments) const;
-   bool isIndexValid(
-      std::uint8_t originPile, std::uint8_t originIndex) const;
-   bool isCardStackableInDestination(
-      const std::vector<std::uint8_t>& additionalArguments) const;
-   Models::Card getCardToMove(
-      const std::vector<std::uint8_t>& additionalArguments) const;
-   Models::Pile* getPile(
-      std::uint8_t pileId, std::uint8_t pileIndex) const;
-   void applyMovement(const Command& command);
-
+   LocalMoveController localMoveControllerM;
    LocalCardTableController cardTableControllerM;
 };
 

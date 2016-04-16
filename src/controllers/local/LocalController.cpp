@@ -80,5 +80,10 @@ void LocalController::transferCard(Models::Pile& originPile,
    gameM.transferCard(originPile, destinationPile);
 }
 
+bool LocalController::isGameWon() const
+{
+   return gameM.isGameWon();
+}
+
 }
 

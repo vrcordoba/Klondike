@@ -25,6 +25,10 @@ void GameTextView::interact(Controllers::GameController* gameController)
       gameController->applyCommand(command);
    else
       showWrongCommand();
+   if (gameController->isGameWon())
+   {
+      showCongratulations();
+   }
 }
 
 Controllers::Command GameTextView::getCommandFromUser(
@@ -104,6 +108,11 @@ void GameTextView::showHelp() const
       "from origin (w/t1/t2/t3/...) to destination (f1/f2/f3/f4/t1/t2/t3/...). If "
       "\"num_cards\" is not specified only one card is moved.");
    io.writeString("d/draw - Draw card from deck to waste.");
+}
+
+void GameTextView::showCongratulations() const
+{
+   Utils::IO::getInstance().writeString("Congratulations! You have won.");
 }
 
 }
