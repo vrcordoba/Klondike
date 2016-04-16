@@ -2,12 +2,13 @@
 #include "CommandInterpreter.hpp"
 
 #include <cassert>
+#include "MovementOriginDestinationType.hpp"
 
 namespace Views
 {
 
 CommandInterpreter::CommandInterpreter()
-   : parsedCommandM(), commandTypeM(Controllers::GameController::CommandType::ERROR)
+   : parsedCommandM(), commandM()
 {
 }
 
@@ -15,33 +16,33 @@ CommandInterpreter::~CommandInterpreter()
 {
 }
 
-void CommandInterpreter::setCommand(std::list<std::string> parsedCommand)
+void CommandInterpreter::setCommand(std::vector<std::string> parsedCommand)
 {
    parsedCommandM = parsedCommand;
    interpretTypeOfCommand();
+}
+
+Controllers::Command CommandInterpreter::getCommand() const
+{
+   return commandM;
 }
 
 void CommandInterpreter::interpretTypeOfCommand()
 {
    if (parsedCommandM.size() == 0)
    {
-      commandTypeM = Controllers::GameController::CommandType::ERROR;
+      commandM.setCommandType(Controllers::CommandType::ERROR);
       return;
    }
    std::string order = (*parsedCommandM.begin());
    if ((order == "h") or (order == "help"))
-      commandTypeM = Controllers::GameController::CommandType::HELP;
+      commandM.setCommandType(Controllers::CommandType::HELP);
    else if ((order == "d") or (order == "draw"))
-      commandTypeM = Controllers::GameController::CommandType::DRAWCARD;
+      commandM.setCommandType(Controllers::CommandType::DRAWCARD);
    else if ((order == "m") or (order == "move"))
-      commandTypeM = Controllers::GameController::CommandType::MOVE;
+      commandM.setCommandType(Controllers::CommandType::MOVE);
    else
-      commandTypeM = Controllers::GameController::CommandType::ERROR;
-}
-
-Controllers::GameController::CommandType CommandInterpreter::getTypeOfCommand() const
-{
-   return commandTypeM;
+      commandM.setCommandType(Controllers::CommandType::ERROR);
 }
 
 bool CommandInterpreter::isWrongNumberOfParameters() const
@@ -54,14 +55,92 @@ bool CommandInterpreter::isWrongNumberOfParameters() const
 
 bool CommandInterpreter::isWrongCommand() const
 {
-   bool isWrongCommand = (Controllers::GameController::CommandType::ERROR == commandTypeM);
-   return isWrongCommand;
+   return (Controllers::CommandType::ERROR == commandM.getCommandType());
 }
 
 bool CommandInterpreter::isHelpCommand() const
 {
-   bool isHelpCommand = (Controllers::GameController::CommandType::HELP == commandTypeM);
-   return isHelpCommand;
+   return (Controllers::CommandType::HELP == commandM.getCommandType());
+}
+
+bool CommandInterpreter::analyzeArguments()
+{
+   if (isMoveCommand())
+   {
+      return analyzeArgumentsOfMovement();
+   }
+   return false;
+}
+
+bool CommandInterpreter::isMoveCommand() const
+{
+   return (Controllers::CommandType::MOVE == commandM.getCommandType());
+}
+
+bool CommandInterpreter::analyzeArgumentsOfMovement()
+{
+   if (parsedCommandM.size() < 3)
+      return true;
+   std::list<std::uint8_t> additionalArguments;
+   for (std::uint8_t i = 1; i < 3; ++i)
+   {
+      if (parsedCommandM[i].size() < 1 or parsedCommandM[i].size() > 2)
+         return true;
+      if (parsedCommandM[i][0] == 'w')
+         additionalArguments.push_back(Controllers::MovementOriginDestinationType::WASTE);
+      else if(parsedCommandM[i][0] == 't' or parsedCommandM[i][0] == 'f')
+      {
+         if (analyzeMultiplePile(parsedCommandM[i], additionalArguments))
+            return true;
+      }
+      else
+         return true;
+   }
+   if (analyzeNumberOfCardsToMove(additionalArguments))
+   {
+      return true;
+   }
+   commandM.setAdditionalArguments(additionalArguments);
+   return false;
+}
+
+bool CommandInterpreter::analyzeMultiplePile(const std::string& multiplePileId,
+   std::list<std::uint8_t>& additionalArguments)
+{
+   if (not std::isdigit(multiplePileId[1]))
+      return true;
+   if (multiplePileId[0] == 't')
+   {
+      additionalArguments.push_back(Controllers::MovementOriginDestinationType::TABLEAU);
+   }
+   else
+   {
+      additionalArguments.push_back(Controllers::MovementOriginDestinationType::FOUNDATION);
+   }
+   additionalArguments.push_back(multiplePileId[1]);
+   return false;
+}
+
+bool CommandInterpreter::analyzeNumberOfCardsToMove(std::list<std::uint8_t>& additionalArguments)
+{
+   if (4 == parsedCommandM.size())
+   {
+      std::uint8_t numCardsToMove;
+      try
+      {
+         numCardsToMove = std::stoi(parsedCommandM[3]);
+      }
+      catch (std::exception& e)
+      {
+         return true;
+      }
+      additionalArguments.push_back(numCardsToMove);
+   }
+   else
+   {
+      additionalArguments.push_back(1);
+   }
+   return false;
 }
 
 }

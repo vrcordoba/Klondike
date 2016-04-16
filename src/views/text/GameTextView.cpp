@@ -5,6 +5,7 @@
 #include "CommandReader.hpp"
 #include "IO.hpp"
 #include "CommandInterpreter.hpp"
+#include "Command.hpp"
 
 namespace Views
 {
@@ -19,22 +20,24 @@ GameTextView::~GameTextView()
 
 void GameTextView::interact(Controllers::GameController* gameController)
 {
-   std::list<std::string> command = askForCommand(gameController);
-   gameController->move();
+   Controllers::Command command = getCommandFromUser(gameController);
+   if (gameController->isValidCommand(command))
+      gameController->applyCommand(command);
 }
 
-std::list<std::string> GameTextView::askForCommand(
+Controllers::Command GameTextView::getCommandFromUser(
    Controllers::GameController* gameController)
 {
    showGame(gameController);
-   std::list<std::string> command;
+   std::vector<std::string> command;
    CommandInterpreter commandInterpreter;
    do
    {
       command = captureCommand();
       commandInterpreter.setCommand(command);
-   } while (errorOrHelpInCommand(commandInterpreter));
-   return command;
+   } while (errorOrHelpInCommand(commandInterpreter) or
+      analyzeArguments(commandInterpreter));
+   return commandInterpreter.getCommand();
 }
 
 bool GameTextView::errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const
@@ -57,13 +60,23 @@ bool GameTextView::errorOrHelpInCommand(CommandInterpreter& commandInterpreter) 
    return false;
 }
 
+bool GameTextView::analyzeArguments(CommandInterpreter& commandInterpreter) const
+{
+   if (commandInterpreter.analyzeArguments())
+   {
+      showWrongCommand();
+      return true;
+   }
+   return false;
+}
+
 void GameTextView::showGame(Controllers::GameController* gameController)
 {
    CardTableTextView cardTableTextView(gameController->getCardTableController());
    cardTableTextView.show();
 }
 
-std::list<std::string> GameTextView::captureCommand() const
+std::vector<std::string> GameTextView::captureCommand() const
 {
    Utils::CommandReader commandReader;
    return commandReader.getCommand("Please, introduce the command (For a list "

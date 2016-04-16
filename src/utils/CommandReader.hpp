@@ -1,7 +1,7 @@
 #ifndef UTILS_COMMANDREADER_HPP_
 #define UTILS_COMMANDREADER_HPP_
 
-#include <list>
+#include <vector>
 #include <string>
 
 namespace Utils
@@ -13,10 +13,10 @@ public:
    CommandReader();
    ~CommandReader();
 
-   std::list<std::string> getCommand(const std::string& message) const;
+   std::vector<std::string> getCommand(const std::string& message) const;
 
 private:
-   std::list<std::string> tokenizeCommand(const std::string& command) const;
+   std::vector<std::string> tokenizeCommand(const std::string& command) const;
 };
 
 }

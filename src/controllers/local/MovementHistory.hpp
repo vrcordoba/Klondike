@@ -3,7 +3,7 @@
 
 #include <deque>
 #include <cstdint>
-#include "Movement.hpp"
+#include "Command.hpp"
 
 namespace Controllers
 {
@@ -17,12 +17,12 @@ public:
    MovementHistory(const MovementHistory&) = delete;
    MovementHistory& operator=(const MovementHistory&) = delete;
 
-   void storeAndExecute(const Movement& movement);
+   void storeAndExecute(const Command& movement);
 
-   Movement undo();
+   Command undo();
 
 private:
-   std::deque<Movement> historyM;
+   std::deque<Command> historyM;
 };
 
 }

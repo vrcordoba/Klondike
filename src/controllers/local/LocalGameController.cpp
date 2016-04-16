@@ -3,6 +3,7 @@
 
 #include "OperationControllerVisitor.hpp"
 #include "CardTableController.hpp"
+#include "Command.hpp"
 
 namespace Controllers
 {
@@ -21,11 +22,12 @@ void LocalGameController::accept(OperationControllerVisitor* operationController
    operationControllerVisitor->visit(this);
 }
 
-void LocalGameController::isValidMove() const
+bool LocalGameController::isValidCommand(const Command& command) const
 {
+   return true;
 }
 
-void LocalGameController::move() const
+void LocalGameController::applyCommand(const Command& command) const
 {
 }
 

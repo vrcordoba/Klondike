@@ -10,6 +10,7 @@ namespace Controllers
 
 class OperationControllerVisitor;
 class CardTableController;
+class Command;
 
 class LocalGameController final : public GameController, public LocalController
 {
@@ -22,8 +23,8 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   void isValidMove() const;
-   void move() const;
+   bool isValidCommand(const Command& command) const;
+   void applyCommand(const Command& command) const;
 
    CardTableController* getCardTableController();
 

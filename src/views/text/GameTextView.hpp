@@ -2,10 +2,15 @@
 #define VIEWS_TEXT_GAMETEXTVIEW_HPP_
 
 #include <cstdint>
-#include <list>
+#include <vector>
 #include <string>
 #include "GameView.hpp"
 #include "GameController.hpp"
+
+namespace Controllers
+{
+   class Command;
+}
 
 namespace Views
 {
@@ -27,12 +32,13 @@ public:
 
 private:
    bool errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const;
+   bool analyzeArguments(CommandInterpreter& commandInterpreter) const;
    void showWrongCommand() const;
    void showWrongNumberOfParameters() const;
    void showHelp() const;
 
-   std::list<std::string> askForCommand(Controllers::GameController* gameController);
-   std::list<std::string> captureCommand() const;
+   Controllers::Command getCommandFromUser(Controllers::GameController* gameController);
+   std::vector<std::string> captureCommand() const;
 };
 
 }

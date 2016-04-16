@@ -2,9 +2,9 @@
 #ifndef VIEWS_TEXT_COMMANDINTERPRETER_HPP_
 #define VIEWS_TEXT_COMMANDINTERPRETER_HPP_
 
-#include <list>
+#include <vector>
 #include <string>
-#include "GameController.hpp"
+#include "Command.hpp"
 
 namespace Views
 {
@@ -15,19 +15,25 @@ public:
    explicit CommandInterpreter();
    ~CommandInterpreter();
 
-   void setCommand(std::list<std::string> parsedCommand);
-
-   Controllers::GameController::CommandType getTypeOfCommand() const;
+   void setCommand(std::vector<std::string> parsedCommand);
+   Controllers::Command getCommand() const;
 
    bool isWrongNumberOfParameters() const;
    bool isWrongCommand() const;
    bool isHelpCommand() const;
 
+   bool analyzeArguments();
+
 private:
    void interpretTypeOfCommand();
+   bool isMoveCommand() const;
+   bool analyzeArgumentsOfMovement();
+   bool analyzeMultiplePile(const std::string& multiplePileId,
+      std::list<std::uint8_t>& additionalArguments);
+   bool analyzeNumberOfCardsToMove(std::list<std::uint8_t>& additionalArguments);
 
-   std::list<std::string> parsedCommandM;
-   Controllers::GameController::CommandType commandTypeM;
+   std::vector<std::string> parsedCommandM;
+   Controllers::Command commandM;
 };
 
 }
