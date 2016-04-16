@@ -18,6 +18,7 @@ public:
 
    bool isValidMovement(const Command& command) const;
    void applyMovement(const Command& command);
+   void applyDrawCard(const Command& command);
 
 private:
    bool isValidOrigin(

@@ -4,6 +4,7 @@
 #include "OperationControllerVisitor.hpp"
 #include "CardTableController.hpp"
 #include "Command.hpp"
+#include "State.hpp"
 
 namespace Controllers
 {
@@ -34,9 +35,12 @@ bool LocalGameController::isValidCommand(const Command& command) const
 void LocalGameController::applyCommand(const Command& command)
 {
    if (CommandType::MOVE == command.getCommandType())
-   {
       localMoveControllerM.applyMovement(command);
-   }
+   else if (CommandType::DRAWCARD  == command.getCommandType())
+      localMoveControllerM.applyDrawCard(command);
+
+   if (LocalController::isGameWon())
+      LocalController::setState(Models::State::END_GAME);
 }
 
 CardTableController* LocalGameController::getCardTableController()

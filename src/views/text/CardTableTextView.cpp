@@ -49,7 +49,7 @@ void CardTableTextView::showDeck()
 
 void CardTableTextView::showWaste()
 {
-   ioM.writeString("Waste: " + showOnlyFirstCardInPile(cardTableControllerM->getWaste()));
+   ioM.writeString("Waste: " + showPile(cardTableControllerM->getWaste()));
 }
 
 void CardTableTextView::showFoundations()

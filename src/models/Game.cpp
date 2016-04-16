@@ -93,4 +93,9 @@ void Game::setDeckType(DeckType::Name name)
    deckTypeNameM = name;
 }
 
+std::uint8_t Game::getNumCardsToDraw() const
+{
+   return NUM_CARDS_TO_DRAW;
+}
+
 }

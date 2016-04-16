@@ -34,6 +34,11 @@ std::uint8_t LocalController::getNumFoundations() const
    return gameM.getNumFoundations();
 }
 
+std::uint8_t LocalController::getNumCardsToDraw() const
+{
+   return gameM.getNumCardsToDraw();
+}
+
 Models::CardTable* LocalController::getCardTable() const
 {
    return gameM.getCardTable();

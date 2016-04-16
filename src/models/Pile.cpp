@@ -64,11 +64,20 @@ bool Pile::isValidDestination(const Card& card) const
    return false;
 }
 
-void Pile::upturnTopCard()
+void Pile::setUpturnCards(std::uint8_t numCards, bool upturn)
 {
-   Card card = takeCard();
-   card.setUpturned(true);
-   addCard(card);
+   assert(numCards <= cardsM.size());
+   std::deque<Card> cards;
+   for (std::uint8_t i = 0; i < numCards; ++i)
+   {
+      Card card = takeCard();
+      card.setUpturned(upturn);
+      cards.push_back(card);
+   }
+   for (Card card : cards)
+   {
+      addCard(card);
+   }
 }
 
 }

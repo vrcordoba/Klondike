@@ -127,7 +127,7 @@ void LocalMoveController::applyMovement(const Command& command)
       additionalArguments[3]);
    moveCards(originPile, destinationPile, additionalArguments[4]);
    if (originPile->getNumCards() > 0)
-      originPile->upturnTopCard();
+      originPile->setUpturnCards(1, true);
    movementHistoryM.store(command);
 }
 
@@ -143,6 +143,26 @@ void LocalMoveController::moveCards(Models::Pile* originPile,
    {
       LocalController::transferCard(cardsToMove, *destinationPile);
    }
+}
+
+void LocalMoveController::applyDrawCard(const Command& command)
+{
+   Models::Pile* deck = LocalController::getDeck();
+   Models::Pile* waste = LocalController::getWaste();
+   if (0 == deck->getNumCards())
+   {
+      std::uint8_t numCardsInWaste = waste->getNumCards();
+      moveCards(waste, deck, numCardsInWaste);
+      deck->setUpturnCards(numCardsInWaste, false);
+   }
+   else
+   {
+      std::uint8_t numCardsToMoveToWaste = deck->getNumCards() > LocalController::getNumCardsToDraw() ?
+         LocalController::getNumCardsToDraw() : deck->getNumCards();
+      moveCards(deck, waste, numCardsToMoveToWaste);
+      waste->setUpturnCards(numCardsToMoveToWaste, true);
+   }
+   movementHistoryM.store(command);
 }
 
 }

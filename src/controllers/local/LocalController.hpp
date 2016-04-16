@@ -29,6 +29,7 @@ public:
    std::uint8_t getNumPlayers() const;
    std::uint8_t getNumTableaus() const;
    std::uint8_t getNumFoundations() const;
+   std::uint8_t getNumCardsToDraw() const;
 
    Models::CardTable* getCardTable() const;
    void setCardTable(Models::CardTable* cardTable);
