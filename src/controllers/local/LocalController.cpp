@@ -54,4 +54,31 @@ void LocalController::setDeckType(Models::DeckType::Name name)
    gameM.setDeckType(name);
 }
 
+Models::Pile* LocalController::getDeck() const
+{
+   return &(gameM.getDeck());
 }
+
+Models::Pile* LocalController::getWaste() const
+{
+   return &(gameM.getWaste());
+}
+
+Models::Pile* LocalController::getTableau(std::uint8_t tableauIndex) const
+{
+   return &(gameM.getTableau(tableauIndex));
+}
+
+Models::Pile* LocalController::getFoundation(std::uint8_t foundationIndex) const
+{
+   return &(gameM.getFoundation(foundationIndex));
+}
+
+void LocalController::transferCard(Models::Pile& originPile,
+   Models::Pile& destinationPile)
+{
+   gameM.transferCard(originPile, destinationPile);
+}
+
+}
+

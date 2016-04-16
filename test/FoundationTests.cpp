@@ -15,8 +15,8 @@ TEST(FoundationTests, validDestination)
    Models::FrenchDeck deck;
    Models::Foundation foundation(deck);
    foundation.addCard(card1);
-   EXPECT_FALSE(foundation.validDestination(card2));
-   EXPECT_TRUE(foundation.validDestination(card3));
+   EXPECT_FALSE(foundation.isValidDestination(card2));
+   EXPECT_TRUE(foundation.isValidDestination(card3));
 }
 
 TEST(FoundationTests, validDestinationEmptyFoundation)
@@ -25,8 +25,8 @@ TEST(FoundationTests, validDestinationEmptyFoundation)
    Models::Card card2(1, Models::Suit(1, 1));
    Models::FrenchDeck deck;
    Models::Foundation foundation(deck);
-   EXPECT_TRUE(foundation.validDestination(card1));
-   EXPECT_FALSE(foundation.validDestination(card2));
+   EXPECT_TRUE(foundation.isValidDestination(card1));
+   EXPECT_FALSE(foundation.isValidDestination(card2));
 }
 
 TEST(FoundationTests, isFoundationComplete)

@@ -26,7 +26,7 @@ Foundation& Foundation::operator=(const Foundation& otherFoundation)
    return *this;
 }
 
-bool Foundation::validDestination(const Card& card) const
+bool Foundation::isValidDestination(const Card& card) const
 {
    bool validDest;
    if (0 != getNumCards())

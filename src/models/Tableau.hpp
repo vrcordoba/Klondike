@@ -10,7 +10,7 @@ namespace Models
 class Deck;
 class Card;
 
-class Tableau final: public Pile, public MovementDestination
+class Tableau final: public Pile
 {
 public:
    explicit Tableau(Deck& deck);
@@ -19,7 +19,7 @@ public:
    Tableau(const Tableau& otherTableau);
    Tableau& operator=(const Tableau& otherTableau);
 
-   bool validDestination(const Card& card) const;
+   bool isValidDestination(const Card& card) const;
 
 private:
    Deck& deckM;

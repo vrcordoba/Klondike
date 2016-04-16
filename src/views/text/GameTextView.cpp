@@ -23,6 +23,8 @@ void GameTextView::interact(Controllers::GameController* gameController)
    Controllers::Command command = getCommandFromUser(gameController);
    if (gameController->isValidCommand(command))
       gameController->applyCommand(command);
+   else
+      showWrongCommand();
 }
 
 Controllers::Command GameTextView::getCommandFromUser(

@@ -3,11 +3,12 @@
 
 #include <deque>
 #include "Card.hpp"
+#include "MovementDestination.hpp"
 
 namespace Models
 {
 
-class Pile
+class Pile : public MovementDestination
 {
 public:
    Pile();
@@ -21,6 +22,10 @@ public:
    std::size_t getNumCards() const;
 
    std::deque<Card> getCards() const;
+
+   Card getCardAt(std::uint8_t index) const;
+
+   virtual bool isValidDestination(const Card& card) const;
 
 protected:
    Card getTopCard() const;

@@ -29,8 +29,8 @@ private:
    bool isMoveCommand() const;
    bool analyzeArgumentsOfMovement();
    bool analyzeMultiplePile(const std::string& multiplePileId,
-      std::list<std::uint8_t>& additionalArguments);
-   bool analyzeNumberOfCardsToMove(std::list<std::uint8_t>& additionalArguments);
+      std::vector<std::uint8_t>& additionalArguments);
+   bool analyzeNumberOfCardsToMove(std::vector<std::uint8_t>& additionalArguments);
 
    std::vector<std::string> parsedCommandM;
    Controllers::Command commandM;

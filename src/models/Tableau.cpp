@@ -26,7 +26,7 @@ Tableau& Tableau::operator=(const Tableau& otherTableau)
    return *this;
 }
 
-bool Tableau::validDestination(const Card& card) const
+bool Tableau::isValidDestination(const Card& card) const
 {
    bool validDest;
    if (0 != getNumCards())

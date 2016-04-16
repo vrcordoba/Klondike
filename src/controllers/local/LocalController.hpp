@@ -9,6 +9,7 @@ namespace Models
 {
    class Game;
    class CardTable;
+   class Pile;
 }
 
 namespace Controllers
@@ -34,6 +35,13 @@ public:
 
    Models::DeckType::Name getDeckType() const;
    void setDeckType(Models::DeckType::Name name);
+
+   Models::Pile* getDeck() const;
+   Models::Pile* getWaste() const;
+   Models::Pile* getTableau(std::uint8_t tableauIndex) const;
+   Models::Pile* getFoundation(std::uint8_t foundationIndex) const;
+
+   void transferCard(Models::Pile& originPile, Models::Pile& destinationPile);
 
 private:
    Models::Game& gameM;

@@ -81,13 +81,16 @@ bool CommandInterpreter::analyzeArgumentsOfMovement()
 {
    if (parsedCommandM.size() < 3)
       return true;
-   std::list<std::uint8_t> additionalArguments;
+   std::vector<std::uint8_t> additionalArguments;
    for (std::uint8_t i = 1; i < 3; ++i)
    {
       if (parsedCommandM[i].size() < 1 or parsedCommandM[i].size() > 2)
          return true;
       if (parsedCommandM[i][0] == 'w')
+      {
          additionalArguments.push_back(Controllers::MovementOriginDestinationType::WASTE);
+         additionalArguments.push_back(1u);
+      }
       else if(parsedCommandM[i][0] == 't' or parsedCommandM[i][0] == 'f')
       {
          if (analyzeMultiplePile(parsedCommandM[i], additionalArguments))
@@ -105,7 +108,7 @@ bool CommandInterpreter::analyzeArgumentsOfMovement()
 }
 
 bool CommandInterpreter::analyzeMultiplePile(const std::string& multiplePileId,
-   std::list<std::uint8_t>& additionalArguments)
+   std::vector<std::uint8_t>& additionalArguments)
 {
    if (not std::isdigit(multiplePileId[1]))
       return true;
@@ -117,11 +120,11 @@ bool CommandInterpreter::analyzeMultiplePile(const std::string& multiplePileId,
    {
       additionalArguments.push_back(Controllers::MovementOriginDestinationType::FOUNDATION);
    }
-   additionalArguments.push_back(multiplePileId[1]);
+   additionalArguments.push_back(multiplePileId[1] - '0');
    return false;
 }
 
-bool CommandInterpreter::analyzeNumberOfCardsToMove(std::list<std::uint8_t>& additionalArguments)
+bool CommandInterpreter::analyzeNumberOfCardsToMove(std::vector<std::uint8_t>& additionalArguments)
 {
    if (4 == parsedCommandM.size())
    {
@@ -130,7 +133,7 @@ bool CommandInterpreter::analyzeNumberOfCardsToMove(std::list<std::uint8_t>& add
       {
          numCardsToMove = std::stoi(parsedCommandM[3]);
       }
-      catch (std::exception& e)
+      catch (const std::exception& e)
       {
          return true;
       }

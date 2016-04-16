@@ -1,5 +1,6 @@
 
 #include "Game.hpp"
+#include "Deck.hpp"
 
 namespace Models
 {
@@ -57,7 +58,7 @@ bool Game::isGameWon() const
    return cardTableM->isGameWon();
 }
 
-Deck& Game::getDeck() const
+Pile& Game::getDeck() const
 {
    return cardTableM->getDeck();
 }
@@ -67,12 +68,12 @@ Pile& Game::getWaste() const
    return cardTableM->getWaste();
 }
 
-Tableau& Game::getTableau(std::uint8_t tableauIndex) const
+Pile& Game::getTableau(std::uint8_t tableauIndex) const
 {
    return cardTableM->getTableau(tableauIndex);
 }
 
-Foundation& Game::getFoundation(std::uint8_t foundationIndex) const
+Pile& Game::getFoundation(std::uint8_t foundationIndex) const
 {
    return cardTableM->getFoundation(foundationIndex);
 }

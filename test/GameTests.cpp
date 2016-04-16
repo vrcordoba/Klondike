@@ -33,7 +33,7 @@ TEST(GameTests, transferCards)
    Models::Game game;
    Models::CardTable cardTable(deck, game.getNumTableaus());
    game.setCardTable(&cardTable);
-   Models::Deck& deckFromGame = game.getDeck();
+   Models::Pile& deckFromGame = game.getDeck();
    Models::Pile waste = game.getWaste();
    std::uint8_t numCardsDeck = deckFromGame.getNumCards();
    std::uint8_t numCardsWaste = waste.getNumCards();
@@ -69,7 +69,7 @@ TEST (GameTests, isGameWon)
    }
    for (std::uint8_t i = 0; i < piles.size(); ++i)
    {
-      Models::Foundation& foundation = game.getFoundation(i);
+      Models::Pile& foundation = game.getFoundation(i);
       while (0 != piles[i].getNumCards())
       {
          game.transferCard(piles[i], foundation);

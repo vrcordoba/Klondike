@@ -23,12 +23,12 @@ CommandType Command::getCommandType() const
    return commandTypeM;
 }
 
-void Command::setAdditionalArguments(std::list<std::uint8_t> additionalArguments)
+void Command::setAdditionalArguments(std::vector<std::uint8_t> additionalArguments)
 {
    additionalArgumentsM = additionalArguments;
 }
 
-std::list<std::uint8_t> Command::getAdditionalArguments() const
+std::vector<std::uint8_t> Command::getAdditionalArguments() const
 {
    return additionalArgumentsM;
 }

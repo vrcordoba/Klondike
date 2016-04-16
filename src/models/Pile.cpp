@@ -53,4 +53,15 @@ std::deque<Card> Pile::getCards() const
    return cardsM;
 }
 
+Card Pile::getCardAt(std::uint8_t index) const
+{
+   assert(index < cardsM.size());
+   return cardsM[index];
+}
+
+bool Pile::isValidDestination(const Card& card) const
+{
+   return false;
+}
+
 }

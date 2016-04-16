@@ -2,8 +2,8 @@
 #define MODELS_CARDTABLE_HPP_
 
 #include <vector>
-#include "Foundation.hpp"
 #include "Pile.hpp"
+#include "Foundation.hpp"
 #include "Tableau.hpp"
 
 namespace Models

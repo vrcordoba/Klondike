@@ -16,9 +16,9 @@ TEST(TableauTests, validDestination)
    Models::SpanishDeck deck;
    Models::Tableau tableau(deck);
    tableau.addCard(card1);
-   EXPECT_FALSE(tableau.validDestination(card2));
-   EXPECT_FALSE(tableau.validDestination(card3));
-   EXPECT_TRUE(tableau.validDestination(card4));
+   EXPECT_FALSE(tableau.isValidDestination(card2));
+   EXPECT_FALSE(tableau.isValidDestination(card3));
+   EXPECT_TRUE(tableau.isValidDestination(card4));
 }
 
 TEST(TableauTests, validDestinationEmptyTableau)
@@ -27,8 +27,8 @@ TEST(TableauTests, validDestinationEmptyTableau)
    Models::Card card2(8, Models::Suit(1, 1));
    Models::SpanishDeck deck;
    Models::Tableau tableau(deck);
-   EXPECT_TRUE(tableau.validDestination(card1));
-   EXPECT_FALSE(tableau.validDestination(card2));
+   EXPECT_TRUE(tableau.isValidDestination(card1));
+   EXPECT_FALSE(tableau.isValidDestination(card2));
 }
 
 int main(int argc, char **argv)

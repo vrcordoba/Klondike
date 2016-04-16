@@ -15,7 +15,7 @@ public:
    virtual ~GameController() {};
 
    virtual bool isValidCommand(const Command& command) const = 0;
-   virtual void applyCommand(const Command& command) const = 0;
+   virtual void applyCommand(const Command& command) = 0;
    virtual CardTableController* getCardTableController() = 0;
 };
 
