@@ -3,8 +3,10 @@
 
 #include <list>
 #include <string>
-#include "FileReader.hpp"
 #include "DeckType.hpp"
+#include "ViewType.hpp"
+#include "SaveType.hpp"
+#include "ControllerType.hpp"
 
 namespace Configuration
 {
@@ -27,13 +29,25 @@ public:
    void setDeckType(DeckType::Type type);
    std::list<std::string> getDeckDescriptions() const;
 
+   ViewType getViewType() const;
+   SaveType getSaveType() const;
+   ControllerType getControllerType() const;
+
 private:
    KlondikeConfiguration();
 
-   void readConfiguration();
+   std::list<std::string> readConfiguration() const;
+   void interpretReadConfiguration(const std::list<std::string>& configurations);
 
-   Utils::FileReader fileReaderM;
+   void setControllerType(const std::string& configuration);
+   void setViewType(const std::string& configuration);
+   void setSaverType(const std::string& configuration);
+
+   const std::string CONFIGURATION_FILE = "klondike.conf";
    DeckType deckTypeM;
+   ViewType viewTypeM;
+   SaveType saveTypeM;
+   ControllerType controllerTypeM;
 };
 
 }

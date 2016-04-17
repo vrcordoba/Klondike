@@ -4,7 +4,6 @@
 
 int main()
 {
-   Views::KlondikeTextView klondikeView;
-   Klondike(klondikeView).play();
+   Klondike().play();
    return 0;
 }

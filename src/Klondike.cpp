@@ -2,9 +2,11 @@
 #include "Klondike.hpp"
 #include "OperationController.hpp"
 #include "KlondikeConfiguration.hpp"
+#include "ViewManager.hpp"
+#include "KlondikeView.hpp"
 
-Klondike::Klondike(Views::KlondikeView& view)
-   : logicM(), viewM(view)
+Klondike::Klondike()
+   : logicM()
 {
    Configuration::KlondikeConfiguration::getInstance();
 }
@@ -15,13 +17,15 @@ Klondike::~Klondike()
 
 void Klondike::play()
 {
+   Views::ViewManager viewManager;
+   Views::KlondikeView* view = viewManager.getView();
    Controllers::OperationController* controller;
    do
    {
       controller = logicM.getController();
       if (nullptr != controller)
       {
-         viewM.interact(controller);
+         view->interact(controller);
       }
    } while(nullptr != controller);
 }

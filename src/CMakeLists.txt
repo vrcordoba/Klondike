@@ -14,7 +14,10 @@ set(HEADER_FILES
    Klondike.hpp
 
    configuration/KlondikeConfiguration.hpp
+   configuration/ControllerType.hpp
    configuration/DeckType.hpp
+   configuration/SaveType.hpp
+   configuration/ViewType.hpp
 
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
@@ -65,6 +68,7 @@ set(HEADER_FILES
    views/ContinueView.hpp
    views/CardTableView.hpp
    views/CardView.hpp
+   views/ViewManager.hpp
    views/text/KlondikeTextView.hpp
    views/text/StartTextView.hpp
    views/text/GameTextView.hpp
@@ -118,6 +122,7 @@ set(SOURCE_FILES
    utils/CommandReader.cpp
    utils/FileReader.cpp
 
+   views/ViewManager.cpp
    views/text/KlondikeTextView.cpp
    views/text/StartTextView.cpp
    views/text/GameTextView.cpp

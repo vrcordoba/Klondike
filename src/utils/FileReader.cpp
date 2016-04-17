@@ -13,14 +13,23 @@ FileReader::~FileReader()
    fileM.close();
 }
 
-std::string FileReader::getLine()
+bool FileReader::getLine(std::string& line)
 {
-   std::string line;
-   if (fileM.is_open() and fileM.eof())
+   bool unreadLines = true;
+   if (fileM.is_open() and (not fileM.eof()))
    {
       std::getline(fileM, line);
    }
-   return line;
+   else
+   {
+      unreadLines = false;
+   }
+   return unreadLines;
+}
+
+bool FileReader::isOk() const
+{
+   return fileM.is_open();
 }
 
 }

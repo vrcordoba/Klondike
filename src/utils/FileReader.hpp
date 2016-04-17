@@ -16,7 +16,8 @@ public:
    FileReader(const FileReader&) = delete;
    FileReader& operator=(const FileReader&) = delete;
 
-   std::string getLine();
+   bool isOk() const;
+   bool getLine(std::string& line);
 
 private:
    std::ifstream fileM;

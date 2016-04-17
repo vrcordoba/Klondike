@@ -28,10 +28,10 @@ void FrenchCardTextView::constructRepresentation()
    numberRepresentationM.push_back("Q");
    numberRepresentationM.push_back("K");
 
-   suitRepresentationM.push_back("\u2660");
-   suitRepresentationM.push_back("\u2666");
-   suitRepresentationM.push_back("\u2663");
-   suitRepresentationM.push_back("\u2665");
+   suitRepresentationM.push_back("\u2660"); // Spades
+   suitRepresentationM.push_back("\u2666"); // Diamonds
+   suitRepresentationM.push_back("\u2663"); // Clubs
+   suitRepresentationM.push_back("\u2665"); // Hearts
 }
 
 }
