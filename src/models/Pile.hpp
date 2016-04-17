@@ -30,6 +30,7 @@ public:
    void setUpturnCards(std::uint8_t numCards, bool upturn);
 
 protected:
+   void setCards(std::deque<Card>& cards);
    Card getTopCard() const;
 
 private:

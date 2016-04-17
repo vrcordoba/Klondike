@@ -36,6 +36,7 @@ void Deck::shuffle()
 	std::mt19937 g(rd());
 	std::deque<Card> cards = getCards();
 	std::shuffle(cards.begin(), cards.end(), g);
+	setCards(cards);
 }
 
 bool Deck::isTheLowestCardInTheSuit(const Card& card) const

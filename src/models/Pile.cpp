@@ -53,6 +53,11 @@ std::deque<Card> Pile::getCards() const
    return cardsM;
 }
 
+void Pile::setCards(std::deque<Card>& cards)
+{
+   cardsM = cards;
+}
+
 Card Pile::getCardAt(std::uint8_t index) const
 {
    assert(index < cardsM.size());

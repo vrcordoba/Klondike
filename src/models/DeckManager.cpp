@@ -44,6 +44,7 @@ Deck* DeckManager::getDeck(std::uint8_t deckType)
          assert(false);
    }
    deckM->buildDeck();
+   //deckM->shuffle();
    return deckM;
 }
 
