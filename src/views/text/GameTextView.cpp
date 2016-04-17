@@ -6,6 +6,7 @@
 #include "IO.hpp"
 #include "CommandInterpreter.hpp"
 #include "Command.hpp"
+#include "CommandManager.hpp"
 
 namespace Views
 {
@@ -20,7 +21,7 @@ GameTextView::~GameTextView()
 
 void GameTextView::interact(Controllers::GameController* gameController)
 {
-   Controllers::Command command = getCommandFromUser(gameController);
+   Controllers::Command* command = getCommandFromUser(gameController);
    if (gameController->isValidCommand(command))
       gameController->applyCommand(command);
    else
@@ -31,7 +32,7 @@ void GameTextView::interact(Controllers::GameController* gameController)
    }
 }
 
-Controllers::Command GameTextView::getCommandFromUser(
+Controllers::Command* GameTextView::getCommandFromUser(
    Controllers::GameController* gameController)
 {
    showGame(gameController);
@@ -40,10 +41,12 @@ Controllers::Command GameTextView::getCommandFromUser(
    do
    {
       command = captureCommand();
-      commandInterpreter.setCommand(command);
+      commandInterpreter.setCommandType(command);
    } while (errorOrHelpInCommand(commandInterpreter) or
       analyzeArguments(commandInterpreter));
-   return commandInterpreter.getCommand();
+   Controllers::CommandType commandType = commandInterpreter.getCommandType();
+   std::vector<std::uint8_t> additionalArguments = commandInterpreter.getAdditionalArguments();
+   return Controllers::CommandManager().getCommand(commandType, additionalArguments);
 }
 
 bool GameTextView::errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const

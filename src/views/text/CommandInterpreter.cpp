@@ -8,7 +8,7 @@ namespace Views
 {
 
 CommandInterpreter::CommandInterpreter()
-   : parsedCommandM(), commandM()
+   : parsedCommandM(), commandTypeM()
 {
 }
 
@@ -16,33 +16,38 @@ CommandInterpreter::~CommandInterpreter()
 {
 }
 
-void CommandInterpreter::setCommand(std::vector<std::string> parsedCommand)
+void CommandInterpreter::setCommandType(std::vector<std::string> parsedCommand)
 {
    parsedCommandM = parsedCommand;
    interpretTypeOfCommand();
 }
 
-Controllers::Command CommandInterpreter::getCommand() const
+Controllers::CommandType CommandInterpreter::getCommandType() const
 {
-   return commandM;
+   return commandTypeM;
+}
+
+std::vector<std::uint8_t> CommandInterpreter::getAdditionalArguments() const
+{
+   return additionalArgumentsM;
 }
 
 void CommandInterpreter::interpretTypeOfCommand()
 {
    if (parsedCommandM.size() == 0)
    {
-      commandM.setCommandType(Controllers::CommandType::ERROR);
+      commandTypeM = Controllers::CommandType::ERROR;
       return;
    }
    std::string order = (*parsedCommandM.begin());
    if ((order == "h") or (order == "help"))
-      commandM.setCommandType(Controllers::CommandType::HELP);
+      commandTypeM = Controllers::CommandType::HELP;
    else if ((order == "d") or (order == "draw"))
-      commandM.setCommandType(Controllers::CommandType::DRAWCARD);
+      commandTypeM = Controllers::CommandType::DRAWCARD;
    else if ((order == "m") or (order == "move"))
-      commandM.setCommandType(Controllers::CommandType::MOVE);
+      commandTypeM = Controllers::CommandType::MOVE;
    else
-      commandM.setCommandType(Controllers::CommandType::ERROR);
+      commandTypeM = Controllers::CommandType::ERROR;
 }
 
 bool CommandInterpreter::isWrongNumberOfParameters() const
@@ -55,55 +60,50 @@ bool CommandInterpreter::isWrongNumberOfParameters() const
 
 bool CommandInterpreter::isWrongCommand() const
 {
-   return (Controllers::CommandType::ERROR == commandM.getCommandType());
+   return (Controllers::CommandType::ERROR == commandTypeM);
 }
 
 bool CommandInterpreter::isHelpCommand() const
 {
-   return (Controllers::CommandType::HELP == commandM.getCommandType());
+   return (Controllers::CommandType::HELP == commandTypeM);
 }
 
 bool CommandInterpreter::analyzeArguments()
 {
    if (isMoveCommand())
-   {
       return analyzeArgumentsOfMovement();
-   }
    return false;
 }
 
 bool CommandInterpreter::isMoveCommand() const
 {
-   return (Controllers::CommandType::MOVE == commandM.getCommandType());
+   return (Controllers::CommandType::MOVE == commandTypeM);
 }
 
 bool CommandInterpreter::analyzeArgumentsOfMovement()
 {
+   additionalArgumentsM.clear();
    if (parsedCommandM.size() < 3)
       return true;
-   std::vector<std::uint8_t> additionalArguments;
    for (std::uint8_t i = 1; i < 3; ++i)
    {
       if (parsedCommandM[i].size() < 1 or parsedCommandM[i].size() > 2)
          return true;
       if (parsedCommandM[i][0] == 'w')
       {
-         additionalArguments.push_back(Controllers::MovementOriginDestinationType::WASTE);
-         additionalArguments.push_back(1u);
+         additionalArgumentsM.push_back(Controllers::MovementOriginDestinationType::WASTE);
+         additionalArgumentsM.push_back(1u);
       }
       else if(parsedCommandM[i][0] == 't' or parsedCommandM[i][0] == 'f')
       {
-         if (analyzeMultiplePile(parsedCommandM[i], additionalArguments))
+         if (analyzeMultiplePile(parsedCommandM[i], additionalArgumentsM))
             return true;
       }
       else
          return true;
    }
-   if (analyzeNumberOfCardsToMove(additionalArguments))
-   {
+   if (analyzeNumberOfCardsToMove(additionalArgumentsM))
       return true;
-   }
-   commandM.setAdditionalArguments(additionalArguments);
    return false;
 }
 
@@ -113,13 +113,9 @@ bool CommandInterpreter::analyzeMultiplePile(const std::string& multiplePileId,
    if (not std::isdigit(multiplePileId[1]))
       return true;
    if (multiplePileId[0] == 't')
-   {
       additionalArguments.push_back(Controllers::MovementOriginDestinationType::TABLEAU);
-   }
    else
-   {
       additionalArguments.push_back(Controllers::MovementOriginDestinationType::FOUNDATION);
-   }
    additionalArguments.push_back(multiplePileId[1] - '0');
    return false;
 }
@@ -140,9 +136,7 @@ bool CommandInterpreter::analyzeNumberOfCardsToMove(std::vector<std::uint8_t>& a
       additionalArguments.push_back(numCardsToMove);
    }
    else
-   {
       additionalArguments.push_back(1);
-   }
    return false;
 }
 

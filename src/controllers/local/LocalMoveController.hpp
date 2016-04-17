@@ -16,6 +16,9 @@ class Card;
 namespace Controllers
 {
 
+class MoveCommand;
+class DrawCardCommand;
+
 class LocalMoveController final : public LocalController
 {
 public:
@@ -25,13 +28,13 @@ public:
    LocalMoveController(const LocalMoveController&) = delete;
    LocalMoveController& operator=(const LocalMoveController&) = delete;
 
-   bool isValidMovement(const Command& command) const;
-   void applyMovement(const Command& command);
-   void applyDrawCard(const Command& command);
+   bool isValidMovement(const MoveCommand* command) const;
+   void applyMovement(MoveCommand* command);
+   void applyDrawCard(DrawCardCommand* command);
 
 private:
    bool isValidOrigin(
-      const std::vector<std::uint8_t>& additionalArguments) const;
+      const MoveCommand* command) const;
    bool isIndexValid(
          std::uint8_t originPile, std::uint8_t originIndex) const;
    bool pileCompatibleWithNumberOfCards(
@@ -39,11 +42,11 @@ private:
    bool areEnoughCardsInPile(
       std::uint8_t pileId, std::uint8_t index, std::uint8_t numCards) const;
    bool isValidDestination(
-      const std::vector<std::uint8_t>& additionalArguments) const;
+      const MoveCommand* command) const;
    bool isCardStackableInDestination(
-      const std::vector<std::uint8_t>& additionalArguments) const;
+      const MoveCommand* command) const;
    Models::Card getCardToMove(
-      const std::vector<std::uint8_t>& additionalArguments) const;
+      const MoveCommand* command) const;
    Models::Pile* getPile(
       std::uint8_t pileId, std::uint8_t pileIndex) const;
    void moveCards(Models::Pile* originPile,

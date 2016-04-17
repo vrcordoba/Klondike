@@ -4,7 +4,9 @@
 
 #include <vector>
 #include <string>
+#include <cstdint>
 #include "Command.hpp"
+#include "CommandType.hpp"
 
 namespace Views
 {
@@ -18,8 +20,9 @@ public:
    CommandInterpreter(const CommandInterpreter&) = delete;
    CommandInterpreter& operator=(const CommandInterpreter&) = delete;
 
-   void setCommand(std::vector<std::string> parsedCommand);
-   Controllers::Command getCommand() const;
+   void setCommandType(std::vector<std::string> parsedCommand);
+   Controllers::CommandType getCommandType() const;
+   std::vector<std::uint8_t> getAdditionalArguments() const;
 
    bool isWrongNumberOfParameters() const;
    bool isWrongCommand() const;
@@ -36,7 +39,8 @@ private:
    bool analyzeNumberOfCardsToMove(std::vector<std::uint8_t>& additionalArguments);
 
    std::vector<std::string> parsedCommandM;
-   Controllers::Command commandM;
+   Controllers::CommandType commandTypeM;
+   std::vector<std::uint8_t> additionalArgumentsM;
 };
 
 }

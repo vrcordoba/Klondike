@@ -14,8 +14,8 @@ class GameController : public OperationController
 public:
    virtual ~GameController() {};
 
-   virtual bool isValidCommand(const Command& command) const = 0;
-   virtual void applyCommand(const Command& command) = 0;
+   virtual bool isValidCommand(Command* command) = 0;
+   virtual void applyCommand(Command* command) = 0;
    virtual bool isGameWon() const = 0;
    virtual CardTableController* getCardTableController() = 0;
 };

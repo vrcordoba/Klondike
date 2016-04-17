@@ -4,7 +4,8 @@
 #include "MovementOriginDestinationType.hpp"
 #include "Card.hpp"
 #include "Pile.hpp"
-#include "Command.hpp"
+#include "MoveCommand.hpp"
+#include "DrawCardCommand.hpp"
 
 namespace Controllers
 {
@@ -18,19 +19,17 @@ LocalMoveController::~LocalMoveController()
 {
 }
 
-bool LocalMoveController::isValidMovement(const Command& command) const
+bool LocalMoveController::isValidMovement(const MoveCommand* command) const
 {
-   std::vector<std::uint8_t> additionalArguments = command.getAdditionalArguments();
-   return isValidOrigin(additionalArguments) and isValidDestination(additionalArguments);
+   return isValidOrigin(command) and isValidDestination(command);
 }
 
-bool LocalMoveController::isValidOrigin(
-   const std::vector<std::uint8_t>& additionalArguments) const
+bool LocalMoveController::isValidOrigin(const MoveCommand* command) const
 {
-   return isIndexValid(additionalArguments[0], additionalArguments[1]) and
-      pileCompatibleWithNumberOfCards(additionalArguments[0], additionalArguments[4]) and
-      areEnoughCardsInPile(additionalArguments[0], additionalArguments[1],
-         additionalArguments[4]);
+   return isIndexValid(command->getOriginPileType(), command->getOriginPileNumber()) and
+      pileCompatibleWithNumberOfCards(command->getOriginPileType(), command->getNumCards()) and
+      areEnoughCardsInPile(command->getOriginPileType(), command->getOriginPileNumber(),
+         command->getNumCards());
 }
 
 bool LocalMoveController::isIndexValid(std::uint8_t pile, std::uint8_t index) const
@@ -57,29 +56,29 @@ bool LocalMoveController::areEnoughCardsInPile(
 }
 
 bool LocalMoveController::isValidDestination(
-   const std::vector<std::uint8_t>& additionalArguments) const
+   const MoveCommand* command) const
 {
-   return isIndexValid(additionalArguments[2], additionalArguments[3]) and
-      pileCompatibleWithNumberOfCards(additionalArguments[2], additionalArguments[4]) and
-      isCardStackableInDestination(additionalArguments);
+   return isIndexValid(command->getDestinationPileType(), command->getDestinationPileNumber()) and
+      pileCompatibleWithNumberOfCards(command->getDestinationPileType(), command->getNumCards()) and
+      isCardStackableInDestination(command);
 }
 
 bool LocalMoveController::isCardStackableInDestination(
-   const std::vector<std::uint8_t>& additionalArguments) const
+   const MoveCommand* command) const
 {
-   Models::Card cardToMove = getCardToMove(additionalArguments);
-   Models::Pile* destinationPile = getPile(additionalArguments[2],
-      additionalArguments[3]);
+   Models::Card cardToMove = getCardToMove(command);
+   Models::Pile* destinationPile = getPile(command->getDestinationPileType(),
+      command->getDestinationPileNumber());
    return destinationPile->isValidDestination(cardToMove);
 }
 
 Models::Card LocalMoveController::getCardToMove(
-   const std::vector<std::uint8_t>& additionalArguments) const
+   const MoveCommand* command) const
 {
-   Models::Pile* originPile = getPile(additionalArguments[0],
-      additionalArguments[1]);
+   Models::Pile* originPile = getPile(command->getOriginPileType(),
+      command->getOriginPileNumber());
    return originPile->getCardAt(
-      originPile->getNumCards() - additionalArguments[4]);
+      originPile->getNumCards() - command->getNumCards());
 }
 
 Models::Pile* LocalMoveController::getPile(std::uint8_t pileId,
@@ -95,14 +94,13 @@ Models::Pile* LocalMoveController::getPile(std::uint8_t pileId,
    return pile;
 }
 
-void LocalMoveController::applyMovement(const Command& command)
+void LocalMoveController::applyMovement(MoveCommand* command)
 {
-   std::vector<std::uint8_t> additionalArguments = command.getAdditionalArguments();
-   Models::Pile* originPile = getPile(additionalArguments[0],
-      additionalArguments[1]);
-   Models::Pile* destinationPile = getPile(additionalArguments[2],
-      additionalArguments[3]);
-   moveCards(originPile, destinationPile, additionalArguments[4]);
+   Models::Pile* originPile = getPile(command->getOriginPileType(),
+      command->getOriginPileNumber());
+   Models::Pile* destinationPile = getPile(command->getDestinationPileType(),
+      command->getDestinationPileNumber());
+   moveCards(originPile, destinationPile, command->getNumCards());
    if (originPile->getNumCards() > 0)
       originPile->setUpturnCards(1, true);
    movementHistoryM.store(command);
@@ -118,7 +116,7 @@ void LocalMoveController::moveCards(Models::Pile* originPile,
       LocalController::transferCard(cardsToMove, *destinationPile);
 }
 
-void LocalMoveController::applyDrawCard(const Command& command)
+void LocalMoveController::applyDrawCard(DrawCardCommand* command)
 {
    Models::Pile* deck = LocalController::getDeck();
    Models::Pile* waste = LocalController::getWaste();

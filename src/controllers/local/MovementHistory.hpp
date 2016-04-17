@@ -17,12 +17,12 @@ public:
    MovementHistory(const MovementHistory&) = delete;
    MovementHistory& operator=(const MovementHistory&) = delete;
 
-   void store(const Command& movement);
+   void store(Command* command);
 
-   Command undo();
+   Command* undo();
 
 private:
-   std::deque<Command> historyM;
+   std::deque<Command*> historyM;
 };
 
 }

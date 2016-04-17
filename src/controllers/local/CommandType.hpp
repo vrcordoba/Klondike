@@ -6,7 +6,7 @@
 namespace Controllers
 {
 
-enum class CommandType : std::uint8_t
+enum class CommandType
 {
    ERROR,
    HELP,

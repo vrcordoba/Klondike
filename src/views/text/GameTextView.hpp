@@ -38,7 +38,7 @@ private:
    void showHelp() const;
    void showCongratulations() const;
 
-   Controllers::Command getCommandFromUser(Controllers::GameController* gameController);
+   Controllers::Command* getCommandFromUser(Controllers::GameController* gameController);
    std::vector<std::string> captureCommand() const;
 };
 

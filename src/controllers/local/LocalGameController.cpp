@@ -10,7 +10,7 @@ namespace Controllers
 {
 
 LocalGameController::LocalGameController(Models::Game& game) : LocalController(game),
-   localMoveControllerM(game), cardTableControllerM(game)
+   localMoveControllerM(game), cardTableControllerM(game), phaseM(Phase::VALIDATION)
 {
 }
 
@@ -23,21 +23,32 @@ void LocalGameController::accept(OperationControllerVisitor* operationController
    operationControllerVisitor->visit(this);
 }
 
-bool LocalGameController::isValidCommand(const Command& command) const
+bool LocalGameController::visit(MoveCommand* moveCommand)
 {
-   if (CommandType::MOVE == command.getCommandType())
-   {
-      return localMoveControllerM.isValidMovement(command);
-   }
+   if (Phase::VALIDATION == phaseM)
+      return localMoveControllerM.isValidMovement(moveCommand);
+   else
+      localMoveControllerM.applyMovement(moveCommand);
    return true;
 }
 
-void LocalGameController::applyCommand(const Command& command)
+bool LocalGameController::visit(DrawCardCommand* drawCardCommand)
 {
-   if (CommandType::MOVE == command.getCommandType())
-      localMoveControllerM.applyMovement(command);
-   else if (CommandType::DRAWCARD  == command.getCommandType())
-      localMoveControllerM.applyDrawCard(command);
+   if (Phase::APPLY_MOVEMENT == phaseM)
+      localMoveControllerM.applyDrawCard(drawCardCommand);
+   return true;
+}
+
+bool LocalGameController::isValidCommand(Command* command)
+{
+   phaseM = Phase::VALIDATION;
+   return command->accept(this);
+}
+
+void LocalGameController::applyCommand(Command* command)
+{
+   phaseM = Phase::APPLY_MOVEMENT;
+   command->accept(this);
 
    if (LocalController::isGameWon())
       LocalController::setState(Models::State::END_GAME);

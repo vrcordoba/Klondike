@@ -5,6 +5,7 @@
 #include "LocalController.hpp"
 #include "LocalCardTableController.hpp"
 #include "LocalMoveController.hpp"
+#include "CommandVisitor.hpp"
 
 namespace Controllers
 {
@@ -13,7 +14,8 @@ class OperationControllerVisitor;
 class CardTableController;
 class Command;
 
-class LocalGameController final : public GameController, public LocalController
+class LocalGameController final : public GameController,
+   public LocalController, public CommandVisitor
 {
 public:
    explicit LocalGameController(Models::Game& game);
@@ -24,8 +26,11 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   bool isValidCommand(const Command& command) const;
-   void applyCommand(const Command& command);
+   bool visit(MoveCommand* moveCommand);
+   bool visit(DrawCardCommand* drawCardCommand);
+
+   bool isValidCommand(Command* command);
+   void applyCommand(Command* command);
    bool isGameWon() const;
 
    CardTableController* getCardTableController();
@@ -33,6 +38,13 @@ public:
 private:
    LocalMoveController localMoveControllerM;
    LocalCardTableController cardTableControllerM;
+
+   enum class Phase
+   {
+      VALIDATION,
+      APPLY_MOVEMENT
+   };
+   Phase phaseM;
 };
 
 }
