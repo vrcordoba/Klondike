@@ -22,8 +22,8 @@ TEST(GameTests, setGetState)
    EXPECT_TRUE(Models::State::INITIAL == game.getState());
    game.setState(Models::State::GAME);
    EXPECT_TRUE(Models::State::GAME == game.getState());
-   game.setState(Models::State::END_GAME);
-   EXPECT_TRUE(Models::State::END_GAME == game.getState());
+   game.setState(Models::State::END);
+   EXPECT_TRUE(Models::State::END == game.getState());
 }
 
 TEST(GameTests, transferCards)

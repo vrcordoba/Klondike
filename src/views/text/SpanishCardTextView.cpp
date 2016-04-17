@@ -1,6 +1,5 @@
 
 #include "SpanishCardTextView.hpp"
-#include "IO.hpp"
 
 namespace Views
 {
@@ -26,10 +25,10 @@ void SpanishCardTextView::constructRepresentation()
    numberRepresentationM.push_back("Caballo");
    numberRepresentationM.push_back("Rey");
 
-   suitRepresentationM.push_back("Oros");
-   suitRepresentationM.push_back("Copas");
-   suitRepresentationM.push_back("Espadas");
-   suitRepresentationM.push_back("Bastos");
+   suitRepresentationM.push_back("\033[0;33mOros");
+   suitRepresentationM.push_back("\033[0;31mCopas");
+   suitRepresentationM.push_back("\033[0;36mEspadas");
+   suitRepresentationM.push_back("\033[0;32mBastos");
 }
 
 }

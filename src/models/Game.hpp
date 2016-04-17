@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "State.hpp"
+#include "DeckManager.hpp"
 
 namespace Models
 {
@@ -15,6 +16,11 @@ class Game final
 public:
    Game();
    ~Game();
+
+   Game(const Game&) = delete;
+   Game& operator=(const Game&) = delete;
+
+   void initializeGame(std::uint8_t typeDeck);
 
    std::uint8_t getNumTableaus() const;
    std::uint8_t getNumFoundations() const;
@@ -42,6 +48,7 @@ private:
    const std::uint8_t NUM_PLAYERS = 1;
    const std::uint8_t NUM_CARDS_TO_DRAW = 3;
    State stateM;
+   DeckManager deckManagerM;
    CardTable* cardTableM;
 };
 

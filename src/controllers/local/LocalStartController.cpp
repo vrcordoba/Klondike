@@ -13,13 +13,12 @@ namespace Controllers
 {
 
 LocalStartController::LocalStartController(Models::Game& game)
-   : LocalController(game), cardTableM(nullptr)
+   : LocalController(game)
 {
 }
 
 LocalStartController::~LocalStartController()
 {
-   delete cardTableM;
 }
 
 void LocalStartController::start(std::uint8_t numPlayers,
@@ -28,7 +27,7 @@ void LocalStartController::start(std::uint8_t numPlayers,
    assert(Utils::ClosedInterval(LocalController::getNumPlayers()).includes(numPlayers));
    // gameControllerBuilder
    // newOrSave
-   buildCardTable(typeDeck);
+   LocalController::initializeGame(typeDeck);
    LocalController::setState(Models::State::GAME);
    return;
 }
@@ -36,13 +35,6 @@ void LocalStartController::start(std::uint8_t numPlayers,
 void LocalStartController::accept(OperationControllerVisitor* operationControllerVisitor)
 {
    operationControllerVisitor->visit(this);
-}
-
-void LocalStartController::buildCardTable(std::uint8_t typeDeck)
-{
-   Models::Deck* deck = deckManagerM.getDeck(typeDeck);
-   cardTableM = new Models::CardTable(*deck, LocalController::getNumTableaus());
-   LocalController::setCardTable(cardTableM);
 }
 
 }

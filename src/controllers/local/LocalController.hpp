@@ -2,6 +2,7 @@
 #define CONTROLLERS_LOCAL_LOCALCONTROLLER_HPP_
 
 #include <cstdint>
+#include <limits>
 #include "State.hpp"
 
 namespace Models
@@ -23,6 +24,9 @@ public:
    LocalController(const LocalController&) = delete;
    LocalController& operator=(LocalController&) = delete;
 
+   void initializeGame(
+      std::uint8_t typeDeck = std::numeric_limits<std::uint8_t>::max());
+
    void setState(Models::State newState);
 
    std::uint8_t getNumPlayers() const;
@@ -31,7 +35,6 @@ public:
    std::uint8_t getNumCardsToDraw() const;
 
    Models::CardTable* getCardTable() const;
-   void setCardTable(Models::CardTable* cardTable);
 
    Models::Pile* getDeck() const;
    Models::Pile* getWaste() const;

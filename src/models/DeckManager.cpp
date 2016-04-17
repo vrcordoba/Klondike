@@ -21,6 +21,8 @@ DeckManager::~DeckManager()
 
 Deck* DeckManager::getDeck(std::uint8_t deckType)
 {
+   if (nullptr != deckM)
+      delete deckM;
    switch(deckType)
    {
       case Configuration::DeckType::SPANISH:

@@ -33,6 +33,7 @@ set(HEADER_FILES
    controllers/local/Command.hpp
    controllers/local/DrawCardCommand.hpp
    controllers/local/MoveCommand.hpp
+   controllers/local/LeaveCommand.hpp
    controllers/local/LocalMoveController.hpp
    controllers/local/MovementHistory.hpp
    controllers/local/CommandManager.hpp
@@ -92,6 +93,7 @@ set(SOURCE_FILES
    controllers/local/LocalCardTableController.cpp
    controllers/local/DrawCardCommand.cpp
    controllers/local/MoveCommand.cpp
+   controllers/local/LeaveCommand.cpp
    controllers/local/LocalMoveController.cpp
    controllers/local/MovementHistory.cpp
    controllers/local/CommandManager.cpp

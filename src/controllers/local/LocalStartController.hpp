@@ -6,12 +6,10 @@
 #include <string>
 #include "StartController.hpp"
 #include "LocalController.hpp"
-#include "DeckManager.hpp"
 
 namespace Models
 {
 class Game;
-class CardTable;
 }
 
 namespace Controllers
@@ -35,9 +33,6 @@ public:
 
 private:
    void buildCardTable(std::uint8_t typeDeck);
-
-   Models::DeckManager deckManagerM;
-   Models::CardTable* cardTableM;
 };
 
 }

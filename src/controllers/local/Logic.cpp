@@ -31,9 +31,9 @@ OperationController* Logic::getController() const
          return startControllerM;
       case Models::State::GAME:
          return gameControllerM;
-      case Models::State::CONTINUE_GAME:
+      case Models::State::CONTINUE:
          return continueControllerM;
-      case Models::State::END_GAME:
+      case Models::State::END:
       default:
          return nullptr;
    }

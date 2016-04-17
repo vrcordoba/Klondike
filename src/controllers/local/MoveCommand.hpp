@@ -14,6 +14,9 @@ public:
    explicit MoveCommand(const std::vector<std::uint8_t>& additionalArguments);
    ~MoveCommand();
 
+   MoveCommand(const MoveCommand&) = delete;
+   MoveCommand& operator=(const MoveCommand&) = delete;
+
    bool accept(CommandVisitor* commandVisitor);
 
    std::uint8_t getOriginPileType() const;

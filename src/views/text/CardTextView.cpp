@@ -23,7 +23,7 @@ std::string CardTextView::show(const Controllers::FacadeCard& card) const
    {
       std::uint8_t number = card.getNumber();
       std::uint8_t suit = card.getSuit();
-      cardRepresentation = "[" + numberRepresentationM[number] + ", " + suitRepresentationM[suit] + "]";
+      cardRepresentation = "[" + suitRepresentationM[suit] + ", " + numberRepresentationM[number] + "\033[39;49m]";
    }
    return cardRepresentation;
 }

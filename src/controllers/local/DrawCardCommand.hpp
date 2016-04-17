@@ -12,6 +12,9 @@ public:
    DrawCardCommand();
    ~DrawCardCommand();
 
+   DrawCardCommand(const DrawCardCommand&) = delete;
+   DrawCardCommand& operator=(const DrawCardCommand&) = delete;
+
    bool accept(CommandVisitor* commandVisitor);
 };
 

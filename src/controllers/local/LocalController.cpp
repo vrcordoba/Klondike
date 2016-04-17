@@ -2,6 +2,7 @@
 #include "LocalController.hpp"
 
 #include "Game.hpp"
+#include "KlondikeConfiguration.hpp"
 
 namespace Controllers
 {
@@ -12,6 +13,13 @@ LocalController::LocalController(Models::Game& game) : gameM(game)
 
 LocalController::~LocalController()
 {
+}
+
+void LocalController::initializeGame(std::uint8_t typeDeck)
+{
+   if (std::numeric_limits<std::uint8_t>::max() == typeDeck)
+      typeDeck = Configuration::KlondikeConfiguration::getInstance().getDeckType();
+   gameM.initializeGame(typeDeck);
 }
 
 void LocalController::setState(Models::State newState)
@@ -42,11 +50,6 @@ std::uint8_t LocalController::getNumCardsToDraw() const
 Models::CardTable* LocalController::getCardTable() const
 {
    return gameM.getCardTable();
-}
-
-void LocalController::setCardTable(Models::CardTable* cardTable)
-{
-   gameM.setCardTable(cardTable);
 }
 
 Models::Pile* LocalController::getDeck() const

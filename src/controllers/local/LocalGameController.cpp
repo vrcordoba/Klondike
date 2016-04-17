@@ -5,6 +5,7 @@
 #include "CardTableController.hpp"
 #include "Command.hpp"
 #include "State.hpp"
+#include "LeaveCommand.hpp"
 
 namespace Controllers
 {
@@ -39,6 +40,18 @@ bool LocalGameController::visit(DrawCardCommand* drawCardCommand)
    return true;
 }
 
+bool LocalGameController::visit(LeaveCommand* leaveCommand)
+{
+   if (Phase::APPLY_MOVEMENT == phaseM)
+   {
+      if (LeaveCommand::Type::LEAVE_CLOSE == leaveCommand->getType())
+         LocalController::setState(Models::State::END);
+      else
+         LocalController::initializeGame();
+   }
+   return true;
+}
+
 bool LocalGameController::isValidCommand(Command* command)
 {
    phaseM = Phase::VALIDATION;
@@ -51,7 +64,7 @@ void LocalGameController::applyCommand(Command* command)
    command->accept(this);
 
    if (LocalController::isGameWon())
-      LocalController::setState(Models::State::END_GAME);
+      LocalController::setState(Models::State::CONTINUE);
 }
 
 CardTableController* LocalGameController::getCardTableController()

@@ -1,6 +1,5 @@
 
 #include "FrenchCardTextView.hpp"
-#include "IO.hpp"
 
 namespace Views
 {
@@ -29,10 +28,10 @@ void FrenchCardTextView::constructRepresentation()
    numberRepresentationM.push_back("Q");
    numberRepresentationM.push_back("K");
 
-   suitRepresentationM.push_back("Spades");
-   suitRepresentationM.push_back("Diamonds");
-   suitRepresentationM.push_back("Clubs");
-   suitRepresentationM.push_back("Hearts");
+   suitRepresentationM.push_back("\u2660");
+   suitRepresentationM.push_back("\u2666");
+   suitRepresentationM.push_back("\u2663");
+   suitRepresentationM.push_back("\u2665");
 }
 
 }

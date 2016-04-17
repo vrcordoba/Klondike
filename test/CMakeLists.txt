@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(KlondikeTests)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/configuration)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/controllers)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/controllers/local)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/models)
@@ -70,13 +71,18 @@ target_link_libraries(CardTableTests ${GTEST_LIBRARIES} pthread)
 
 add_executable(GameTests GameTests.cpp
    ../src/utils/ClosedInterval.cpp ../src/utils/ClosedInterval.hpp
+   ../src/utils/FileReader.cpp ../src/utils/FileReader.hpp
    ../src/models/Suit.cpp ../src/models/Suit.hpp
    ../src/models/Deck.cpp ../src/models/Deck.hpp
+   ../src/models/DeckManager.cpp ../src/models/DeckManager.hpp
+   ../src/configuration/KlondikeConfiguration.cpp ../src/configuration/KlondikeConfiguration.hpp
+   ../src/configuration/DeckType.cpp ../src/configuration/DeckType.hpp
    ../src/models/Tableau.cpp ../src/models/Tableau.hpp
    ../src/models/Card.cpp ../src/models/Card.hpp
    ../src/models/Pile.cpp ../src/models/Pile.hpp
    ../src/models/Foundation.cpp ../src/models/Foundation.hpp
    ../src/models/FrenchDeck.cpp ../src/models/FrenchDeck.hpp
+   ../src/models/SpanishDeck.cpp ../src/models/SpanishDeck.hpp
    ../src/models/CardTable.cpp ../src/models/CardTable.hpp
    ../src/models/State.hpp
    ../src/models/Game.cpp ../src/models/Game.hpp)

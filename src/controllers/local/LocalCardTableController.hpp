@@ -33,11 +33,7 @@ public:
    std::uint8_t getNumFoundations() const;
 
 private:
-
-   std::vector<FacadeCard> getFacadePile(const Models::Pile& pile);
-   void lazyInitCardTable();
-
-   Models::CardTable* cardTableM;
+   std::vector<FacadeCard> getFacadePile(const Models::Pile* pile);
 };
 
 }

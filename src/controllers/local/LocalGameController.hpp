@@ -13,6 +13,9 @@ namespace Controllers
 class OperationControllerVisitor;
 class CardTableController;
 class Command;
+class MoveCommand;
+class DrawCardCommand;
+class LeaveCommand;
 
 class LocalGameController final : public GameController,
    public LocalController, public CommandVisitor
@@ -28,6 +31,7 @@ public:
 
    bool visit(MoveCommand* moveCommand);
    bool visit(DrawCardCommand* drawCardCommand);
+   bool visit(LeaveCommand* leaveCommand);
 
    bool isValidCommand(Command* command);
    void applyCommand(Command* command);

@@ -11,12 +11,12 @@ enum class State : std::uint8_t
 {
    INITIAL,
    GAME,
-   UNDO_MOVE,
-   REDO_MOVE,
+   UNDO,
+   REDO,
    SAVE,
    LOAD,
-   CONTINUE_GAME,
-   END_GAME
+   CONTINUE,
+   END
 };
 
 }

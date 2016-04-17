@@ -11,7 +11,9 @@ enum class CommandType
    ERROR,
    HELP,
    MOVE,
-   DRAWCARD
+   DRAWCARD,
+   RESTART,
+   LEAVE
 };
 
 }

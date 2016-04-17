@@ -1,6 +1,7 @@
 
 #include "Game.hpp"
 
+#include <cassert>
 #include "CardTable.hpp"
 
 namespace Models
@@ -8,12 +9,20 @@ namespace Models
 
 class Pile;
 
-Game::Game() : stateM(State::INITIAL), cardTableM(nullptr)
+Game::Game() : stateM(State::INITIAL), deckManagerM(), cardTableM(nullptr)
 {
 }
 
 Game::~Game()
 {
+}
+
+void Game::initializeGame(std::uint8_t typeDeck)
+{
+   Models::Deck* deck = deckManagerM.getDeck(typeDeck);
+   if (nullptr != cardTableM)
+      delete cardTableM;
+   cardTableM = new Models::CardTable(*deck, getNumTableaus());
 }
 
 std::uint8_t Game::getNumTableaus() const
@@ -23,6 +32,7 @@ std::uint8_t Game::getNumTableaus() const
 
 std::uint8_t Game::getNumFoundations() const
 {
+   assert(nullptr != cardTableM);
    return cardTableM->getNumSuits();
 }
 
@@ -38,6 +48,7 @@ void Game::setState(State newState)
 
 CardTable* Game::getCardTable() const
 {
+   assert(nullptr != cardTableM);
    return cardTableM;
 }
 
@@ -48,31 +59,37 @@ void Game::setCardTable(CardTable* cardTable)
 
 void Game::transferCard(Pile& originPile, Pile& destinationPile)
 {
+   assert(nullptr != cardTableM);
    cardTableM->transferCard(originPile, destinationPile);
 }
 
 bool Game::isGameWon() const
 {
+   assert(nullptr != cardTableM);
    return cardTableM->isGameWon();
 }
 
 Pile& Game::getDeck() const
 {
+   assert(nullptr != cardTableM);
    return cardTableM->getDeck();
 }
 
 Pile& Game::getWaste() const
 {
+   assert(nullptr != cardTableM);
    return cardTableM->getWaste();
 }
 
 Pile& Game::getTableau(std::uint8_t tableauIndex) const
 {
+   assert(nullptr != cardTableM);
    return cardTableM->getTableau(tableauIndex);
 }
 
 Pile& Game::getFoundation(std::uint8_t foundationIndex) const
 {
+   assert(nullptr != cardTableM);
    return cardTableM->getFoundation(foundationIndex);
 }
 
