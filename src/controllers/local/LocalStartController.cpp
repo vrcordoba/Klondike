@@ -33,11 +33,6 @@ void LocalStartController::start(std::uint8_t numPlayers,
    return;
 }
 
-std::list<std::string> LocalStartController::getDeckDescriptions() const
-{
-   return deckManagerM.getDeckDescriptions();
-}
-
 void LocalStartController::accept(OperationControllerVisitor* operationControllerVisitor)
 {
    operationControllerVisitor->visit(this);
@@ -47,7 +42,6 @@ void LocalStartController::buildCardTable(std::uint8_t typeDeck)
 {
    Models::Deck* deck = deckManagerM.getDeck(typeDeck);
    cardTableM = new Models::CardTable(*deck, LocalController::getNumTableaus());
-   LocalController::setDeckType(deckManagerM.getDeckType());
    LocalController::setCardTable(cardTableM);
 }
 

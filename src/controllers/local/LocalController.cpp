@@ -49,16 +49,6 @@ void LocalController::setCardTable(Models::CardTable* cardTable)
    gameM.setCardTable(cardTable);
 }
 
-Models::DeckType::Name LocalController::getDeckType() const
-{
-   return gameM.getDeckType();
-}
-
-void LocalController::setDeckType(Models::DeckType::Name name)
-{
-   gameM.setDeckType(name);
-}
-
 Models::Pile* LocalController::getDeck() const
 {
    return &(gameM.getDeck());

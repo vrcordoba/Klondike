@@ -14,6 +14,7 @@ set(HEADER_FILES
    Klondike.hpp
 
    configuration/KlondikeConfiguration.hpp
+   configuration/DeckType.hpp
 
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
@@ -39,13 +40,11 @@ set(HEADER_FILES
    models/Deck.hpp
    models/SpanishDeck.hpp
    models/FrenchDeck.hpp
-   models/MovementDestination.hpp
    models/Foundation.hpp
    models/Tableau.hpp
    models/CardTable.hpp
    models/State.hpp
    models/Game.hpp
-   models/DeckType.hpp
    models/DeckManager.hpp
 
    utils/ClosedInterval.hpp
@@ -79,6 +78,7 @@ set(SOURCE_FILES
    Klondike.cpp
 
    configuration/KlondikeConfiguration.cpp
+   configuration/DeckType.cpp
 
    controllers/FacadeCard.cpp
    controllers/local/Logic.cpp
@@ -101,7 +101,6 @@ set(SOURCE_FILES
    models/Tableau.cpp
    models/CardTable.cpp
    models/Game.cpp
-   models/DeckType.cpp
    models/DeckManager.cpp
 
    utils/ClosedInterval.cpp

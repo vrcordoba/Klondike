@@ -24,10 +24,10 @@ public:
 
    bool isGameWon() const;
 
-   Deck& getDeck();
+   Pile& getDeck();
    Pile& getWaste();
-   Tableau& getTableau(std::uint8_t tableauIndex);
-   Foundation& getFoundation(std::uint8_t foundationIndex);
+   Pile& getTableau(std::uint8_t tableauIndex);
+   Pile& getFoundation(std::uint8_t foundationIndex);
 
    std::uint8_t getNumSuits() const;
 

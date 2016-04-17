@@ -2,17 +2,15 @@
 #include "CardTextViewManager.hpp"
 
 #include <cassert>
-#include "CardTableController.hpp"
+#include "KlondikeConfiguration.hpp"
+#include "DeckType.hpp"
 #include "FrenchCardTextView.hpp"
 #include "SpanishCardTextView.hpp"
-#include "DeckType.hpp"
 
 namespace Views
 {
 
-CardTextViewManager::CardTextViewManager(
-   const Controllers::CardTableController* cardTableController) :
-   cardTableControllerM(cardTableController)
+CardTextViewManager::CardTextViewManager()
 {
 }
 
@@ -23,11 +21,13 @@ CardTextViewManager::~CardTextViewManager()
 CardView* CardTextViewManager::getView() const
 {
    CardView* cardView;
-   if (Models::DeckType::SPANISH == cardTableControllerM->getDeckType())
+   if (Configuration::DeckType::SPANISH ==
+      Configuration::KlondikeConfiguration::getInstance().getDeckType())
    {
       cardView = new SpanishCardTextView();
    }
-   else if (Models::DeckType::FRENCH == cardTableControllerM->getDeckType())
+   else if (Configuration::DeckType::FRENCH ==
+      Configuration::KlondikeConfiguration::getInstance().getDeckType())
    {
       cardView = new FrenchCardTextView();
    }

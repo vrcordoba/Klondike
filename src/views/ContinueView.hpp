@@ -3,7 +3,7 @@
 
 namespace Controllers
 {
-   class ContinueController;
+class ContinueController;
 }
 
 namespace Views

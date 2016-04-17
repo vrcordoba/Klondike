@@ -8,7 +8,6 @@
 #include "Pile.hpp"
 #include "Deck.hpp"
 #include "SpanishDeck.hpp"
-#include "Foundation.hpp"
 #include "CardTable.hpp"
 
 TEST(CardTableTests, buildDeck)
@@ -67,7 +66,7 @@ TEST(CardTableTests, isGameWon)
    }
    for (std::uint8_t i = 0; i < piles.size(); ++i)
    {
-      Models::Foundation& foundation = cardTable.getFoundation(i);
+      Models::Pile& foundation = cardTable.getFoundation(i);
       while (0 != piles[i].getNumCards())
       {
          cardTable.transferCard(piles[i], foundation);

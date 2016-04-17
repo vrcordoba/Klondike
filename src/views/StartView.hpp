@@ -3,7 +3,7 @@
 
 namespace Controllers
 {
-   class StartController;
+class StartController;
 }
 
 namespace Views

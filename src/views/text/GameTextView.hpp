@@ -9,7 +9,7 @@
 
 namespace Controllers
 {
-   class Command;
+class Command;
 }
 
 namespace Views

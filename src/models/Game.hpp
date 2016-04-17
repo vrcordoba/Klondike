@@ -3,17 +3,12 @@
 
 #include <cstdint>
 #include "State.hpp"
-#include "CardTable.hpp"
-#include "DeckType.hpp"
-#include "MovementHistory.hpp"
 
 namespace Models
 {
 
-class Deck;
 class Pile;
-class Tableau;
-class Foundation;
+class CardTable;
 
 class Game final
 {
@@ -40,9 +35,6 @@ public:
 
    std::uint8_t getNumPlayers() const;
 
-   DeckType::Name getDeckType() const;
-   void setDeckType(DeckType::Name name);
-
    std::uint8_t getNumCardsToDraw() const;
 
 private:
@@ -51,7 +43,6 @@ private:
    const std::uint8_t NUM_CARDS_TO_DRAW = 3;
    State stateM;
    CardTable* cardTableM;
-   DeckType::Name deckTypeNameM;
 };
 
 }

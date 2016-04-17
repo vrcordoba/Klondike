@@ -2,6 +2,7 @@
 #include "LocalMoveController.hpp"
 
 #include "MovementOriginDestinationType.hpp"
+#include "Card.hpp"
 #include "Pile.hpp"
 #include "Command.hpp"
 

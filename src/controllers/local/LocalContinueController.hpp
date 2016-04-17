@@ -6,7 +6,7 @@
 
 namespace Models
 {
-   class Game;
+class Game;
 }
 
 namespace Controllers

@@ -8,7 +8,7 @@
 
 namespace Controllers
 {
-   class OperationController;
+class OperationController;
 }
 
 namespace Views

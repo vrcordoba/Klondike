@@ -1,7 +1,10 @@
 #ifndef CONFIGURATION_KLONDIKECONFIGURATION_HPP_
 #define CONFIGURATION_KLONDIKECONFIGURATION_HPP_
 
+#include <list>
+#include <string>
 #include "FileReader.hpp"
+#include "DeckType.hpp"
 
 namespace Configuration
 {
@@ -20,12 +23,17 @@ public:
    KlondikeConfiguration(const KlondikeConfiguration&) = delete;
    KlondikeConfiguration& operator=(const KlondikeConfiguration&) = delete;
 
+   DeckType::Type getDeckType() const;
+   void setDeckType(DeckType::Type type);
+   std::list<std::string> getDeckDescriptions() const;
+
 private:
    KlondikeConfiguration();
 
    void readConfiguration();
 
    Utils::FileReader fileReaderM;
+   DeckType deckTypeM;
 };
 
 }

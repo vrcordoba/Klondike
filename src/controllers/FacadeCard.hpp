@@ -5,7 +5,7 @@
 
 namespace Models
 {
-   class Card;
+class Card;
 }
 
 namespace Controllers

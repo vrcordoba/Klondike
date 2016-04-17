@@ -3,13 +3,12 @@
 
 #include <cstdint>
 #include "State.hpp"
-#include "DeckType.hpp"
 
 namespace Models
 {
-   class Game;
-   class CardTable;
-   class Pile;
+class Game;
+class CardTable;
+class Pile;
 }
 
 namespace Controllers
@@ -33,9 +32,6 @@ public:
 
    Models::CardTable* getCardTable() const;
    void setCardTable(Models::CardTable* cardTable);
-
-   Models::DeckType::Name getDeckType() const;
-   void setDeckType(Models::DeckType::Name name);
 
    Models::Pile* getDeck() const;
    Models::Pile* getWaste() const;

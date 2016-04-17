@@ -13,11 +13,6 @@ LocalCardTableController::LocalCardTableController(Models::Game& game)
 {
 }
 
-Models::DeckType::Name LocalCardTableController::getDeckType() const
-{
-   return LocalController::getDeckType();
-}
-
 LocalCardTableController::~LocalCardTableController()
 {
 }

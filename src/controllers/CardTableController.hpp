@@ -13,7 +13,6 @@ class CardTableController
 {
 public:
    virtual ~CardTableController() {};
-   virtual Models::DeckType::Name getDeckType() const = 0;
    virtual std::vector<FacadeCard> getDeck() = 0;
    virtual std::vector<FacadeCard> getWaste() = 0;
    virtual std::vector<FacadeCard> getTableau(std::uint8_t i) = 0;

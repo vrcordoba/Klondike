@@ -24,7 +24,7 @@ CardTableTextView::~CardTableTextView()
 
 void CardTableTextView::buildCardView()
 {
-   cardViewM = CardTextViewManager(cardTableControllerM).getView();
+   cardViewM = CardTextViewManager().getView();
 }
 
 void CardTableTextView::show()

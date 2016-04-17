@@ -3,12 +3,11 @@
 
 #include <deque>
 #include "Card.hpp"
-#include "MovementDestination.hpp"
 
 namespace Models
 {
 
-class Pile : public MovementDestination
+class Pile
 {
 public:
    Pile();

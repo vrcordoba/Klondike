@@ -43,7 +43,6 @@ add_executable(FoundationTests FoundationTests.cpp
    ../src/models/Pile.cpp ../src/models/Pile.hpp
    ../src/models/Deck.cpp ../src/models/Deck.hpp
    ../src/models/FrenchDeck.cpp ../src/models/FrenchDeck.hpp
-   ../src/models/MovementDestination.hpp
    ../src/models/Foundation.cpp ../src/models/Foundation.hpp)
 target_link_libraries(FoundationTests ${GTEST_LIBRARIES} pthread)
 
@@ -54,7 +53,6 @@ add_executable(TableauTests TableauTests.cpp
    ../src/models/Pile.cpp ../src/models/Pile.hpp
    ../src/models/Deck.cpp ../src/models/Deck.hpp
    ../src/models/SpanishDeck.cpp ../src/models/SpanishDeck.hpp
-   ../src/models/MovementDestination.hpp
    ../src/models/Tableau.cpp ../src/models/Tableau.hpp)
 target_link_libraries(TableauTests ${GTEST_LIBRARIES} pthread)
 
@@ -67,7 +65,6 @@ add_executable(CardTableTests CardTableTests.cpp
    ../src/models/Pile.cpp ../src/models/Pile.hpp
    ../src/models/Foundation.cpp ../src/models/Foundation.hpp
    ../src/models/SpanishDeck.cpp ../src/models/SpanishDeck.hpp
-   ../src/models/MovementDestination.hpp
    ../src/models/CardTable.cpp ../src/models/CardTable.hpp)
 target_link_libraries(CardTableTests ${GTEST_LIBRARIES} pthread)
 
@@ -80,7 +77,6 @@ add_executable(GameTests GameTests.cpp
    ../src/models/Pile.cpp ../src/models/Pile.hpp
    ../src/models/Foundation.cpp ../src/models/Foundation.hpp
    ../src/models/FrenchDeck.cpp ../src/models/FrenchDeck.hpp
-   ../src/models/MovementDestination.hpp
    ../src/models/CardTable.cpp ../src/models/CardTable.hpp
    ../src/models/State.hpp
    ../src/models/Game.cpp ../src/models/Game.hpp)

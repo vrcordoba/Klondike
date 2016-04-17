@@ -4,9 +4,7 @@
 #include <cstdint>
 #include <cassert>
 #include "Deck.hpp"
-#include "Tableau.hpp"
 #include "Card.hpp"
-#include "Foundation.hpp"
 #include "ClosedInterval.hpp"
 
 namespace Models
@@ -65,7 +63,7 @@ void CardTable::buildFoundations()
    }
 }
 
-Deck& CardTable::getDeck()
+Pile& CardTable::getDeck()
 {
    return deckM;
 }
@@ -75,13 +73,13 @@ Pile& CardTable::getWaste()
    return wasteM;
 }
 
-Tableau& CardTable::getTableau(std::uint8_t tableauIndex)
+Pile& CardTable::getTableau(std::uint8_t tableauIndex)
 {
    assert(Utils::ClosedInterval(tableausM.size() - 1).includes(tableauIndex));
    return tableausM[tableauIndex];
 }
 
-Foundation& CardTable::getFoundation(std::uint8_t foundationIndex)
+Pile& CardTable::getFoundation(std::uint8_t foundationIndex)
 {
    assert(Utils::ClosedInterval(foundationsM.size() - 1).includes(foundationIndex));
    return foundationsM[foundationIndex];

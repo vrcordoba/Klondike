@@ -2,7 +2,6 @@
 #define MODELS_TABLEAU_HPP_
 
 #include "Pile.hpp"
-#include "MovementDestination.hpp"
 
 namespace Models
 {

@@ -16,6 +16,8 @@ file(GLOB_RECURSE ALL_SOURCE_FILES
    views/text/*.hpp
    views/*.cpp
    views/*.hpp
+   configuration/*.cpp
+   configuration/*.hpp
 )
 
 add_custom_target(

@@ -7,12 +7,12 @@
 
 namespace Utils
 {
-   class IO;
+class IO;
 }
 
 namespace Controllers
 {
-   class CardTableController;
+class CardTableController;
 }
 
 namespace Views

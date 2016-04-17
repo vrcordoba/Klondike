@@ -6,6 +6,7 @@
 #include "LimitedIntDialog.hpp"
 #include "TextMenu.hpp"
 #include "StartController.hpp"
+#include "KlondikeConfiguration.hpp"
 
 namespace Views
 {
@@ -22,7 +23,8 @@ void StartTextView::interact(Controllers::StartController* startController)
 {
    std::uint8_t numPlayers = 1; //getNumPlayers();
    std::uint8_t newOrSavedOption = 1; //getNewOrSaveOption(numPlayers);
-   std::uint8_t typeDeck = getTypeOfDeck(startController->getDeckDescriptions());
+   std::uint8_t typeDeck = getTypeOfDeck(
+      Configuration::KlondikeConfiguration::getInstance().getDeckDescriptions());
    startController->start(numPlayers, newOrSavedOption, typeDeck);
 }
 

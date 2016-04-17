@@ -1,10 +1,10 @@
 
 #include "DeckType.hpp"
 
-namespace Models
+namespace Configuration
 {
 
-DeckType::DeckType() : deckTypesDescriptionM(),nameM(Name::SPANISH)
+DeckType::DeckType() : deckTypesDescriptionM(), typeM(Type::SPANISH)
 {
    deckTypesDescriptionM.push_back("Spanish");
    deckTypesDescriptionM.push_back("French");
@@ -19,14 +19,14 @@ std::list<std::string> DeckType::getDeckDescriptions() const
    return deckTypesDescriptionM;
 }
 
-void DeckType::setDeckType(Name name)
+void DeckType::setDeckType(Type type)
 {
-   nameM = name;
+   typeM = type;
 }
 
-DeckType::Name DeckType::getDeckType() const
+DeckType::Type DeckType::getDeckType() const
 {
-   return nameM;
+   return typeM;
 }
 
 }

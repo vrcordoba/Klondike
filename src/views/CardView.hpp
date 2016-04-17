@@ -5,7 +5,7 @@
 
 namespace Controllers
 {
-   class FacadeCard;
+class FacadeCard;
 }
 
 namespace Views

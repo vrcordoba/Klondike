@@ -1,16 +1,14 @@
 
 #include "Game.hpp"
-#include "Deck.hpp"
+
+#include "CardTable.hpp"
 
 namespace Models
 {
 
-class Deck;
 class Pile;
-class Tableau;
-class Foundation;
 
-Game::Game() : stateM(State::INITIAL), cardTableM(nullptr), deckTypeNameM(DeckType::SPANISH)
+Game::Game() : stateM(State::INITIAL), cardTableM(nullptr)
 {
 }
 
@@ -81,16 +79,6 @@ Pile& Game::getFoundation(std::uint8_t foundationIndex) const
 std::uint8_t Game::getNumPlayers() const
 {
    return NUM_PLAYERS;
-}
-
-DeckType::Name Game::getDeckType() const
-{
-   return deckTypeNameM;
-}
-
-void Game::setDeckType(DeckType::Name name)
-{
-   deckTypeNameM = name;
 }
 
 std::uint8_t Game::getNumCardsToDraw() const

@@ -3,7 +3,7 @@
 
 namespace Controllers
 {
-   class GameController;
+class GameController;
 }
 
 namespace Views

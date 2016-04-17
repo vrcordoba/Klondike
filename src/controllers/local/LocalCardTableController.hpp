@@ -8,8 +8,8 @@
 
 namespace Models
 {
-   class Pile;
-   class CardTable;
+class Pile;
+class CardTable;
 }
 
 namespace Controllers
@@ -24,8 +24,6 @@ public:
 
    LocalCardTableController(const LocalCardTableController&) = delete;
    LocalCardTableController& operator=(const LocalCardTableController&) = delete;
-
-   Models::DeckType::Name getDeckType() const;
 
    std::vector<FacadeCard> getDeck();
    std::vector<FacadeCard> getWaste();

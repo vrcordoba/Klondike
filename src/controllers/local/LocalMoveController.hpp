@@ -4,8 +4,14 @@
 #include <cstdint>
 #include <vector>
 #include "LocalController.hpp"
-#include "Game.hpp"
 #include "MovementHistory.hpp"
+
+namespace Models
+{
+class Game;
+class Pile;
+class Card;
+}
 
 namespace Controllers
 {

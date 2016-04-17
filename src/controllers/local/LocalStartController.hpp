@@ -10,8 +10,8 @@
 
 namespace Models
 {
-   class Game;
-   class CardTable;
+class Game;
+class CardTable;
 }
 
 namespace Controllers
@@ -30,7 +30,6 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   std::list<std::string> getDeckDescriptions() const;
    void start(std::uint8_t numPlayers, std::uint8_t newOrSavedOption,
       std::uint8_t typeDeck);
 
