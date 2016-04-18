@@ -62,7 +62,7 @@ std::uint8_t StartTextView::getTypeOfDeck(std::list<std::string> deckDescription
 
 Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::list<std::string> deckDescriptions)
 {
-   assert(deckDescriptions.size() > 0);
+   assert(not deckDescriptions.empty());
    std::string menuTitle = "Do you want to play with ";
    std::list<std::string>::const_iterator itDeckDescriptions = deckDescriptions.begin();
    for (std::uint8_t i = 0; i < deckDescriptions.size() - 1; ++i, ++itDeckDescriptions)
