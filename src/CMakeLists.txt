@@ -53,6 +53,8 @@ set(HEADER_FILES
    models/State.hpp
    models/Game.hpp
    models/DeckManager.hpp
+   models/Score.hpp
+   models/MovementOriginDestinationType.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -113,6 +115,7 @@ set(SOURCE_FILES
    models/CardTable.cpp
    models/Game.cpp
    models/DeckManager.cpp
+   models/Score.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp
