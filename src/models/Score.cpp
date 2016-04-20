@@ -1,7 +1,7 @@
 
 #include "Score.hpp"
 
-#include "MovementOriginDestinationType.hpp"
+#include "PileType.hpp"
 
 namespace Models
 {
@@ -26,17 +26,17 @@ std::uint32_t Score::getScore() const
 
 void Score::movementScore(std::uint8_t originPileId, std::uint8_t destinationPileId)
 {
-   if (MovementOriginDestinationType::FOUNDATION == originPileId)
+   if (PileType::FOUNDATION == originPileId)
       computeScoreOriginFoundation(destinationPileId);
-   else if (MovementOriginDestinationType::TABLEAU == originPileId)
+   else if (PileType::TABLEAU == originPileId)
       computeScoreOriginTableau(destinationPileId);
-   else if (MovementOriginDestinationType::WASTE == originPileId)
+   else if (PileType::WASTE == originPileId)
       computeScoreOriginWaste(destinationPileId);
 }
 
 void Score::computeScoreOriginFoundation(std::uint8_t destinationPileId)
 {
-   if (MovementOriginDestinationType::TABLEAU == destinationPileId)
+   if (PileType::TABLEAU == destinationPileId)
    {
       if (scoreM > 15)
          scoreM -= 15;
@@ -47,15 +47,15 @@ void Score::computeScoreOriginFoundation(std::uint8_t destinationPileId)
 
 void Score::computeScoreOriginTableau(std::uint8_t destinationPileId)
 {
-   if (MovementOriginDestinationType::FOUNDATION == destinationPileId)
+   if (PileType::FOUNDATION == destinationPileId)
       scoreM += 10;
 }
 
 void Score::computeScoreOriginWaste(std::uint8_t destinationPileId)
 {
-   if (MovementOriginDestinationType::TABLEAU == destinationPileId)
+   if (PileType::TABLEAU == destinationPileId)
       scoreM += 5;
-   else if (MovementOriginDestinationType::FOUNDATION == destinationPileId)
+   else if (PileType::FOUNDATION == destinationPileId)
       scoreM += 10;
 }
 

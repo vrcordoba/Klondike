@@ -89,7 +89,7 @@ add_executable(GameTests GameTests.cpp
 target_link_libraries(GameTests ${GTEST_LIBRARIES} pthread)
 
 add_executable(ScoreTests ScoreTests.cpp
-   ../src/models/MovementOriginDestinationType.hpp
+   ../src/models/PileType.hpp
    ../src/models/Score.cpp ../src/models/Score.hpp)
 target_link_libraries(ScoreTests ${GTEST_LIBRARIES} pthread)
 

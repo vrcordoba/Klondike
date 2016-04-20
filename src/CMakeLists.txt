@@ -54,7 +54,7 @@ set(HEADER_FILES
    models/Game.hpp
    models/DeckManager.hpp
    models/Score.hpp
-   models/MovementOriginDestinationType.hpp
+   models/PileType.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp

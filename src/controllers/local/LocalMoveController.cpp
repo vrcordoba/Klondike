@@ -1,7 +1,7 @@
 
 #include "LocalMoveController.hpp"
 
-#include "MovementOriginDestinationType.hpp"
+#include "PileType.hpp"
 #include "Card.hpp"
 #include "Pile.hpp"
 #include "MoveCommand.hpp"
@@ -35,9 +35,9 @@ bool LocalMoveController::isValidOrigin(const MoveCommand* command) const
 bool LocalMoveController::isIndexValid(std::uint8_t pile, std::uint8_t index) const
 {
    bool isIndexValid = true;
-   if (Models::MovementOriginDestinationType::TABLEAU == pile)
+   if (Models::PileType::TABLEAU == pile)
       isIndexValid = (LocalController::getNumTableaus() >= index and 0 < index);
-   else if (Models::MovementOriginDestinationType::FOUNDATION == pile)
+   else if (Models::PileType::FOUNDATION == pile)
       isIndexValid = (LocalController::getNumFoundations() >= index and 0 < index);
    return isIndexValid;
 }
@@ -45,7 +45,7 @@ bool LocalMoveController::isIndexValid(std::uint8_t pile, std::uint8_t index) co
 bool LocalMoveController::pileCompatibleWithNumberOfCards(
    std::uint8_t pile, std::uint8_t numCards) const
 {
-   return (numCards <= 1) or (Models::MovementOriginDestinationType::TABLEAU == pile);
+   return (numCards <= 1) or (Models::PileType::TABLEAU == pile);
 }
 
 bool LocalMoveController::areEnoughCardsInPile(
@@ -85,9 +85,9 @@ Models::Pile* LocalMoveController::getPile(std::uint8_t pileId,
    std::uint8_t pileIndex) const
 {
    Models::Pile* pile;
-   if (Models::MovementOriginDestinationType::WASTE == pileId)
+   if (Models::PileType::WASTE == pileId)
       pile = LocalController::getWaste();
-   else if (Models::MovementOriginDestinationType::FOUNDATION == pileId)
+   else if (Models::PileType::FOUNDATION == pileId)
       pile = LocalController::getFoundation(pileIndex - 1);
    else
       pile = LocalController::getTableau(pileIndex - 1);

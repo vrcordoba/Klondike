@@ -2,7 +2,7 @@
 #include "CommandInterpreter.hpp"
 
 #include <cassert>
-#include "MovementOriginDestinationType.hpp"
+#include "PileType.hpp"
 
 namespace Views
 {
@@ -95,7 +95,7 @@ bool CommandInterpreter::analyzeArgumentsOfMovement()
          return true;
       if (parsedCommandM[i][0] == 'w')
       {
-         additionalArgumentsM.push_back(Models::MovementOriginDestinationType::WASTE);
+         additionalArgumentsM.push_back(Models::PileType::WASTE);
          additionalArgumentsM.push_back(1u);
       }
       else if(parsedCommandM[i][0] == 't' or parsedCommandM[i][0] == 'f')
@@ -117,9 +117,9 @@ bool CommandInterpreter::analyzeMultiplePile(const std::string& multiplePileId,
    if (not std::isdigit(multiplePileId[1]))
       return true;
    if (multiplePileId[0] == 't')
-      additionalArguments.push_back(Models::MovementOriginDestinationType::TABLEAU);
+      additionalArguments.push_back(Models::PileType::TABLEAU);
    else
-      additionalArguments.push_back(Models::MovementOriginDestinationType::FOUNDATION);
+      additionalArguments.push_back(Models::PileType::FOUNDATION);
    additionalArguments.push_back(multiplePileId[1] - '0');
    return false;
 }

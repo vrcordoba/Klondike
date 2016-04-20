@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 
 #include "Score.hpp"
-#include "MovementOriginDestinationType.hpp"
+#include "PileType.hpp"
 
 TEST(ScoreTests, initialValue)
 {
