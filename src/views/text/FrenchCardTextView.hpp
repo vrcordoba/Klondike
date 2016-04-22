@@ -16,6 +16,12 @@ public:
    FrenchCardTextView& operator=(const FrenchCardTextView&) = delete;
 
    void constructRepresentation();
+
+private:
+   const char* SPADE = "\u2660";
+   const char* DIAMOND = "\u2666";
+   const char* CLUB = "\u2663";
+   const char* HEART = "\u2665";
 };
 
 }

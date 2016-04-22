@@ -6,7 +6,6 @@
 #include "DeckType.hpp"
 #include "ViewType.hpp"
 #include "SaveType.hpp"
-#include "ControllerType.hpp"
 
 namespace Configuration
 {
@@ -31,7 +30,6 @@ public:
 
    ViewType getViewType() const;
    SaveType getSaveType() const;
-   ControllerType getControllerType() const;
 
 private:
    KlondikeConfiguration();
@@ -39,7 +37,6 @@ private:
    std::list<std::string> readConfiguration() const;
    void interpretReadConfiguration(const std::list<std::string>& configurations);
 
-   void setControllerType(const std::string& configuration);
    void setViewType(const std::string& configuration);
    void setSaverType(const std::string& configuration);
 
@@ -47,7 +44,6 @@ private:
    DeckType deckTypeM;
    ViewType viewTypeM;
    SaveType saveTypeM;
-   ControllerType controllerTypeM;
 };
 
 }

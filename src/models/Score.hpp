@@ -18,7 +18,6 @@ public:
    void rebootScore();
    void movementScore(std::uint8_t originPileId, std::uint8_t destinationPileId);
    void turnOverTableauCardScore();
-   void recycleWasteScore();
    std::uint32_t getScore() const;
 
 private:

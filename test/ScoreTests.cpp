@@ -10,6 +10,35 @@ TEST(ScoreTests, initialValue)
    EXPECT_TRUE(0 == score.getScore());
 }
 
+TEST(ScoreTests, movementScore)
+{
+   Models::Score score;
+   score.movementScore(2, 3); // Foundation -> Tableau
+   EXPECT_TRUE(0 == score.getScore());
+   score.movementScore(3, 2); // Tableau -> Foundation
+   EXPECT_TRUE(10 == score.getScore());
+   score.movementScore(3, 2); // Tableau -> Foundation
+   EXPECT_TRUE(20 == score.getScore());
+   score.movementScore(2, 3); // Foundation -> Tableau
+   EXPECT_TRUE(5 == score.getScore());
+   score.movementScore(1, 2); // Waste -> Foundation
+   EXPECT_TRUE(15 == score.getScore());
+   score.movementScore(1, 3); // Waste -> Tableau
+   EXPECT_TRUE(20 == score.getScore());
+}
+
+TEST(ScoreTests, recycleScore)
+{
+   Models::Score score;
+   score.movementScore(3, 2); // Tableau -> Foundation
+   score.movementScore(3, 2); // Tableau -> Foundation
+   score.movementScore(3, 2); // Tableau -> Foundation
+   score.movementScore(3, 2); // Tableau -> Foundation
+   EXPECT_TRUE(40 == score.getScore());
+   score.rebootScore();
+   EXPECT_TRUE(0 == score.getScore());
+}
+
 int main(int argc, char **argv)
 {
    ::testing::InitGoogleTest(&argc, argv);

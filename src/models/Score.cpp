@@ -64,12 +64,4 @@ void Score::turnOverTableauCardScore()
    scoreM += 5;
 }
 
-void Score::recycleWasteScore()
-{
-   if (scoreM > 100)
-      scoreM -= 100;
-   else
-      rebootScore();
-}
-
 }

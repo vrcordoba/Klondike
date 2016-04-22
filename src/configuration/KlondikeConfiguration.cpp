@@ -7,7 +7,7 @@ namespace Configuration
 {
 
 KlondikeConfiguration::KlondikeConfiguration() : deckTypeM(), viewTypeM(ViewType::TEXT),
-   saveTypeM(SaveType::PLAIN_TEXT), controllerTypeM(ControllerType::LOCAL)
+   saveTypeM(SaveType::PLAIN_TEXT)
 {
    interpretReadConfiguration(readConfiguration());
 }
@@ -41,11 +41,6 @@ SaveType KlondikeConfiguration::getSaveType() const
    return saveTypeM;
 }
 
-ControllerType KlondikeConfiguration::getControllerType() const
-{
-   return controllerTypeM;
-}
-
 std::list<std::string> KlondikeConfiguration::readConfiguration() const
 {
    Utils::FileReader fileReader(CONFIGURATION_FILE);
@@ -69,21 +64,11 @@ void KlondikeConfiguration::interpretReadConfiguration(
 {
    for (std::string configuration : configurations)
    {
-      if (configuration.find("controllers:") != std::string::npos)
-         setControllerType(configuration);
-      else if (configuration.find("views:") != std::string::npos)
+      if (configuration.find("views:") != std::string::npos)
          setViewType(configuration);
       else if (configuration.find("savers:") != std::string::npos)
          setSaverType(configuration);
    }
-}
-
-void KlondikeConfiguration::setControllerType(const std::string& configuration)
-{
-   if (configuration.find("local") != std::string::npos)
-      controllerTypeM = ControllerType::LOCAL;
-   else if (configuration.find("remote") != std::string::npos)
-      controllerTypeM = ControllerType::REMOTE;
 }
 
 void KlondikeConfiguration::setViewType(const std::string& configuration)

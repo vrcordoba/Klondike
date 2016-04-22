@@ -13,7 +13,6 @@ set(HEADER_FILES
    Klondike.hpp
 
    configuration/KlondikeConfiguration.hpp
-   configuration/ControllerType.hpp
    configuration/DeckType.hpp
    configuration/SaveType.hpp
    configuration/ViewType.hpp
