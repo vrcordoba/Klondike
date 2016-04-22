@@ -2,18 +2,18 @@
 #include "Logic.hpp"
 
 #include "OperationController.hpp"
-#include "LocalStartController.hpp"
-#include "LocalGameController.hpp"
-#include "LocalContinueController.hpp"
+#include "StartController.hpp"
+#include "GameController.hpp"
+#include "ContinueController.hpp"
 
 namespace Controllers
 {
 
 Logic::Logic() : gameM()
 {
-   startControllerM = new LocalStartController(gameM);
-   gameControllerM = new LocalGameController(gameM);
-   continueControllerM = new LocalContinueController(gameM);
+   startControllerM = new StartController(gameM);
+   gameControllerM = new GameController(gameM);
+   continueControllerM = new ContinueController(gameM);
 }
 
 Logic::~Logic()

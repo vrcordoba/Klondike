@@ -1,16 +1,31 @@
 #ifndef CONTROLLERS_CONTINUECONTROLLER_HPP_
 #define CONTROLLERS_CONTINUECONTROLLER_HPP_
 
+#include "Controller.hpp"
 #include "OperationController.hpp"
+
+namespace Models
+{
+class Game;
+}
 
 namespace Controllers
 {
 
-class ContinueController : public OperationController
+class OperationControllerVisitor;
+
+class ContinueController: public Controller, public OperationController
 {
 public:
-   virtual ~ContinueController() {};
-   virtual void resume(bool otherGame) = 0;
+   explicit ContinueController(Models::Game& game);
+   ~ContinueController();
+
+   ContinueController(const ContinueController&) = delete;
+   ContinueController& operator=(const ContinueController&) = delete;
+
+   void accept(OperationControllerVisitor* operationControllerVisitor);
+
+   void resume(bool otherGame);
 };
 
 }

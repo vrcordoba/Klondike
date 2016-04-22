@@ -4,7 +4,6 @@ project(Klondike)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/configuration)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/controllers)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/controllers/local)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/models)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/utils)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/views)
@@ -21,25 +20,21 @@ set(HEADER_FILES
 
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
+   controllers/FacadeCard.hpp
+   controllers/Logic.hpp
+   controllers/Controller.hpp
    controllers/StartController.hpp
    controllers/GameController.hpp
    controllers/ContinueController.hpp
    controllers/CardTableController.hpp
-   controllers/FacadeCard.hpp
-   controllers/local/Logic.hpp
-   controllers/local/LocalController.hpp
-   controllers/local/LocalStartController.hpp
-   controllers/local/LocalGameController.hpp
-   controllers/local/LocalContinueController.hpp
-   controllers/local/LocalCardTableController.hpp
-   controllers/local/CommandType.hpp
-   controllers/local/Command.hpp
-   controllers/local/DrawCardCommand.hpp
-   controllers/local/MoveCommand.hpp
-   controllers/local/LeaveCommand.hpp
-   controllers/local/LocalMoveController.hpp
-   controllers/local/MovementHistory.hpp
-   controllers/local/CommandManager.hpp
+   controllers/CommandType.hpp
+   controllers/Command.hpp
+   controllers/DrawCardCommand.hpp
+   controllers/MoveCommand.hpp
+   controllers/LeaveCommand.hpp
+   controllers/MoveController.hpp
+   controllers/MovementHistory.hpp
+   controllers/CommandManager.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -91,18 +86,18 @@ set(SOURCE_FILES
    configuration/DeckType.cpp
 
    controllers/FacadeCard.cpp
-   controllers/local/Logic.cpp
-   controllers/local/LocalController.cpp
-   controllers/local/LocalStartController.cpp
-   controllers/local/LocalGameController.cpp
-   controllers/local/LocalContinueController.cpp
-   controllers/local/LocalCardTableController.cpp
-   controllers/local/DrawCardCommand.cpp
-   controllers/local/MoveCommand.cpp
-   controllers/local/LeaveCommand.cpp
-   controllers/local/LocalMoveController.cpp
-   controllers/local/MovementHistory.cpp
-   controllers/local/CommandManager.cpp
+   controllers/Logic.cpp
+   controllers/Controller.cpp
+   controllers/StartController.cpp
+   controllers/GameController.cpp
+   controllers/ContinueController.cpp
+   controllers/CardTableController.cpp
+   controllers/DrawCardCommand.cpp
+   controllers/MoveCommand.cpp
+   controllers/LeaveCommand.cpp
+   controllers/MoveController.cpp
+   controllers/MovementHistory.cpp
+   controllers/CommandManager.cpp
 
    models/Suit.cpp
    models/Card.cpp

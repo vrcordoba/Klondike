@@ -1,23 +1,52 @@
 #ifndef CONTROLLERS_GAMECONTROLLER_HPP_
 #define CONTROLLERS_GAMECONTROLLER_HPP_
 
+#include "Controller.hpp"
+#include "CardTableController.hpp"
+#include "MoveController.hpp"
+#include "CommandVisitor.hpp"
 #include "OperationController.hpp"
 
 namespace Controllers
 {
 
-class CardTableController;
+class OperationControllerVisitor;
 class Command;
+class MoveCommand;
+class DrawCardCommand;
+class LeaveCommand;
 
-class GameController : public OperationController
+class GameController final : public Controller, public CommandVisitor, public OperationController
 {
 public:
-   virtual ~GameController() {};
+   explicit GameController(Models::Game& game);
+   ~GameController();
 
-   virtual bool isValidCommand(Command* command) = 0;
-   virtual void applyCommand(Command* command) = 0;
-   virtual bool isGameWon() const = 0;
-   virtual CardTableController* getCardTableController() = 0;
+   GameController(const GameController&) = delete;
+   GameController& operator=(const GameController&) = delete;
+
+   void accept(OperationControllerVisitor* operationControllerVisitor);
+
+   bool visit(MoveCommand* moveCommand);
+   bool visit(DrawCardCommand* drawCardCommand);
+   bool visit(LeaveCommand* leaveCommand);
+
+   bool isValidCommand(Command* command);
+   void applyCommand(Command* command);
+   bool isGameWon() const;
+
+   CardTableController* getCardTableController();
+
+private:
+   MoveController localMoveControllerM;
+   CardTableController cardTableControllerM;
+
+   enum class Phase
+   {
+      VALIDATION,
+      APPLY_MOVEMENT
+   };
+   Phase phaseM;
 };
 
 }

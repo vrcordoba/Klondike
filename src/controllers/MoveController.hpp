@@ -1,9 +1,9 @@
-#ifndef CONTROLLERS_LOCAL_LOCALMOVECONTROLLER_HPP_
-#define CONTROLLERS_LOCAL_LOCALMOVECONTROLLER_HPP_
+#ifndef CONTROLLERS_MOVECONTROLLER_HPP_
+#define CONTROLLERS_MOVECONTROLLER_HPP_
 
 #include <cstdint>
 #include <vector>
-#include "LocalController.hpp"
+#include "Controller.hpp"
 #include "MovementHistory.hpp"
 
 namespace Models
@@ -19,14 +19,14 @@ namespace Controllers
 class MoveCommand;
 class DrawCardCommand;
 
-class LocalMoveController final : public LocalController
+class MoveController final : public Controller
 {
 public:
-   explicit LocalMoveController(Models::Game& game);
-   ~LocalMoveController();
+   explicit MoveController(Models::Game& game);
+   ~MoveController();
 
-   LocalMoveController(const LocalMoveController&) = delete;
-   LocalMoveController& operator=(const LocalMoveController&) = delete;
+   MoveController(const MoveController&) = delete;
+   MoveController& operator=(const MoveController&) = delete;
 
    bool isValidMovement(const MoveCommand* command) const;
    void applyMovement(MoveCommand* command);

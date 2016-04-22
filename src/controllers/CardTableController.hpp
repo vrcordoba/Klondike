@@ -3,22 +3,36 @@
 
 #include <cstdint>
 #include <vector>
-#include "DeckType.hpp"
+#include "Controller.hpp"
 #include "FacadeCard.hpp"
+
+namespace Models
+{
+class Pile;
+class Game;
+}
 
 namespace Controllers
 {
 
-class CardTableController
+class CardTableController final : public Controller
 {
 public:
-   virtual ~CardTableController() {};
-   virtual std::vector<FacadeCard> getDeck() = 0;
-   virtual std::vector<FacadeCard> getWaste() = 0;
-   virtual std::vector<FacadeCard> getTableau(std::uint8_t i) = 0;
-   virtual std::vector<FacadeCard> getFoundation(std::uint8_t i) = 0;
-   virtual std::uint8_t getNumTableaus() const = 0;
-   virtual std::uint8_t getNumFoundations() const = 0;
+   explicit CardTableController(Models::Game& game);
+   ~CardTableController();
+
+   CardTableController(const CardTableController&) = delete;
+   CardTableController& operator=(const CardTableController&) = delete;
+
+   std::vector<FacadeCard> getDeck();
+   std::vector<FacadeCard> getWaste();
+   std::vector<FacadeCard> getTableau(std::uint8_t i);
+   std::vector<FacadeCard> getFoundation(std::uint8_t i);
+   std::uint8_t getNumTableaus() const;
+   std::uint8_t getNumFoundations() const;
+
+private:
+   std::vector<FacadeCard> getFacadePile(const Models::Pile* pile);
 };
 
 }

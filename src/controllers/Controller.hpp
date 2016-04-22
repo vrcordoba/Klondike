@@ -1,5 +1,5 @@
-#ifndef CONTROLLERS_LOCAL_LOCALCONTROLLER_HPP_
-#define CONTROLLERS_LOCAL_LOCALCONTROLLER_HPP_
+#ifndef CONTROLLERS_CONTROLLER_HPP_
+#define CONTROLLERS_CONTROLLER_HPP_
 
 #include <cstdint>
 #include <limits>
@@ -15,14 +15,14 @@ class Pile;
 namespace Controllers
 {
 
-class LocalController
+class Controller
 {
 public:
-   explicit LocalController(Models::Game& game);
-   virtual ~LocalController();
+   explicit Controller(Models::Game& game);
+   virtual ~Controller();
 
-   LocalController(const LocalController&) = delete;
-   LocalController& operator=(LocalController&) = delete;
+   Controller(const Controller&) = delete;
+   Controller& operator=(Controller&) = delete;
 
    void initializeGame(
       std::uint8_t typeDeck = std::numeric_limits<std::uint8_t>::max());

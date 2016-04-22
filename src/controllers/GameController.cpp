@@ -1,5 +1,5 @@
 
-#include "LocalGameController.hpp"
+#include "GameController.hpp"
 
 #include "OperationControllerVisitor.hpp"
 #include "CardTableController.hpp"
@@ -10,21 +10,21 @@
 namespace Controllers
 {
 
-LocalGameController::LocalGameController(Models::Game& game) : LocalController(game),
+GameController::GameController(Models::Game& game) : Controller(game),
    localMoveControllerM(game), cardTableControllerM(game), phaseM(Phase::VALIDATION)
 {
 }
 
-LocalGameController::~LocalGameController()
+GameController::~GameController()
 {
 }
 
-void LocalGameController::accept(OperationControllerVisitor* operationControllerVisitor)
+void GameController::accept(OperationControllerVisitor* operationControllerVisitor)
 {
    operationControllerVisitor->visit(this);
 }
 
-bool LocalGameController::visit(MoveCommand* moveCommand)
+bool GameController::visit(MoveCommand* moveCommand)
 {
    if (Phase::VALIDATION == phaseM)
       return localMoveControllerM.isValidMovement(moveCommand);
@@ -33,48 +33,48 @@ bool LocalGameController::visit(MoveCommand* moveCommand)
    return true;
 }
 
-bool LocalGameController::visit(DrawCardCommand* drawCardCommand)
+bool GameController::visit(DrawCardCommand* drawCardCommand)
 {
    if (Phase::APPLY_MOVEMENT == phaseM)
       localMoveControllerM.applyDrawCard(drawCardCommand);
    return true;
 }
 
-bool LocalGameController::visit(LeaveCommand* leaveCommand)
+bool GameController::visit(LeaveCommand* leaveCommand)
 {
    if (Phase::APPLY_MOVEMENT == phaseM)
    {
       if (LeaveCommand::Type::LEAVE_CLOSE == leaveCommand->getType())
-         LocalController::setState(Models::State::END);
+         Controller::setState(Models::State::END);
       else
-         LocalController::initializeGame();
+         Controller::initializeGame();
    }
    return true;
 }
 
-bool LocalGameController::isValidCommand(Command* command)
+bool GameController::isValidCommand(Command* command)
 {
    phaseM = Phase::VALIDATION;
    return command->accept(this);
 }
 
-void LocalGameController::applyCommand(Command* command)
+void GameController::applyCommand(Command* command)
 {
    phaseM = Phase::APPLY_MOVEMENT;
    command->accept(this);
 
-   if (LocalController::isGameWon())
-      LocalController::setState(Models::State::CONTINUE);
+   if (Controller::isGameWon())
+      Controller::setState(Models::State::CONTINUE);
 }
 
-CardTableController* LocalGameController::getCardTableController()
+CardTableController* GameController::getCardTableController()
 {
    return &cardTableControllerM;
 }
 
-bool LocalGameController::isGameWon() const
+bool GameController::isGameWon() const
 {
-   return LocalController::isGameWon();
+   return Controller::isGameWon();
 }
 
 }
