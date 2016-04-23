@@ -8,7 +8,7 @@
 namespace Controllers
 {
 
-DrawCardCommand::DrawCardCommand() : CardCommand()
+DrawCardCommand::DrawCardCommand() : CardCommand(), numMovedCardsM(0)
 {
 }
 
@@ -36,18 +36,27 @@ void DrawCardCommand::execute()
       moveCards(waste, deck, numCardsInWaste);
       deck->setUpturnCards(numCardsInWaste, false);
    }
-   else
-   {
-      std::uint8_t numCardsToMoveToWaste =
-         deck->getNumCards() > CardCommand::getController()->getNumCardsToDraw() ?
-         CardCommand::getController()->getNumCardsToDraw() : deck->getNumCards();
-      moveCards(deck, waste, numCardsToMoveToWaste);
-      waste->setUpturnCards(numCardsToMoveToWaste, true);
-   }
+   numMovedCardsM = deck->getNumCards() > CardCommand::getController()->getNumCardsToDraw() ?
+      CardCommand::getController()->getNumCardsToDraw() : deck->getNumCards();
+   moveCards(deck, waste, numMovedCardsM);
+   waste->setUpturnCards(numMovedCardsM, true);
 }
 
 void DrawCardCommand::undo()
 {
+   Models::Pile* deck = CardCommand::getController()->getDeck();
+   Models::Pile* waste = CardCommand::getController()->getWaste();
+   if (numMovedCardsM == waste->getNumCards())
+   {
+      std::uint8_t numCardsInDeck = deck->getNumCards();
+      moveCards(deck, waste, numCardsInDeck);
+      waste->setUpturnCards(numCardsInDeck, true);
+   }
+   else
+   {
+      moveCards(waste, deck, numMovedCardsM);
+      deck->setUpturnCards(numMovedCardsM, false);
+   }
 }
 
 }

@@ -49,6 +49,8 @@ private:
    bool isCardStackableInDestination() const;
    Models::Card getCardToMove() const;
 
+   void updateScore(bool upturnScore, bool negativeScore = false);
+
    std::uint8_t originPileTypeM;
    std::uint8_t originPileNumberM;
    std::uint8_t destinationPileTypeM;

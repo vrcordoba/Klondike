@@ -7,6 +7,7 @@ namespace Controllers
 {
 
 class CommandVisitor;
+class CardCommandVisitor;
 class Controller;
 
 class DrawCardCommand final : public CardCommand
@@ -24,6 +25,9 @@ public:
    void undo();
 
    void setController(Controller* controller);
+
+private:
+   std::uint8_t numMovedCardsM;
 };
 
 }

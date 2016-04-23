@@ -53,13 +53,18 @@ void MovementHistory::redo()
 {
    CardCommand* command = redoableHistoryM.back();
    redoableHistoryM.pop_back();
-   command->undo();
+   command->execute();
    undoableHistoryM.push_back(command);
 }
 
 CardCommand* MovementHistory::getCommandToUndo()
 {
    return undoableHistoryM.back();
+}
+
+CardCommand* MovementHistory::getCommandToRedo()
+{
+   return redoableHistoryM.back();
 }
 
 }

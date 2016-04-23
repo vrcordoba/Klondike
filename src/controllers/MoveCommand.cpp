@@ -6,6 +6,7 @@
 #include "Card.hpp"
 #include "Pile.hpp"
 #include "PileType.hpp"
+#include "Score.hpp"
 
 namespace Controllers
 {
@@ -107,6 +108,28 @@ void MoveCommand::execute()
    Models::Pile* originPile = getPile(originPileTypeM, originPileNumberM);
    Models::Pile* destinationPile = getPile(destinationPileTypeM, destinationPileNumberM);
    moveCards(originPile, destinationPile, numCardsM);
+   if (originPile->getNumCards() > 0 and not originPile->isTopCardUnturned())
+   {
+      originPile->setUpturnCards(1, true);
+      updateScore(true);
+   }
+   else
+      updateScore(false);
+}
+
+void MoveCommand::undo()
+{
+   Models::Pile* originPile = getPile(originPileTypeM, originPileNumberM);
+   Models::Pile* destinationPile = getPile(destinationPileTypeM, destinationPileNumberM);
+   if (originPile->getNumCards() > 0 and originPile->isTopCardUnturned()
+      and Models::PileType::WASTE != originPileTypeM)
+   {
+      originPile->setUpturnCards(1, false);
+      updateScore(true, true);
+   }
+   else
+      updateScore(false, true);
+   moveCards(destinationPile, originPile, numCardsM);
 }
 
 Models::Pile* MoveCommand::getPile(std::uint8_t pileId,
@@ -122,11 +145,13 @@ Models::Pile* MoveCommand::getPile(std::uint8_t pileId,
    return pile;
 }
 
-void MoveCommand::undo()
+void MoveCommand::updateScore(bool upturnScore, bool negativeScore)
 {
-   Models::Pile* originPile = getPile(originPileTypeM, originPileNumberM);
-   Models::Pile* destinationPile = getPile(destinationPileTypeM, destinationPileNumberM);
-   moveCards(destinationPile, originPile, numCardsM);
+   Models::Score& score = CardCommand::getController()->getScore();
+   if (upturnScore)
+      score.turnOverTableauCardScore(negativeScore);
+   score.movementScore(originPileTypeM, destinationPileTypeM, numCardsM,
+      negativeScore);
 }
 
 }

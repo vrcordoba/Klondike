@@ -24,6 +24,7 @@ public:
    void redo();
 
    CardCommand* getCommandToUndo();
+   CardCommand* getCommandToRedo();
 
 private:
    void emptyHistory(std::deque<CardCommand*>& history);

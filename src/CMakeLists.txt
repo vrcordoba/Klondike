@@ -36,6 +36,7 @@ set(HEADER_FILES
    controllers/MoveController.hpp
    controllers/MovementHistory.hpp
    controllers/CommandManager.hpp
+   controllers/CommandVisitor.hpp
 
    models/Suit.hpp
    models/Card.hpp

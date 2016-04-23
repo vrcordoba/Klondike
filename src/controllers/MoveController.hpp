@@ -14,7 +14,6 @@ namespace Controllers
 
 class MoveCommand;
 class DrawCardCommand;
-class ModifyHistoryCommand;
 
 class MoveController final : public Controller
 {
@@ -35,8 +34,6 @@ public:
    void redo();
 
 private:
-   void updateScore(MoveCommand* command, bool upturnScore);
-
    MovementHistory movementHistoryM;
 };
 
