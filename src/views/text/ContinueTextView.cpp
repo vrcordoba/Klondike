@@ -18,6 +18,7 @@ ContinueTextView::~ContinueTextView()
 void ContinueTextView::interact(Controllers::ContinueController* continueController)
 {
    Utils::YesNoDialog dialog("Do you want to play again?");
+   continueController->ranking();
    continueController->resume(dialog.read());
 }
 

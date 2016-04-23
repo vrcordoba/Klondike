@@ -1,19 +1,24 @@
 
-#include "FileReader.hpp"
+#include "TextFileReader.hpp"
 
 namespace Utils
 {
 
-FileReader::FileReader(std::string fileName) : fileM(fileName)
+TextFileReader::TextFileReader() : fileM()
 {
 }
 
-FileReader::~FileReader()
+TextFileReader::~TextFileReader()
 {
    fileM.close();
 }
 
-bool FileReader::getLine(std::string& line)
+void TextFileReader::open(std::string name)
+{
+   fileM.open(name + ".txt");
+}
+
+bool TextFileReader::getLine(std::string& line)
 {
    bool unreadLines = true;
    if (fileM.is_open() and (not fileM.eof()))
@@ -27,7 +32,7 @@ bool FileReader::getLine(std::string& line)
    return unreadLines;
 }
 
-bool FileReader::isOk() const
+bool TextFileReader::isOk() const
 {
    return fileM.is_open();
 }

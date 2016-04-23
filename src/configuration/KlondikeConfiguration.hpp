@@ -5,7 +5,6 @@
 #include <string>
 #include "DeckType.hpp"
 #include "ViewType.hpp"
-#include "SaveType.hpp"
 
 namespace Configuration
 {
@@ -29,7 +28,6 @@ public:
    std::list<std::string> getDeckDescriptions() const;
 
    ViewType getViewType() const;
-   SaveType getSaveType() const;
 
 private:
    KlondikeConfiguration();
@@ -40,10 +38,9 @@ private:
    void setViewType(const std::string& configuration);
    void setSaverType(const std::string& configuration);
 
-   const std::string CONFIGURATION_FILE = "klondike.conf";
+   const std::string CONFIGURATION_FILE = "klondikeConf";
    DeckType deckTypeM;
    ViewType viewTypeM;
-   SaveType saveTypeM;
 };
 
 }

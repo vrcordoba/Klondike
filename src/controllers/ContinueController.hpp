@@ -1,6 +1,7 @@
 #ifndef CONTROLLERS_CONTINUECONTROLLER_HPP_
 #define CONTROLLERS_CONTINUECONTROLLER_HPP_
 
+#include <string>
 #include "Controller.hpp"
 #include "OperationController.hpp"
 
@@ -25,7 +26,12 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
+   void ranking();
+
    void resume(bool otherGame);
+
+private:
+   const std::string RANKING_FILE = "ranking";
 };
 
 }

@@ -14,7 +14,6 @@ set(HEADER_FILES
 
    configuration/KlondikeConfiguration.hpp
    configuration/DeckType.hpp
-   configuration/SaveType.hpp
    configuration/ViewType.hpp
 
    controllers/OperationController.hpp
@@ -52,6 +51,7 @@ set(HEADER_FILES
    models/DeckManager.hpp
    models/Score.hpp
    models/PileType.hpp
+   models/Ranking.hpp
 
    utils/ClosedInterval.hpp
    utils/IO.hpp
@@ -59,7 +59,11 @@ set(HEADER_FILES
    utils/YesNoDialog.hpp
    utils/TextMenu.hpp
    utils/CommandReader.hpp
-   utils/FileReader.hpp
+   utils/PermanentMediumReaderPrototyper.hpp
+   utils/PermanentMediumReader.hpp
+   utils/PermanentMediumWriter.hpp
+   utils/TextFileReader.hpp
+   utils/TextFileWriter.hpp
 
    views/KlondikeView.hpp
    views/StartView.hpp
@@ -115,6 +119,7 @@ set(SOURCE_FILES
    models/Game.cpp
    models/DeckManager.cpp
    models/Score.cpp
+   models/Ranking.cpp
 
    utils/ClosedInterval.cpp
    utils/IO.cpp
@@ -122,7 +127,9 @@ set(SOURCE_FILES
    utils/YesNoDialog.cpp
    utils/TextMenu.cpp
    utils/CommandReader.cpp
-   utils/FileReader.cpp
+   utils/PermanentMediumReaderPrototyper.cpp
+   utils/TextFileReader.cpp
+   utils/TextFileWriter.hpp
 
    views/ViewManager.cpp
    views/text/KlondikeTextView.cpp

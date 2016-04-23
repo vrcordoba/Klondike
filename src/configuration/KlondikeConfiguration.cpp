@@ -1,13 +1,13 @@
 
 #include "KlondikeConfiguration.hpp"
 
-#include "FileReader.hpp"
+#include "PermanentMediumReaderPrototyper.hpp"
+#include "PermanentMediumReader.hpp"
 
 namespace Configuration
 {
 
-KlondikeConfiguration::KlondikeConfiguration() : deckTypeM(), viewTypeM(ViewType::TEXT),
-   saveTypeM(SaveType::PLAIN_TEXT)
+KlondikeConfiguration::KlondikeConfiguration() : deckTypeM(), viewTypeM(ViewType::TEXT)
 {
    interpretReadConfiguration(readConfiguration());
 }
@@ -36,22 +36,20 @@ ViewType KlondikeConfiguration::getViewType() const
    return viewTypeM;
 }
 
-SaveType KlondikeConfiguration::getSaveType() const
-{
-   return saveTypeM;
-}
-
 std::list<std::string> KlondikeConfiguration::readConfiguration() const
 {
-   Utils::FileReader fileReader(CONFIGURATION_FILE);
+   Utils::PermanentMediumReader* configurationReader =
+      Utils::PermanentMediumReaderPrototyper::makePrototype(
+         Utils::PermanentMediumReaderPrototyper::PLAIN_TEXT);
+   configurationReader->open(CONFIGURATION_FILE);
    std::list<std::string> configurations;
-   if (fileReader.isOk())
+   if (configurationReader->isOk())
    {
       bool continueReading;
       do
       {
          std::string configuration;
-         continueReading = fileReader.getLine(configuration);
+         continueReading = configurationReader->getLine(configuration);
          if (not configuration.empty())
             configurations.push_back(configuration);
       } while (continueReading);
@@ -66,8 +64,6 @@ void KlondikeConfiguration::interpretReadConfiguration(
    {
       if (configuration.find("views:") != std::string::npos)
          setViewType(configuration);
-      else if (configuration.find("savers:") != std::string::npos)
-         setSaverType(configuration);
    }
 }
 
@@ -77,12 +73,6 @@ void KlondikeConfiguration::setViewType(const std::string& configuration)
       viewTypeM = ViewType::TEXT;
    else if (configuration.find("graphical") != std::string::npos)
       viewTypeM = ViewType::GRAPHICAL;
-}
-
-void KlondikeConfiguration::setSaverType(const std::string& configuration)
-{
-   if (configuration.find("plain_text") != std::string::npos)
-      saveTypeM = SaveType::PLAIN_TEXT;
 }
 
 }

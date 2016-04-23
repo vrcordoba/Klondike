@@ -1,7 +1,10 @@
 
 #include "ContinueController.hpp"
 
+#include "PermanentMediumReaderPrototyper.hpp"
 #include "OperationControllerVisitor.hpp"
+#include "Score.hpp"
+#include "Ranking.hpp"
 
 namespace Models
 {
@@ -23,6 +26,12 @@ ContinueController::~ContinueController()
 void ContinueController::accept(OperationControllerVisitor* operationControllerVisitor)
 {
    operationControllerVisitor->visit(this);
+}
+
+void ContinueController::ranking()
+{
+   Models::Score& score = Controller::getScore();
+   Models::Ranking ranking(RANKING_FILE);
 }
 
 void ContinueController::resume(bool otherGame)
