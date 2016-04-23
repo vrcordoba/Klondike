@@ -71,7 +71,9 @@ target_link_libraries(CardTableTests ${GTEST_LIBRARIES} pthread)
 
 add_executable(GameTests GameTests.cpp
    ../src/utils/ClosedInterval.cpp ../src/utils/ClosedInterval.hpp
-   ../src/utils/FileReader.cpp ../src/utils/FileReader.hpp
+   ../src/utils/PermanentMediumReaderPrototyper.hpp ../src/utils/PermanentMediumReaderPrototyper.cpp
+   ../src/utils/TextFileReader.hpp ../src/utils/TextFileReader.cpp
+   ../src/utils/PermanentMediumReader.hpp
    ../src/models/Suit.cpp ../src/models/Suit.hpp
    ../src/models/Deck.cpp ../src/models/Deck.hpp
    ../src/models/DeckManager.cpp ../src/models/DeckManager.hpp
