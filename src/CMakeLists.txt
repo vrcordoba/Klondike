@@ -28,6 +28,7 @@ set(HEADER_FILES
    controllers/CardTableController.hpp
    controllers/CommandType.hpp
    controllers/Command.hpp
+   controllers/CardCommand.hpp
    controllers/DrawCardCommand.hpp
    controllers/MoveCommand.hpp
    controllers/LeaveCommand.hpp
@@ -91,6 +92,7 @@ set(SOURCE_FILES
    controllers/GameController.cpp
    controllers/ContinueController.cpp
    controllers/CardTableController.cpp
+   controllers/CardCommand.cpp
    controllers/DrawCardCommand.cpp
    controllers/MoveCommand.cpp
    controllers/LeaveCommand.cpp

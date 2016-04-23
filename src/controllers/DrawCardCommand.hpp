@@ -1,12 +1,15 @@
 #ifndef CONTROLLERS_DRAWCARDCOMMAND_HPP_
 #define CONTROLLERS_DRAWCARDCOMMAND_HPP_
 
-#include "Command.hpp"
+#include "CardCommand.hpp"
 
 namespace Controllers
 {
 
-class DrawCardCommand final : public Command
+class CommandVisitor;
+class Controller;
+
+class DrawCardCommand final : public CardCommand
 {
 public:
    DrawCardCommand();
@@ -16,6 +19,11 @@ public:
    DrawCardCommand& operator=(const DrawCardCommand&) = delete;
 
    bool accept(CommandVisitor* commandVisitor);
+
+   void execute();
+   void undo();
+
+   void setController(Controller* controller);
 };
 
 }
