@@ -26,6 +26,7 @@ public:
 
    virtual bool isValidDestination(const Card& card) const;
 
+   bool isTopCardUnturned() const;
    void setUpturnCards(std::uint8_t numCards, bool upturn);
 
 protected:

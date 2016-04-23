@@ -3,6 +3,7 @@
 
 #include "Game.hpp"
 #include "KlondikeConfiguration.hpp"
+#include "Score.hpp"
 
 namespace Controllers
 {
@@ -81,6 +82,11 @@ void Controller::transferCard(Models::Pile& originPile,
 bool Controller::isGameWon() const
 {
    return gameM.isGameWon();
+}
+
+Models::Score& Controller::getScore()
+{
+   return gameM.getScore();
 }
 
 }

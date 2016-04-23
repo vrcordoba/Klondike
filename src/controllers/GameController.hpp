@@ -38,7 +38,7 @@ public:
    CardTableController* getCardTableController();
 
 private:
-   MoveController localMoveControllerM;
+   MoveController moveControllerM;
    CardTableController cardTableControllerM;
 
    enum class Phase

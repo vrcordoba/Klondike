@@ -33,13 +33,14 @@ public:
 
 private:
    void buildCardView();
-   void showDelimiter();
+   void showDelimiter() const;
    void showDeck();
    void showWaste();
    void showFoundations();
    void showTableaus();
    std::string showPile(const std::vector<Controllers::FacadeCard>& pile);
    std::string showOnlyFirstCardInPile(const std::vector<Controllers::FacadeCard>& pile);
+   void showScore();
 
    Utils::IO& ioM;
 };

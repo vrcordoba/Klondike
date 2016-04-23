@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "State.hpp"
 #include "DeckManager.hpp"
+#include "Score.hpp"
 
 namespace Models
 {
@@ -43,6 +44,8 @@ public:
 
    std::uint8_t getNumCardsToDraw() const;
 
+   Score& getScore();
+
 private:
    const std::uint8_t NUM_TABLEAUS = 7;
    const std::uint8_t NUM_PLAYERS = 1;
@@ -50,6 +53,7 @@ private:
    State stateM;
    DeckManager deckManagerM;
    CardTable* cardTableM;
+   Score scoreM;
 };
 
 }

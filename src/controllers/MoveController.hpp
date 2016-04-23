@@ -51,6 +51,7 @@ private:
       std::uint8_t pileId, std::uint8_t pileIndex) const;
    void moveCards(Models::Pile* originPile,
       Models::Pile* destinationPile, std::uint8_t numCards);
+   void updateScore(MoveCommand* command, bool upturnScore);
 
    MovementHistory movementHistoryM;
 };

@@ -35,9 +35,11 @@ void CardTableTextView::show()
    showFoundations();
    showTableaus();
    showDelimiter();
+   showScore();
+   showDelimiter();
 }
 
-void CardTableTextView::showDelimiter()
+void CardTableTextView::showDelimiter() const
 {
    ioM.writeString("==================================================");
 }
@@ -88,4 +90,12 @@ std::string CardTableTextView::showOnlyFirstCardInPile(const std::vector<Control
       pileString += cardViewM->show(pile[pileSize - 1]);
    return pileString;
 }
+
+void CardTableTextView::showScore()
+{
+   std::string scoreString("Score: ");
+   scoreString += std::to_string(cardTableControllerM->getScore());
+   ioM.writeString(scoreString);
+}
+
 }

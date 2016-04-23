@@ -85,6 +85,7 @@ add_executable(GameTests GameTests.cpp
    ../src/models/SpanishDeck.cpp ../src/models/SpanishDeck.hpp
    ../src/models/CardTable.cpp ../src/models/CardTable.hpp
    ../src/models/State.hpp
+   ../src/models/Score.cpp ../src/models/Score.hpp
    ../src/models/Game.cpp ../src/models/Game.hpp)
 target_link_libraries(GameTests ${GTEST_LIBRARIES} pthread)
 

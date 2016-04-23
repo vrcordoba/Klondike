@@ -4,6 +4,7 @@
 #include "Pile.hpp"
 #include "Deck.hpp"
 #include "CardTable.hpp"
+#include "Score.hpp"
 
 namespace Controllers
 {
@@ -56,6 +57,12 @@ std::uint8_t CardTableController::getNumTableaus() const
 std::uint8_t CardTableController::getNumFoundations() const
 {
    return Controller::getNumFoundations();
+}
+
+std::uint32_t CardTableController::getScore()
+{
+   const Models::Score& score = Controller::getScore();
+   return score.getScore();
 }
 
 }

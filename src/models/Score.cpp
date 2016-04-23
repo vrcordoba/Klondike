@@ -24,12 +24,13 @@ std::uint32_t Score::getScore() const
    return scoreM;
 }
 
-void Score::movementScore(std::uint8_t originPileId, std::uint8_t destinationPileId)
+void Score::movementScore(std::uint8_t originPileId, std::uint8_t destinationPileId,
+   std::uint8_t numCards)
 {
    if (PileType::FOUNDATION == originPileId)
       computeScoreOriginFoundation(destinationPileId);
    else if (PileType::TABLEAU == originPileId)
-      computeScoreOriginTableau(destinationPileId);
+      computeScoreOriginTableau(destinationPileId, numCards);
    else if (PileType::WASTE == originPileId)
       computeScoreOriginWaste(destinationPileId);
 }
@@ -45,10 +46,10 @@ void Score::computeScoreOriginFoundation(std::uint8_t destinationPileId)
    }
 }
 
-void Score::computeScoreOriginTableau(std::uint8_t destinationPileId)
+void Score::computeScoreOriginTableau(std::uint8_t destinationPileId, std::uint8_t numCards)
 {
    if (PileType::FOUNDATION == destinationPileId)
-      scoreM += 10;
+      scoreM += 10 * numCards;
 }
 
 void Score::computeScoreOriginWaste(std::uint8_t destinationPileId)

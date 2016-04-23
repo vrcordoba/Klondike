@@ -6,6 +6,7 @@
 #include "Pile.hpp"
 #include "MoveCommand.hpp"
 #include "DrawCardCommand.hpp"
+#include "Score.hpp"
 
 namespace Controllers
 {
@@ -101,8 +102,13 @@ void MoveController::applyMovement(MoveCommand* command)
    Models::Pile* destinationPile = getPile(command->getDestinationPileType(),
       command->getDestinationPileNumber());
    moveCards(originPile, destinationPile, command->getNumCards());
-   if (originPile->getNumCards() > 0)
+   if (originPile->getNumCards() > 0 and not originPile->isTopCardUnturned())
+   {
       originPile->setUpturnCards(1, true);
+      updateScore(command, true);
+   }
+   else
+      updateScore(command, false);
    movementHistoryM.store(command);
 }
 
@@ -114,6 +120,15 @@ void MoveController::moveCards(Models::Pile* originPile,
       cardsToMove.addCard(originPile->takeCard());
    for (std::uint8_t i = 0; i < numCards; ++i)
       Controller::transferCard(cardsToMove, *destinationPile);
+}
+
+void MoveController::updateScore(MoveCommand* command, bool upturnScore)
+{
+   Models::Score& score = Controller::getScore();
+   if (upturnScore)
+      score.turnOverTableauCardScore();
+   score.movementScore(command->getOriginPileType(),
+      command->getDestinationPileType(), command->getNumCards());
 }
 
 void MoveController::applyDrawCard(DrawCardCommand* command)

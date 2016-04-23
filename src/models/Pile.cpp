@@ -85,4 +85,9 @@ void Pile::setUpturnCards(std::uint8_t numCards, bool upturn)
    }
 }
 
+bool Pile::isTopCardUnturned() const
+{
+   return getTopCard().isUpturned();
+}
+
 }

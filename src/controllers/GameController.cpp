@@ -11,7 +11,7 @@ namespace Controllers
 {
 
 GameController::GameController(Models::Game& game) : Controller(game),
-   localMoveControllerM(game), cardTableControllerM(game), phaseM(Phase::VALIDATION)
+   moveControllerM(game), cardTableControllerM(game), phaseM(Phase::VALIDATION)
 {
 }
 
@@ -27,16 +27,16 @@ void GameController::accept(OperationControllerVisitor* operationControllerVisit
 bool GameController::visit(MoveCommand* moveCommand)
 {
    if (Phase::VALIDATION == phaseM)
-      return localMoveControllerM.isValidMovement(moveCommand);
+      return moveControllerM.isValidMovement(moveCommand);
    else
-      localMoveControllerM.applyMovement(moveCommand);
+      moveControllerM.applyMovement(moveCommand);
    return true;
 }
 
 bool GameController::visit(DrawCardCommand* drawCardCommand)
 {
    if (Phase::APPLY_MOVEMENT == phaseM)
-      localMoveControllerM.applyDrawCard(drawCardCommand);
+      moveControllerM.applyDrawCard(drawCardCommand);
    return true;
 }
 

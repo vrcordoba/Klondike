@@ -10,6 +10,7 @@ namespace Models
 class Game;
 class CardTable;
 class Pile;
+class Score;
 }
 
 namespace Controllers
@@ -44,6 +45,8 @@ public:
    void transferCard(Models::Pile& originPile, Models::Pile& destinationPile);
 
    bool isGameWon() const;
+
+   Models::Score& getScore();
 
 private:
    Models::Game& gameM;

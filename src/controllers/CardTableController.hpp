@@ -31,6 +31,8 @@ public:
    std::uint8_t getNumTableaus() const;
    std::uint8_t getNumFoundations() const;
 
+   std::uint32_t getScore();
+
 private:
    std::vector<FacadeCard> getFacadePile(const Models::Pile* pile);
 };
