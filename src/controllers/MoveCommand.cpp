@@ -27,31 +27,18 @@ bool MoveCommand::accept(CommandVisitor* commandVisitor)
    return commandVisitor->visit(this);
 }
 
-std::uint8_t MoveCommand::getOriginPileType() const
-{
-   return originPileTypeM;
-}
-
-std::uint8_t MoveCommand::getOriginPileNumber() const
-{
-   return originPileNumberM;
-}
-
-std::uint8_t MoveCommand::getDestinationPileType() const
-{
-   return destinationPileTypeM;
-}
-
-std::uint8_t MoveCommand::getNumCards() const
-{
-   return numCardsM;
-}
-
 bool MoveCommand::isValidOrigin() const
 {
    return isIndexValid(originPileTypeM, originPileNumberM) and
       pileCompatibleWithNumberOfCards(originPileTypeM) and
-      areEnoughCardsInPile(originPileTypeM, originPileNumberM);
+      areEnoughCardsInOriginPile();
+}
+
+bool MoveCommand::isValidDestination() const
+{
+   return isIndexValid(destinationPileTypeM, destinationPileNumberM) and
+      pileCompatibleWithNumberOfCards(destinationPileTypeM) and
+      isCardStackableInDestination();
 }
 
 bool MoveCommand::isIndexValid(std::uint8_t pile, std::uint8_t index) const
@@ -70,18 +57,10 @@ bool MoveCommand::pileCompatibleWithNumberOfCards(
    return (numCardsM <= 1) or (Models::PileType::TABLEAU == pile);
 }
 
-bool MoveCommand::areEnoughCardsInPile(
-   std::uint8_t pileId, std::uint8_t index) const
+bool MoveCommand::areEnoughCardsInOriginPile() const
 {
-   Models::Pile* pile = getPile(pileId, index);
+   Models::Pile* pile = getPile(originPileTypeM, originPileNumberM);
    return (pile->getNumCards() >= numCardsM);
-}
-
-bool MoveCommand::isValidDestination() const
-{
-   return isIndexValid(destinationPileTypeM, destinationPileNumberM) and
-      pileCompatibleWithNumberOfCards(destinationPileTypeM) and
-      isCardStackableInDestination();
 }
 
 bool MoveCommand::isCardStackableInDestination() const
@@ -94,8 +73,7 @@ bool MoveCommand::isCardStackableInDestination() const
 Models::Card MoveCommand::getCardToMove() const
 {
    Models::Pile* originPile = getPile(originPileTypeM, originPileNumberM);
-   return originPile->getCardAt(
-      originPile->getNumCards() - numCardsM);
+   return originPile->getCardAt(originPile->getNumCards() - numCardsM);
 }
 
 void MoveCommand::setController(Controller* controller)

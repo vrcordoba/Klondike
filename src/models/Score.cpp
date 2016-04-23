@@ -19,7 +19,7 @@ void Score::rebootScore()
    scoreM = 0;
 }
 
-std::int32_t Score::getScore() const
+std::uint32_t Score::getScore() const
 {
    return scoreM;
 }

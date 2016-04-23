@@ -33,21 +33,17 @@ public:
 
    void setController(Controller* controller);
 
-   std::uint8_t getOriginPileType() const;
-   std::uint8_t getOriginPileNumber() const;
-   std::uint8_t getDestinationPileType() const;
-   std::uint8_t getNumCards() const;
-
    bool isValidOrigin() const;
    bool isValidDestination() const;
-   Models::Pile* getPile(std::uint8_t pileId, std::uint8_t pileIndex) const;
 
 private:
    bool isIndexValid(std::uint8_t originPile, std::uint8_t originIndex) const;
    bool pileCompatibleWithNumberOfCards(std::uint8_t pile) const;
-   bool areEnoughCardsInPile(std::uint8_t pileId, std::uint8_t index) const;
+   bool areEnoughCardsInOriginPile() const;
    bool isCardStackableInDestination() const;
+
    Models::Card getCardToMove() const;
+   Models::Pile* getPile(std::uint8_t pileId, std::uint8_t pileIndex) const;
 
    void updateScore(bool upturnScore, bool negativeScore = false);
 

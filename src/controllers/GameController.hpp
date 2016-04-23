@@ -2,10 +2,10 @@
 #define CONTROLLERS_GAMECONTROLLER_HPP_
 
 #include "Controller.hpp"
-#include "CardTableController.hpp"
-#include "MoveController.hpp"
 #include "CommandVisitor.hpp"
 #include "OperationController.hpp"
+#include "CardTableController.hpp"
+#include "MoveController.hpp"
 
 namespace Controllers
 {

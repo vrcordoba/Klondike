@@ -3,7 +3,6 @@
 
 #include "MoveCommand.hpp"
 #include "DrawCardCommand.hpp"
-#include "Pile.hpp"
 
 namespace Controllers
 {

@@ -7,7 +7,6 @@ namespace Controllers
 {
 
 class CommandVisitor;
-class CardCommandVisitor;
 class Controller;
 
 class DrawCardCommand final : public CardCommand

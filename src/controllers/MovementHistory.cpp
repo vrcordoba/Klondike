@@ -57,14 +57,4 @@ void MovementHistory::redo()
    undoableHistoryM.push_back(command);
 }
 
-CardCommand* MovementHistory::getCommandToUndo()
-{
-   return undoableHistoryM.back();
-}
-
-CardCommand* MovementHistory::getCommandToRedo()
-{
-   return redoableHistoryM.back();
-}
-
 }

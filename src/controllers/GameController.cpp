@@ -2,9 +2,10 @@
 #include "GameController.hpp"
 
 #include "OperationControllerVisitor.hpp"
-#include "CardTableController.hpp"
 #include "Command.hpp"
 #include "State.hpp"
+#include "MoveCommand.hpp"
+#include "DrawCardCommand.hpp"
 #include "LeaveCommand.hpp"
 #include "ModifyHistoryCommand.hpp"
 
