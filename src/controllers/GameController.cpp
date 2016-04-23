@@ -6,6 +6,7 @@
 #include "Command.hpp"
 #include "State.hpp"
 #include "LeaveCommand.hpp"
+#include "ModifyHistoryCommand.hpp"
 
 namespace Controllers
 {
@@ -48,6 +49,25 @@ bool GameController::visit(LeaveCommand* leaveCommand)
          Controller::setState(Models::State::END);
       else
          Controller::initializeGame();
+   }
+   return true;
+}
+
+bool GameController::visit(ModifyHistoryCommand* modifyHistoryCommand)
+{
+   if (Phase::VALIDATION == phaseM)
+   {
+      if (ModifyHistoryCommand::Type::UNDO == modifyHistoryCommand->getType())
+         return moveControllerM.validateUndo();
+      else
+         return moveControllerM.validateRedo();
+   }
+   else
+   {
+      if (ModifyHistoryCommand::Type::UNDO == modifyHistoryCommand->getType())
+         moveControllerM.undo();
+      else
+         moveControllerM.redo();
    }
    return true;
 }

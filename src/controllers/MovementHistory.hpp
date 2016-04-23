@@ -2,8 +2,7 @@
 #define CONTROLLERS_MOVEMENTHISTORY_HPP_
 
 #include <deque>
-#include <cstdint>
-#include "Command.hpp"
+#include "CardCommand.hpp"
 
 namespace Controllers
 {
@@ -17,12 +16,20 @@ public:
    MovementHistory(const MovementHistory&) = delete;
    MovementHistory& operator=(const MovementHistory&) = delete;
 
-   void store(Command* command);
+   void storeAndExecute(CardCommand* command);
 
-   Command* undo();
+   bool validateUndo() const;
+   bool validateRedo() const;
+   void undo();
+   void redo();
+
+   CardCommand* getCommandToUndo();
 
 private:
-   std::deque<Command*> historyM;
+   void emptyHistory(std::deque<CardCommand*>& history);
+
+   std::deque<CardCommand*> undoableHistoryM;
+   std::deque<CardCommand*> redoableHistoryM;
 };
 
 }

@@ -13,7 +13,7 @@ public:
    enum class Type : std::uint8_t
    {
       LEAVE_CLOSE,
-      LEAVE_RESTART
+      LEAVE_INIT
    };
 
    explicit LeaveCommand(Type type);

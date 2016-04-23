@@ -26,8 +26,7 @@ bool MoveController::isValidMovement(MoveCommand* command)
 
 void MoveController::applyMovement(MoveCommand* command)
 {
-   movementHistoryM.store(command);
-   command->execute();
+   movementHistoryM.storeAndExecute(command);
    Models::Pile* originPile = command->getPile(command->getOriginPileType(),
       command->getOriginPileNumber());
    if (originPile->getNumCards() > 0 and not originPile->isTopCardUnturned())
@@ -51,8 +50,28 @@ void MoveController::updateScore(MoveCommand* command, bool upturnScore)
 void MoveController::applyDrawCard(DrawCardCommand* command)
 {
    command->setController(this);
-   movementHistoryM.store(command);
-   command->execute();
+   movementHistoryM.storeAndExecute(command);
 }
+
+bool MoveController::validateUndo() const
+{
+   return movementHistoryM.validateUndo();
+}
+
+bool MoveController::validateRedo() const
+{
+   return movementHistoryM.validateRedo();
+}
+
+void MoveController::undo()
+{
+   movementHistoryM.undo();
+}
+
+void MoveController::redo()
+{
+   movementHistoryM.redo();
+}
+
 
 }

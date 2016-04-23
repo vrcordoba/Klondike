@@ -124,6 +124,9 @@ Models::Pile* MoveCommand::getPile(std::uint8_t pileId,
 
 void MoveCommand::undo()
 {
+   Models::Pile* originPile = getPile(originPileTypeM, originPileNumberM);
+   Models::Pile* destinationPile = getPile(destinationPileTypeM, destinationPileNumberM);
+   moveCards(destinationPile, originPile, numCardsM);
 }
 
 }

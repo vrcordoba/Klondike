@@ -12,8 +12,10 @@ enum class CommandType
    HELP,
    MOVE,
    DRAWCARD,
-   RESTART,
-   LEAVE
+   INIT,
+   LEAVE,
+   UNDO,
+   REDO
 };
 
 }

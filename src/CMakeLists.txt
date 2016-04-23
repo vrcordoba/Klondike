@@ -32,6 +32,7 @@ set(HEADER_FILES
    controllers/DrawCardCommand.hpp
    controllers/MoveCommand.hpp
    controllers/LeaveCommand.hpp
+   controllers/ModifyHistoryCommand.hpp
    controllers/MoveController.hpp
    controllers/MovementHistory.hpp
    controllers/CommandManager.hpp
@@ -96,6 +97,7 @@ set(SOURCE_FILES
    controllers/DrawCardCommand.cpp
    controllers/MoveCommand.cpp
    controllers/LeaveCommand.cpp
+   controllers/ModifyHistoryCommand.cpp
    controllers/MoveController.cpp
    controllers/MovementHistory.cpp
    controllers/CommandManager.cpp

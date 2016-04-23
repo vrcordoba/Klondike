@@ -5,6 +5,7 @@
 #include "DrawCardCommand.hpp"
 #include "MoveCommand.hpp"
 #include "LeaveCommand.hpp"
+#include "ModifyHistoryCommand.hpp"
 
 namespace Controllers
 {
@@ -25,10 +26,14 @@ Command* CommandManager::getCommand(CommandType commandType,
       command = new DrawCardCommand();
    else if (CommandType::MOVE == commandType)
       command = new MoveCommand(additionalArguments);
+   else if (CommandType::UNDO == commandType)
+      command = new ModifyHistoryCommand(ModifyHistoryCommand::Type::UNDO);
+   else if (CommandType::REDO == commandType)
+      command = new ModifyHistoryCommand(ModifyHistoryCommand::Type::REDO);
    else if (CommandType::LEAVE == commandType)
       command = new LeaveCommand(LeaveCommand::Type::LEAVE_CLOSE);
-   else if (CommandType::RESTART == commandType)
-      command = new LeaveCommand(LeaveCommand::Type::LEAVE_RESTART);
+   else if (CommandType::INIT == commandType)
+      command = new LeaveCommand(LeaveCommand::Type::LEAVE_INIT);
    else
       assert(false);
    return command;

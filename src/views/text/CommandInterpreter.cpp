@@ -46,8 +46,12 @@ void CommandInterpreter::interpretTypeOfCommand()
       commandTypeM = Controllers::CommandType::DRAWCARD;
    else if ((order == "m") or (order == "move"))
       commandTypeM = Controllers::CommandType::MOVE;
-   else if ((order == "r") or (order == "restart"))
-      commandTypeM = Controllers::CommandType::RESTART;
+   else if ((order == "u") or (order == "undo"))
+      commandTypeM = Controllers::CommandType::UNDO;
+   else if ((order == "r") or (order == "redo"))
+      commandTypeM = Controllers::CommandType::REDO;
+   else if ((order == "i") or (order == "init"))
+      commandTypeM = Controllers::CommandType::INIT;
    else if ((order == "l") or (order == "leave"))
       commandTypeM = Controllers::CommandType::LEAVE;
    else

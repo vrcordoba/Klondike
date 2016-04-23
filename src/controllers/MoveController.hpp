@@ -14,6 +14,7 @@ namespace Controllers
 
 class MoveCommand;
 class DrawCardCommand;
+class ModifyHistoryCommand;
 
 class MoveController final : public Controller
 {
@@ -27,6 +28,11 @@ public:
    bool isValidMovement(MoveCommand* command);
    void applyMovement(MoveCommand* command);
    void applyDrawCard(DrawCardCommand* command);
+
+   bool validateUndo() const;
+   bool validateRedo() const;
+   void undo();
+   void redo();
 
 private:
    void updateScore(MoveCommand* command, bool upturnScore);

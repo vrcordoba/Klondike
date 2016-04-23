@@ -15,6 +15,7 @@ class Command;
 class MoveCommand;
 class DrawCardCommand;
 class LeaveCommand;
+class ModifyHistoryCommand;
 
 class GameController final : public Controller, public CommandVisitor, public OperationController
 {
@@ -30,6 +31,7 @@ public:
    bool visit(MoveCommand* moveCommand);
    bool visit(DrawCardCommand* drawCardCommand);
    bool visit(LeaveCommand* leaveCommand);
+   bool visit(ModifyHistoryCommand* modifyHistoryCommand);
 
    bool isValidCommand(Command* command);
    void applyCommand(Command* command);
