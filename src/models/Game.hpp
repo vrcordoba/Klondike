@@ -47,11 +47,14 @@ public:
    Score& getScore();
 
 private:
+   void deleteDeckAndCardTable();
+
    const std::uint8_t NUM_TABLEAUS = 7;
    const std::uint8_t NUM_PLAYERS = 1;
    const std::uint8_t NUM_CARDS_TO_DRAW = 3;
    State stateM;
    DeckPrototyper deckPrototyperM;
+   Deck* deckM;
    CardTable* cardTableM;
    Score scoreM;
 };

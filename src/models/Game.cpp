@@ -9,21 +9,36 @@ namespace Models
 
 class Pile;
 
-Game::Game() : stateM(State::INITIAL), deckPrototyperM(), cardTableM(nullptr), scoreM()
+Game::Game() : stateM(State::INITIAL), deckPrototyperM(), deckM(nullptr),
+   cardTableM(nullptr), scoreM()
 {
 }
 
 Game::~Game()
 {
+   deleteDeckAndCardTable();
 }
 
 void Game::initializeGame(Configuration::DeckType::Type typeDeck)
 {
-   Models::Deck* deck = deckPrototyperM.getDeck(typeDeck);
-   if (nullptr != cardTableM)
-      delete cardTableM;
-   cardTableM = new Models::CardTable(*deck, getNumTableaus());
+   deleteDeckAndCardTable();
+   deckM = deckPrototyperM.getDeck(typeDeck);
+   cardTableM = new Models::CardTable(*deckM, getNumTableaus());
    scoreM.rebootScore();
+}
+
+void Game::deleteDeckAndCardTable()
+{
+   if (nullptr != deckM)
+   {
+      delete deckM;
+      deckM = nullptr;
+   }
+   if (nullptr != cardTableM)
+   {
+      delete cardTableM;
+      cardTableM = nullptr;
+   }
 }
 
 std::uint8_t Game::getNumTableaus() const

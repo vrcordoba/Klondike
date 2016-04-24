@@ -2,6 +2,7 @@
 #include "DeckPrototyper.hpp"
 
 #include <cassert>
+#include "KlondikeConfiguration.hpp"
 #include "SpanishDeck.hpp"
 #include "FrenchDeck.hpp"
 
@@ -23,6 +24,7 @@ Deck* DeckPrototyper::getDeck(Configuration::DeckType::Type deckType)
    std::map<Configuration::DeckType::Type, Deck*>::const_iterator deckIt =
       deckPrototypesM.find(deckType);
    assert(deckIt != deckPrototypesM.end());
+   Configuration::KlondikeConfiguration::getInstance().setDeckType(deckType);
    Deck* deck = deckIt->second->clone();
    deck->buildDeck();
    return deck;
