@@ -2,7 +2,10 @@
 #define UTILS_PERMANENTMEDIUMPROTOTYPER_HPP_
 
 #include <cstdint>
+#include <map>
 #include "PermanentMediumType.hpp"
+#include "PermanentMediumReader.hpp"
+#include "PermanentMediumWriter.hpp"
 
 namespace Utils
 {
@@ -16,17 +19,12 @@ public:
    PermanentMediumPrototyper();
    ~PermanentMediumPrototyper();
 
-   static PermanentMediumReader* getReader(PermanentMediumType::Type type);
-   static PermanentMediumWriter* getWriter(PermanentMediumType::Type type);
-
-   static void addReaderPrototype(PermanentMediumReader* medium);
-   static void addWriterPrototype(PermanentMediumWriter* medium);
+   PermanentMediumReader* getReader(Configuration::PermanentMediumType type);
+   PermanentMediumWriter* getWriter(Configuration::PermanentMediumType type);
 
 private:
-   static std::int32_t readerSlotM;
-   static std::int32_t writerSlotM;
-   static PermanentMediumReader* readerPrototypesM[PermanentMediumType::NUM_PERMANENT_MEDIUMS];
-   static PermanentMediumWriter* writerPrototypesM[PermanentMediumType::NUM_PERMANENT_MEDIUMS];
+   std::map<Configuration::PermanentMediumType, PermanentMediumReader*> readerPrototypesM;
+   std::map<Configuration::PermanentMediumType, PermanentMediumWriter*> writerPrototypesM;
 };
 
 }

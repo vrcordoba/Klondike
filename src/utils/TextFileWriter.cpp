@@ -6,11 +6,8 @@
 namespace Utils
 {
 
-TextFileWriter TextFileWriter::textFileWriterM;
-
 TextFileWriter::TextFileWriter() : fileM()
 {
-   PermanentMediumPrototyper::addWriterPrototype(this);
 }
 
 TextFileWriter::TextFileWriter(std::uint8_t dummy) : fileM()
@@ -23,9 +20,9 @@ TextFileWriter::~TextFileWriter()
       fileM.close();
 }
 
-PermanentMediumType::Type TextFileWriter::type()
+Configuration::PermanentMediumType TextFileWriter::type()
 {
-   return PermanentMediumType::Type::PLAIN_TEXT;
+   return Configuration::PermanentMediumType::PLAIN_TEXT;
 }
 
 PermanentMediumWriter* TextFileWriter::clone()

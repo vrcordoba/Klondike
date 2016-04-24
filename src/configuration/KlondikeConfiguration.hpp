@@ -5,6 +5,7 @@
 #include <string>
 #include "DeckType.hpp"
 #include "ViewType.hpp"
+#include "PermanentMediumType.hpp"
 
 namespace Configuration
 {
@@ -28,6 +29,7 @@ public:
    std::list<std::string> getDeckDescriptions() const;
 
    ViewType getViewType() const;
+   PermanentMediumType getPermanentMediumType() const;
 
 private:
    KlondikeConfiguration();
@@ -41,6 +43,7 @@ private:
    const std::string CONFIGURATION_FILE = "klondikeConf";
    DeckType deckTypeM;
    ViewType viewTypeM;
+   PermanentMediumType permanentMediumTypeM;
 };
 
 }

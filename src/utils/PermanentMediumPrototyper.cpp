@@ -1,51 +1,41 @@
 
 #include "PermanentMediumPrototyper.hpp"
 
-#include "PermanentMediumReader.hpp"
-#include "PermanentMediumWriter.hpp"
+#include <cassert>
+#include "TextFileReader.hpp"
+#include "TextFileWriter.hpp"
 
 namespace Utils
 {
 
 PermanentMediumPrototyper::PermanentMediumPrototyper()
 {
+   readerPrototypesM[Configuration::PermanentMediumType::PLAIN_TEXT] = new TextFileReader();
+   writerPrototypesM[Configuration::PermanentMediumType::PLAIN_TEXT] = new TextFileWriter();
 }
 
 PermanentMediumPrototyper::~PermanentMediumPrototyper()
 {
 }
 
-PermanentMediumReader* PermanentMediumPrototyper::readerPrototypesM[];
-PermanentMediumWriter* PermanentMediumPrototyper::writerPrototypesM[];
-std::int32_t PermanentMediumPrototyper::readerSlotM = 0;
-std::int32_t PermanentMediumPrototyper::writerSlotM = 0;
-
-void PermanentMediumPrototyper::addReaderPrototype(PermanentMediumReader* medium)
-{
-   readerPrototypesM[readerSlotM++] = medium;
-}
-
-void PermanentMediumPrototyper::addWriterPrototype(PermanentMediumWriter* medium)
-{
-   writerPrototypesM[writerSlotM++] = medium;
-}
-
 PermanentMediumReader* PermanentMediumPrototyper::getReader(
-   PermanentMediumType::Type permanentMediumType)
+   Configuration::PermanentMediumType permanentMediumType)
 {
-  for (std::int32_t i = 0; i < readerSlotM; ++i)
-    if (permanentMediumType == readerPrototypesM[i]->type())
-      return readerPrototypesM[i]->clone();
-  return nullptr;
+   std::map<Configuration::PermanentMediumType, PermanentMediumReader*>::const_iterator readerIt =
+      readerPrototypesM.find(permanentMediumType);
+   assert(readerIt != readerPrototypesM.end());
+   PermanentMediumReader* permanentMediumReader = readerIt->second->clone();
+   return permanentMediumReader;
 }
 
 PermanentMediumWriter* PermanentMediumPrototyper::getWriter(
-   PermanentMediumType::Type permanentMediumType)
+   Configuration::PermanentMediumType permanentMediumType)
 {
-  for (std::int32_t i = 0; i < writerSlotM; ++i)
-    if (permanentMediumType == writerPrototypesM[i]->type())
-      return writerPrototypesM[i]->clone();
-  return nullptr;
+   std::map<Configuration::PermanentMediumType, PermanentMediumWriter*>::const_iterator writerIt =
+      writerPrototypesM.find(permanentMediumType);
+   assert(writerIt != writerPrototypesM.end());
+   PermanentMediumWriter* permanentMediumWriter = writerIt->second->clone();
+   return permanentMediumWriter;
 }
 
 }

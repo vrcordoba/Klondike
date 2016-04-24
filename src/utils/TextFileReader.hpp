@@ -12,12 +12,13 @@ namespace Utils
 class TextFileReader final : public PermanentMediumReader
 {
 public:
+   TextFileReader();
    ~TextFileReader();
 
    TextFileReader(const TextFileReader&) = delete;
    TextFileReader& operator=(const TextFileReader&) = delete;
 
-   PermanentMediumType::Type type();
+   Configuration::PermanentMediumType type();
    PermanentMediumReader* clone();
 
    void open(std::string name);
@@ -28,9 +29,6 @@ protected:
    explicit TextFileReader(std::uint8_t dummy);
 
 private:
-   TextFileReader();
-
-   static TextFileReader textFileReaderM;
    std::ifstream fileM;
 };
 

@@ -12,6 +12,16 @@ SpanishCardTextView::~SpanishCardTextView()
 {
 }
 
+Configuration::DeckType::Type SpanishCardTextView::type()
+{
+   return Configuration::DeckType::Type::SPANISH;
+}
+
+CardView* SpanishCardTextView::clone()
+{
+   return new SpanishCardTextView();
+}
+
 void SpanishCardTextView::constructRepresentation()
 {
    numberRepresentationM.push_back("1");

@@ -10,6 +10,7 @@ class OperationController;
 class StartController;
 class GameController;
 class ContinueController;
+class SaveController;
 
 class Logic final
 {
@@ -27,6 +28,7 @@ private:
    StartController* startControllerM;
    GameController* gameControllerM;
    ContinueController* continueControllerM;
+   SaveController* saveControllerM;
 };
 
 }

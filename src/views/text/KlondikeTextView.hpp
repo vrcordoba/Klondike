@@ -5,6 +5,7 @@
 #include "KlondikeView.hpp"
 #include "StartTextView.hpp"
 #include "ContinueTextView.hpp"
+#include "SaveTextView.hpp"
 
 namespace Controllers
 {
@@ -28,11 +29,13 @@ public:
    void visit(Controllers::StartController* startController);
    void visit(Controllers::GameController* gameController);
    void visit(Controllers::ContinueController* continueController);
+   void visit(Controllers::SaveController* continueController);
 
 private:
    StartTextView startViewM;
    GameTextView gameViewM;
    ContinueTextView continueViewM;
+   SaveTextView saveViewM;
 };
 
 }

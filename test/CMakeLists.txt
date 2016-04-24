@@ -73,6 +73,7 @@ add_executable(GameTests GameTests.cpp
    ../src/utils/ClosedInterval.cpp ../src/utils/ClosedInterval.hpp
    ../src/utils/PermanentMediumPrototyper.hpp ../src/utils/PermanentMediumPrototyper.cpp
    ../src/utils/TextFileReader.hpp ../src/utils/TextFileReader.cpp
+   ../src/utils/TextFileWriter.hpp ../src/utils/TextFileWriter.cpp
    ../src/utils/PermanentMediumReader.hpp
    ../src/models/Suit.cpp ../src/models/Suit.hpp
    ../src/models/Deck.cpp ../src/models/Deck.hpp

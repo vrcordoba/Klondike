@@ -10,6 +10,11 @@ MovementHistory::MovementHistory() : undoableHistoryM(), redoableHistoryM()
 
 MovementHistory::~MovementHistory()
 {
+   emptyHistory();
+}
+
+void MovementHistory::emptyHistory()
+{
    emptyHistory(undoableHistoryM);
    emptyHistory(redoableHistoryM);
 }

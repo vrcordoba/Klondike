@@ -12,6 +12,16 @@ FrenchCardTextView::~FrenchCardTextView()
 {
 }
 
+Configuration::DeckType::Type FrenchCardTextView::type()
+{
+   return Configuration::DeckType::Type::FRENCH;
+}
+
+CardView* FrenchCardTextView::clone()
+{
+   return new FrenchCardTextView();
+}
+
 void FrenchCardTextView::constructRepresentation()
 {
    numberRepresentationM.push_back("A");

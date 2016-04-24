@@ -12,12 +12,13 @@ namespace Utils
 class TextFileWriter final : public PermanentMediumWriter
 {
 public:
+   TextFileWriter();
    ~TextFileWriter();
 
    TextFileWriter(const TextFileWriter&) = delete;
    TextFileWriter& operator=(const TextFileWriter&) = delete;
 
-   PermanentMediumType::Type type();
+   Configuration::PermanentMediumType type();
    PermanentMediumWriter* clone();
 
    void open(const std::string& name);
@@ -28,9 +29,6 @@ protected:
    explicit TextFileWriter(std::uint8_t dummy);
 
 private:
-   TextFileWriter();
-
-   static TextFileWriter textFileWriterM;
    std::ofstream fileM;
 };
 

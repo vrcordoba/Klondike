@@ -2,6 +2,7 @@
 #define VIEWS_TEXT_SPANISHCARDTEXTVIEW_HPP_
 
 #include "CardTextView.hpp"
+#include "DeckType.hpp"
 
 namespace Views
 {
@@ -14,6 +15,9 @@ public:
 
    SpanishCardTextView(const SpanishCardTextView&) = delete;
    SpanishCardTextView& operator=(const SpanishCardTextView&) = delete;
+
+   Configuration::DeckType::Type type();
+   CardView* clone();
 
    void constructRepresentation();
 };

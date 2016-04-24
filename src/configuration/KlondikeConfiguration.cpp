@@ -8,7 +8,8 @@
 namespace Configuration
 {
 
-KlondikeConfiguration::KlondikeConfiguration() : deckTypeM(), viewTypeM(ViewType::TEXT)
+KlondikeConfiguration::KlondikeConfiguration() : deckTypeM(), viewTypeM(ViewType::TEXT),
+   permanentMediumTypeM(PermanentMediumType::PLAIN_TEXT)
 {
    interpretReadConfiguration(readConfiguration());
 }
@@ -37,11 +38,16 @@ ViewType KlondikeConfiguration::getViewType() const
    return viewTypeM;
 }
 
+PermanentMediumType KlondikeConfiguration::getPermanentMediumType() const
+{
+   return permanentMediumTypeM;
+}
+
 std::list<std::string> KlondikeConfiguration::readConfiguration() const
 {
    Utils::PermanentMediumReader* configurationReader =
-      Utils::PermanentMediumPrototyper::getReader(
-         Utils::PermanentMediumType::PLAIN_TEXT);
+      Utils::PermanentMediumPrototyper().getReader(
+         PermanentMediumType::PLAIN_TEXT);
    configurationReader->open(CONFIGURATION_FILE);
    std::list<std::string> configurations;
    if (configurationReader->isOk())

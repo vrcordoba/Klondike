@@ -1,5 +1,6 @@
 
 #include "Ranking.hpp"
+#include "KlondikeConfiguration.hpp"
 #include "PermanentMediumReader.hpp"
 #include "PermanentMediumWriter.hpp"
 #include "PermanentMediumType.hpp"
@@ -38,8 +39,8 @@ std::uint32_t Ranking::insertInRanking(std::uint32_t currentScore)
 void Ranking::loadRanking()
 {
    Utils::PermanentMediumReader* rankingReader =
-      Utils::PermanentMediumPrototyper::getReader(
-         Utils::PermanentMediumType::PLAIN_TEXT);
+      Utils::PermanentMediumPrototyper().getReader(
+         Configuration::KlondikeConfiguration::getInstance().getPermanentMediumType());
    rankingReader->open(rankingFileM);
    if (rankingReader->isOk())
    {
@@ -58,8 +59,8 @@ void Ranking::loadRanking()
 void Ranking::saveRanking()
 {
    Utils::PermanentMediumWriter* rankingWriter =
-      Utils::PermanentMediumPrototyper::getWriter(
-         Utils::PermanentMediumType::PLAIN_TEXT);
+      Utils::PermanentMediumPrototyper().getWriter(
+         Configuration::PermanentMediumType::PLAIN_TEXT);
    rankingWriter->open(rankingFileM);
    if (rankingWriter->isOk())
    {

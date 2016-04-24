@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "CardTextViewManager.hpp"
+#include "CardTextViewPrototyper.hpp"
 #include "CardTableController.hpp"
 #include "CardView.hpp"
 #include "IO.hpp"
@@ -24,7 +24,7 @@ CardTableTextView::~CardTableTextView()
 
 void CardTableTextView::buildCardView()
 {
-   cardViewM = CardTextViewManager().getView();
+   cardViewM = CardTextViewPrototyper().getView();
 }
 
 void CardTableTextView::show()

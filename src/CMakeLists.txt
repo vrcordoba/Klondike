@@ -15,6 +15,7 @@ set(HEADER_FILES
    configuration/KlondikeConfiguration.hpp
    configuration/DeckType.hpp
    configuration/ViewType.hpp
+   configuration/PermanentMediumType.hpp
 
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
@@ -37,6 +38,7 @@ set(HEADER_FILES
    controllers/MovementHistory.hpp
    controllers/CommandManager.hpp
    controllers/CommandVisitor.hpp
+   controllers/SaveController.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -61,7 +63,6 @@ set(HEADER_FILES
    utils/TextMenu.hpp
    utils/CommandReader.hpp
    utils/PermanentMediumPrototyper.hpp
-   utils/PermanentMediumType.hpp
    utils/PermanentMediumReader.hpp
    utils/PermanentMediumWriter.hpp
    utils/TextFileReader.hpp
@@ -74,16 +75,18 @@ set(HEADER_FILES
    views/CardTableView.hpp
    views/CardView.hpp
    views/ViewManager.hpp
+   views/SaveView.hpp
    views/text/KlondikeTextView.hpp
    views/text/StartTextView.hpp
    views/text/GameTextView.hpp
    views/text/ContinueTextView.hpp
    views/text/CardTableTextView.hpp
-   views/text/CardTextViewManager.hpp
+   views/text/CardTextViewPrototyper.hpp
    views/text/CardTextView.hpp
    views/text/FrenchCardTextView.hpp
    views/text/SpanishCardTextView.hpp
    views/text/CommandInterpreter.hpp
+   views/text/SaveTextView.hpp
 )
 
 set(SOURCE_FILES
@@ -109,6 +112,7 @@ set(SOURCE_FILES
    controllers/MoveController.cpp
    controllers/MovementHistory.cpp
    controllers/CommandManager.cpp
+   controllers/SaveController.cpp
 
    models/Suit.cpp
    models/Card.cpp
@@ -140,11 +144,12 @@ set(SOURCE_FILES
    views/text/GameTextView.cpp
    views/text/ContinueTextView.cpp
    views/text/CardTableTextView.cpp
-   views/text/CardTextViewManager.cpp
+   views/text/CardTextViewPrototyper.cpp
    views/text/CardTextView.cpp
    views/text/FrenchCardTextView.cpp
    views/text/SpanishCardTextView.cpp
    views/text/CommandInterpreter.cpp
+   views/text/SaveTextView.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")

@@ -23,6 +23,8 @@ public:
    void undo();
    void redo();
 
+   void emptyHistory();
+
 private:
    void emptyHistory(std::deque<CardCommand*>& history);
 

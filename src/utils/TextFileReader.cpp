@@ -6,11 +6,8 @@
 namespace Utils
 {
 
-TextFileReader TextFileReader::textFileReaderM;
-
 TextFileReader::TextFileReader() : fileM()
 {
-   PermanentMediumPrototyper::addReaderPrototype(this);
 }
 
 TextFileReader::TextFileReader(std::uint8_t dummy) : fileM()
@@ -23,9 +20,9 @@ TextFileReader::~TextFileReader()
       fileM.close();
 }
 
-PermanentMediumType::Type TextFileReader::type()
+Configuration::PermanentMediumType TextFileReader::type()
 {
-   return PermanentMediumType::Type::PLAIN_TEXT;
+   return Configuration::PermanentMediumType::PLAIN_TEXT;
 }
 
 PermanentMediumReader* TextFileReader::clone()
