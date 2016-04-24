@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include "PermanentMediumReader.hpp"
+#include "PermanentMediumType.hpp"
 
 namespace Utils
 {
@@ -11,17 +12,23 @@ namespace Utils
 class TextFileReader final : public PermanentMediumReader
 {
 public:
-   TextFileReader();
+   TextFileReader(std::uint8_t dummy);
    ~TextFileReader();
 
    TextFileReader(const TextFileReader&) = delete;
    TextFileReader& operator=(const TextFileReader&) = delete;
+
+   PermanentMediumType::Type type();
+   PermanentMediumReader* clone();
 
    void open(std::string name);
    bool isOk() const;
    bool getLine(std::string& line);
 
 private:
+   TextFileReader();
+
+   static TextFileReader textFileReaderM;
    std::ifstream fileM;
 };
 

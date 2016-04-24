@@ -37,17 +37,17 @@ bool GameController::visit(MoveCommand* moveCommand)
 
 bool GameController::visit(DrawCardCommand* drawCardCommand)
 {
-   if (Phase::APPLY_MOVEMENT == phaseM)
+   if (Phase::APPLYCOMMAND == phaseM)
       moveControllerM.applyDrawCard(drawCardCommand);
    return true;
 }
 
 bool GameController::visit(LeaveCommand* leaveCommand)
 {
-   if (Phase::APPLY_MOVEMENT == phaseM)
+   if (Phase::APPLYCOMMAND == phaseM)
    {
       if (LeaveCommand::Type::LEAVE_CLOSE == leaveCommand->getType())
-         Controller::setState(Models::State::END);
+         Controller::setState(Models::State::CONTINUE);
       else
          Controller::initializeGame();
    }
@@ -81,7 +81,7 @@ bool GameController::isValidCommand(Command* command)
 
 void GameController::applyCommand(Command* command)
 {
-   phaseM = Phase::APPLY_MOVEMENT;
+   phaseM = Phase::APPLYCOMMAND;
    command->accept(this);
 
    if (Controller::isGameWon())

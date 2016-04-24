@@ -1,6 +1,7 @@
 
 #include "Ranking.hpp"
 #include "PermanentMediumReader.hpp"
+#include "PermanentMediumType.hpp"
 #include "PermanentMediumReaderPrototyper.hpp"
 
 namespace Models
@@ -31,7 +32,8 @@ std::uint32_t Ranking::obtainPositionInRanking(std::uint32_t currentScore)
 void Ranking::readRanking()
 {
    Utils::PermanentMediumReader* rankingReader =
-      Utils::PermanentMediumReaderPrototyper::makePrototype(Utils::PermanentMediumReaderPrototyper::PLAIN_TEXT);
+      Utils::PermanentMediumReaderPrototyper::findAndClone(
+         Utils::PermanentMediumType::PLAIN_TEXT);
    rankingReader->open(rankingFileM);
    if (rankingReader->isOk())
    {
@@ -44,6 +46,7 @@ void Ranking::readRanking()
             rankingM.insert((atoi(score.c_str())));
       } while (continueReading);
    }
+   delete rankingReader;
 }
 
 }

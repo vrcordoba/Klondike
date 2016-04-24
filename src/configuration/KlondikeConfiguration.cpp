@@ -2,6 +2,7 @@
 #include "KlondikeConfiguration.hpp"
 
 #include "PermanentMediumReaderPrototyper.hpp"
+#include "PermanentMediumType.hpp"
 #include "PermanentMediumReader.hpp"
 
 namespace Configuration
@@ -39,8 +40,8 @@ ViewType KlondikeConfiguration::getViewType() const
 std::list<std::string> KlondikeConfiguration::readConfiguration() const
 {
    Utils::PermanentMediumReader* configurationReader =
-      Utils::PermanentMediumReaderPrototyper::makePrototype(
-         Utils::PermanentMediumReaderPrototyper::PLAIN_TEXT);
+      Utils::PermanentMediumReaderPrototyper::findAndClone(
+         Utils::PermanentMediumType::PLAIN_TEXT);
    configurationReader->open(CONFIGURATION_FILE);
    std::list<std::string> configurations;
    if (configurationReader->isOk())
@@ -54,6 +55,7 @@ std::list<std::string> KlondikeConfiguration::readConfiguration() const
             configurations.push_back(configuration);
       } while (continueReading);
    }
+   delete configurationReader;
    return configurations;
 }
 

@@ -60,6 +60,7 @@ set(HEADER_FILES
    utils/TextMenu.hpp
    utils/CommandReader.hpp
    utils/PermanentMediumReaderPrototyper.hpp
+   utils/PermanentMediumType.hpp
    utils/PermanentMediumReader.hpp
    utils/PermanentMediumWriter.hpp
    utils/TextFileReader.hpp

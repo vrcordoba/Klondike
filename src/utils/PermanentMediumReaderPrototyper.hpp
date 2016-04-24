@@ -2,6 +2,7 @@
 #define UTILS_PERMANENTMEDIUMREADERPROTOTYPER_HPP_
 
 #include <cstdint>
+#include "PermanentMediumType.hpp"
 
 namespace Utils
 {
@@ -14,16 +15,12 @@ public:
    PermanentMediumReaderPrototyper();
    ~PermanentMediumReaderPrototyper();
 
-   enum
-   {
-      PLAIN_TEXT
-   };
-
-   static PermanentMediumReader* makePrototype(std::uint8_t prototype);
+   static PermanentMediumReader* findAndClone(PermanentMediumType::Type type);
+   static void addPrototype(PermanentMediumReader* medium);
 
 private:
-   static const std::uint8_t NUM_READER_TYPES = 1;
-   static PermanentMediumReader* prototypes[NUM_READER_TYPES];
+   static std::uint8_t nextSlotM;
+   static PermanentMediumReader* prototypesM[PermanentMediumType::NUM_PERMANENT_MEDIUMS];
 };
 
 }

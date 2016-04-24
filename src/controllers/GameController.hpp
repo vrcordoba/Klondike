@@ -46,7 +46,7 @@ private:
    enum class Phase
    {
       VALIDATION,
-      APPLY_MOVEMENT
+      APPLYCOMMAND
    };
    Phase phaseM;
 };

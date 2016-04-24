@@ -2,6 +2,7 @@
 #define UTILS_PERMANENTMEDIUMREADER_HPP_
 
 #include <string>
+#include "PermanentMediumType.hpp"
 
 namespace Utils
 {
@@ -10,6 +11,9 @@ class PermanentMediumReader
 {
 public:
    virtual ~PermanentMediumReader() {};
+
+   virtual PermanentMediumType::Type type() = 0;
+   virtual PermanentMediumReader* clone() = 0;
 
    virtual void open(std::string name) = 0;
    virtual bool isOk() const = 0;

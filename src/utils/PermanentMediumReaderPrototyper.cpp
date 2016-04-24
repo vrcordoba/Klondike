@@ -1,9 +1,7 @@
 
 #include "PermanentMediumReaderPrototyper.hpp"
 
-#include <cassert>
 #include "PermanentMediumReader.hpp"
-#include "TextFileReader.hpp"
 
 namespace Utils
 {
@@ -16,12 +14,21 @@ PermanentMediumReaderPrototyper::~PermanentMediumReaderPrototyper()
 {
 }
 
-PermanentMediumReader* PermanentMediumReaderPrototyper::prototypes[] = {new TextFileReader()};
+PermanentMediumReader* PermanentMediumReaderPrototyper::prototypesM[];
+std::uint8_t PermanentMediumReaderPrototyper::nextSlotM;
 
-PermanentMediumReader* PermanentMediumReaderPrototyper::makePrototype(std::uint8_t prototype)
+void PermanentMediumReaderPrototyper::addPrototype(PermanentMediumReader* medium)
 {
-   assert(prototype < NUM_READER_TYPES);
-   return prototypes[prototype];
+   prototypesM[nextSlotM++] = medium;
+}
+
+PermanentMediumReader* PermanentMediumReaderPrototyper::findAndClone(
+   PermanentMediumType::Type permanentMediumType)
+{
+  for (int i = 0; i < nextSlotM; i++)
+    if (permanentMediumType == prototypesM[i]->type())
+      return prototypesM[i]->clone();
+  return nullptr;
 }
 
 }
