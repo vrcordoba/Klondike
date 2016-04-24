@@ -59,7 +59,7 @@ set(HEADER_FILES
    utils/YesNoDialog.hpp
    utils/TextMenu.hpp
    utils/CommandReader.hpp
-   utils/PermanentMediumReaderPrototyper.hpp
+   utils/PermanentMediumPrototyper.hpp
    utils/PermanentMediumType.hpp
    utils/PermanentMediumReader.hpp
    utils/PermanentMediumWriter.hpp
@@ -128,9 +128,9 @@ set(SOURCE_FILES
    utils/YesNoDialog.cpp
    utils/TextMenu.cpp
    utils/CommandReader.cpp
-   utils/PermanentMediumReaderPrototyper.cpp
+   utils/PermanentMediumPrototyper.cpp
    utils/TextFileReader.cpp
-   utils/TextFileWriter.hpp
+   utils/TextFileWriter.cpp
 
    views/ViewManager.cpp
    views/text/KlondikeTextView.cpp

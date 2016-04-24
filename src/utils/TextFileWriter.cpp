@@ -1,21 +1,46 @@
 
 #include "TextFileWriter.hpp"
 
+#include "PermanentMediumPrototyper.hpp"
+
 namespace Utils
 {
 
-TextFileWriter::TextFileWriter(std::string& fileName) : fileM(fileName)
+TextFileWriter TextFileWriter::textFileWriterM;
+
+TextFileWriter::TextFileWriter() : fileM()
+{
+   PermanentMediumPrototyper::addWriterPrototype(this);
+}
+
+TextFileWriter::TextFileWriter(std::uint8_t dummy) : fileM()
 {
 }
 
 TextFileWriter::~TextFileWriter()
 {
-   fileM.close();
+   if (isOk())
+      fileM.close();
 }
 
-void TextFileWriter::writeLine(const std::string& line)
+PermanentMediumType::Type TextFileWriter::type()
 {
-   fileM << line;
+   return PermanentMediumType::Type::PLAIN_TEXT;
+}
+
+PermanentMediumWriter* TextFileWriter::clone()
+{
+   return new TextFileWriter(1);
+}
+
+void TextFileWriter::open(std::string name)
+{
+   fileM.open(name + ".txt");
+}
+
+void TextFileWriter::writeLine(const std::string line)
+{
+   fileM << line << std::endl;
 }
 
 bool TextFileWriter::isOk() const

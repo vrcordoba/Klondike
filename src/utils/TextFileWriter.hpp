@@ -3,6 +3,8 @@
 
 #include <fstream>
 #include <string>
+#include "PermanentMediumWriter.hpp"
+#include "PermanentMediumType.hpp"
 
 namespace Utils
 {
@@ -10,16 +12,25 @@ namespace Utils
 class TextFileWriter final : public PermanentMediumWriter
 {
 public:
-   explicit TextFileWriter(std::string& fileName);
    ~TextFileWriter();
 
    TextFileWriter(const TextFileWriter&) = delete;
    TextFileWriter& operator=(const TextFileWriter&) = delete;
 
+   PermanentMediumType::Type type();
+   PermanentMediumWriter* clone();
+
+   void open(std::string name);
    bool isOk() const;
-   void writeLine(const std::string& line);
+   void writeLine(const std::string line);
+
+protected:
+   explicit TextFileWriter(std::uint8_t dummy);
 
 private:
+   TextFileWriter();
+
+   static TextFileWriter textFileWriterM;
    std::ofstream fileM;
 };
 

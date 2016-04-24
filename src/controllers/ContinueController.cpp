@@ -1,7 +1,7 @@
 
+#include <PermanentMediumPrototyper.hpp>
 #include "ContinueController.hpp"
 
-#include "PermanentMediumReaderPrototyper.hpp"
 #include "OperationControllerVisitor.hpp"
 #include "Score.hpp"
 #include "Ranking.hpp"
@@ -28,10 +28,13 @@ void ContinueController::accept(OperationControllerVisitor* operationControllerV
    operationControllerVisitor->visit(this);
 }
 
-void ContinueController::ranking()
+void ContinueController::ranking(std::uint32_t& position, std::set<std::uint32_t>& bestScores)
 {
    Models::Score& score = Controller::getScore();
    Models::Ranking ranking(RANKING_FILE);
+   position = ranking.insertInRanking(score.getScore());
+   ranking.saveRanking();
+   bestScores = ranking.bestScores();
 }
 
 void ContinueController::resume(bool otherGame)

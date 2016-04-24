@@ -12,7 +12,6 @@ namespace Utils
 class TextFileReader final : public PermanentMediumReader
 {
 public:
-   TextFileReader(std::uint8_t dummy);
    ~TextFileReader();
 
    TextFileReader(const TextFileReader&) = delete;
@@ -24,6 +23,9 @@ public:
    void open(std::string name);
    bool isOk() const;
    bool getLine(std::string& line);
+
+protected:
+   explicit TextFileReader(std::uint8_t dummy);
 
 private:
    TextFileReader();

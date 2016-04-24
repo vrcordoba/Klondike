@@ -1,25 +1,25 @@
 
 #include "TextFileReader.hpp"
 
-#include "PermanentMediumReaderPrototyper.hpp"
+#include "PermanentMediumPrototyper.hpp"
 
 namespace Utils
 {
 
 TextFileReader TextFileReader::textFileReaderM;
 
+TextFileReader::TextFileReader() : fileM()
+{
+   PermanentMediumPrototyper::addReaderPrototype(this);
+}
+
 TextFileReader::TextFileReader(std::uint8_t dummy) : fileM()
 {
 }
 
-TextFileReader::TextFileReader() : fileM()
-{
-   PermanentMediumReaderPrototyper::addPrototype(this);
-}
-
 TextFileReader::~TextFileReader()
 {
-   if (fileM.is_open())
+   if (isOk())
       fileM.close();
 }
 
@@ -30,7 +30,7 @@ PermanentMediumType::Type TextFileReader::type()
 
 PermanentMediumReader* TextFileReader::clone()
 {
-   return new TextFileReader();
+   return new TextFileReader(1);
 }
 
 void TextFileReader::open(std::string name)

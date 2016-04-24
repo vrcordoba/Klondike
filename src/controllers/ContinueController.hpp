@@ -1,6 +1,8 @@
 #ifndef CONTROLLERS_CONTINUECONTROLLER_HPP_
 #define CONTROLLERS_CONTINUECONTROLLER_HPP_
 
+#include <cstdint>
+#include <set>
 #include <string>
 #include "Controller.hpp"
 #include "OperationController.hpp"
@@ -26,7 +28,7 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   void ranking();
+   void ranking(std::uint32_t& position, std::set<std::uint32_t>& bestScores);
 
    void resume(bool otherGame);
 

@@ -2,6 +2,7 @@
 #define UTILS_PERMANENTMEDIUMWRITER_HPP_
 
 #include <string>
+#include "PermanentMediumType.hpp"
 
 namespace Utils
 {
@@ -11,8 +12,12 @@ class PermanentMediumWriter
 public:
    virtual ~PermanentMediumWriter() {};
 
+   virtual PermanentMediumType::Type type() = 0;
+   virtual PermanentMediumWriter* clone() = 0;
+
+   virtual void open(std::string name) = 0;
    virtual bool isOk() const = 0;
-   virtual bool writeLine(std::string& line) = 0;
+   virtual void writeLine(const std::string line) = 0;
 };
 
 }
