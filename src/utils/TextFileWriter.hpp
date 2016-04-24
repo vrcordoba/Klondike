@@ -20,9 +20,9 @@ public:
    PermanentMediumType::Type type();
    PermanentMediumWriter* clone();
 
-   void open(std::string name);
+   void open(const std::string& name);
    bool isOk() const;
-   void writeLine(const std::string line);
+   void writeLine(const std::string& line);
 
 protected:
    explicit TextFileWriter(std::uint8_t dummy);

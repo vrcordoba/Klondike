@@ -19,22 +19,18 @@ Ranking::~Ranking()
 std::uint32_t Ranking::insertInRanking(std::uint32_t currentScore)
 {
    loadRanking();
-   std::uint32_t positionInRanking = SCORES_TO_SAVE + 1, i = 1;
-   for (std::set<std::uint32_t>::const_iterator rankingIt = rankingM.begin();
+   std::uint32_t positionInRanking = 1;
+   for (std::vector<std::uint32_t>::iterator rankingIt = rankingM.begin();
       rankingIt != rankingM.end(); ++rankingIt)
    {
       if (currentScore > *rankingIt)
       {
-         positionInRanking = i;
+         rankingM.insert(rankingIt, currentScore);
+         rankingIt = rankingM.end();
+         rankingM.erase(--rankingIt);
          break;
       }
-      i++;
-   }
-   if (positionInRanking <= SCORES_TO_SAVE)
-   {
-      rankingM.insert(currentScore);
-      std::set<std::uint32_t>::iterator rankingIt = rankingM.end();
-      rankingM.erase(--rankingIt);
+      ++positionInRanking;
    }
    return positionInRanking;
 }
@@ -53,7 +49,7 @@ void Ranking::loadRanking()
          std::string score;
          continueReading = rankingReader->getLine(score);
          if (not score.empty())
-            rankingM.insert(atoi(score.c_str()));
+            rankingM.push_back(atoi(score.c_str()));
       } while (continueReading);
    }
    delete rankingReader;
@@ -67,7 +63,7 @@ void Ranking::saveRanking()
    rankingWriter->open(rankingFileM);
    if (rankingWriter->isOk())
    {
-      std::set<std::uint32_t>::const_iterator rankingIt = rankingM.begin();
+      std::vector<std::uint32_t>::const_iterator rankingIt = rankingM.begin();
       for (std::uint8_t i = 0; i < SCORES_TO_SAVE; ++i)
       {
          rankingWriter->writeLine(std::to_string(*rankingIt));
@@ -77,7 +73,7 @@ void Ranking::saveRanking()
    delete rankingWriter;
 }
 
-std::set<std::uint32_t> Ranking::bestScores()
+std::vector<std::uint32_t> Ranking::bestScores()
 {
    return rankingM;
 }

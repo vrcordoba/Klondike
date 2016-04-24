@@ -2,7 +2,7 @@
 #define VIEWS_TEXT_CONTINUETEXTVIEW_HPP_
 
 #include <cstdint>
-#include <set>
+#include <vector>
 #include "ContinueView.hpp"
 
 namespace Controllers
@@ -26,7 +26,7 @@ public:
 
 private:
    void showRanking(std::uint32_t positionInRanking,
-      const std::set<std::uint32_t>& bestScores);
+      const std::vector<std::uint32_t>& bestScores);
 };
 
 }

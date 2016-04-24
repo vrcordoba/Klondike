@@ -19,7 +19,7 @@ ContinueTextView::~ContinueTextView()
 void ContinueTextView::interact(Controllers::ContinueController* continueController)
 {
    std::uint32_t positionInRanking;
-   std::set<std::uint32_t> bestScores;
+   std::vector<std::uint32_t> bestScores;
    continueController->ranking(positionInRanking, bestScores);
    showRanking(positionInRanking, bestScores);
    Utils::YesNoDialog dialog("Do you want to play again?");
@@ -27,7 +27,7 @@ void ContinueTextView::interact(Controllers::ContinueController* continueControl
 }
 
 void ContinueTextView::showRanking(std::uint32_t positionInRanking,
-   const std::set<std::uint32_t>& bestScores)
+   const std::vector<std::uint32_t>& bestScores)
 {
    std::uint32_t i = 1;
    Utils::IO& io = Utils::IO::getInstance();
@@ -35,7 +35,7 @@ void ContinueTextView::showRanking(std::uint32_t positionInRanking,
    for (std::uint32_t score : bestScores)
    {
       if (positionInRanking == i)
-         io.writeString(std::to_string(i) + " - >>> " + std::to_string(score) + "<<< Your score");
+         io.writeString(std::to_string(i) + " - >>> " + std::to_string(score) + " <<< Your score");
       else
          io.writeString(std::to_string(i) + " - " + std::to_string(score));
       ++i;

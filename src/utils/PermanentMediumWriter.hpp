@@ -15,9 +15,9 @@ public:
    virtual PermanentMediumType::Type type() = 0;
    virtual PermanentMediumWriter* clone() = 0;
 
-   virtual void open(std::string name) = 0;
+   virtual void open(const std::string& name) = 0;
    virtual bool isOk() const = 0;
-   virtual void writeLine(const std::string line) = 0;
+   virtual void writeLine(const std::string& line) = 0;
 };
 
 }

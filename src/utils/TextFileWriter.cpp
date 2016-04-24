@@ -33,12 +33,12 @@ PermanentMediumWriter* TextFileWriter::clone()
    return new TextFileWriter(1);
 }
 
-void TextFileWriter::open(std::string name)
+void TextFileWriter::open(const std::string& name)
 {
    fileM.open(name + ".txt");
 }
 
-void TextFileWriter::writeLine(const std::string line)
+void TextFileWriter::writeLine(const std::string& line)
 {
    fileM << line << std::endl;
 }

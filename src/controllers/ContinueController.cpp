@@ -28,7 +28,7 @@ void ContinueController::accept(OperationControllerVisitor* operationControllerV
    operationControllerVisitor->visit(this);
 }
 
-void ContinueController::ranking(std::uint32_t& position, std::set<std::uint32_t>& bestScores)
+void ContinueController::ranking(std::uint32_t& position, std::vector<std::uint32_t>& bestScores)
 {
    Models::Score& score = Controller::getScore();
    Models::Ranking ranking(RANKING_FILE);

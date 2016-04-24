@@ -14,7 +14,7 @@ FrenchCardTextView::~FrenchCardTextView()
 
 void FrenchCardTextView::constructRepresentation()
 {
-   numberRepresentationM.push_back("1");
+   numberRepresentationM.push_back("A");
    numberRepresentationM.push_back("2");
    numberRepresentationM.push_back("3");
    numberRepresentationM.push_back("4");
