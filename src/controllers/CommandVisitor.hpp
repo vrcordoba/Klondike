@@ -8,6 +8,7 @@ class MoveCommand;
 class DrawCardCommand;
 class LeaveCommand;
 class ModifyHistoryCommand;
+class SaveCommand;
 
 class CommandVisitor
 {
@@ -17,6 +18,7 @@ public:
    virtual bool visit(DrawCardCommand* drawCardCommand) = 0;
    virtual bool visit(LeaveCommand* leaveCommand) = 0;
    virtual bool visit(ModifyHistoryCommand* modifyHistoryCommand) = 0;
+   virtual bool visit(SaveCommand* modifyHistoryCommand) = 0;
 };
 
 }

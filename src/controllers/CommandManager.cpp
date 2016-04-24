@@ -6,6 +6,7 @@
 #include "MoveCommand.hpp"
 #include "LeaveCommand.hpp"
 #include "ModifyHistoryCommand.hpp"
+#include "SaveCommand.hpp"
 
 namespace Controllers
 {
@@ -26,6 +27,8 @@ Command* CommandManager::getCommand(CommandType commandType,
       command = new DrawCardCommand();
    else if (CommandType::MOVE == commandType)
       command = new MoveCommand(additionalArguments);
+   else if (CommandType::SAVE == commandType)
+      command = new SaveCommand();
    else if (CommandType::UNDO == commandType)
       command = new ModifyHistoryCommand(ModifyHistoryCommand::Type::UNDO);
    else if (CommandType::REDO == commandType)

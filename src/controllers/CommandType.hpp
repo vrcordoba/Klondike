@@ -15,7 +15,8 @@ enum class CommandType
    INIT,
    LEAVE,
    UNDO,
-   REDO
+   REDO,
+   SAVE
 };
 
 }

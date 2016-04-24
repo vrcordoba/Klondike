@@ -73,6 +73,11 @@ bool GameController::visit(ModifyHistoryCommand* modifyHistoryCommand)
    return true;
 }
 
+bool GameController::visit(SaveCommand* modifyHistoryCommand)
+{
+   return true;
+}
+
 bool GameController::isValidCommand(Command* command)
 {
    phaseM = Phase::VALIDATION;

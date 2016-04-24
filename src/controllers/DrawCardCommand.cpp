@@ -36,17 +36,20 @@ void DrawCardCommand::execute()
       moveCards(waste, deck, numCardsInWaste);
       deck->setUpturnCards(numCardsInWaste, false);
    }
-   numMovedCardsM = deck->getNumCards() > CardCommand::getController()->getNumCardsToDraw() ?
-      CardCommand::getController()->getNumCardsToDraw() : deck->getNumCards();
-   moveCards(deck, waste, numMovedCardsM);
-   waste->setUpturnCards(numMovedCardsM, true);
+   else
+   {
+      numMovedCardsM = deck->getNumCards() > CardCommand::getController()->getNumCardsToDraw() ?
+         CardCommand::getController()->getNumCardsToDraw() : deck->getNumCards();
+      moveCards(deck, waste, numMovedCardsM);
+      waste->setUpturnCards(numMovedCardsM, true);
+   }
 }
 
 void DrawCardCommand::undo()
 {
    Models::Pile* deck = CardCommand::getController()->getDeck();
    Models::Pile* waste = CardCommand::getController()->getWaste();
-   if (numMovedCardsM == waste->getNumCards())
+   if (0 == waste->getNumCards())
    {
       std::uint8_t numCardsInDeck = deck->getNumCards();
       moveCards(deck, waste, numCardsInDeck);

@@ -112,6 +112,7 @@ void GameTextView::showHelp() const
       "from origin (w/t1/t2/t3/...) to destination (f1/f2/f3/f4/t1/t2/t3/...). If "
       "\"num_cards\" is not specified only one card is moved.");
    io.writeString("d/draw - Draw card from deck to waste.");
+   io.writeString("s/save - Save current game");
    io.writeString("u/undo - Undo last movement.");
    io.writeString("r/redo - Redo last movement.");
    io.writeString("i/init - Init game.");

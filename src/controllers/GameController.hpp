@@ -32,6 +32,7 @@ public:
    bool visit(DrawCardCommand* drawCardCommand);
    bool visit(LeaveCommand* leaveCommand);
    bool visit(ModifyHistoryCommand* modifyHistoryCommand);
+   bool visit(SaveCommand* modifyHistoryCommand);
 
    bool isValidCommand(Command* command);
    void applyCommand(Command* command);

@@ -46,6 +46,8 @@ void CommandInterpreter::interpretTypeOfCommand()
       commandTypeM = Controllers::CommandType::DRAWCARD;
    else if ((order == "m") or (order == "move"))
       commandTypeM = Controllers::CommandType::MOVE;
+   else if ((order == "s") or (order == "save"))
+      commandTypeM = Controllers::CommandType::SAVE;
    else if ((order == "u") or (order == "undo"))
       commandTypeM = Controllers::CommandType::UNDO;
    else if ((order == "r") or (order == "redo"))
