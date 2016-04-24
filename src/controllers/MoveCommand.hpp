@@ -52,6 +52,8 @@ private:
    std::uint8_t destinationPileTypeM;
    std::uint8_t destinationPileNumberM;
    std::uint8_t numCardsM;
+
+   bool previousCardInPileNotUpturnedM;
 };
 
 }

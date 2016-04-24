@@ -14,7 +14,8 @@ namespace Controllers
 MoveCommand::MoveCommand(const std::vector<std::uint8_t>& additionalArguments) :
    CardCommand(), originPileTypeM(additionalArguments[0]),
    originPileNumberM(additionalArguments[1]), destinationPileTypeM(additionalArguments[2]),
-   destinationPileNumberM(additionalArguments[3]), numCardsM(additionalArguments[4])
+   destinationPileNumberM(additionalArguments[3]), numCardsM(additionalArguments[4]),
+   previousCardInPileNotUpturnedM(false)
 {
 }
 
@@ -88,19 +89,22 @@ void MoveCommand::execute()
    moveCards(originPile, destinationPile, numCardsM);
    if (originPile->getNumCards() > 0 and not originPile->isTopCardUnturned())
    {
+      previousCardInPileNotUpturnedM = true;
       originPile->setUpturnCards(1, true);
       updateScore(true);
    }
    else
+   {
+      previousCardInPileNotUpturnedM = false;
       updateScore(false);
+   }
 }
 
 void MoveCommand::undo()
 {
    Models::Pile* originPile = getPile(originPileTypeM, originPileNumberM);
    Models::Pile* destinationPile = getPile(destinationPileTypeM, destinationPileNumberM);
-   if (originPile->getNumCards() > 0 and originPile->isTopCardUnturned()
-      and Models::PileType::WASTE != originPileTypeM)
+   if (previousCardInPileNotUpturnedM)
    {
       originPile->setUpturnCards(1, false);
       updateScore(true, true);
