@@ -16,9 +16,9 @@ Controller::~Controller()
 {
 }
 
-void Controller::initializeGame(std::uint8_t typeDeck)
+void Controller::initializeGame(Configuration::DeckType::Type typeDeck)
 {
-   if (std::numeric_limits<std::uint8_t>::max() == typeDeck)
+   if (Configuration::DeckType::Type::UNKNOWN == typeDeck)
       typeDeck = Configuration::KlondikeConfiguration::getInstance().getDeckType();
    gameM.initializeGame(typeDeck);
 }

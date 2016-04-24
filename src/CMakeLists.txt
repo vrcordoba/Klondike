@@ -49,7 +49,7 @@ set(HEADER_FILES
    models/CardTable.hpp
    models/State.hpp
    models/Game.hpp
-   models/DeckManager.hpp
+   models/DeckPrototyper.hpp
    models/Score.hpp
    models/PileType.hpp
    models/Ranking.hpp
@@ -120,7 +120,7 @@ set(SOURCE_FILES
    models/Tableau.cpp
    models/CardTable.cpp
    models/Game.cpp
-   models/DeckManager.cpp
+   models/DeckPrototyper.cpp
    models/Score.cpp
    models/Ranking.cpp
 

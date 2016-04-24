@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "Pile.hpp"
+#include "DeckType.hpp"
 
 namespace Models
 {
@@ -19,6 +20,9 @@ public:
 
    explicit Deck(const Deck&);
    Deck& operator=(const Deck&);
+
+   virtual Configuration::DeckType::Type type() = 0;
+   virtual Deck* clone() = 0;
 
    void shuffle();
    virtual void buildDeck() = 0;

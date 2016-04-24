@@ -16,6 +16,16 @@ FrenchDeck::~FrenchDeck()
 {
 }
 
+Configuration::DeckType::Type FrenchDeck::type()
+{
+   return Configuration::DeckType::Type::FRENCH;
+}
+
+Deck* FrenchDeck::clone()
+{
+   return new FrenchDeck();
+}
+
 void FrenchDeck::buildDeck()
 {
    const std::uint8_t numCards = getTotalNumCards();

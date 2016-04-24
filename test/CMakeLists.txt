@@ -76,7 +76,7 @@ add_executable(GameTests GameTests.cpp
    ../src/utils/PermanentMediumReader.hpp
    ../src/models/Suit.cpp ../src/models/Suit.hpp
    ../src/models/Deck.cpp ../src/models/Deck.hpp
-   ../src/models/DeckManager.cpp ../src/models/DeckManager.hpp
+   ../src/models/DeckPrototyper.cpp ../src/models/DeckPrototyper.hpp
    ../src/configuration/KlondikeConfiguration.cpp ../src/configuration/KlondikeConfiguration.hpp
    ../src/configuration/DeckType.cpp ../src/configuration/DeckType.hpp
    ../src/models/Tableau.cpp ../src/models/Tableau.hpp

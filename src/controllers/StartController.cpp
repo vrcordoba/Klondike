@@ -27,7 +27,7 @@ void StartController::start(std::uint8_t numPlayers,
    assert(Utils::ClosedInterval(Controller::getNumPlayers()).includes(numPlayers));
    // gameControllerBuilder
    // newOrSave
-   Controller::initializeGame(typeDeck);
+   Controller::initializeGame(static_cast<Configuration::DeckType::Type>(typeDeck));
    Controller::setState(Models::State::GAME);
    return;
 }

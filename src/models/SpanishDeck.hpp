@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "Deck.hpp"
+#include "DeckType.hpp"
 
 namespace Models
 {
@@ -17,6 +18,9 @@ public:
 
    SpanishDeck(const SpanishDeck&) = delete;
    SpanishDeck& operator=(const SpanishDeck&) = delete;
+
+   Configuration::DeckType::Type type();
+   Deck* clone();
 
    void buildDeck();
 

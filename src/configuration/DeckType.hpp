@@ -17,10 +17,11 @@ public:
    DeckType(const DeckType&) = delete;
    DeckType& operator=(const DeckType&) = delete;
 
-   enum Type
+   enum class Type : std::uint8_t
    {
       SPANISH = 1,
-      FRENCH
+      FRENCH,
+      UNKNOWN
    };
 
    std::list<std::string> getDeckDescriptions() const;

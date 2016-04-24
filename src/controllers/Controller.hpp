@@ -2,8 +2,8 @@
 #define CONTROLLERS_CONTROLLER_HPP_
 
 #include <cstdint>
-#include <limits>
 #include "State.hpp"
+#include "DeckType.hpp"
 
 namespace Models
 {
@@ -26,7 +26,7 @@ public:
    Controller& operator=(Controller&) = delete;
 
    void initializeGame(
-      std::uint8_t typeDeck = std::numeric_limits<std::uint8_t>::max());
+      Configuration::DeckType::Type typeDeck = Configuration::DeckType::Type::UNKNOWN);
 
    void setState(Models::State newState);
 

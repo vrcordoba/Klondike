@@ -21,12 +21,12 @@ CardTextViewManager::~CardTextViewManager()
 CardView* CardTextViewManager::getView() const
 {
    CardView* cardView;
-   if (Configuration::DeckType::SPANISH ==
+   if (Configuration::DeckType::Type::SPANISH ==
       Configuration::KlondikeConfiguration::getInstance().getDeckType())
    {
       cardView = new SpanishCardTextView();
    }
-   else if (Configuration::DeckType::FRENCH ==
+   else if (Configuration::DeckType::Type::FRENCH ==
       Configuration::KlondikeConfiguration::getInstance().getDeckType())
    {
       cardView = new FrenchCardTextView();
