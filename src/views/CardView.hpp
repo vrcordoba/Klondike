@@ -19,7 +19,7 @@ public:
    virtual CardView* clone() = 0;
 
    virtual void constructRepresentation() = 0;
-   virtual std::string show(const Controllers::FacadeCard& card) const = 0;
+   virtual void show(const Controllers::FacadeCard& card) const = 0;
 };
 
 }

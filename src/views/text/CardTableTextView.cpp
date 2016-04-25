@@ -46,20 +46,25 @@ void CardTableTextView::showDelimiter() const
 
 void CardTableTextView::showDeck()
 {
-   ioM.writeString("Deck: " + showPile(cardTableControllerM->getDeck()));
+   ioM.writeStringNotEndingLine("Deck: ");
+   showPile(cardTableControllerM->getDeck());
+   ioM.writeString("");
 }
 
 void CardTableTextView::showWaste()
 {
-   ioM.writeString("Waste: " + showPile(cardTableControllerM->getWaste()));
+   ioM.writeStringNotEndingLine("Waste: ");
+   showPile(cardTableControllerM->getWaste());
+   ioM.writeString("");
 }
 
 void CardTableTextView::showFoundations()
 {
    for (std::uint8_t i = 0; i < cardTableControllerM->getNumFoundations(); ++i)
    {
-      ioM.writeString("Foundation " + std::to_string(i + 1) + ": "
-         + showOnlyFirstCardInPile(cardTableControllerM->getFoundation(i)));
+      ioM.writeStringNotEndingLine("Foundation " + std::to_string(i + 1) + ": ");
+      showOnlyFirstCardInPile(cardTableControllerM->getFoundation(i));
+      ioM.writeString("");
    }
 }
 
@@ -67,28 +72,23 @@ void CardTableTextView::showTableaus()
 {
    for (std::uint8_t i = 0; i < cardTableControllerM->getNumTableaus(); ++i)
    {
-      ioM.writeString("Tableau " + std::to_string(i + 1) + ": "
-         + showPile(cardTableControllerM->getTableau(i)));
+      ioM.writeStringNotEndingLine("Tableau " + std::to_string(i + 1) + ": ");
+      showPile(cardTableControllerM->getTableau(i));
+      ioM.writeString("");
    }
 }
 
-std::string CardTableTextView::showPile(const std::vector<Controllers::FacadeCard>& pile)
+void CardTableTextView::showPile(const std::vector<Controllers::FacadeCard>& pile)
 {
-   std::string pileString;
    for (Controllers::FacadeCard card : pile)
-   {
-      pileString += cardViewM->show(card);
-   }
-   return pileString;
+      cardViewM->show(card);
 }
 
-std::string CardTableTextView::showOnlyFirstCardInPile(const std::vector<Controllers::FacadeCard>& pile)
+void CardTableTextView::showOnlyFirstCardInPile(const std::vector<Controllers::FacadeCard>& pile)
 {
-   std::string pileString;
    std::size_t pileSize = pile.size();
    if (pileSize > 0)
-      pileString += cardViewM->show(pile[pileSize - 1]);
-   return pileString;
+      cardViewM->show(pile[pileSize - 1]);
 }
 
 void CardTableTextView::showScore()

@@ -61,7 +61,13 @@ void IO::writeError(const std::string& format) const
 
 void IO::writeString(const std::string& text) const
 {
-   std::cout << text << std::endl;
+   writeStringNotEndingLine(text);
+   std::cout << std::endl;
+}
+
+void IO::writeStringNotEndingLine(const std::string& text) const
+{
+   std::cout << text;
 }
 
 }

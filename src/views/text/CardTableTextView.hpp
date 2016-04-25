@@ -38,8 +38,8 @@ private:
    void showWaste();
    void showFoundations();
    void showTableaus();
-   std::string showPile(const std::vector<Controllers::FacadeCard>& pile);
-   std::string showOnlyFirstCardInPile(const std::vector<Controllers::FacadeCard>& pile);
+   void showPile(const std::vector<Controllers::FacadeCard>& pile);
+   void showOnlyFirstCardInPile(const std::vector<Controllers::FacadeCard>& pile);
    void showScore();
 
    Utils::IO& ioM;

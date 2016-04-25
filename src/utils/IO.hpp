@@ -25,6 +25,7 @@ public:
    std::int64_t readInt(const std::string& title) const;
    char readChar(const std::string& title) const;
 
+   void writeStringNotEndingLine(const std::string& text) const;
    void writeString(const std::string& text) const;
 
 private:
