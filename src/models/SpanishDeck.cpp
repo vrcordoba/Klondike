@@ -3,7 +3,6 @@
 
 #include "Card.hpp"
 #include "Suit.hpp"
-#include "DeckPrototyper.hpp"
 
 namespace Models
 {
@@ -15,11 +14,6 @@ SpanishDeck::SpanishDeck()
 
 SpanishDeck::~SpanishDeck()
 {
-}
-
-Configuration::DeckType::Type SpanishDeck::type()
-{
-   return Configuration::DeckType::Type::SPANISH;
 }
 
 Deck* SpanishDeck::clone()

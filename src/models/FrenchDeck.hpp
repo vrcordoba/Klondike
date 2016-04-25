@@ -3,7 +3,6 @@
 
 #include <cstdint>
 #include "Deck.hpp"
-#include "DeckType.hpp"
 
 namespace Models
 {
@@ -19,7 +18,6 @@ public:
    FrenchDeck(const FrenchDeck&) = delete;
    FrenchDeck& operator=(const FrenchDeck&) = delete;
 
-   Configuration::DeckType::Type type();
    Deck* clone();
 
    void buildDeck();

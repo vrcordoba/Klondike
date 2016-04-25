@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include "CardView.hpp"
-#include "DeckType.hpp"
 
 namespace Controllers
 {
@@ -19,7 +18,6 @@ class CardTextView : public CardView
 public:
    virtual ~CardTextView();
 
-   virtual Configuration::DeckType::Type type() = 0;
    virtual CardView* clone() = 0;
 
    virtual std::string show(const Controllers::FacadeCard& card) const;

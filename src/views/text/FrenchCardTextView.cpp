@@ -12,11 +12,6 @@ FrenchCardTextView::~FrenchCardTextView()
 {
 }
 
-Configuration::DeckType::Type FrenchCardTextView::type()
-{
-   return Configuration::DeckType::Type::FRENCH;
-}
-
 CardView* FrenchCardTextView::clone()
 {
    return new FrenchCardTextView();

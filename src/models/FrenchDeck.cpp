@@ -16,11 +16,6 @@ FrenchDeck::~FrenchDeck()
 {
 }
 
-Configuration::DeckType::Type FrenchDeck::type()
-{
-   return Configuration::DeckType::Type::FRENCH;
-}
-
 Deck* FrenchDeck::clone()
 {
    return new FrenchDeck();

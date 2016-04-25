@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <map>
 #include "CardView.hpp"
+#include "DeckType.hpp"
 
 namespace Views
 {

@@ -12,11 +12,6 @@ SpanishCardTextView::~SpanishCardTextView()
 {
 }
 
-Configuration::DeckType::Type SpanishCardTextView::type()
-{
-   return Configuration::DeckType::Type::SPANISH;
-}
-
 CardView* SpanishCardTextView::clone()
 {
    return new SpanishCardTextView();
