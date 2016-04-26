@@ -22,6 +22,11 @@ void KlondikeTextView::interact(Controllers::OperationController*
    operationController->accept(this);
 }
 
+KlondikeView* KlondikeTextView::clone()
+{
+   return new KlondikeTextView();
+}
+
 void KlondikeTextView::visit(Controllers::StartController* startController)
 {
    startViewM.interact(startController);

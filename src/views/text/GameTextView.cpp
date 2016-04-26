@@ -6,7 +6,7 @@
 #include "IO.hpp"
 #include "CommandInterpreter.hpp"
 #include "Command.hpp"
-#include "CommandManager.hpp"
+#include "CommandPrototyper.hpp"
 
 namespace Views
 {
@@ -47,7 +47,7 @@ Controllers::Command* GameTextView::getCommandFromUser(
       analyzeArguments(commandInterpreter));
    Controllers::CommandType commandType = commandInterpreter.getCommandType();
    std::vector<std::uint8_t> additionalArguments = commandInterpreter.getAdditionalArguments();
-   return Controllers::CommandManager().getCommand(commandType, additionalArguments);
+   return Controllers::CommandPrototyper().getCommand(commandType, additionalArguments);
 }
 
 bool GameTextView::errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const

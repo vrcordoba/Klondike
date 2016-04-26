@@ -1,5 +1,5 @@
-#ifndef CONTROLLERS_SAVECOMMAND_HPP_
-#define CONTROLLERS_SAVECOMMAND_HPP_
+#ifndef CONTROLLERS_COMMANDS_SAVECOMMAND_HPP_
+#define CONTROLLERS_COMMANDS_SAVECOMMAND_HPP_
 
 #include "Command.hpp"
 
@@ -15,6 +15,8 @@ public:
    ~SaveCommand();
 
    bool accept(CommandVisitor* commandVisitor);
+
+   Command* clone();
 };
 
 }

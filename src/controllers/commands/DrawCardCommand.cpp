@@ -21,6 +21,11 @@ bool DrawCardCommand::accept(CommandVisitor* commandVisitor)
    return commandVisitor->visit(this);
 }
 
+Command* DrawCardCommand::clone()
+{
+   return new DrawCardCommand();
+}
+
 void DrawCardCommand::setController(Controller* controller)
 {
    CardCommand::setController(controller);

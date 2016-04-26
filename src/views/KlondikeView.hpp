@@ -16,6 +16,8 @@ class KlondikeView : public Controllers::OperationControllerVisitor
 public:
    virtual ~KlondikeView() {};
    virtual void interact(Controllers::OperationController* operationController) = 0;
+
+   virtual KlondikeView* clone() = 0;
 };
 
 }

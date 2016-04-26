@@ -1,12 +1,12 @@
-#ifndef CONTROLLERS_COMMANDTYPE_HPP_
-#define CONTROLLERS_COMMANDTYPE_HPP_
+#ifndef CONTROLLERS_COMMANDS_COMMANDTYPE_HPP_
+#define CONTROLLERS_COMMANDS_COMMANDTYPE_HPP_
 
 #include <cstdint>
 
 namespace Controllers
 {
 
-enum class CommandType
+enum class CommandType :std::uint8_t
 {
    ERROR,
    HELP,

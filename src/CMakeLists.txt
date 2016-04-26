@@ -4,6 +4,7 @@ project(Klondike)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/configuration)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/controllers)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/controllers/commands)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/models)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/utils)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/views)
@@ -25,19 +26,20 @@ set(HEADER_FILES
    controllers/GameController.hpp
    controllers/ContinueController.hpp
    controllers/CardTableController.hpp
-   controllers/CommandType.hpp
-   controllers/Command.hpp
-   controllers/CardCommand.hpp
-   controllers/DrawCardCommand.hpp
-   controllers/MoveCommand.hpp
-   controllers/LeaveCommand.hpp
-   controllers/SaveCommand.hpp
-   controllers/ModifyHistoryCommand.hpp
    controllers/MoveController.hpp
-   controllers/MovementHistory.hpp
-   controllers/CommandManager.hpp
-   controllers/CommandVisitor.hpp
    controllers/SaveController.hpp
+   controllers/commands/CommandType.hpp
+   controllers/commands/Command.hpp
+   controllers/commands/CommandVisitor.hpp
+   controllers/commands/CardCommand.hpp
+   controllers/commands/DrawCardCommand.hpp
+   controllers/commands/MoveCommand.hpp
+   controllers/commands/LeaveCommand.hpp
+   controllers/commands/SaveCommand.hpp
+   controllers/commands/ModifyHistoryCommand.hpp
+   controllers/commands/MovementHistory.hpp
+   controllers/commands/CommandPrototyper.hpp
+   controllers/commands/CommandVisitor.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -74,7 +76,7 @@ set(HEADER_FILES
    views/ContinueView.hpp
    views/CardTableView.hpp
    views/CardView.hpp
-   views/ViewManager.hpp
+   views/ViewPrototyper.hpp
    views/SaveView.hpp
    views/text/KlondikeTextView.hpp
    views/text/StartTextView.hpp
@@ -103,16 +105,16 @@ set(SOURCE_FILES
    controllers/GameController.cpp
    controllers/ContinueController.cpp
    controllers/CardTableController.cpp
-   controllers/CardCommand.cpp
-   controllers/DrawCardCommand.cpp
-   controllers/MoveCommand.cpp
-   controllers/LeaveCommand.cpp
-   controllers/SaveCommand.cpp
-   controllers/ModifyHistoryCommand.cpp
    controllers/MoveController.cpp
-   controllers/MovementHistory.cpp
-   controllers/CommandManager.cpp
    controllers/SaveController.cpp
+   controllers/commands/CardCommand.cpp
+   controllers/commands/DrawCardCommand.cpp
+   controllers/commands/MoveCommand.cpp
+   controllers/commands/LeaveCommand.cpp
+   controllers/commands/SaveCommand.cpp
+   controllers/commands/ModifyHistoryCommand.cpp
+   controllers/commands/MovementHistory.cpp
+   controllers/commands/CommandPrototyper.cpp
 
    models/Suit.cpp
    models/Card.cpp
@@ -138,7 +140,7 @@ set(SOURCE_FILES
    utils/PlainTextFileReader.cpp
    utils/PlainTextFileWriter.cpp
 
-   views/ViewManager.cpp
+   views/ViewPrototyper.cpp
    views/text/KlondikeTextView.cpp
    views/text/StartTextView.cpp
    views/text/GameTextView.cpp

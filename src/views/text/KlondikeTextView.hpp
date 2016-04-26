@@ -26,6 +26,8 @@ public:
 
    void interact(Controllers::OperationController* operationController);
 
+   KlondikeView* clone();
+
    void visit(Controllers::StartController* startController);
    void visit(Controllers::GameController* gameController);
    void visit(Controllers::ContinueController* continueController);

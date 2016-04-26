@@ -1,5 +1,5 @@
-#ifndef CONTROLLERS_LEAVECOMMAND_HPP_
-#define CONTROLLERS_LEAVECOMMAND_HPP_
+#ifndef CONTROLLERS_COMMANDS_LEAVECOMMAND_HPP_
+#define CONTROLLERS_COMMANDS_LEAVECOMMAND_HPP_
 
 #include <cstdint>
 #include "Command.hpp"
@@ -23,6 +23,8 @@ public:
    LeaveCommand& operator=(const LeaveCommand&) = delete;
 
    bool accept(CommandVisitor* commandVisitor);
+
+   Command* clone();
 
    Type getType() const;
 

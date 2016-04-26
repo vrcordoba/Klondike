@@ -2,7 +2,7 @@
 #include "Klondike.hpp"
 #include "OperationController.hpp"
 #include "KlondikeConfiguration.hpp"
-#include "ViewManager.hpp"
+#include "ViewPrototyper.hpp"
 #include "KlondikeView.hpp"
 
 Klondike::Klondike()
@@ -17,7 +17,7 @@ Klondike::~Klondike()
 
 void Klondike::play()
 {
-   Views::ViewManager viewManager;
+   Views::ViewPrototyper viewManager;
    Views::KlondikeView* view = viewManager.getView();
    Controllers::OperationController* controller;
    do

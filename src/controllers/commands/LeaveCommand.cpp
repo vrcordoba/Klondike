@@ -19,6 +19,11 @@ bool LeaveCommand::accept(CommandVisitor* commandVisitor)
    return commandVisitor->visit(this);
 }
 
+Command* LeaveCommand::clone()
+{
+   return new LeaveCommand(typeM);
+}
+
 LeaveCommand::Type LeaveCommand::getType() const
 {
    return typeM;

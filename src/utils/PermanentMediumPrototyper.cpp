@@ -2,6 +2,7 @@
 #include "PermanentMediumPrototyper.hpp"
 
 #include <cassert>
+#include <algorithm>
 #include "PlainTextFileReader.hpp"
 #include "PlainTextFileWriter.hpp"
 
@@ -16,6 +17,16 @@ PermanentMediumPrototyper::PermanentMediumPrototyper()
 
 PermanentMediumPrototyper::~PermanentMediumPrototyper()
 {
+   std::for_each(std::begin(readerPrototypesM), std::end(readerPrototypesM),
+      [] (std::pair<const PermanentMediumType, PermanentMediumReader*>& pair)
+      {
+         delete pair.second;
+      });
+   std::for_each(std::begin(writerPrototypesM), std::end(writerPrototypesM),
+      [] (std::pair<const PermanentMediumType, PermanentMediumWriter*>& pair)
+      {
+         delete pair.second;
+      });
 }
 
 PermanentMediumReader* PermanentMediumPrototyper::getReader(

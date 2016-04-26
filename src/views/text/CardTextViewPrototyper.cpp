@@ -2,6 +2,7 @@
 #include "CardTextViewPrototyper.hpp"
 
 #include <cassert>
+#include <algorithm>
 #include "KlondikeConfiguration.hpp"
 #include "DeckType.hpp"
 #include "FrenchCardTextView.hpp"
@@ -18,6 +19,11 @@ CardTextViewPrototyper::CardTextViewPrototyper()
 
 CardTextViewPrototyper::~CardTextViewPrototyper()
 {
+   std::for_each(std::begin(cardViewPrototypesM), std::end(cardViewPrototypesM),
+      [] (std::pair<const Configuration::DeckType::Type, CardView*>& pair)
+      {
+         delete pair.second;
+      });
 }
 
 CardView* CardTextViewPrototyper::getView() const

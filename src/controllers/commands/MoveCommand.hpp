@@ -1,5 +1,5 @@
-#ifndef CONTROLLERS_MOVECOMMAND_HPP_
-#define CONTROLLERS_MOVECOMMAND_HPP_
+#ifndef CONTROLLERS_COMMANDS_MOVECOMMAND_HPP_
+#define CONTROLLERS_COMMANDS_MOVECOMMAND_HPP_
 
 #include <vector>
 #include <cstdint>
@@ -14,13 +14,14 @@ class Pile;
 namespace Controllers
 {
 
+class Command;
 class CommandVisitor;
 class Controller;
 
 class MoveCommand final : public CardCommand
 {
 public:
-   explicit MoveCommand(const std::vector<std::uint8_t>& additionalArguments);
+   MoveCommand();
    ~MoveCommand();
 
    MoveCommand(const MoveCommand&) = delete;
@@ -28,10 +29,13 @@ public:
 
    bool accept(CommandVisitor* commandVisitor);
 
+   Command* clone();
+
    void execute();
    void undo();
 
    void setController(Controller* controller);
+   void setAdditionalArguments(const std::vector<std::uint8_t>& additionalArguments);
 
    bool isValidOrigin() const;
    bool isValidDestination() const;

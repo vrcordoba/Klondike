@@ -1,6 +1,7 @@
 
 #include "MoveCommand.hpp"
 
+#include <cassert>
 #include "CommandVisitor.hpp"
 #include "Controller.hpp"
 #include "Card.hpp"
@@ -11,16 +12,28 @@
 namespace Controllers
 {
 
-MoveCommand::MoveCommand(const std::vector<std::uint8_t>& additionalArguments) :
-   CardCommand(), originPileTypeM(additionalArguments[0]),
-   originPileNumberM(additionalArguments[1]), destinationPileTypeM(additionalArguments[2]),
-   destinationPileNumberM(additionalArguments[3]), numCardsM(additionalArguments[4]),
-   previousCardInPileNotUpturnedM(false)
+MoveCommand::MoveCommand() : originPileTypeM(), originPileNumberM(), destinationPileTypeM(),
+   destinationPileNumberM(), numCardsM(), previousCardInPileNotUpturnedM(false)
 {
 }
 
 MoveCommand::~MoveCommand()
 {
+}
+
+Command* MoveCommand::clone()
+{
+   return new MoveCommand();
+}
+
+void MoveCommand::setAdditionalArguments(const std::vector<std::uint8_t>& additionalArguments)
+{
+   assert(5 == additionalArguments.size());
+   originPileTypeM = additionalArguments[0];
+   originPileNumberM = additionalArguments[1];
+   destinationPileTypeM = additionalArguments[2];
+   destinationPileNumberM = additionalArguments[3];
+   numCardsM = additionalArguments[4];
 }
 
 bool MoveCommand::accept(CommandVisitor* commandVisitor)

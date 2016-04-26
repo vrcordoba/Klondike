@@ -1,11 +1,12 @@
-#ifndef CONTROLLERS_DRAWCARDCOMMAND_HPP_
-#define CONTROLLERS_DRAWCARDCOMMAND_HPP_
+#ifndef CONTROLLERS_COMMANDS_DRAWCARDCOMMAND_HPP_
+#define CONTROLLERS_COMMANDS_DRAWCARDCOMMAND_HPP_
 
 #include "CardCommand.hpp"
 
 namespace Controllers
 {
 
+class Command;
 class CommandVisitor;
 class Controller;
 
@@ -19,6 +20,8 @@ public:
    DrawCardCommand& operator=(const DrawCardCommand&) = delete;
 
    bool accept(CommandVisitor* commandVisitor);
+
+   Command* clone();
 
    void execute();
    void undo();

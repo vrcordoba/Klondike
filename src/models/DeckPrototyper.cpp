@@ -2,6 +2,7 @@
 #include "DeckPrototyper.hpp"
 
 #include <cassert>
+#include <algorithm>
 #include "KlondikeConfiguration.hpp"
 #include "SpanishDeck.hpp"
 #include "FrenchDeck.hpp"
@@ -17,6 +18,11 @@ DeckPrototyper::DeckPrototyper()
 
 DeckPrototyper::~DeckPrototyper()
 {
+   std::for_each(std::begin(deckPrototypesM), std::end(deckPrototypesM),
+      [] (std::pair<const Configuration::DeckType::Type, Deck*>& pair)
+      {
+         delete pair.second;
+      });
 }
 
 Deck* DeckPrototyper::getDeck(Configuration::DeckType::Type deckType)

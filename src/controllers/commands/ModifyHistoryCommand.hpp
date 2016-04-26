@@ -1,5 +1,5 @@
-#ifndef CONTROLLERS_MODIFYHISTORYCOMMAND_HPP_
-#define CONTROLLERS_MODIFYHISTORYCOMMAND_HPP_
+#ifndef CONTROLLERS_COMMANDS_MODIFYHISTORYCOMMAND_HPP_
+#define CONTROLLERS_COMMANDS_MODIFYHISTORYCOMMAND_HPP_
 
 #include <cstdint>
 #include "Command.hpp"
@@ -22,6 +22,8 @@ public:
    ~ModifyHistoryCommand();
 
    bool accept(CommandVisitor* commandVisitor);
+
+   Command* clone();
 
    Type getType() const;
 
