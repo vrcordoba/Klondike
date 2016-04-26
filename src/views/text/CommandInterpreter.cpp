@@ -106,31 +106,30 @@ bool CommandInterpreter::analyzeArgumentsOfMovement()
       }
       else if(parsedCommandM[i][0] == 't' or parsedCommandM[i][0] == 'f')
       {
-         if (analyzeMultiplePile(parsedCommandM[i], additionalArgumentsM))
+         if (analyzeMultiplePile(parsedCommandM[i]))
             return true;
       }
       else
          return true;
    }
-   if (analyzeNumberOfCardsToMove(additionalArgumentsM))
+   if (analyzeNumberOfCardsToMove())
       return true;
    return false;
 }
 
-bool CommandInterpreter::analyzeMultiplePile(const std::string& multiplePileId,
-   std::vector<std::uint8_t>& additionalArguments)
+bool CommandInterpreter::analyzeMultiplePile(const std::string& multiplePileId)
 {
    if (not std::isdigit(multiplePileId[1]))
       return true;
    if (multiplePileId[0] == 't')
-      additionalArguments.push_back(Models::PileType::TABLEAU);
+      additionalArgumentsM.push_back(Models::PileType::TABLEAU);
    else
-      additionalArguments.push_back(Models::PileType::FOUNDATION);
-   additionalArguments.push_back(multiplePileId[1] - '0');
+      additionalArgumentsM.push_back(Models::PileType::FOUNDATION);
+   additionalArgumentsM.push_back(multiplePileId[1] - '0');
    return false;
 }
 
-bool CommandInterpreter::analyzeNumberOfCardsToMove(std::vector<std::uint8_t>& additionalArguments)
+bool CommandInterpreter::analyzeNumberOfCardsToMove()
 {
    if (4 == parsedCommandM.size())
    {
@@ -143,10 +142,10 @@ bool CommandInterpreter::analyzeNumberOfCardsToMove(std::vector<std::uint8_t>& a
       {
          return true;
       }
-      additionalArguments.push_back(numCardsToMove);
+      additionalArgumentsM.push_back(numCardsToMove);
    }
    else
-      additionalArguments.push_back(1);
+      additionalArgumentsM.push_back(1);
    return false;
 }
 

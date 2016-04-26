@@ -60,7 +60,7 @@ void Ranking::saveRanking()
 {
    Utils::PermanentMediumWriter* rankingWriter =
       Utils::PermanentMediumPrototyper().getWriter(
-         Configuration::PermanentMediumType::PLAIN_TEXT);
+         Utils::PermanentMediumType::PLAIN_TEXT);
    rankingWriter->open(rankingFileM);
    if (rankingWriter->isOk())
    {

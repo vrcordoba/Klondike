@@ -12,7 +12,6 @@ class PermanentMediumWriter
 public:
    virtual ~PermanentMediumWriter() {};
 
-   virtual Configuration::PermanentMediumType type() = 0;
    virtual PermanentMediumWriter* clone() = 0;
 
    virtual void open(const std::string& name) = 0;

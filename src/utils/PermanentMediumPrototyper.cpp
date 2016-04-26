@@ -2,16 +2,16 @@
 #include "PermanentMediumPrototyper.hpp"
 
 #include <cassert>
-#include "TextFileReader.hpp"
-#include "TextFileWriter.hpp"
+#include "PlainTextFileReader.hpp"
+#include "PlainTextFileWriter.hpp"
 
 namespace Utils
 {
 
 PermanentMediumPrototyper::PermanentMediumPrototyper()
 {
-   readerPrototypesM[Configuration::PermanentMediumType::PLAIN_TEXT] = new TextFileReader();
-   writerPrototypesM[Configuration::PermanentMediumType::PLAIN_TEXT] = new TextFileWriter();
+   readerPrototypesM[PermanentMediumType::PLAIN_TEXT] = new PlainTextFileReader();
+   writerPrototypesM[PermanentMediumType::PLAIN_TEXT] = new PlainTextFileWriter();
 }
 
 PermanentMediumPrototyper::~PermanentMediumPrototyper()
@@ -19,9 +19,9 @@ PermanentMediumPrototyper::~PermanentMediumPrototyper()
 }
 
 PermanentMediumReader* PermanentMediumPrototyper::getReader(
-   Configuration::PermanentMediumType permanentMediumType)
+   PermanentMediumType permanentMediumType)
 {
-   std::map<Configuration::PermanentMediumType, PermanentMediumReader*>::const_iterator readerIt =
+   std::map<PermanentMediumType, PermanentMediumReader*>::const_iterator readerIt =
       readerPrototypesM.find(permanentMediumType);
    assert(readerIt != readerPrototypesM.end());
    PermanentMediumReader* permanentMediumReader = readerIt->second->clone();
@@ -29,9 +29,9 @@ PermanentMediumReader* PermanentMediumPrototyper::getReader(
 }
 
 PermanentMediumWriter* PermanentMediumPrototyper::getWriter(
-   Configuration::PermanentMediumType permanentMediumType)
+   PermanentMediumType permanentMediumType)
 {
-   std::map<Configuration::PermanentMediumType, PermanentMediumWriter*>::const_iterator writerIt =
+   std::map<PermanentMediumType, PermanentMediumWriter*>::const_iterator writerIt =
       writerPrototypesM.find(permanentMediumType);
    assert(writerIt != writerPrototypesM.end());
    PermanentMediumWriter* permanentMediumWriter = writerIt->second->clone();

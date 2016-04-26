@@ -34,9 +34,8 @@ private:
    void interpretTypeOfCommand();
    bool isMoveCommand() const;
    bool analyzeArgumentsOfMovement();
-   bool analyzeMultiplePile(const std::string& multiplePileId,
-      std::vector<std::uint8_t>& additionalArguments);
-   bool analyzeNumberOfCardsToMove(std::vector<std::uint8_t>& additionalArguments);
+   bool analyzeMultiplePile(const std::string& multiplePileId);
+   bool analyzeNumberOfCardsToMove();
 
    std::vector<std::string> parsedCommandM;
    Controllers::CommandType commandTypeM;

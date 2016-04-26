@@ -23,7 +23,7 @@ void Game::initializeGame(Configuration::DeckType::Type typeDeck)
 {
    deleteDeckAndCardTable();
    deckM = deckPrototyperM.getDeck(typeDeck);
-   cardTableM = new Models::CardTable(*deckM, getNumTableaus());
+   cardTableM = new CardTable(*deckM, getNumTableaus());
    scoreM.rebootScore();
 }
 

@@ -29,7 +29,7 @@ public:
    std::list<std::string> getDeckDescriptions() const;
 
    ViewType getViewType() const;
-   PermanentMediumType getPermanentMediumType() const;
+   Utils::PermanentMediumType getPermanentMediumType() const;
 
 private:
    KlondikeConfiguration();
@@ -43,7 +43,7 @@ private:
    const std::string CONFIGURATION_FILE = "klondikeConf";
    DeckType deckTypeM;
    ViewType viewTypeM;
-   PermanentMediumType permanentMediumTypeM;
+   Utils::PermanentMediumType permanentMediumTypeM;
 };
 
 }

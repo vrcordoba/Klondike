@@ -12,7 +12,6 @@ class PermanentMediumReader
 public:
    virtual ~PermanentMediumReader() {};
 
-   virtual Configuration::PermanentMediumType type() = 0;
    virtual PermanentMediumReader* clone() = 0;
 
    virtual void open(std::string name) = 0;

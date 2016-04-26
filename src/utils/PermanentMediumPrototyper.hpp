@@ -19,12 +19,12 @@ public:
    PermanentMediumPrototyper();
    ~PermanentMediumPrototyper();
 
-   PermanentMediumReader* getReader(Configuration::PermanentMediumType type);
-   PermanentMediumWriter* getWriter(Configuration::PermanentMediumType type);
+   PermanentMediumReader* getReader(PermanentMediumType type);
+   PermanentMediumWriter* getWriter(PermanentMediumType type);
 
 private:
-   std::map<Configuration::PermanentMediumType, PermanentMediumReader*> readerPrototypesM;
-   std::map<Configuration::PermanentMediumType, PermanentMediumWriter*> writerPrototypesM;
+   std::map<PermanentMediumType, PermanentMediumReader*> readerPrototypesM;
+   std::map<PermanentMediumType, PermanentMediumWriter*> writerPrototypesM;
 };
 
 }

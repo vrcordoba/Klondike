@@ -15,7 +15,6 @@ set(HEADER_FILES
    configuration/KlondikeConfiguration.hpp
    configuration/DeckType.hpp
    configuration/ViewType.hpp
-   configuration/PermanentMediumType.hpp
 
    controllers/OperationController.hpp
    controllers/OperationControllerVisitor.hpp
@@ -62,11 +61,12 @@ set(HEADER_FILES
    utils/YesNoDialog.hpp
    utils/TextMenu.hpp
    utils/CommandReader.hpp
+   utils/PermanentMediumType.hpp
    utils/PermanentMediumPrototyper.hpp
    utils/PermanentMediumReader.hpp
    utils/PermanentMediumWriter.hpp
-   utils/TextFileReader.hpp
-   utils/TextFileWriter.hpp
+   utils/PlainTextFileReader.hpp
+   utils/PlainTextFileWriter.hpp
 
    views/KlondikeView.hpp
    views/StartView.hpp
@@ -135,8 +135,8 @@ set(SOURCE_FILES
    utils/TextMenu.cpp
    utils/CommandReader.cpp
    utils/PermanentMediumPrototyper.cpp
-   utils/TextFileReader.cpp
-   utils/TextFileWriter.cpp
+   utils/PlainTextFileReader.cpp
+   utils/PlainTextFileWriter.cpp
 
    views/ViewManager.cpp
    views/text/KlondikeTextView.cpp
