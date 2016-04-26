@@ -13,7 +13,6 @@ namespace Controllers
 {
 
 class Controller;
-class CardCommandVisitor;
 
 class CardCommand : public Command
 {

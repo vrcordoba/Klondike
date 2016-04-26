@@ -17,6 +17,7 @@ public:
    virtual void open(std::string name) = 0;
    virtual bool isOk() const = 0;
    virtual bool getLine(std::string& line) = 0;
+   virtual bool alreadyExists(const std::string& fileName) = 0;
 };
 
 }

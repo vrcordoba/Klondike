@@ -31,10 +31,9 @@ void SaveTextView::askForName(Controllers::SaveController* saveController)
    do
    {
       Utils::IO& io = Utils::IO::getInstance();
-      io.writeString("Write now the name of the file you want to save");
-      io.readString(saveFileNameM);
+      saveFileNameM = io.readString("Write now the name of the file you want to save");
       if (saveController->fileAlreadyExists(saveFileNameM))
-         askAgain = not Utils::YesNoDialog("File already exist. Do you want to override?").read();
+         askAgain = not Utils::YesNoDialog("File already exist. Do you want to override").read();
    } while (askAgain);
 }
 

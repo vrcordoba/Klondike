@@ -46,6 +46,7 @@ bool GameController::visit(LeaveCommand* leaveCommand)
 {
    if (Phase::APPLYCOMMAND == phaseM)
    {
+      moveControllerM.emptyMovementHistory();
       if (LeaveCommand::Type::LEAVE_CLOSE == leaveCommand->getType())
          Controller::setState(Models::State::CONTINUE);
       else
@@ -75,6 +76,10 @@ bool GameController::visit(ModifyHistoryCommand* modifyHistoryCommand)
 
 bool GameController::visit(SaveCommand* modifyHistoryCommand)
 {
+   if (Phase::APPLYCOMMAND == phaseM)
+   {
+      Controller::setState(Models::State::SAVE);
+   }
    return true;
 }
 

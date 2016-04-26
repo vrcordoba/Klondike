@@ -43,4 +43,10 @@ bool PlainTextFileReader::isOk() const
    return fileM.is_open();
 }
 
+bool PlainTextFileReader::alreadyExists(const std::string& fileName)
+{
+   open(fileName);
+   return isOk();
+}
+
 }

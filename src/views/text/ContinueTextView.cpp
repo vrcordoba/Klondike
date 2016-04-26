@@ -22,7 +22,7 @@ void ContinueTextView::interact(Controllers::ContinueController* continueControl
    std::vector<std::uint32_t> bestScores;
    continueController->ranking(positionInRanking, bestScores);
    showRanking(positionInRanking, bestScores);
-   Utils::YesNoDialog dialog("Do you want to play again?");
+   Utils::YesNoDialog dialog("Do you want to play again");
    continueController->resume(dialog.read());
 }
 

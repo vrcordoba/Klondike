@@ -22,6 +22,7 @@ public:
    void open(std::string name);
    bool isOk() const;
    bool getLine(std::string& line);
+   bool alreadyExists(const std::string& fileName);
 
 private:
    std::ifstream fileM;

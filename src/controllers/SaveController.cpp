@@ -2,6 +2,9 @@
 #include "SaveController.hpp"
 
 #include "OperationControllerVisitor.hpp"
+#include "PermanentMediumReader.hpp"
+#include "PermanentMediumPrototyper.hpp"
+#include "KlondikeConfiguration.hpp"
 
 namespace Controllers
 {
@@ -22,14 +25,15 @@ void SaveController::accept(OperationControllerVisitor* operationControllerVisit
 
 bool SaveController::fileAlreadyExists(const std::string& saveFileName)
 {
-   /*Utils::PermanentMediumReader* saveFile =
-      Utils::PermanentMediumPrototyper::getReader();*/
-   return true;
-
+   Utils::PermanentMediumReader* saveFile =
+      Utils::PermanentMediumPrototyper().getReader(
+         Configuration::KlondikeConfiguration::getInstance().getPermanentMediumType());
+   return saveFile->alreadyExists(saveFileName);
 }
 
 void SaveController::saveGame(const std::string& saveFileName)
 {
+   Controller::setState(Models::State::GAME);
 }
 
 }

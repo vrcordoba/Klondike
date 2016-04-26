@@ -53,4 +53,9 @@ void MoveController::redo()
    movementHistoryM.redo();
 }
 
+void MoveController::emptyMovementHistory()
+{
+   movementHistoryM.emptyHistory();
+}
+
 }

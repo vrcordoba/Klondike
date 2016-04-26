@@ -33,6 +33,8 @@ public:
    void undo();
    void redo();
 
+   void emptyMovementHistory();
+
 private:
    MovementHistory movementHistoryM;
 };
