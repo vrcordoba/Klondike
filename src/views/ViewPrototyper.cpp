@@ -11,7 +11,7 @@ namespace Views
 
 ViewPrototyper::ViewPrototyper()
 {
-   viewPrototypesM[Configuration::ViewType::TEXT] = new KlondikeTextView();
+   viewPrototypesM.emplace(Configuration::ViewType::TEXT, new KlondikeTextView());
 }
 
 ViewPrototyper::~ViewPrototyper()

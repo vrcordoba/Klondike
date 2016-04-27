@@ -11,8 +11,6 @@ enum class State : std::uint8_t
 {
    INITIAL,
    GAME,
-   UNDO,
-   REDO,
    SAVE,
    LOAD,
    CONTINUE,

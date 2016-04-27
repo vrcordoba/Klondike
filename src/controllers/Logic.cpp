@@ -1,6 +1,7 @@
 
 #include "Logic.hpp"
 
+#include <algorithm>
 #include "OperationController.hpp"
 #include "StartController.hpp"
 #include "GameController.hpp"
@@ -12,36 +13,25 @@ namespace Controllers
 
 Logic::Logic() : gameM()
 {
-   startControllerM = new StartController(gameM);
-   gameControllerM = new GameController(gameM);
-   continueControllerM = new ContinueController(gameM);
-   saveControllerM = new SaveController(gameM);
+   controllersM.emplace(Models::State::INITIAL, new StartController(gameM));
+   controllersM.emplace(Models::State::GAME, new GameController(gameM));
+   controllersM.emplace(Models::State::CONTINUE, new ContinueController(gameM));
+   controllersM.emplace(Models::State::SAVE, new SaveController(gameM));
+   controllersM.emplace(Models::State::END, nullptr);
 }
 
 Logic::~Logic()
 {
-   delete startControllerM;
-   delete gameControllerM;
-   delete continueControllerM;
-   delete saveControllerM;
+   std::for_each(std::begin(controllersM), std::end(controllersM),
+      [] (std::pair<const Models::State, OperationController*>& pair)
+      {
+         delete pair.second;
+      });
 }
 
 OperationController* Logic::getController() const
 {
-   switch (gameM.getState())
-   {
-      case Models::State::INITIAL:
-         return startControllerM;
-      case Models::State::GAME:
-         return gameControllerM;
-      case Models::State::CONTINUE:
-         return continueControllerM;
-      case Models::State::SAVE:
-         return saveControllerM;
-      case Models::State::END:
-      default:
-         return nullptr;
-   }
+   return controllersM.at(gameM.getState());
 }
 
 }

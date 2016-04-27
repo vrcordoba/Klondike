@@ -13,8 +13,8 @@ namespace Views
 
 CardTextViewPrototyper::CardTextViewPrototyper()
 {
-   cardViewPrototypesM[Configuration::DeckType::Type::SPANISH] = new SpanishCardTextView();
-   cardViewPrototypesM[Configuration::DeckType::Type::FRENCH] = new FrenchCardTextView();
+   cardViewPrototypesM.emplace(Configuration::DeckType::Type::SPANISH, new SpanishCardTextView());
+   cardViewPrototypesM.emplace(Configuration::DeckType::Type::FRENCH, new FrenchCardTextView());
 }
 
 CardTextViewPrototyper::~CardTextViewPrototyper()

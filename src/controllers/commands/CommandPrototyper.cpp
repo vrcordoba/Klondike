@@ -14,13 +14,13 @@ namespace Controllers
 
 CommandPrototyper::CommandPrototyper()
 {
-   commandPrototypesM[CommandType::DRAWCARD] = new DrawCardCommand();
-   commandPrototypesM[CommandType::MOVE] = new MoveCommand();
-   commandPrototypesM[CommandType::SAVE] = new SaveCommand();
-   commandPrototypesM[CommandType::UNDO] = new ModifyHistoryCommand(ModifyHistoryCommand::Type::UNDO);
-   commandPrototypesM[CommandType::REDO] = new ModifyHistoryCommand(ModifyHistoryCommand::Type::REDO);
-   commandPrototypesM[CommandType::LEAVE] = new LeaveCommand(LeaveCommand::Type::LEAVE_CLOSE);
-   commandPrototypesM[CommandType::INIT] = new LeaveCommand(LeaveCommand::Type::LEAVE_INIT);
+   commandPrototypesM.emplace(CommandType::DRAWCARD, new DrawCardCommand());
+   commandPrototypesM.emplace(CommandType::MOVE, new MoveCommand());
+   commandPrototypesM.emplace(CommandType::SAVE, new SaveCommand());
+   commandPrototypesM.emplace(CommandType::UNDO, new ModifyHistoryCommand(ModifyHistoryCommand::Type::UNDO));
+   commandPrototypesM.emplace(CommandType::REDO, new ModifyHistoryCommand(ModifyHistoryCommand::Type::REDO));
+   commandPrototypesM.emplace(CommandType::LEAVE, new LeaveCommand(LeaveCommand::Type::LEAVE_CLOSE));
+   commandPrototypesM.emplace(CommandType::INIT, new LeaveCommand(LeaveCommand::Type::LEAVE_INIT));
 }
 
 CommandPrototyper::~CommandPrototyper()

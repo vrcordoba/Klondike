@@ -12,8 +12,8 @@ namespace Models
 
 DeckPrototyper::DeckPrototyper()
 {
-   deckPrototypesM[Configuration::DeckType::Type::SPANISH] = new SpanishDeck();
-   deckPrototypesM[Configuration::DeckType::Type::FRENCH] = new FrenchDeck();
+   deckPrototypesM.emplace(Configuration::DeckType::Type::SPANISH, new SpanishDeck());
+   deckPrototypesM.emplace(Configuration::DeckType::Type::FRENCH, new FrenchDeck());
 }
 
 DeckPrototyper::~DeckPrototyper()

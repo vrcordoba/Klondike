@@ -28,4 +28,5 @@ void Klondike::play()
          view->interact(controller);
       }
    } while(nullptr != controller);
+   delete view;
 }

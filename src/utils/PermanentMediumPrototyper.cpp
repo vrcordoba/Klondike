@@ -11,8 +11,8 @@ namespace Utils
 
 PermanentMediumPrototyper::PermanentMediumPrototyper()
 {
-   readerPrototypesM[PermanentMediumType::PLAIN_TEXT] = new PlainTextFileReader();
-   writerPrototypesM[PermanentMediumType::PLAIN_TEXT] = new PlainTextFileWriter();
+   readerPrototypesM.emplace(PermanentMediumType::PLAIN_TEXT, new PlainTextFileReader());
+   writerPrototypesM.emplace(PermanentMediumType::PLAIN_TEXT, new PlainTextFileWriter());
 }
 
 PermanentMediumPrototyper::~PermanentMediumPrototyper()

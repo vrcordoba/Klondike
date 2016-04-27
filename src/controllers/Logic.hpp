@@ -2,15 +2,10 @@
 #define CONTROLLERS_LOGIC_HPP_
 
 #include "Game.hpp"
+#include "OperationController.hpp"
 
 namespace Controllers
 {
-
-class OperationController;
-class StartController;
-class GameController;
-class ContinueController;
-class SaveController;
 
 class Logic final
 {
@@ -25,10 +20,7 @@ public:
 
 private:
    Models::Game gameM;
-   StartController* startControllerM;
-   GameController* gameControllerM;
-   ContinueController* continueControllerM;
-   SaveController* saveControllerM;
+   std::map<Models::State, OperationController*> controllersM;
 };
 
 }
