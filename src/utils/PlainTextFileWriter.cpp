@@ -24,7 +24,12 @@ void PlainTextFileWriter::open(const std::string& name)
    fileM.open(name + ".txt");
 }
 
-void PlainTextFileWriter::writeLine(const std::string& line)
+void PlainTextFileWriter::writeFieldSeparator()
+{
+   writeField(PermanentMedium::FIELD_SEPARATOR);
+}
+
+void PlainTextFileWriter::writeField(const std::string& line)
 {
    fileM << line << std::endl;
 }

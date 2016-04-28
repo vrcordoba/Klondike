@@ -8,6 +8,12 @@
 namespace Models
 {
 class Game;
+class Pile;
+}
+
+namespace Utils
+{
+class PermanentMediumWriter;
 }
 
 namespace Controllers
@@ -28,6 +34,10 @@ public:
 
    bool fileAlreadyExists(const std::string& saveFileName);
    void saveGame(const std::string& saveFileName);
+
+private:
+   void saveCardTable(Utils::PermanentMediumWriter* saveFile);
+   void savePile(Utils::PermanentMediumWriter* saveFile, Models::Pile* pile);
 };
 
 }

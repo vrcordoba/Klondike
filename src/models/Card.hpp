@@ -2,6 +2,7 @@
 #define MODELS_CARD_HPP_
 
 #include <cstdint>
+#include <string>
 #include "Suit.hpp"
 
 namespace Models
@@ -26,6 +27,8 @@ public:
 
    std::uint8_t getNumber() const;
    std::uint8_t getSuit() const;
+
+   std::string toString() const;
 
 private:
    std::uint8_t numberM;

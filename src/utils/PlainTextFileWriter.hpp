@@ -21,7 +21,8 @@ public:
 
    void open(const std::string& name);
    bool isOk() const;
-   void writeLine(const std::string& line);
+   void writeField(const std::string& line);
+   void writeFieldSeparator();
 
 private:
    std::ofstream fileM;

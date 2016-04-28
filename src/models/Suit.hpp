@@ -2,6 +2,7 @@
 #define MODELS_SUIT_HPP_
 
 #include <cstdint>
+#include <string>
 
 namespace Models
 {
@@ -18,6 +19,8 @@ public:
    bool sameColor(const Suit& otherSuit) const;
 
    std::uint8_t getSuit() const;
+
+   std::string toString() const;
 
 private:
    std::uint8_t suitM;

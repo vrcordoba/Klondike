@@ -66,4 +66,10 @@ std::uint8_t Card::getSuit() const
    return suitM.getSuit();
 }
 
+std::string Card::toString() const
+{
+   return std::to_string(numberM) + " " + std::to_string(upturnedM) +
+      " " + suitM.toString();
+}
+
 }

@@ -11,28 +11,28 @@ namespace Utils
 
 PermanentMediumPrototyper::PermanentMediumPrototyper()
 {
-   readerPrototypesM.emplace(PermanentMediumType::PLAIN_TEXT, new PlainTextFileReader());
-   writerPrototypesM.emplace(PermanentMediumType::PLAIN_TEXT, new PlainTextFileWriter());
+   readerPrototypesM.emplace(PermanentMedium::Type::PLAIN_TEXT, new PlainTextFileReader());
+   writerPrototypesM.emplace(PermanentMedium::Type::PLAIN_TEXT, new PlainTextFileWriter());
 }
 
 PermanentMediumPrototyper::~PermanentMediumPrototyper()
 {
    std::for_each(std::begin(readerPrototypesM), std::end(readerPrototypesM),
-      [] (std::pair<const PermanentMediumType, PermanentMediumReader*>& pair)
+      [] (std::pair<const PermanentMedium::Type, PermanentMediumReader*>& pair)
       {
          delete pair.second;
       });
    std::for_each(std::begin(writerPrototypesM), std::end(writerPrototypesM),
-      [] (std::pair<const PermanentMediumType, PermanentMediumWriter*>& pair)
+      [] (std::pair<const PermanentMedium::Type, PermanentMediumWriter*>& pair)
       {
          delete pair.second;
       });
 }
 
 PermanentMediumReader* PermanentMediumPrototyper::getReader(
-   PermanentMediumType permanentMediumType)
+   PermanentMedium::Type permanentMediumType)
 {
-   std::map<PermanentMediumType, PermanentMediumReader*>::const_iterator readerIt =
+   std::map<PermanentMedium::Type, PermanentMediumReader*>::const_iterator readerIt =
       readerPrototypesM.find(permanentMediumType);
    assert(readerIt != readerPrototypesM.end());
    PermanentMediumReader* permanentMediumReader = readerIt->second->clone();
@@ -40,9 +40,9 @@ PermanentMediumReader* PermanentMediumPrototyper::getReader(
 }
 
 PermanentMediumWriter* PermanentMediumPrototyper::getWriter(
-   PermanentMediumType permanentMediumType)
+   PermanentMedium::Type permanentMediumType)
 {
-   std::map<PermanentMediumType, PermanentMediumWriter*>::const_iterator writerIt =
+   std::map<PermanentMedium::Type, PermanentMediumWriter*>::const_iterator writerIt =
       writerPrototypesM.find(permanentMediumType);
    assert(writerIt != writerPrototypesM.end());
    PermanentMediumWriter* permanentMediumWriter = writerIt->second->clone();

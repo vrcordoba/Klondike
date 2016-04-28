@@ -19,9 +19,9 @@ public:
 
    PermanentMediumReader* clone();
 
-   void open(std::string name);
+   void open(const std::string& name);
    bool isOk() const;
-   bool getLine(std::string& line);
+   bool getField(std::string& line);
    bool alreadyExists(const std::string& fileName);
 
 private:

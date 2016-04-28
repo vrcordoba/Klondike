@@ -1,9 +1,9 @@
 
 #include "Ranking.hpp"
 #include "KlondikeConfiguration.hpp"
+#include "PermanentMedium.hpp"
 #include "PermanentMediumReader.hpp"
 #include "PermanentMediumWriter.hpp"
-#include "PermanentMediumType.hpp"
 #include "PermanentMediumPrototyper.hpp"
 
 namespace Models
@@ -48,7 +48,7 @@ void Ranking::loadRanking()
       do
       {
          std::string score;
-         continueReading = rankingReader->getLine(score);
+         continueReading = rankingReader->getField(score);
          if (not score.empty())
             rankingM.push_back(atoi(score.c_str()));
       } while (continueReading);
@@ -60,14 +60,14 @@ void Ranking::saveRanking()
 {
    Utils::PermanentMediumWriter* rankingWriter =
       Utils::PermanentMediumPrototyper().getWriter(
-         Utils::PermanentMediumType::PLAIN_TEXT);
+         Utils::PermanentMedium::Type::PLAIN_TEXT);
    rankingWriter->open(rankingFileM);
    if (rankingWriter->isOk())
    {
       std::vector<std::uint32_t>::const_iterator rankingIt = rankingM.begin();
       for (std::uint8_t i = 0; i < SCORES_TO_SAVE; ++i)
       {
-         rankingWriter->writeLine(std::to_string(*rankingIt));
+         rankingWriter->writeField(std::to_string(*rankingIt));
          ++rankingIt;
       }
    }

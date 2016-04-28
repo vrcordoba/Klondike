@@ -19,12 +19,12 @@ PermanentMediumReader* PlainTextFileReader::clone()
    return new PlainTextFileReader();
 }
 
-void PlainTextFileReader::open(std::string name)
+void PlainTextFileReader::open(const std::string& name)
 {
    fileM.open(name + ".txt");
 }
 
-bool PlainTextFileReader::getLine(std::string& line)
+bool PlainTextFileReader::getField(std::string& line)
 {
    bool unreadLines = true;
    if (fileM.is_open() and (not fileM.eof()))

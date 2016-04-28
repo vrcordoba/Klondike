@@ -63,7 +63,7 @@ set(HEADER_FILES
    utils/YesNoDialog.hpp
    utils/TextMenu.hpp
    utils/CommandReader.hpp
-   utils/PermanentMediumType.hpp
+   utils/PermanentMedium.hpp
    utils/PermanentMediumPrototyper.hpp
    utils/PermanentMediumReader.hpp
    utils/PermanentMediumWriter.hpp

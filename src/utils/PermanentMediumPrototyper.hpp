@@ -3,9 +3,7 @@
 
 #include <cstdint>
 #include <map>
-#include "PermanentMediumType.hpp"
-#include "PermanentMediumReader.hpp"
-#include "PermanentMediumWriter.hpp"
+#include "PermanentMedium.hpp"
 
 namespace Utils
 {
@@ -19,12 +17,12 @@ public:
    PermanentMediumPrototyper();
    ~PermanentMediumPrototyper();
 
-   PermanentMediumReader* getReader(PermanentMediumType type);
-   PermanentMediumWriter* getWriter(PermanentMediumType type);
+   PermanentMediumReader* getReader(PermanentMedium::Type type);
+   PermanentMediumWriter* getWriter(PermanentMedium::Type type);
 
 private:
-   std::map<PermanentMediumType, PermanentMediumReader*> readerPrototypesM;
-   std::map<PermanentMediumType, PermanentMediumWriter*> writerPrototypesM;
+   std::map<PermanentMedium::Type, PermanentMediumReader*> readerPrototypesM;
+   std::map<PermanentMedium::Type, PermanentMediumWriter*> writerPrototypesM;
 };
 
 }
