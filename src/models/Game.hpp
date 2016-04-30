@@ -21,7 +21,7 @@ public:
    Game(const Game&) = delete;
    Game& operator=(const Game&) = delete;
 
-   void initializeGame(Configuration::DeckType::Type typeDeck);
+   void initializeGame(Configuration::DeckType::Type typeDeck, bool initializeDeck);
 
    std::uint8_t getNumTableaus() const;
    std::uint8_t getNumFoundations() const;

@@ -49,9 +49,8 @@ void SaveController::saveGame(const std::string& saveFileName)
 
 void SaveController::saveCardTable(Utils::PermanentMediumWriter* saveFile)
 {
-   saveFile->writeField(std::to_string(static_cast<std::uint8_t>(
-      Configuration::KlondikeConfiguration::getInstance().getDeckType())));
-   saveFile->writeFieldSeparator();
+   saveFile->writeNumericField(Configuration::KlondikeConfiguration::getInstance().getDeckType());
+   // TODO: save score
    savePile(saveFile, Controller::getDeck());
    savePile(saveFile, Controller::getWaste());
    for (std::uint8_t i = 0; i < Controller::getNumFoundations(); ++i)
@@ -62,9 +61,10 @@ void SaveController::saveCardTable(Utils::PermanentMediumWriter* saveFile)
 
 void SaveController::savePile(Utils::PermanentMediumWriter* saveFile, Models::Pile* pile)
 {
-   for (Models::Card card : pile->getCards())
-      saveFile->writeField(card.toString());
-   saveFile->writeFieldSeparator();
+   std::list<std::string> pileField;
+   for (auto card : pile->getCards())
+      pileField.push_back(card.toString());
+   saveFile->writeComposedField(pileField);
 }
 
 }

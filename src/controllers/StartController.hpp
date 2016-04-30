@@ -2,10 +2,9 @@
 #define CONTROLLERS_STARTCONTROLLER_HPP_
 
 #include <cstdint>
-#include <list>
-#include <string>
 #include "Controller.hpp"
 #include "OperationController.hpp"
+#include "DeckType.hpp"
 
 namespace Models
 {
@@ -28,8 +27,14 @@ public:
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
 
-   void start(std::uint8_t numPlayers, std::uint8_t newOrSavedOption,
-      std::uint8_t typeDeck);
+   enum class GameType : std::uint8_t
+   {
+      NEW = 1,
+      SAVED
+   };
+
+   void start(std::uint8_t numPlayers, GameType gameType,
+      Configuration::DeckType::Type typeDeck);
 
 private:
    void buildCardTable(std::uint8_t typeDeck);

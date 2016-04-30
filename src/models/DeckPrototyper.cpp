@@ -32,7 +32,6 @@ Deck* DeckPrototyper::getDeck(Configuration::DeckType::Type deckType)
    assert(deckIt != deckPrototypesM.end());
    Configuration::KlondikeConfiguration::getInstance().setDeckType(deckType);
    Deck* deck = deckIt->second->clone();
-   deck->buildDeck();
    return deck;
 }
 

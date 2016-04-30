@@ -33,7 +33,7 @@ void CardCommand::moveCards(Models::Pile* originPile,
    assert(nullptr != controllerM);
    Models::Pile cardsToMove;
    for (std::uint8_t i = 0; i < numCards; ++i)
-      cardsToMove.addCard(originPile->takeCard());
+      cardsToMove.appendCard(originPile->takeCard());
    for (std::uint8_t i = 0; i < numCards; ++i)
       controllerM->transferCard(cardsToMove, *destinationPile);
 }

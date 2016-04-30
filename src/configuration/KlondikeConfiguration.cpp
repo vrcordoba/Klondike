@@ -67,7 +67,7 @@ std::list<std::string> KlondikeConfiguration::readConfiguration() const
 void KlondikeConfiguration::interpretReadConfiguration(
    const std::list<std::string>& configurations)
 {
-   for (std::string configuration : configurations)
+   for (auto configuration : configurations)
    {
       if (configuration.find("views:") != std::string::npos)
          setViewType(configuration);

@@ -27,10 +27,11 @@ void FrenchDeck::buildDeck()
    const std::uint8_t numCardsPerSuit = getNumCardsPerSuit();
    for (std::uint8_t i = 0; i < numCards; ++i)
    {
-      addCard(Card(i % numCardsPerSuit,
+      appendCard(Card(i % numCardsPerSuit,
          Suit(i / numCardsPerSuit,
             (i / numCardsPerSuit) % 2)));
    }
+   //shuffle();
 }
 
 }

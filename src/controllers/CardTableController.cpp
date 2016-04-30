@@ -41,7 +41,7 @@ std::vector<FacadeCard> CardTableController::getFoundation(std::uint8_t i)
 std::vector<FacadeCard> CardTableController::getFacadePile(const Models::Pile* pile)
 {
    std::vector<FacadeCard> facadePile;
-   for (Models::Card card : pile->getCards())
+   for (auto card : pile->getCards())
    {
       FacadeCard facadeCard(card);
       facadePile.push_back(facadeCard);

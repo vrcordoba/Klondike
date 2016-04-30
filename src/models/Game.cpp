@@ -19,10 +19,12 @@ Game::~Game()
    deleteDeckAndCardTable();
 }
 
-void Game::initializeGame(Configuration::DeckType::Type typeDeck)
+void Game::initializeGame(Configuration::DeckType::Type typeDeck, bool initializeDeck)
 {
    deleteDeckAndCardTable();
    deckM = deckPrototyperM.getDeck(typeDeck);
+   if (initializeDeck)
+      deckM->buildDeck();
    cardTableM = new CardTable(*deckM, getNumTableaus());
    scoreM.rebootScore();
 }

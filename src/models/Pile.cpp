@@ -24,9 +24,14 @@ Pile& Pile::operator=(const Pile& otherPile)
    return *this;
 }
 
-void Pile::addCard(const Card& card)
+void Pile::appendCard(const Card& card)
 {
    cardsM.push_back(card);
+}
+
+void Pile::prependCard(const Card& card)
+{
+   cardsM.push_front(card);
 }
 
 Card Pile::takeCard()
@@ -79,9 +84,9 @@ void Pile::setUpturnCards(std::uint8_t numCards, bool upturn)
       card.setUpturned(upturn);
       cards.push_back(card);
    }
-   for (Card card : cards)
+   for (auto card : cards)
    {
-      addCard(card);
+      appendCard(card);
    }
 }
 

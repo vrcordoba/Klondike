@@ -11,7 +11,7 @@ namespace Models
 class Card final
 {
 public:
-   Card(std::uint8_t number, Suit suit, bool upturned = false);
+   Card(std::uint8_t number = 0, Suit suit = Suit(0, 0), bool upturned = false);
    ~Card();
 
    Card& operator=(const Card& otherCard);
@@ -29,6 +29,7 @@ public:
    std::uint8_t getSuit() const;
 
    std::string toString() const;
+   void fromString(std::string cardStr);
 
 private:
    std::uint8_t numberM;

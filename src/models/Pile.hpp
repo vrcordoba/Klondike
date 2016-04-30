@@ -16,7 +16,8 @@ public:
    Pile(const Pile& otherPile);
    Pile& operator=(const Pile& otherPile);
 
-   void addCard(const Card& card);
+   void appendCard(const Card& card);
+   void prependCard(const Card& card);
    Card takeCard();
    std::size_t getNumCards() const;
 

@@ -63,7 +63,7 @@ TEST (GameTests, isGameWon)
       Models::Pile pile;
       for (std::int8_t j = 12; j >= 0; --j)
       {
-         pile.addCard(Models::Card(j, Models::Suit(i, i % 2)));
+         pile.appendCard(Models::Card(j, Models::Suit(i, i % 2)));
       }
       piles.push_back(pile);
    }

@@ -14,7 +14,7 @@ TEST(FoundationTests, validDestination)
    Models::Card card3(1, Models::Suit(1, 1));
    Models::FrenchDeck deck;
    Models::Foundation foundation(deck);
-   foundation.addCard(card1);
+   foundation.appendCard(card1);
    EXPECT_FALSE(foundation.isValidDestination(card2));
    EXPECT_TRUE(foundation.isValidDestination(card3));
 }
@@ -35,10 +35,10 @@ TEST(FoundationTests, isFoundationComplete)
    Models::Foundation foundation(deck);
    for (std::uint8_t i = 0; i < 12; ++i)
    {
-      foundation.addCard(Models::Card(i, Models::Suit(3, 1)));
+      foundation.appendCard(Models::Card(i, Models::Suit(3, 1)));
    }
    EXPECT_FALSE(foundation.isFoundationComplete());
-   foundation.addCard(Models::Card(12, Models::Suit(3, 1)));
+   foundation.appendCard(Models::Card(12, Models::Suit(3, 1)));
    EXPECT_TRUE(foundation.isFoundationComplete());
 }
 

@@ -1,7 +1,9 @@
 #ifndef UTILS_PLAINTEXTFILEREADER_HPP_
 #define UTILS_PLAINTEXTFILEREADER_HPP_
 
+#include <cstdint>
 #include <fstream>
+#include <list>
 #include <string>
 #include "PermanentMediumReader.hpp"
 
@@ -22,6 +24,8 @@ public:
    void open(const std::string& name);
    bool isOk() const;
    bool getField(std::string& line);
+   std::list<std::string> getComposedField();
+   std::int64_t getNumericField();
    bool alreadyExists(const std::string& fileName);
 
 private:

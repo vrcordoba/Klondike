@@ -15,7 +15,7 @@ TEST(TableauTests, validDestination)
    Models::Card card4(8, Models::Suit(2, 2));
    Models::SpanishDeck deck;
    Models::Tableau tableau(deck);
-   tableau.addCard(card1);
+   tableau.appendCard(card1);
    EXPECT_FALSE(tableau.isValidDestination(card2));
    EXPECT_FALSE(tableau.isValidDestination(card3));
    EXPECT_TRUE(tableau.isValidDestination(card4));

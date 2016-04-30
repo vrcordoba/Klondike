@@ -32,7 +32,7 @@ void ContinueTextView::showRanking(std::uint32_t positionInRanking,
    std::uint32_t i = 1;
    Utils::IO& io = Utils::IO::getInstance();
    io.writeString("Best scores:");
-   for (std::uint32_t score : bestScores)
+   for (auto score : bestScores)
    {
       if (positionInRanking == i)
          io.writeString(std::to_string(i) + " - >>> " + std::to_string(score) + " <<< Your score");

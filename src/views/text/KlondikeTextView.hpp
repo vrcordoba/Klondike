@@ -6,10 +6,16 @@
 #include "StartTextView.hpp"
 #include "ContinueTextView.hpp"
 #include "SaveTextView.hpp"
+#include "LoadTextView.hpp"
 
 namespace Controllers
 {
 class OperationController;
+class StartController;
+class GameController;
+class ContinueController;
+class SaveController;
+class LoadController;
 }
 
 namespace Views
@@ -32,12 +38,14 @@ public:
    void visit(Controllers::GameController* gameController);
    void visit(Controllers::ContinueController* continueController);
    void visit(Controllers::SaveController* continueController);
+   void visit(Controllers::LoadController* loadController);
 
 private:
    StartTextView startViewM;
    GameTextView gameViewM;
    ContinueTextView continueViewM;
    SaveTextView saveViewM;
+   LoadTextView loadViewM;
 };
 
 }

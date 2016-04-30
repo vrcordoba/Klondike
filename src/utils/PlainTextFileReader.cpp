@@ -1,6 +1,9 @@
 
 #include "PlainTextFileReader.hpp"
 
+#include <sstream>
+#include <limits>
+
 namespace Utils
 {
 
@@ -22,6 +25,30 @@ PermanentMediumReader* PlainTextFileReader::clone()
 void PlainTextFileReader::open(const std::string& name)
 {
    fileM.open(name + ".txt");
+}
+
+std::list<std::string> PlainTextFileReader::getComposedField()
+{
+   std::list<std::string> composedField;
+   std::string readLine;
+   getField(readLine);
+   while (0 != readLine.compare(FIELD_SEPARATOR))
+   {
+      composedField.push_back(readLine);
+      getField(readLine);
+   }
+   return composedField;
+}
+
+std::int64_t PlainTextFileReader::getNumericField()
+{
+   std::string readLine;
+   getField(readLine);
+   std::int64_t readInt;
+   std::istringstream converter(readLine);
+   if (not (converter >> readInt))
+      readInt = std::numeric_limits<std::int64_t>::quiet_NaN();
+   return readInt;
 }
 
 bool PlainTextFileReader::getField(std::string& line)

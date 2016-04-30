@@ -6,11 +6,8 @@
 #include <list>
 #include <string>
 #include "TextMenu.hpp"
-
-namespace Controllers
-{
-class StartController;
-}
+#include "DeckType.hpp"
+#include "StartController.hpp"
 
 namespace Views
 {
@@ -28,8 +25,8 @@ public:
 
 private:
    std::uint8_t getNumPlayers();
-   std::uint8_t getNewOrSaveOption(std::uint8_t numPlayers);
-   std::uint8_t getTypeOfDeck(std::list<std::string> deckDescriptions);
+   Controllers::StartController::GameType getNewOrSaveOption();
+   Configuration::DeckType::Type getTypeOfDeck(std::list<std::string> deckDescriptions);
    Utils::TextMenu buildNewSavedGameMenu();
    Utils::TextMenu buildDeckSelectionMenu(std::list<std::string> deckDescriptions);
 };

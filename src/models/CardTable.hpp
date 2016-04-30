@@ -34,6 +34,7 @@ public:
 private:
    void buildTableaus(std::uint8_t numTableaus);
    void buildFoundations();
+   void buildEmptyTableaus(std::uint8_t numTableaus);
 
    Deck& deckM;
    Pile wasteM;

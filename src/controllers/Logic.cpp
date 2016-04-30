@@ -7,6 +7,7 @@
 #include "GameController.hpp"
 #include "ContinueController.hpp"
 #include "SaveController.hpp"
+#include "LoadController.hpp"
 
 namespace Controllers
 {
@@ -14,6 +15,7 @@ namespace Controllers
 Logic::Logic() : gameM()
 {
    controllersM.emplace(Models::State::INITIAL, new StartController(gameM));
+   controllersM.emplace(Models::State::LOAD, new LoadController(gameM));
    controllersM.emplace(Models::State::GAME, new GameController(gameM));
    controllersM.emplace(Models::State::CONTINUE, new ContinueController(gameM));
    controllersM.emplace(Models::State::SAVE, new SaveController(gameM));

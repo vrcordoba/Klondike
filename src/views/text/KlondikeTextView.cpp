@@ -47,4 +47,9 @@ void KlondikeTextView::visit(Controllers::SaveController* saveController)
    saveViewM.interact(saveController);
 }
 
+void KlondikeTextView::visit(Controllers::LoadController* loadController)
+{
+   loadViewM.interact(loadController);
+}
+
 }

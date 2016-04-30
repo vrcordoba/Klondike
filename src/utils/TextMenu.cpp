@@ -20,7 +20,7 @@ void TextMenu::show() const
    IO& io = IO::getInstance();
    io.writeString(titleM);
    std::uint8_t optionIndex = 1;
-   for (std::string option : optionsM)
+   for (auto option : optionsM)
    {
       io.writeString(std::to_string(optionIndex++) + " - " + option);
    }

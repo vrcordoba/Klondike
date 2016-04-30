@@ -22,9 +22,16 @@ StartTextView::~StartTextView()
 void StartTextView::interact(Controllers::StartController* startController)
 {
    std::uint8_t numPlayers = 1; //getNumPlayers();
-   std::uint8_t newOrSavedOption = 1; //getNewOrSaveOption(numPlayers);
-   std::uint8_t typeDeck = getTypeOfDeck(
-      Configuration::KlondikeConfiguration::getInstance().getDeckDescriptions());
+   Controllers::StartController::GameType newOrSavedOption =
+      Controllers::StartController::GameType::NEW;
+   Configuration::DeckType::Type typeDeck = Configuration::DeckType::Type::UNKNOWN;
+   if (1 == numPlayers)
+   {
+      newOrSavedOption = getNewOrSaveOption();
+      if (Controllers::StartController::GameType::NEW == newOrSavedOption)
+         typeDeck = getTypeOfDeck(
+            Configuration::KlondikeConfiguration::getInstance().getDeckDescriptions());
+   }
    startController->start(numPlayers, newOrSavedOption, typeDeck);
 }
 
@@ -33,16 +40,11 @@ std::uint8_t StartTextView::getNumPlayers()
    return Utils::LimitedIntDialog("How many players?", 0, 1).read();
 }
 
-std::uint8_t StartTextView::getNewOrSaveOption(std::uint8_t numPlayers)
+Controllers::StartController::GameType StartTextView::getNewOrSaveOption()
 {
-   std::uint8_t newOrSavedOption = 1;
-   if (1 == numPlayers)
-   {
-      Utils::TextMenu newSavedMenu = buildNewSavedGameMenu();
-      newSavedMenu.show();
-      newOrSavedOption = newSavedMenu.read();
-   }
-   return newOrSavedOption;
+   Utils::TextMenu newSavedMenu = buildNewSavedGameMenu();
+   newSavedMenu.show();
+   return static_cast<Controllers::StartController::GameType>(newSavedMenu.read());
 }
 
 Utils::TextMenu StartTextView::buildNewSavedGameMenu()
@@ -53,11 +55,11 @@ Utils::TextMenu StartTextView::buildNewSavedGameMenu()
    return menu;
 }
 
-std::uint8_t StartTextView::getTypeOfDeck(std::list<std::string> deckDescriptions)
+Configuration::DeckType::Type StartTextView::getTypeOfDeck(std::list<std::string> deckDescriptions)
 {
-   Utils::TextMenu newSavedMenu = buildDeckSelectionMenu(deckDescriptions);
-   newSavedMenu.show();
-   return newSavedMenu.read();
+   Utils::TextMenu typeOfDeckMenu = buildDeckSelectionMenu(deckDescriptions);
+   typeOfDeckMenu.show();
+   return static_cast<Configuration::DeckType::Type>(typeOfDeckMenu.read());
 }
 
 Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::list<std::string> deckDescriptions)
@@ -71,7 +73,7 @@ Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::list<std::string> dec
    }
    menuTitle += (*itDeckDescriptions) + " deck?";
    Utils::TextMenu menu(menuTitle);
-   for (std::string deck : deckDescriptions)
+   for (auto deck : deckDescriptions)
    {
       menu.addOption(deck + " deck");
    }

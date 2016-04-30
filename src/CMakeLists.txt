@@ -28,6 +28,7 @@ set(HEADER_FILES
    controllers/CardTableController.hpp
    controllers/MoveController.hpp
    controllers/SaveController.hpp
+   controllers/LoadController.hpp
    controllers/commands/CommandType.hpp
    controllers/commands/Command.hpp
    controllers/commands/CommandVisitor.hpp
@@ -78,6 +79,7 @@ set(HEADER_FILES
    views/CardView.hpp
    views/ViewPrototyper.hpp
    views/SaveView.hpp
+   views/LoadView.hpp
    views/text/KlondikeTextView.hpp
    views/text/StartTextView.hpp
    views/text/GameTextView.hpp
@@ -89,6 +91,7 @@ set(HEADER_FILES
    views/text/SpanishCardTextView.hpp
    views/text/CommandInterpreter.hpp
    views/text/SaveTextView.hpp
+   views/text/LoadTextView.hpp
 )
 
 set(SOURCE_FILES
@@ -107,6 +110,7 @@ set(SOURCE_FILES
    controllers/CardTableController.cpp
    controllers/MoveController.cpp
    controllers/SaveController.cpp
+   controllers/LoadController.cpp
    controllers/commands/CardCommand.cpp
    controllers/commands/DrawCardCommand.cpp
    controllers/commands/MoveCommand.cpp
@@ -152,6 +156,7 @@ set(SOURCE_FILES
    views/text/SpanishCardTextView.cpp
    views/text/CommandInterpreter.cpp
    views/text/SaveTextView.cpp
+   views/text/LoadTextView.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")

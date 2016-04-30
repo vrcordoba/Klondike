@@ -2,6 +2,7 @@
 #define MODELS_SUIT_HPP_
 
 #include <cstdint>
+#include <vector>
 #include <string>
 
 namespace Models
@@ -21,6 +22,7 @@ public:
    std::uint8_t getSuit() const;
 
    std::string toString() const;
+   void fromString(std::string suitStr, std::string colorStr);
 
 private:
    std::uint8_t suitM;

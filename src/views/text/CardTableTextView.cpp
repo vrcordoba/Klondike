@@ -80,7 +80,7 @@ void CardTableTextView::showTableaus()
 
 void CardTableTextView::showPile(const std::vector<Controllers::FacadeCard>& pile)
 {
-   for (Controllers::FacadeCard card : pile)
+   for (auto card : pile)
       cardViewM->show(card);
 }
 

@@ -32,10 +32,10 @@ TEST(CardTableTests, transferCard)
    Models::SpanishDeck deck;
    Models::CardTable cardTable(deck, 0);
    Models::Pile pile1, pile2;
-   pile1.addCard(Models::Card(0, Models::Suit(0, 0)));
-   pile1.addCard(Models::Card(1, Models::Suit(0, 0)));
-   pile1.addCard(Models::Card(2, Models::Suit(0, 0)));
-   pile1.addCard(Models::Card(3, Models::Suit(0, 0)));
+   pile1.appendCard(Models::Card(0, Models::Suit(0, 0)));
+   pile1.appendCard(Models::Card(1, Models::Suit(0, 0)));
+   pile1.appendCard(Models::Card(2, Models::Suit(0, 0)));
+   pile1.appendCard(Models::Card(3, Models::Suit(0, 0)));
    EXPECT_TRUE(4 == pile1.getNumCards());
    EXPECT_TRUE(0 == pile2.getNumCards());
    cardTable.transferCard(pile1, pile2);
@@ -60,7 +60,7 @@ TEST(CardTableTests, isGameWon)
       Models::Pile pile;
       for (std::int8_t j = 9; j >= 0; --j)
       {
-         pile.addCard(Models::Card(j, Models::Suit(i, i)));
+         pile.appendCard(Models::Card(j, Models::Suit(i, i)));
       }
       piles.push_back(pile);
    }

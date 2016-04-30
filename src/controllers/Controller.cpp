@@ -16,11 +16,11 @@ Controller::~Controller()
 {
 }
 
-void Controller::initializeGame(Configuration::DeckType::Type typeDeck)
+void Controller::initializeGame(Configuration::DeckType::Type typeDeck, bool initializeDeck)
 {
    if (Configuration::DeckType::Type::UNKNOWN == typeDeck)
       typeDeck = Configuration::KlondikeConfiguration::getInstance().getDeckType();
-   gameM.initializeGame(typeDeck);
+   gameM.initializeGame(typeDeck, initializeDeck);
 }
 
 void Controller::setState(Models::State newState)

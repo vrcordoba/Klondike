@@ -1,6 +1,12 @@
 
 #include "Card.hpp"
 
+#include <cassert>
+#include <sstream>
+#include <iterator>
+#include <vector>
+#include <limits>
+
 namespace Models
 {
 
@@ -70,6 +76,21 @@ std::string Card::toString() const
 {
    return std::to_string(numberM) + " " + std::to_string(upturnedM) +
       " " + suitM.toString();
+}
+
+void Card::fromString(std::string cardStr)
+{
+   std::istringstream iss(cardStr);
+   std::vector<std::string> tokenizedCard{std::istream_iterator<std::string>{iss},
+      std::istream_iterator<std::string>{}};
+   assert(4 == tokenizedCard.size());
+   std::istringstream numberConverter(tokenizedCard[0]);
+   if (not (numberConverter >> numberM))
+      numberM = std::numeric_limits<std::uint8_t>::quiet_NaN();
+   std::istringstream upturnedConverter(tokenizedCard[1]);
+   if (not (upturnedConverter >> upturnedM))
+      upturnedM = std::numeric_limits<bool>::quiet_NaN();
+   suitM.fromString(tokenizedCard[2], tokenizedCard[3]);
 }
 
 }

@@ -26,7 +26,8 @@ public:
    Controller& operator=(Controller&) = delete;
 
    void initializeGame(
-      Configuration::DeckType::Type typeDeck = Configuration::DeckType::Type::UNKNOWN);
+      Configuration::DeckType::Type typeDeck = Configuration::DeckType::Type::UNKNOWN,
+      bool initializeDeck = true);
 
    void setState(Models::State newState);
 

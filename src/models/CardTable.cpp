@@ -13,7 +13,10 @@ namespace Models
 CardTable::CardTable(Deck& deck, std::uint8_t numTableaus)
    : deckM(deck), wasteM(), tableausM(), foundationsM()
 {
-   buildTableaus(numTableaus);
+   if (0 != deckM.getNumCards())
+      buildTableaus(numTableaus);
+   else
+      buildEmptyTableaus(numTableaus);
    buildFoundations();
 }
 
@@ -45,14 +48,14 @@ void CardTable::buildTableaus(std::uint8_t numTableaus)
       }
       Card firstCardInTableau = deckM.takeCard();
       firstCardInTableau.setUpturned(true);
-      tableau.addCard(firstCardInTableau);
+      tableau.appendCard(firstCardInTableau);
       tableausM.push_back(tableau);
    }
 }
 
 void CardTable::transferCard(Pile& originPile, Pile& destinationPile)
 {
-   destinationPile.addCard(originPile.takeCard());
+   destinationPile.appendCard(originPile.takeCard());
 }
 
 void CardTable::buildFoundations()
@@ -60,6 +63,15 @@ void CardTable::buildFoundations()
    for (std::uint8_t i = 0; i < deckM.getNumSuits(); ++i)
    {
       foundationsM.push_back(Foundation(deckM));
+   }
+}
+
+void CardTable::buildEmptyTableaus(std::uint8_t numTableaus)
+{
+   for (std::uint8_t i = 0; i < numTableaus; ++i)
+   {
+      Tableau tableau(deckM);
+      tableausM.push_back(tableau);
    }
 }
 
