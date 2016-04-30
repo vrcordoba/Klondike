@@ -48,6 +48,7 @@ public:
    bool isGameWon() const;
 
    Models::Score& getScore();
+   void setScore(std::uint32_t score);
 
 private:
    Models::Game& gameM;

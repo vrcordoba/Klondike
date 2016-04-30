@@ -8,6 +8,7 @@
 #include "KlondikeConfiguration.hpp"
 #include "Pile.hpp"
 #include "Card.hpp"
+#include "Score.hpp"
 
 namespace Controllers
 {
@@ -50,7 +51,7 @@ void SaveController::saveGame(const std::string& saveFileName)
 void SaveController::saveCardTable(Utils::PermanentMediumWriter* saveFile)
 {
    saveFile->writeNumericField(Configuration::KlondikeConfiguration::getInstance().getDeckType());
-   // TODO: save score
+   saveFile->writeNumericField(Controller::getScore().getScore());
    savePile(saveFile, Controller::getDeck());
    savePile(saveFile, Controller::getWaste());
    for (std::uint8_t i = 0; i < Controller::getNumFoundations(); ++i)

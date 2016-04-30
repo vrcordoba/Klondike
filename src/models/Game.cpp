@@ -126,4 +126,9 @@ Score& Game::getScore()
    return scoreM;
 }
 
+void Game::setScore(std::uint32_t score)
+{
+   scoreM.setScore(score);
+}
+
 }

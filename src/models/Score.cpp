@@ -24,6 +24,11 @@ std::uint32_t Score::getScore() const
    return scoreM;
 }
 
+void Score::setScore(std::uint32_t score)
+{
+   scoreM = score;
+}
+
 void Score::movementScore(std::uint8_t originPileId, std::uint8_t destinationPileId,
    std::uint8_t numCards, bool negativeScore)
 {

@@ -20,6 +20,7 @@ public:
       std::uint8_t numCards, bool negativeScore);
    void turnOverTableauCardScore(bool negativeScore);
    std::uint32_t getScore() const;
+   void setScore(std::uint32_t score);
 
 private:
    void computeScoreOriginFoundation(std::uint8_t destinationPileId, bool negativeScore);

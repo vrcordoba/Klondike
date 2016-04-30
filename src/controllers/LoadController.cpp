@@ -44,7 +44,7 @@ void LoadController::load(const std::string& saveFileName)
    saveFile->open(saveFileName);
    Configuration::KlondikeConfiguration::getInstance().setDeckType(
       static_cast<Configuration::DeckType::Type>(saveFile->getNumericField()));
-   // TODO: load score
+   Controller::setScore(saveFile->getNumericField());
    loadPile(saveFile, Controller::getDeck());
    loadPile(saveFile, Controller::getWaste());
    for (std::uint8_t i = 0; i < Controller::getNumFoundations(); ++i)

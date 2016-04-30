@@ -87,6 +87,8 @@ void Card::fromString(std::string cardStr)
    std::istringstream numberConverter(tokenizedCard[0]);
    if (not (numberConverter >> numberM))
       numberM = std::numeric_limits<std::uint8_t>::quiet_NaN();
+   else
+      numberM -= '0';
    std::istringstream upturnedConverter(tokenizedCard[1]);
    if (not (upturnedConverter >> upturnedM))
       upturnedM = std::numeric_limits<bool>::quiet_NaN();

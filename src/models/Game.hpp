@@ -45,6 +45,7 @@ public:
    std::uint8_t getNumCardsToDraw() const;
 
    Score& getScore();
+   void setScore(std::uint32_t score);
 
 private:
    void deleteDeckAndCardTable();

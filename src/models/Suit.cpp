@@ -45,9 +45,13 @@ void Suit::fromString(std::string suitStr, std::string colorStr)
    std::istringstream suitConverter(suitStr);
    if (not (suitConverter >> suitM))
       suitM = std::numeric_limits<std::uint8_t>::quiet_NaN();
+   else
+      suitM -= '0';
    std::istringstream colorConverter(colorStr);
    if (not (colorConverter >> colorM))
-      colorM = std::numeric_limits<bool>::quiet_NaN();
+      colorM = std::numeric_limits<std::uint8_t>::quiet_NaN();
+   else
+      colorM -= '0';
 }
 
 }
