@@ -14,7 +14,7 @@ class Deck : public Pile
 private:
 
 public:
-   Deck(std::uint8_t numCards, std::uint8_t numCardsPerSuit);
+   Deck();
    virtual ~Deck();
 
    explicit Deck(const Deck&);
@@ -24,6 +24,7 @@ public:
 
    void shuffle();
    virtual void buildDeck() = 0;
+   void buildDeck(std::uint8_t numColours);
 
    bool isTheLowestCardInTheSuit(const Card& card) const;
    bool isTheHighestCardInTheSuit(const Card& card) const;
@@ -32,10 +33,12 @@ public:
    std::uint8_t getNumCardsPerSuit() const;
    std::uint8_t getNumSuits() const;
 
-private:
+protected:
    std::uint8_t totalNumCardsM;
    std::uint8_t numCardsPerSuitM;
-   static const std::uint8_t LOWEST_CARD_IN_THE_SUIT = 0;
+
+private:
+   const std::uint8_t LOWEST_CARD_IN_THE_SUIT = 0;
 };
 
 }

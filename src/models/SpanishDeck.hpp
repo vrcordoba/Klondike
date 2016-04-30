@@ -23,8 +23,9 @@ public:
    void buildDeck();
 
 private:
-   static const std::uint8_t NUM_CARDS_IN_SPANISH_DECK = 40;
-   static const std::uint8_t NUM_CARDS_PER_SUIT_IN_SPANISH_DECK = 10;
+   const std::uint8_t NUM_CARDS_IN_SPANISH_DECK = 40;
+   const std::uint8_t NUM_CARDS_PER_SUIT_IN_SPANISH_DECK = 10;
+   const std::uint8_t NUM_COLOURS_IN_SPANISH_DECK = 4;
 };
 
 }

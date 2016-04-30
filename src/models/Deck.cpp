@@ -4,13 +4,14 @@
 #include <algorithm>
 #include <cassert>
 #include "Card.hpp"
+#include "Suit.hpp"
 #include "ClosedInterval.hpp"
 
 namespace Models
 {
 
-Deck::Deck(std::uint8_t numCards, std::uint8_t numCardsPerSuit)
-   : totalNumCardsM(numCards), numCardsPerSuitM(numCardsPerSuit)
+Deck::Deck()
+   : totalNumCardsM(0), numCardsPerSuitM(0)
 {
 }
 
@@ -28,6 +29,14 @@ Deck& Deck::operator=(const Deck& otherDeck)
    totalNumCardsM = otherDeck.totalNumCardsM;
    numCardsPerSuitM = otherDeck.numCardsPerSuitM;
    return *this;
+}
+
+void Deck::buildDeck(std::uint8_t numColours)
+{
+   for (std::uint8_t i = 0; i < getTotalNumCards(); ++i)
+      appendCard(Card(i % getNumCardsPerSuit(), Suit(i / getNumCardsPerSuit(),
+         (i / getNumCardsPerSuit()) % numColours)));
+   //shuffle();
 }
 
 void Deck::shuffle()
