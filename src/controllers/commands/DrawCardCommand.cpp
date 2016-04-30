@@ -1,14 +1,14 @@
 
 #include "DrawCardCommand.hpp"
 
-#include "CommandVisitor.hpp"
-#include "Controller.hpp"
+#include "CardCommandVisitor.hpp"
+#include "GameController.hpp"
 #include "Pile.hpp"
 
 namespace Controllers
 {
 
-DrawCardCommand::DrawCardCommand() : CardCommand(), numMovedCardsM(0)
+DrawCardCommand::DrawCardCommand() : numMovedCardsM(0)
 {
 }
 
@@ -16,9 +16,15 @@ DrawCardCommand::~DrawCardCommand()
 {
 }
 
-bool DrawCardCommand::accept(CommandVisitor* commandVisitor)
+DrawCardCommand::DrawCardCommand(const DrawCardCommand& otherDrawCardCommand) :
+   numMovedCardsM(otherDrawCardCommand.numMovedCardsM)
 {
-   return commandVisitor->visit(this);
+   gameControllerM = otherDrawCardCommand.gameControllerM;
+}
+
+void DrawCardCommand::accept(CardCommandVisitor* cardCommandVisitor)
+{
+   cardCommandVisitor->visit(this);
 }
 
 Command* DrawCardCommand::clone()
@@ -26,15 +32,10 @@ Command* DrawCardCommand::clone()
    return new DrawCardCommand();
 }
 
-void DrawCardCommand::setController(Controller* controller)
-{
-   CardCommand::setController(controller);
-}
-
 void DrawCardCommand::execute()
 {
-   Models::Pile* deck = CardCommand::getController()->getDeck();
-   Models::Pile* waste = CardCommand::getController()->getWaste();
+   Models::Pile* deck = getController()->getDeck();
+   Models::Pile* waste = getController()->getWaste();
    if (0 == deck->getNumCards())
    {
       std::uint8_t numCardsInWaste = waste->getNumCards();
@@ -43,8 +44,8 @@ void DrawCardCommand::execute()
    }
    else
    {
-      numMovedCardsM = deck->getNumCards() > CardCommand::getController()->getNumCardsToDraw() ?
-         CardCommand::getController()->getNumCardsToDraw() : deck->getNumCards();
+      numMovedCardsM = deck->getNumCards() > getController()->getNumCardsToDraw() ?
+         getController()->getNumCardsToDraw() : deck->getNumCards();
       moveCards(deck, waste, numMovedCardsM);
       waste->setUpturnCards(numMovedCardsM, true);
    }
@@ -52,8 +53,8 @@ void DrawCardCommand::execute()
 
 void DrawCardCommand::undo()
 {
-   Models::Pile* deck = CardCommand::getController()->getDeck();
-   Models::Pile* waste = CardCommand::getController()->getWaste();
+   Models::Pile* deck = getController()->getDeck();
+   Models::Pile* waste = getController()->getWaste();
    if (0 == waste->getNumCards())
    {
       std::uint8_t numCardsInDeck = deck->getNumCards();

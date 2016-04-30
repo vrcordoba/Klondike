@@ -6,17 +6,15 @@
 namespace Controllers
 {
 
-class CommandVisitor;
-
 class SaveCommand: public Command
 {
 public:
    SaveCommand();
    ~SaveCommand();
 
-   bool accept(CommandVisitor* commandVisitor);
-
    Command* clone();
+
+   void execute();
 };
 
 }

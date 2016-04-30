@@ -2,14 +2,12 @@
 #define CONTROLLERS_COMMANDS_MODIFYHISTORYCOMMAND_HPP_
 
 #include <cstdint>
-#include "Command.hpp"
+#include "ValidationCommand.hpp"
 
 namespace Controllers
 {
 
-class CommandVisitor;
-
-class ModifyHistoryCommand final : public Command
+class ModifyHistoryCommand final : public ValidationCommand
 {
 public:
    enum class Type : std::uint8_t
@@ -21,11 +19,11 @@ public:
    explicit ModifyHistoryCommand(Type type);
    ~ModifyHistoryCommand();
 
-   bool accept(CommandVisitor* commandVisitor);
-
    Command* clone();
 
-   Type getType() const;
+   bool isValid();
+
+   void execute();
 
 private:
    Type typeM;

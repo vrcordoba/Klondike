@@ -2,8 +2,8 @@
 #include "MoveCommand.hpp"
 
 #include <cassert>
-#include "CommandVisitor.hpp"
-#include "Controller.hpp"
+#include "CardCommandVisitor.hpp"
+#include "GameController.hpp"
 #include "Card.hpp"
 #include "Pile.hpp"
 #include "PileType.hpp"
@@ -21,6 +21,22 @@ MoveCommand::~MoveCommand()
 {
 }
 
+MoveCommand::MoveCommand(const MoveCommand& otherMoveCommand) :
+   originPileTypeM(otherMoveCommand.originPileTypeM),
+   originPileNumberM(otherMoveCommand.originPileNumberM),
+   destinationPileTypeM(otherMoveCommand.destinationPileTypeM),
+   destinationPileNumberM(otherMoveCommand.destinationPileNumberM),
+   numCardsM(otherMoveCommand.numCardsM),
+   previousCardInPileNotUpturnedM(otherMoveCommand.previousCardInPileNotUpturnedM)
+{
+   gameControllerM = otherMoveCommand.gameControllerM;
+}
+
+void MoveCommand::accept(CardCommandVisitor* cardCommandVisitor)
+{
+   cardCommandVisitor->visit(this);
+}
+
 Command* MoveCommand::clone()
 {
    return new MoveCommand();
@@ -36,9 +52,9 @@ void MoveCommand::setAdditionalArguments(const std::vector<std::uint8_t>& additi
    numCardsM = additionalArguments[4];
 }
 
-bool MoveCommand::accept(CommandVisitor* commandVisitor)
+bool MoveCommand::isValid()
 {
-   return commandVisitor->visit(this);
+   return (isValidOrigin() and isValidDestination());
 }
 
 bool MoveCommand::isValidOrigin() const
@@ -59,9 +75,9 @@ bool MoveCommand::isIndexValid(std::uint8_t pile, std::uint8_t index) const
 {
    bool isIndexValid = true;
    if (Models::PileType::TABLEAU == pile)
-      isIndexValid = (CardCommand::getController()->getNumTableaus() >= index and 0 < index);
+      isIndexValid = (getController()->getNumTableaus() >= index and 0 < index);
    else if (Models::PileType::FOUNDATION == pile)
-      isIndexValid = (CardCommand::getController()->getNumFoundations() >= index and 0 < index);
+      isIndexValid = (getController()->getNumFoundations() >= index and 0 < index);
    return isIndexValid;
 }
 
@@ -88,11 +104,6 @@ Models::Card MoveCommand::getCardToMove() const
 {
    Models::Pile* originPile = getPile(originPileTypeM, originPileNumberM);
    return originPile->getCardAt(originPile->getNumCards() - numCardsM);
-}
-
-void MoveCommand::setController(Controller* controller)
-{
-   CardCommand::setController(controller);
 }
 
 void MoveCommand::execute()
@@ -132,17 +143,17 @@ Models::Pile* MoveCommand::getPile(std::uint8_t pileId,
 {
    Models::Pile* pile;
    if (Models::PileType::WASTE == pileId)
-      pile = CardCommand::getController()->getWaste();
+      pile = getController()->getWaste();
    else if (Models::PileType::FOUNDATION == pileId)
-      pile = CardCommand::getController()->getFoundation(pileIndex - 1);
+      pile = getController()->getFoundation(pileIndex - 1);
    else
-      pile = CardCommand::getController()->getTableau(pileIndex - 1);
+      pile = getController()->getTableau(pileIndex - 1);
    return pile;
 }
 
 void MoveCommand::updateScore(bool upturnScore, bool negativeScore)
 {
-   Models::Score& score = CardCommand::getController()->getScore();
+   Models::Score& score = getController()->getScore();
    if (upturnScore)
       score.turnOverTableauCardScore(negativeScore);
    score.movementScore(originPileTypeM, destinationPileTypeM, numCardsM,

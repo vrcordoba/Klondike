@@ -4,6 +4,7 @@
 #include <vector>
 #include <cstdint>
 #include "CardCommand.hpp"
+#include "ValidationCommand.hpp"
 
 namespace Models
 {
@@ -15,32 +16,29 @@ namespace Controllers
 {
 
 class Command;
-class CommandVisitor;
-class Controller;
+class CardCommandVisitor;
 
-class MoveCommand final : public CardCommand
+class MoveCommand final : public CardCommand, public ValidationCommand
 {
 public:
    MoveCommand();
    ~MoveCommand();
 
-   MoveCommand(const MoveCommand&) = delete;
-   MoveCommand& operator=(const MoveCommand&) = delete;
+   MoveCommand(const MoveCommand& otherMoveCommand);
 
-   bool accept(CommandVisitor* commandVisitor);
+   void accept(CardCommandVisitor* cardCommandVisitor);
 
    Command* clone();
 
+   bool isValid();
    void execute();
    void undo();
 
-   void setController(Controller* controller);
    void setAdditionalArguments(const std::vector<std::uint8_t>& additionalArguments);
 
+private:
    bool isValidOrigin() const;
    bool isValidDestination() const;
-
-private:
    bool isIndexValid(std::uint8_t originPile, std::uint8_t originIndex) const;
    bool pileCompatibleWithNumberOfCards(std::uint8_t pile) const;
    bool areEnoughCardsInOriginPile() const;

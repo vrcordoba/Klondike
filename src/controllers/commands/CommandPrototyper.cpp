@@ -40,7 +40,7 @@ Command* CommandPrototyper::getCommand(CommandType commandType,
    assert(commandIt != commandPrototypesM.end());
    Command* command = commandIt->second->clone();
    if (CommandType::MOVE == commandType)
-      static_cast<MoveCommand*>(command)->setAdditionalArguments(additionalArguments);
+      dynamic_cast<MoveCommand*>(command)->setAdditionalArguments(additionalArguments);
    return command;
 }
 

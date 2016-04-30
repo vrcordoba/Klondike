@@ -4,15 +4,26 @@
 namespace Controllers
 {
 
-class CommandVisitor;
+class GameController;
 
 class Command
 {
 public:
-   virtual ~Command() {};
-   virtual bool accept(CommandVisitor* commandVisitor) = 0;
+   Command();
+   virtual ~Command();
 
    virtual Command* clone() = 0;
+
+   virtual void execute() = 0;
+
+   void setController(GameController* controller);
+   GameController* getController() const;
+
+   virtual bool doesItHaveToBeValidated();
+   virtual bool isUndoable();
+
+protected:
+   GameController* gameControllerM;
 };
 
 }

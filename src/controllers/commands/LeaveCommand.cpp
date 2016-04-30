@@ -1,7 +1,7 @@
 
 #include "LeaveCommand.hpp"
 
-#include "CommandVisitor.hpp"
+#include "GameController.hpp"
 
 namespace Controllers
 {
@@ -14,19 +14,18 @@ LeaveCommand::~LeaveCommand()
 {
 }
 
-bool LeaveCommand::accept(CommandVisitor* commandVisitor)
-{
-   return commandVisitor->visit(this);
-}
-
 Command* LeaveCommand::clone()
 {
    return new LeaveCommand(typeM);
 }
 
-LeaveCommand::Type LeaveCommand::getType() const
+void LeaveCommand::execute()
 {
-   return typeM;
+   getController()->emptyMovementHistory();
+   if (LeaveCommand::Type::LEAVE_CLOSE == typeM)
+      getController()->setState(Models::State::CONTINUE);
+   else
+      getController()->initializeGame();
 }
 
 }

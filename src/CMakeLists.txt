@@ -26,13 +26,13 @@ set(HEADER_FILES
    controllers/GameController.hpp
    controllers/ContinueController.hpp
    controllers/CardTableController.hpp
-   controllers/MoveController.hpp
    controllers/SaveController.hpp
    controllers/LoadController.hpp
    controllers/commands/CommandType.hpp
    controllers/commands/Command.hpp
-   controllers/commands/CommandVisitor.hpp
+   controllers/commands/ValidationCommand.hpp
    controllers/commands/CardCommand.hpp
+   controllers/commands/CardCommandVisitor.hpp
    controllers/commands/DrawCardCommand.hpp
    controllers/commands/MoveCommand.hpp
    controllers/commands/LeaveCommand.hpp
@@ -40,7 +40,6 @@ set(HEADER_FILES
    controllers/commands/ModifyHistoryCommand.hpp
    controllers/commands/MovementHistory.hpp
    controllers/commands/CommandPrototyper.hpp
-   controllers/commands/CommandVisitor.hpp
 
    models/Suit.hpp
    models/Card.hpp
@@ -108,9 +107,10 @@ set(SOURCE_FILES
    controllers/GameController.cpp
    controllers/ContinueController.cpp
    controllers/CardTableController.cpp
-   controllers/MoveController.cpp
    controllers/SaveController.cpp
    controllers/LoadController.cpp
+   controllers/commands/Command.cpp
+   controllers/commands/ValidationCommand.cpp
    controllers/commands/CardCommand.cpp
    controllers/commands/DrawCardCommand.cpp
    controllers/commands/MoveCommand.cpp

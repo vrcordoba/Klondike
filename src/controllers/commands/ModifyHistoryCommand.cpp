@@ -1,7 +1,8 @@
 
 #include "ModifyHistoryCommand.hpp"
 
-#include "CommandVisitor.hpp"
+#include "GameController.hpp"
+#include "MovementHistory.hpp"
 
 namespace Controllers
 {
@@ -14,19 +15,29 @@ ModifyHistoryCommand::~ModifyHistoryCommand()
 {
 }
 
-bool ModifyHistoryCommand::accept(CommandVisitor* commandVisitor)
-{
-   return commandVisitor->visit(this);
-}
-
 Command* ModifyHistoryCommand::clone()
 {
    return new ModifyHistoryCommand(typeM);
 }
 
-ModifyHistoryCommand::Type ModifyHistoryCommand::getType() const
+bool ModifyHistoryCommand::isValid()
 {
-   return typeM;
+   bool isValid;
+   MovementHistory* movementHistory = getController()->getMovementHistory();
+   if (Type::REDO == typeM)
+      isValid = movementHistory->validateRedo();
+   else
+      isValid = movementHistory->validateUndo();
+   return isValid;
+}
+
+void ModifyHistoryCommand::execute()
+{
+   MovementHistory* movementHistory = getController()->getMovementHistory();
+   if (Type::REDO == typeM)
+      movementHistory->redo();
+   else
+      movementHistory->undo();
 }
 
 }

@@ -31,6 +31,7 @@ void GameTextView::interact(Controllers::GameController* gameController)
       showGame(gameController);
       showCongratulations();
    }
+   delete command;
 }
 
 Controllers::Command* GameTextView::getCommandFromUser(

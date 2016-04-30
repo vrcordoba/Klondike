@@ -1,14 +1,14 @@
 #ifndef CONTROLLERS_COMMANDS_DRAWCARDCOMMAND_HPP_
 #define CONTROLLERS_COMMANDS_DRAWCARDCOMMAND_HPP_
 
+#include <cstdint>
 #include "CardCommand.hpp"
 
 namespace Controllers
 {
 
 class Command;
-class CommandVisitor;
-class Controller;
+class CardCommandVisitor;
 
 class DrawCardCommand final : public CardCommand
 {
@@ -16,17 +16,14 @@ public:
    DrawCardCommand();
    ~DrawCardCommand();
 
-   DrawCardCommand(const DrawCardCommand&) = delete;
-   DrawCardCommand& operator=(const DrawCardCommand&) = delete;
+   DrawCardCommand(const DrawCardCommand& otherDrawCardCommand);
 
-   bool accept(CommandVisitor* commandVisitor);
+   void accept(CardCommandVisitor* cardCommandVisitor);
 
    Command* clone();
 
    void execute();
    void undo();
-
-   void setController(Controller* controller);
 
 private:
    std::uint8_t numMovedCardsM;

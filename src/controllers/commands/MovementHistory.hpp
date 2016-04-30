@@ -1,13 +1,18 @@
 #ifndef CONTROLLERS_COMMANDS_MOVEMENTHISTORY_HPP_
 #define CONTROLLERS_COMMANDS_MOVEMENTHISTORY_HPP_
 
-#include <deque>
+#include <stack>
 #include "CardCommand.hpp"
+#include "CardCommandVisitor.hpp"
 
 namespace Controllers
 {
 
-class MovementHistory final
+class Command;
+class DrawCardCommand;
+class MoveCommand;
+
+class MovementHistory final : public CardCommandVisitor
 {
 public:
    MovementHistory();
@@ -16,7 +21,7 @@ public:
    MovementHistory(const MovementHistory&) = delete;
    MovementHistory& operator=(const MovementHistory&) = delete;
 
-   void storeAndExecute(CardCommand* command);
+   void executeAndStoreIfUndoableCommand(Command* command);
 
    bool validateUndo() const;
    bool validateRedo() const;
@@ -25,11 +30,14 @@ public:
 
    void emptyHistory();
 
-private:
-   void emptyHistory(std::deque<CardCommand*>& history);
+   void visit(DrawCardCommand* drawCardCommand);
+   void visit(MoveCommand* moveCommand);
 
-   std::deque<CardCommand*> undoableHistoryM;
-   std::deque<CardCommand*> redoableHistoryM;
+private:
+   void emptyHistory(std::stack<CardCommand*>& history);
+
+   std::stack<CardCommand*> undoableHistoryM;
+   std::stack<CardCommand*> redoableHistoryM;
 };
 
 }

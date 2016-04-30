@@ -22,11 +22,9 @@ public:
    LeaveCommand(const LeaveCommand&) = delete;
    LeaveCommand& operator=(const LeaveCommand&) = delete;
 
-   bool accept(CommandVisitor* commandVisitor);
-
    Command* clone();
 
-   Type getType() const;
+   void execute();
 
 private:
    Type typeM;

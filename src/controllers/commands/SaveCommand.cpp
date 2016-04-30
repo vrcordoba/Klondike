@@ -1,7 +1,7 @@
 
 #include "SaveCommand.hpp"
 
-#include "CommandVisitor.hpp"
+#include "GameController.hpp"
 
 namespace Controllers
 {
@@ -14,14 +14,14 @@ SaveCommand::~SaveCommand()
 {
 }
 
-bool SaveCommand::accept(CommandVisitor* commandVisitor)
-{
-   return commandVisitor->visit(this);
-}
-
 Command* SaveCommand::clone()
 {
    return new SaveCommand();
+}
+
+void SaveCommand::execute()
+{
+   getController()->setState(Models::State::SAVE);
 }
 
 }
