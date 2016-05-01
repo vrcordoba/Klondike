@@ -3,13 +3,13 @@
 
 #include <cstdint>
 #include <vector>
-#include <string>
 #include "GameView.hpp"
-#include "GameController.hpp"
+#include "CommandTextMenu.hpp"
 
 namespace Controllers
 {
 class Command;
+class GameController;
 }
 
 namespace Views
@@ -28,18 +28,18 @@ public:
 
    void interact(Controllers::GameController* gameController);
 
+private:
    void showGame(Controllers::GameController* gameController);
 
-private:
-   bool errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const;
-   bool analyzeArguments(CommandInterpreter& commandInterpreter) const;
    void showWrongCommand() const;
-   void showWrongNumberOfParameters() const;
-   void showHelp() const;
+   void buildCommands();
    void showCongratulations() const;
 
-   Controllers::Command* getCommandFromUser(Controllers::GameController* gameController);
-   std::vector<std::string> captureCommand() const;
+   Controllers::Command* getCommandFromUser();
+   Controllers::CommandType captureCommand(
+      std::vector<std::uint8_t>& additionalArguments);
+
+   CommandTextMenu commandTextMenuM;
 };
 
 }

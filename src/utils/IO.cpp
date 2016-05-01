@@ -2,7 +2,6 @@
 #include <IO.hpp>
 
 #include <iostream>
-#include <sstream>
 #include <limits>
 
 namespace Utils
@@ -31,12 +30,12 @@ std::int64_t IO::readInt(const std::string& title) const
    do
    {
       std::string readStr = readString(title);
-      std::istringstream converter(readStr);
-      if (converter >> readInt)
+      try
       {
+         readInt = std::stoi(readStr);
          isOk = true;
       }
-      else
+      catch (const std::exception& e)
       {
          writeError("Integer");
       }

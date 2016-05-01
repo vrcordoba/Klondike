@@ -1,11 +1,10 @@
-
 #ifndef VIEWS_TEXT_COMMANDINTERPRETER_HPP_
 #define VIEWS_TEXT_COMMANDINTERPRETER_HPP_
 
 #include <vector>
+#include <map>
 #include <string>
 #include <cstdint>
-#include "Command.hpp"
 #include "CommandType.hpp"
 
 namespace Views
@@ -14,7 +13,7 @@ namespace Views
 class CommandInterpreter final
 {
 public:
-   explicit CommandInterpreter();
+   CommandInterpreter();
    ~CommandInterpreter();
 
    CommandInterpreter(const CommandInterpreter&) = delete;
@@ -30,6 +29,11 @@ public:
 
    bool analyzeArguments();
 
+   void addCommand(const std::string& commandId, const std::string& commandHelp,
+      Controllers::CommandType commandType);
+
+   std::vector<std::string> getAvailableCommands() const;
+
 private:
    void interpretTypeOfCommand();
    bool isMoveCommand() const;
@@ -40,6 +44,8 @@ private:
    std::vector<std::string> parsedCommandM;
    Controllers::CommandType commandTypeM;
    std::vector<std::uint8_t> additionalArgumentsM;
+   std::map<const std::string, std::pair<const std::string,
+      Controllers::CommandType>> commandDictionaryM;
 };
 
 }

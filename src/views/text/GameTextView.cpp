@@ -2,26 +2,42 @@
 #include "GameTextView.hpp"
 
 #include "CardTableTextView.hpp"
-#include "CommandReader.hpp"
-#include "IO.hpp"
-#include "CommandInterpreter.hpp"
+#include "GameController.hpp"
 #include "Command.hpp"
 #include "CommandPrototyper.hpp"
+#include "IO.hpp"
 
 namespace Views
 {
 
-GameTextView::GameTextView()
+GameTextView::GameTextView() : commandTextMenuM("Please, introduce the command")
 {
+   buildCommands();
 }
 
 GameTextView::~GameTextView()
 {
 }
 
+void GameTextView::buildCommands()
+{
+   commandTextMenuM.addCommand("m", " <origin> <destination> <num_cards> - Move "
+      "\"num_cards\" cards from origin (w/t1/t2/t3/...) to destination "
+      "(f1/f2/f3/f4/t1/t2/t3/...). If \"num_cards\" is not specified only"
+      " one card is moved.", Controllers::CommandType::MOVE);
+   commandTextMenuM.addCommand("d", " - Draw card from deck to waste.",
+      Controllers::CommandType::DRAWCARD);
+   commandTextMenuM.addCommand("s", " - Save current game", Controllers::CommandType::SAVE);
+   commandTextMenuM.addCommand("u", " - Undo last movement.", Controllers::CommandType::UNDO);
+   commandTextMenuM.addCommand("r", " - Redo last movement.", Controllers::CommandType::REDO);
+   commandTextMenuM.addCommand("i", " - Init game.", Controllers::CommandType::INIT);
+   commandTextMenuM.addCommand("l", " - Leave game.", Controllers::CommandType::LEAVE);
+}
+
 void GameTextView::interact(Controllers::GameController* gameController)
 {
-   Controllers::Command* command = getCommandFromUser(gameController);
+   showGame(gameController);
+   Controllers::Command* command = getCommandFromUser();
    if (gameController->isValidCommand(command))
       gameController->applyCommand(command);
    else
@@ -34,90 +50,29 @@ void GameTextView::interact(Controllers::GameController* gameController)
    delete command;
 }
 
-Controllers::Command* GameTextView::getCommandFromUser(
-   Controllers::GameController* gameController)
-{
-   showGame(gameController);
-   std::vector<std::string> command;
-   CommandInterpreter commandInterpreter;
-   do
-   {
-      command = captureCommand();
-      commandInterpreter.setCommandType(command);
-   } while (errorOrHelpInCommand(commandInterpreter) or
-      analyzeArguments(commandInterpreter));
-   Controllers::CommandType commandType = commandInterpreter.getCommandType();
-   std::vector<std::uint8_t> additionalArguments = commandInterpreter.getAdditionalArguments();
-   return Controllers::CommandPrototyper().getCommand(commandType, additionalArguments);
-}
-
-bool GameTextView::errorOrHelpInCommand(CommandInterpreter& commandInterpreter) const
-{
-   if (commandInterpreter.isWrongNumberOfParameters())
-   {
-      showWrongNumberOfParameters();
-      return true;
-   }
-   if (commandInterpreter.isWrongCommand())
-   {
-      showWrongCommand();
-      return true;
-   }
-   if (commandInterpreter.isHelpCommand())
-   {
-      showHelp();
-      return true;
-   }
-   return false;
-}
-
-bool GameTextView::analyzeArguments(CommandInterpreter& commandInterpreter) const
-{
-   if (commandInterpreter.analyzeArguments())
-   {
-      showWrongCommand();
-      return true;
-   }
-   return false;
-}
-
 void GameTextView::showGame(Controllers::GameController* gameController)
 {
    CardTableTextView cardTableTextView(gameController->getCardTableController());
    cardTableTextView.show();
 }
 
-std::vector<std::string> GameTextView::captureCommand() const
+Controllers::Command* GameTextView::getCommandFromUser()
 {
-   Utils::CommandReader commandReader;
-   return commandReader.getCommand("Please, introduce the command (For a list "
-      "of the available commands, type h/help)");
+   std::vector<std::uint8_t> additionalArguments;
+   Controllers::CommandType commandType = captureCommand(additionalArguments);
+   return Controllers::CommandPrototyper().getCommand(commandType, additionalArguments);
+}
+
+Controllers::CommandType GameTextView::captureCommand(std::vector<std::uint8_t>& additionalArguments)
+{
+   Controllers::CommandType commandType = commandTextMenuM.getCommand();
+   additionalArguments = commandTextMenuM.getAdditionalArguments();
+   return commandType;
 }
 
 void GameTextView::showWrongCommand() const
 {
-   Utils::IO::getInstance().writeString("Wrong command.");
-}
-
-void GameTextView::showWrongNumberOfParameters() const
-{
-   Utils::IO::getInstance().writeString("Wrong number of parameters.");
-}
-
-void GameTextView::showHelp() const
-{
-   Utils::IO& io = Utils::IO::getInstance();
-   io.writeString("These are the available commands:");
-   io.writeString("h/help - Shows this help.");
-   io.writeString("m/move <origin> <destination> <num_cards> - Move \"num_cards\" cards "
-      "from origin (w/t1/t2/t3/...) to destination (f1/f2/f3/f4/t1/t2/t3/...). If "
-      "\"num_cards\" is not specified only one card is moved.");
-   io.writeString("d/draw - Draw card from deck to waste.");
-   io.writeString("s/save - Save current game");
-   io.writeString("u/undo - Undo last movement.");
-   io.writeString("r/redo - Redo last movement.");
-   io.writeString("i/init - Init game.");
-   io.writeString("l/leave - Leave game.");
+   commandTextMenuM.showWrongCommand();
 }
 
 void GameTextView::showCongratulations() const

@@ -1,9 +1,6 @@
 
 #include "Suit.hpp"
 
-#include <sstream>
-#include <limits>
-
 namespace Models
 {
 
@@ -42,16 +39,8 @@ std::string Suit::toString() const
 
 void Suit::fromString(std::string suitStr, std::string colorStr)
 {
-   std::istringstream suitConverter(suitStr);
-   if (not (suitConverter >> suitM))
-      suitM = std::numeric_limits<std::uint8_t>::quiet_NaN();
-   else
-      suitM -= '0';
-   std::istringstream colorConverter(colorStr);
-   if (not (colorConverter >> colorM))
-      colorM = std::numeric_limits<std::uint8_t>::quiet_NaN();
-   else
-      colorM -= '0';
+   suitM = std::stoi(suitStr);
+   colorM = std::stoi(colorStr);
 }
 
 }

@@ -4,8 +4,6 @@
 #include <cstdint>
 #include <cassert>
 #include "LimitedIntDialog.hpp"
-#include "TextMenu.hpp"
-#include "StartController.hpp"
 #include "KlondikeConfiguration.hpp"
 
 namespace Views
@@ -42,14 +40,14 @@ std::uint8_t StartTextView::getNumPlayers()
 
 Controllers::StartController::GameType StartTextView::getNewOrSaveOption()
 {
-   Utils::TextMenu newSavedMenu = buildNewSavedGameMenu();
+   Utils::NumericTextMenu newSavedMenu = buildNewSavedGameMenu();
    newSavedMenu.show();
    return static_cast<Controllers::StartController::GameType>(newSavedMenu.read());
 }
 
-Utils::TextMenu StartTextView::buildNewSavedGameMenu()
+Utils::NumericTextMenu StartTextView::buildNewSavedGameMenu()
 {
-   Utils::TextMenu menu("Do you want to play a new or a saved game?");
+   Utils::NumericTextMenu menu("Do you want to play a new or a saved game?");
    menu.addOption("New game");
    menu.addOption("Saved game");
    return menu;
@@ -57,12 +55,12 @@ Utils::TextMenu StartTextView::buildNewSavedGameMenu()
 
 Configuration::DeckType::Type StartTextView::getTypeOfDeck(std::list<std::string> deckDescriptions)
 {
-   Utils::TextMenu typeOfDeckMenu = buildDeckSelectionMenu(deckDescriptions);
+   Utils::NumericTextMenu typeOfDeckMenu = buildDeckSelectionMenu(deckDescriptions);
    typeOfDeckMenu.show();
    return static_cast<Configuration::DeckType::Type>(typeOfDeckMenu.read());
 }
 
-Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::list<std::string> deckDescriptions)
+Utils::NumericTextMenu StartTextView::buildDeckSelectionMenu(std::list<std::string> deckDescriptions)
 {
    assert(not deckDescriptions.empty());
    std::string menuTitle = "Do you want to play with ";
@@ -72,7 +70,7 @@ Utils::TextMenu StartTextView::buildDeckSelectionMenu(std::list<std::string> dec
       menuTitle += (*itDeckDescriptions) + "/";
    }
    menuTitle += (*itDeckDescriptions) + " deck?";
-   Utils::TextMenu menu(menuTitle);
+   Utils::NumericTextMenu menu(menuTitle);
    for (auto deck : deckDescriptions)
    {
       menu.addOption(deck + " deck");

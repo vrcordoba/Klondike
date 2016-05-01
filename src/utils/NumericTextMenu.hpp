@@ -1,5 +1,5 @@
-#ifndef UTILS_TEXTMENU_HPP_
-#define UTILS_TEXTMENU_HPP_
+#ifndef UTILS_NUMERICTEXTMENU_HPP_
+#define UTILS_NUMERICTEXTMENU_HPP_
 
 #include <string>
 #include <list>
@@ -8,11 +8,11 @@
 namespace Utils
 {
 
-class TextMenu final
+class NumericTextMenu final
 {
 public:
-   explicit TextMenu(const std::string& title);
-   ~TextMenu();
+   explicit NumericTextMenu(const std::string& title);
+   ~NumericTextMenu();
 
    void show() const;
    std::int64_t read() const;

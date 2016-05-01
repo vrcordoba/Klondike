@@ -5,7 +5,7 @@
 
 #include <list>
 #include <string>
-#include "TextMenu.hpp"
+#include "NumericTextMenu.hpp"
 #include "DeckType.hpp"
 #include "StartController.hpp"
 
@@ -27,8 +27,8 @@ private:
    std::uint8_t getNumPlayers();
    Controllers::StartController::GameType getNewOrSaveOption();
    Configuration::DeckType::Type getTypeOfDeck(std::list<std::string> deckDescriptions);
-   Utils::TextMenu buildNewSavedGameMenu();
-   Utils::TextMenu buildDeckSelectionMenu(std::list<std::string> deckDescriptions);
+   Utils::NumericTextMenu buildNewSavedGameMenu();
+   Utils::NumericTextMenu buildDeckSelectionMenu(std::list<std::string> deckDescriptions);
 };
 
 }

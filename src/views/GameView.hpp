@@ -14,9 +14,6 @@ class GameView
 public:
    virtual ~GameView() {};
    virtual void interact(Controllers::GameController* gameController) = 0;
-
-   virtual void showGame(Controllers::GameController* gameController) = 0;
-   virtual void showHelp() const = 0;
 };
 
 }

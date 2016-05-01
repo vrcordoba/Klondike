@@ -1,14 +1,13 @@
 
 #include "CommandInterpreter.hpp"
 
-#include <cassert>
 #include "PileType.hpp"
 
 namespace Views
 {
 
-CommandInterpreter::CommandInterpreter()
-   : parsedCommandM(), commandTypeM()
+CommandInterpreter::CommandInterpreter() : parsedCommandM(), commandTypeM(),
+   additionalArgumentsM(), commandDictionaryM()
 {
 }
 
@@ -16,10 +15,27 @@ CommandInterpreter::~CommandInterpreter()
 {
 }
 
+void CommandInterpreter::addCommand(const std::string& commandId, const std::string& commandHelp,
+   Controllers::CommandType commandType)
+{
+   commandDictionaryM.emplace(commandId, std::make_pair(commandHelp, commandType));
+}
+
 void CommandInterpreter::setCommandType(std::vector<std::string> parsedCommand)
 {
    parsedCommandM = parsedCommand;
    interpretTypeOfCommand();
+}
+
+void CommandInterpreter::interpretTypeOfCommand()
+{
+   std::map<const std::string, std::pair<const std::string,
+      Controllers::CommandType>>::const_iterator commandIt =
+      commandDictionaryM.find(parsedCommandM[0]);
+   if (commandIt == commandDictionaryM.end())
+      commandTypeM = Controllers::CommandType::ERROR;
+   else
+      commandTypeM = commandIt->second.second;
 }
 
 Controllers::CommandType CommandInterpreter::getCommandType() const
@@ -32,32 +48,14 @@ std::vector<std::uint8_t> CommandInterpreter::getAdditionalArguments() const
    return additionalArgumentsM;
 }
 
-void CommandInterpreter::interpretTypeOfCommand()
+std::vector<std::string> CommandInterpreter::getAvailableCommands() const
 {
-   if (parsedCommandM.size() == 0)
+   std::vector<std::string> availableCommands;
+   for (auto command : commandDictionaryM)
    {
-      commandTypeM = Controllers::CommandType::ERROR;
-      return;
+      availableCommands.push_back(command.first + command.second.first);
    }
-   std::string order = (*parsedCommandM.begin());
-   if ((order == "h") or (order == "help"))
-      commandTypeM = Controllers::CommandType::HELP;
-   else if ((order == "d") or (order == "draw"))
-      commandTypeM = Controllers::CommandType::DRAWCARD;
-   else if ((order == "m") or (order == "move"))
-      commandTypeM = Controllers::CommandType::MOVE;
-   else if ((order == "s") or (order == "save"))
-      commandTypeM = Controllers::CommandType::SAVE;
-   else if ((order == "u") or (order == "undo"))
-      commandTypeM = Controllers::CommandType::UNDO;
-   else if ((order == "r") or (order == "redo"))
-      commandTypeM = Controllers::CommandType::REDO;
-   else if ((order == "i") or (order == "init"))
-      commandTypeM = Controllers::CommandType::INIT;
-   else if ((order == "l") or (order == "leave"))
-      commandTypeM = Controllers::CommandType::LEAVE;
-   else
-      commandTypeM = Controllers::CommandType::ERROR;
+   return availableCommands;
 }
 
 bool CommandInterpreter::isWrongNumberOfParameters() const

@@ -1,7 +1,6 @@
 
 #include "PlainTextFileReader.hpp"
 
-#include <sstream>
 #include <limits>
 
 namespace Utils
@@ -45,9 +44,14 @@ std::int64_t PlainTextFileReader::getNumericField()
    std::string readLine;
    getField(readLine);
    std::int64_t readInt;
-   std::istringstream converter(readLine);
-   if (not (converter >> readInt))
+   try
+   {
+      readInt = std::stoi(readLine);
+   }
+   catch (const std::exception& e)
+   {
       readInt = std::numeric_limits<std::int64_t>::quiet_NaN();
+   }
    return readInt;
 }
 

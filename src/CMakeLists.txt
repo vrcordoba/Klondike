@@ -61,8 +61,7 @@ set(HEADER_FILES
    utils/IO.hpp
    utils/LimitedIntDialog.hpp
    utils/YesNoDialog.hpp
-   utils/TextMenu.hpp
-   utils/CommandReader.hpp
+   utils/NumericTextMenu.hpp
    utils/PermanentMedium.hpp
    utils/PermanentMediumPrototyper.hpp
    utils/PermanentMediumReader.hpp
@@ -91,6 +90,7 @@ set(HEADER_FILES
    views/text/CommandInterpreter.hpp
    views/text/SaveTextView.hpp
    views/text/LoadTextView.hpp
+   views/text/CommandTextMenu.hpp
 )
 
 set(SOURCE_FILES
@@ -138,8 +138,7 @@ set(SOURCE_FILES
    utils/IO.cpp
    utils/LimitedIntDialog.cpp
    utils/YesNoDialog.cpp
-   utils/TextMenu.cpp
-   utils/CommandReader.cpp
+   utils/NumericTextMenu.cpp
    utils/PermanentMediumPrototyper.cpp
    utils/PlainTextFileReader.cpp
    utils/PlainTextFileWriter.cpp
@@ -157,6 +156,7 @@ set(SOURCE_FILES
    views/text/CommandInterpreter.cpp
    views/text/SaveTextView.cpp
    views/text/LoadTextView.cpp
+    views/text/CommandTextMenu.cpp
 )
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g2")

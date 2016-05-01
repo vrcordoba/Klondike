@@ -1,8 +1,8 @@
 #ifndef UTILS_PLAINTEXTFILEREADER_HPP_
 #define UTILS_PLAINTEXTFILEREADER_HPP_
 
-#include <cstdint>
 #include <fstream>
+#include <cstdint>
 #include <list>
 #include <string>
 #include "PermanentMediumReader.hpp"

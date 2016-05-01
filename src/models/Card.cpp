@@ -84,14 +84,8 @@ void Card::fromString(std::string cardStr)
    std::vector<std::string> tokenizedCard{std::istream_iterator<std::string>{iss},
       std::istream_iterator<std::string>{}};
    assert(4 == tokenizedCard.size());
-   std::istringstream numberConverter(tokenizedCard[0]);
-   if (not (numberConverter >> numberM))
-      numberM = std::numeric_limits<std::uint8_t>::quiet_NaN();
-   else
-      numberM -= '0';
-   std::istringstream upturnedConverter(tokenizedCard[1]);
-   if (not (upturnedConverter >> upturnedM))
-      upturnedM = std::numeric_limits<bool>::quiet_NaN();
+   numberM = std::stoi(tokenizedCard[0]);
+   upturnedM = std::stoi(tokenizedCard[1]);
    suitM.fromString(tokenizedCard[2], tokenizedCard[3]);
 }
 

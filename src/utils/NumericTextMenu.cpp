@@ -1,5 +1,5 @@
 
-#include "TextMenu.hpp"
+#include "NumericTextMenu.hpp"
 
 #include "IO.hpp"
 #include "LimitedIntDialog.hpp"
@@ -7,15 +7,15 @@
 namespace Utils
 {
 
-TextMenu::TextMenu(const std::string& title) : titleM(title), optionsM()
+NumericTextMenu::NumericTextMenu(const std::string& title) : titleM(title), optionsM()
 {
 }
 
-TextMenu::~TextMenu()
+NumericTextMenu::~NumericTextMenu()
 {
 }
 
-void TextMenu::show() const
+void NumericTextMenu::show() const
 {
    IO& io = IO::getInstance();
    io.writeString(titleM);
@@ -26,12 +26,12 @@ void TextMenu::show() const
    }
 }
 
-std::int64_t TextMenu::read() const
+std::int64_t NumericTextMenu::read() const
 {
    return LimitedIntDialog("Choose option", optionsM.size()).read();
 }
 
-void TextMenu::addOption(const std::string& option)
+void NumericTextMenu::addOption(const std::string& option)
 {
    optionsM.push_back(option);
 }
