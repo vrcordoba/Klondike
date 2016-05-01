@@ -94,5 +94,10 @@ void Controller::setScore(std::uint32_t score)
    gameM.setScore(score);
 }
 
+Models::Game& Controller::getGame()
+{
+   return gameM;
+}
+
 }
 

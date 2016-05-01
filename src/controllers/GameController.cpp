@@ -1,9 +1,7 @@
 
 #include "GameController.hpp"
 
-#include "Command.hpp"
-#include "State.hpp"
-#include "ValidationCommand.hpp"
+#include "OperationControllerVisitor.hpp"
 
 namespace Controllers
 {
@@ -22,31 +20,14 @@ void GameController::accept(OperationControllerVisitor* operationControllerVisit
    operationControllerVisitor->visit(this);
 }
 
-bool GameController::isValidCommand(Command* command)
+CardTableController* GameController::getCardTableController()
 {
-   command->setController(this);
-   bool validCommand = true;
-   if (command->doesItHaveToBeValidated())
-      validCommand = dynamic_cast<ValidationCommand*>(command)->isValid();
-   return validCommand;
-}
-
-void GameController::applyCommand(Command* command)
-{
-   command->setController(this);
-   movementHistoryM.executeAndStoreIfUndoableCommand(command);
-   if (Controller::isGameWon())
-      Controller::setState(Models::State::CONTINUE);
+   return &cardTableControllerM;
 }
 
 bool GameController::isGameWon() const
 {
    return Controller::isGameWon();
-}
-
-CardTableController* GameController::getCardTableController()
-{
-   return &cardTableControllerM;
 }
 
 MovementHistory* GameController::getMovementHistory()

@@ -23,7 +23,11 @@ set(HEADER_FILES
    controllers/Logic.hpp
    controllers/Controller.hpp
    controllers/StartController.hpp
+   controllers/GameControllerPrototyper.hpp
    controllers/GameController.hpp
+   controllers/GameControllerVisitor.hpp
+   controllers/ManualGameController.hpp
+   controllers/AutomaticGameController.hpp
    controllers/ContinueController.hpp
    controllers/CardTableController.hpp
    controllers/SaveController.hpp
@@ -104,7 +108,10 @@ set(SOURCE_FILES
    controllers/Logic.cpp
    controllers/Controller.cpp
    controllers/StartController.cpp
+   controllers/GameControllerPrototyper.cpp
    controllers/GameController.cpp
+   controllers/ManualGameController.cpp
+   controllers/AutomaticGameController.cpp
    controllers/ContinueController.cpp
    controllers/CardTableController.cpp
    controllers/SaveController.cpp

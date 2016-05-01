@@ -6,6 +6,8 @@
 #include "Command.hpp"
 #include "CommandPrototyper.hpp"
 #include "IO.hpp"
+#include "ManualGameController.hpp"
+#include "AutomaticGameController.hpp"
 
 namespace Views
 {
@@ -37,17 +39,27 @@ void GameTextView::buildCommands()
 void GameTextView::interact(Controllers::GameController* gameController)
 {
    showGame(gameController);
-   Controllers::Command* command = getCommandFromUser();
-   if (gameController->isValidCommand(command))
-      gameController->applyCommand(command);
-   else
-      showWrongCommand();
+   gameController->accept(this);
    if (gameController->isGameWon())
    {
       showGame(gameController);
       showCongratulations();
    }
+}
+
+void GameTextView::visit(Controllers::ManualGameController* manualGameController)
+{
+   Controllers::Command* command = getCommandFromUser();
+   if (manualGameController->isValidCommand(command))
+      manualGameController->applyCommand(command);
+   else
+      showWrongCommand();
    delete command;
+}
+
+void GameTextView::visit(Controllers::AutomaticGameController* automaticGameController)
+{
+   automaticGameController->applyCommand();
 }
 
 void GameTextView::showGame(Controllers::GameController* gameController)

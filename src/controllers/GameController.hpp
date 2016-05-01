@@ -6,34 +6,38 @@
 #include "CardTableController.hpp"
 #include "MovementHistory.hpp"
 
+namespace Models
+{
+class Game;
+}
+
 namespace Controllers
 {
 
 class OperationControllerVisitor;
-class Command;
+class GameControllerVisitor;
 
-class GameController final : public Controller, public OperationController
+class GameController : public Controller, public OperationController
 {
 public:
    explicit GameController(Models::Game& game);
-   ~GameController();
+   virtual ~GameController();
 
-   GameController(const GameController&) = delete;
-   GameController& operator=(const GameController&) = delete;
+   virtual GameController* clone() = 0;
 
    void accept(OperationControllerVisitor* operationControllerVisitor);
-
-   bool isValidCommand(Command* command);
-   void applyCommand(Command* command);
-   bool isGameWon() const;
+   virtual void accept(GameControllerVisitor* gameControllerVisitor) = 0;
 
    CardTableController* getCardTableController();
+   bool isGameWon() const;
 
    MovementHistory* getMovementHistory();
    void emptyMovementHistory();
 
 private:
    CardTableController cardTableControllerM;
+
+protected:
    MovementHistory movementHistoryM;
 };
 

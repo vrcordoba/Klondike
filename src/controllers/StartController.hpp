@@ -14,12 +14,13 @@ class Game;
 namespace Controllers
 {
 
+class Logic;
 class OperationControllerVisitor;
 
 class StartController final : public Controller, public OperationController
 {
 public:
-   explicit StartController(Models::Game& game);
+   StartController(Models::Game& game, Logic* logic);
    ~StartController();
 
    StartController(const StartController&) = delete;
@@ -38,6 +39,8 @@ public:
 
 private:
    void buildCardTable(std::uint8_t typeDeck);
+
+   Logic* logicM;
 };
 
 }

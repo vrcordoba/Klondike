@@ -14,9 +14,8 @@ namespace Controllers
 
 Logic::Logic() : gameM()
 {
-   controllersM.emplace(Models::State::INITIAL, new StartController(gameM));
+   controllersM.emplace(Models::State::INITIAL, new StartController(gameM, this));
    controllersM.emplace(Models::State::LOAD, new LoadController(gameM));
-   controllersM.emplace(Models::State::GAME, new GameController(gameM));
    controllersM.emplace(Models::State::CONTINUE, new ContinueController(gameM));
    controllersM.emplace(Models::State::SAVE, new SaveController(gameM));
    controllersM.emplace(Models::State::END, nullptr);
@@ -34,6 +33,11 @@ Logic::~Logic()
 OperationController* Logic::getController() const
 {
    return controllersM.at(gameM.getState());
+}
+
+void Logic::setGameController(OperationController* gameController)
+{
+   controllersM.emplace(Models::State::GAME, gameController);
 }
 
 }

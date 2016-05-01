@@ -18,6 +18,8 @@ public:
 
    OperationController* getController() const;
 
+   void setGameController(OperationController* gameController);
+
 private:
    Models::Game gameM;
    std::map<Models::State, OperationController*> controllersM;

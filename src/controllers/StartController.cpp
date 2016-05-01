@@ -1,16 +1,17 @@
 
 #include "StartController.hpp"
 
-#include <cassert>
 #include "State.hpp"
 #include "DeckType.hpp"
 #include "OperationControllerVisitor.hpp"
-#include "ClosedInterval.hpp"
+#include "Logic.hpp"
+#include "GameControllerPrototyper.hpp"
 
 namespace Controllers
 {
 
-StartController::StartController(Models::Game& game) : Controller(game)
+StartController::StartController(Models::Game& game, Logic* logic) : Controller(game),
+   logicM(logic)
 {
 }
 
@@ -21,8 +22,8 @@ StartController::~StartController()
 void StartController::start(std::uint8_t numPlayers,
    GameType gameType, Configuration::DeckType::Type typeDeck)
 {
-   assert(Utils::ClosedInterval(Controller::getNumPlayers()).includes(numPlayers));
-   // gameControllerBuilder
+   logicM->setGameController(
+      GameControllerPrototyper(Controller::getGame()).getGameController(numPlayers));
    if (GameType::NEW == gameType)
    {
       Controller::initializeGame(typeDeck);

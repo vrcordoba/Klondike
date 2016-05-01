@@ -5,11 +5,14 @@
 #include <vector>
 #include "GameView.hpp"
 #include "CommandTextMenu.hpp"
+#include "GameControllerVisitor.hpp"
 
 namespace Controllers
 {
 class Command;
 class GameController;
+class ManualGameController;
+class AutomaticGameController;
 }
 
 namespace Views
@@ -17,7 +20,7 @@ namespace Views
 
 class CommandInterpreter;
 
-class GameTextView final : public GameView
+class GameTextView final : public GameView, Controllers::GameControllerVisitor
 {
 public:
    GameTextView();
@@ -27,6 +30,9 @@ public:
    GameTextView& operator=(const GameTextView&) = delete;
 
    void interact(Controllers::GameController* gameController);
+
+   void visit(Controllers::ManualGameController* manualGameController);
+   void visit(Controllers::AutomaticGameController* automaticGameController);
 
 private:
    void showGame(Controllers::GameController* gameController);

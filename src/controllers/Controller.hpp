@@ -50,6 +50,8 @@ public:
    Models::Score& getScore();
    void setScore(std::uint32_t score);
 
+   Models::Game& getGame();
+
 private:
    Models::Game& gameM;
 };

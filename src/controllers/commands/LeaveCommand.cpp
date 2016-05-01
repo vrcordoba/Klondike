@@ -1,7 +1,7 @@
 
 #include "LeaveCommand.hpp"
 
-#include "GameController.hpp"
+#include "ManualGameController.hpp"
 
 namespace Controllers
 {
