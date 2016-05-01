@@ -112,14 +112,6 @@ TEST(DeckTests, SpanishDeck)
    EXPECT_TRUE(10 == numCardsPerSuit);
    std::uint8_t numSuits = deck->getNumSuits();
    EXPECT_TRUE(4 == numSuits);
-   for (std::int8_t i = 3; i >= 0; --i)
-   {
-      for (std::int8_t j = 9; j >= 0; --j)
-      {
-         Models::Card card(j, Models::Suit(i, i));
-         EXPECT_TRUE(card == deck->takeCard());
-      }
-   }
    delete deck;
 }
 
@@ -133,14 +125,6 @@ TEST(DeckTests, FrenchDeck)
    EXPECT_TRUE(13 == numCardsPerSuit);
    std::uint8_t numSuits = deck->getNumSuits();
    EXPECT_TRUE(4 == numSuits);
-   for (std::int8_t i = 3; i >= 0; --i)
-   {
-      for (std::int8_t j = 12; j >= 0; --j)
-      {
-         Models::Card card(j, Models::Suit(i, i % 2));
-         EXPECT_TRUE(card == deck->takeCard());
-      }
-   }
    delete deck;
 }
 

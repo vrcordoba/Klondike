@@ -36,7 +36,7 @@ void Deck::buildDeck(std::uint8_t numColours)
    for (std::uint8_t i = 0; i < getTotalNumCards(); ++i)
       appendCard(Card(i % getNumCardsPerSuit(), Suit(i / getNumCardsPerSuit(),
          (i / getNumCardsPerSuit()) % numColours)));
-   //shuffle();
+   shuffle();
 }
 
 void Deck::shuffle()

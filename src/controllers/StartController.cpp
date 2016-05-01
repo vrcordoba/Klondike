@@ -30,7 +30,6 @@ void StartController::start(std::uint8_t numPlayers,
    }
    else
    {
-      Controller::initializeGame(typeDeck, false);
       Controller::setState(Models::State::LOAD);
    }
 }

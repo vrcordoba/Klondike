@@ -38,12 +38,14 @@ bool LoadController::fileAlreadyExists(const std::string& saveFileName)
 
 void LoadController::load(const std::string& saveFileName)
 {
+   Configuration::KlondikeConfiguration& conf =
+         Configuration::KlondikeConfiguration::getInstance();
    Utils::PermanentMediumReader* saveFile =
       Utils::PermanentMediumPrototyper().getReader(
-         Configuration::KlondikeConfiguration::getInstance().getPermanentMediumType());
+         conf.getPermanentMediumType());
    saveFile->open(saveFileName);
-   Configuration::KlondikeConfiguration::getInstance().setDeckType(
-      static_cast<Configuration::DeckType::Type>(saveFile->getNumericField()));
+   conf.setDeckType(static_cast<Configuration::DeckType::Type>(saveFile->getNumericField()));
+   Controller::initializeGame(conf.getDeckType(), false);
    Controller::setScore(saveFile->getNumericField());
    loadPile(saveFile, Controller::getDeck());
    loadPile(saveFile, Controller::getWaste());
