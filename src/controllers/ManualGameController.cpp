@@ -1,10 +1,9 @@
 
 #include "ManualGameController.hpp"
 
-#include "Command.hpp"
-#include "State.hpp"
-#include "ValidationCommand.hpp"
 #include "GameControllerVisitor.hpp"
+#include "Command.hpp"
+#include "ValidationCommand.hpp"
 
 namespace Controllers
 {
@@ -34,14 +33,6 @@ bool ManualGameController::isValidCommand(Command* command)
    if (command->doesItHaveToBeValidated())
       validCommand = dynamic_cast<ValidationCommand*>(command)->isValid();
    return validCommand;
-}
-
-void ManualGameController::applyCommand(Command* command)
-{
-   command->setController(this);
-   movementHistoryM.executeAndStoreIfUndoableCommand(command);
-   if (Controller::isGameWon())
-      Controller::setState(Models::State::CONTINUE);
 }
 
 }

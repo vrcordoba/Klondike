@@ -16,6 +16,7 @@ namespace Controllers
 
 class OperationControllerVisitor;
 class GameControllerVisitor;
+class Command;
 
 class GameController : public Controller, public OperationController
 {
@@ -33,6 +34,8 @@ public:
 
    MovementHistory* getMovementHistory();
    void emptyMovementHistory();
+
+   void applyCommand(Command* command);
 
 private:
    CardTableController cardTableControllerM;

@@ -11,8 +11,8 @@ class Game;
 namespace Controllers
 {
 
-class Command;
 class GameControllerVisitor;
+class Command;
 
 class ManualGameController final : public GameController
 {
@@ -28,7 +28,6 @@ public:
    GameController* clone();
 
    bool isValidCommand(Command* command);
-   void applyCommand(Command* command);
 };
 
 }

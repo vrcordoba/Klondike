@@ -42,6 +42,7 @@ private:
    bool isIndexValid(std::uint8_t originPile, std::uint8_t originIndex) const;
    bool pileCompatibleWithNumberOfCards(std::uint8_t pile) const;
    bool areEnoughCardsInOriginPile() const;
+   bool isOriginCardUpturned() const;
    bool isCardStackableInDestination() const;
 
    Models::Card getCardToMove() const;

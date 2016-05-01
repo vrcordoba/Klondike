@@ -61,7 +61,7 @@ bool MoveCommand::isValidOrigin() const
 {
    return isIndexValid(originPileTypeM, originPileNumberM) and
       pileCompatibleWithNumberOfCards(originPileTypeM) and
-      areEnoughCardsInOriginPile();
+      areEnoughCardsInOriginPile() and isOriginCardUpturned();
 }
 
 bool MoveCommand::isValidDestination() const
@@ -91,6 +91,12 @@ bool MoveCommand::areEnoughCardsInOriginPile() const
 {
    Models::Pile* pile = getPile(originPileTypeM, originPileNumberM);
    return (pile->getNumCards() >= numCardsM);
+}
+
+bool MoveCommand::isOriginCardUpturned() const
+{
+   Models::Card card = getCardToMove();
+   return card.isUpturned();
 }
 
 bool MoveCommand::isCardStackableInDestination() const

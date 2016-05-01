@@ -32,7 +32,8 @@ bool Tableau::isValidDestination(const Card& card) const
    if (0 != getNumCards())
    {
       Card topCard = getTopCard();
-      validDest = ((not topCard.isSameColor(card)) and topCard.isOneAbove(card));
+      validDest = topCard.isUpturned() and (not topCard.isSameColor(card)) and
+         topCard.isOneAbove(card);
    }
    else
    {

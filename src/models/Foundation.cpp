@@ -32,7 +32,8 @@ bool Foundation::isValidDestination(const Card& card) const
    if (0 != getNumCards())
    {
       Card topCard = getTopCard();
-      validDest = (topCard.isSameSuit(card) and topCard.isOneBelow(card));
+      validDest = topCard.isSameSuit(card) and
+         topCard.isOneBelow(card);
    }
    else
    {

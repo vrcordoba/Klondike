@@ -59,7 +59,9 @@ void GameTextView::visit(Controllers::ManualGameController* manualGameController
 
 void GameTextView::visit(Controllers::AutomaticGameController* automaticGameController)
 {
-   automaticGameController->applyCommand();
+   Controllers::Command* command = automaticGameController->getValidCommand();
+   automaticGameController->applyCommand(command);
+   delete command;
 }
 
 void GameTextView::showGame(Controllers::GameController* gameController)
