@@ -70,11 +70,6 @@ CardTable* Game::getCardTable() const
    return cardTableM;
 }
 
-void Game::setCardTable(CardTable* cardTable)
-{
-   cardTableM = cardTable;
-}
-
 void Game::transferCard(Pile& originPile, Pile& destinationPile)
 {
    assert(nullptr != cardTableM);

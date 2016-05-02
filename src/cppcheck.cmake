@@ -1,23 +1,15 @@
 # additional target to perform cppcheck run, requires cppcheck
 
 file(GLOB_RECURSE ALL_SOURCE_FILES
-   controllers/local/*.cpp
-   controllers/local/*.hpp
+   configuration/*.cpp
+   controllers/commands/*.cpp
    controllers/*.cpp
-   controllers/*.hpp
    Klondike.cpp
-   Klondike.hpp
    main.cpp
    models/*.cpp
-   models/*.hpp
    utils/*.cpp
-   utils/*.hpp
    views/text/*.cpp
-   views/text/*.hpp
    views/*.cpp
-   views/*.hpp
-   configuration/*.cpp
-   configuration/*.hpp
 )
 
 add_custom_target(
@@ -27,6 +19,9 @@ add_custom_target(
    --std=c++11
    --verbose
    --quiet
-   ${ALL_SOURCE_FILES}
+   --suppress=missingIncludeSystem
+   -I configuration -I controllers/commands
+   -I controllers -I models -I utils -I views/text
+   -I views ${ALL_SOURCE_FILES}
 )
 

@@ -30,7 +30,6 @@ public:
    void setState(State newState);
 
    CardTable* getCardTable() const;
-   void setCardTable(CardTable* cardTable);
 
    void transferCard(Pile& originPile, Pile& destinationPile);
    bool isGameWon() const;

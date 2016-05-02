@@ -20,12 +20,9 @@ StartTextView::~StartTextView()
 void StartTextView::interact(Controllers::StartController* startController)
 {
    std::uint8_t numPlayers = getNumPlayers();
-   Controllers::StartController::GameType newOrSavedOption =
-      Controllers::StartController::GameType::NEW;
+   Controllers::StartController::GameType newOrSavedOption = getNewOrSaveOption();
    Configuration::DeckType::Type typeDeck = Configuration::DeckType::Type::UNKNOWN;
-   if (1 == numPlayers)
-      newOrSavedOption = getNewOrSaveOption();
-   if (Controllers::StartController::GameType::NEW == newOrSavedOption or 0 == numPlayers)
+   if (Controllers::StartController::GameType::NEW == newOrSavedOption)
       typeDeck = getTypeOfDeck(Configuration::KlondikeConfiguration::getInstance().getDeckDescriptions());
    startController->start(numPlayers, newOrSavedOption, typeDeck);
 }

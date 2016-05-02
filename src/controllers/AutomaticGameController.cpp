@@ -51,10 +51,10 @@ Command* AutomaticGameController::getValidCommandTableauFoundation()
 {
    MoveCommand* moveCommand = nullptr;
    for (std::uint8_t i = 0; (nullptr == moveCommand) and
-      (i < Controller::getNumTableaus()) and
-      (0 < Controller::getTableau(i)->getNumCards()); ++i)
+      (i < Controller::getNumTableaus()); ++i)
    {
-      for (std::uint8_t j = 0; (nullptr == moveCommand) and j < Controller::getNumFoundations(); ++j)
+      for (std::uint8_t j = 0; (0 < Controller::getTableau(i)->getNumCards()) and
+         (nullptr == moveCommand) and j < Controller::getNumFoundations(); ++j)
       {
          std::vector<std::uint8_t> additionalArguments{
             Models::PileType::TABLEAU, static_cast<std::uint8_t>(i + 1),
@@ -128,13 +128,6 @@ MoveCommand* AutomaticGameController::getValidCommandTableauTableauNumCards(
    return moveCommand;
 }
 
-DrawCardCommand* AutomaticGameController::getValidCommandDrawCard()
-{
-   DrawCardCommand* drawCardCommand = new DrawCardCommand();
-   drawCardCommand->setController(this);
-   return drawCardCommand;
-}
-
 MoveCommand* AutomaticGameController::getValidMovementCommand(
    const std::vector<std::uint8_t>& additionalArguments)
 {
@@ -151,7 +144,14 @@ MoveCommand* AutomaticGameController::getValidMovementCommand(
 
 bool AutomaticGameController::isMoveCommandInRecentCommandHistory(MoveCommand* moveCommand)
 {
-   return getMovementHistory()->isMoveCommandInRecentCommandHistory(moveCommand, 10);
+   return getMovementHistory()->isMoveCommandInRecentCommandHistory(moveCommand, NUM_MOVEMENTS_TO_CHECK_IN_HISTORY);
+}
+
+DrawCardCommand* AutomaticGameController::getValidCommandDrawCard()
+{
+   DrawCardCommand* drawCardCommand = new DrawCardCommand();
+   drawCardCommand->setController(this);
+   return drawCardCommand;
 }
 
 }
