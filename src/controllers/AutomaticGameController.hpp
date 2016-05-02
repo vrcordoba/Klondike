@@ -18,7 +18,7 @@ class Command;
 class MoveCommand;
 class DrawCardCommand;
 
-class AutomaticGameController: public GameController
+class AutomaticGameController final : public GameController
 {
 public:
    explicit AutomaticGameController(Models::Game& game);
@@ -37,9 +37,12 @@ private:
    Command* getValidCommandWasteTableau();
    DrawCardCommand* getValidCommandDrawCard();
    MoveCommand* getValidMovementCommand(const std::vector<std::uint8_t>& additionalArguments);
+   MoveCommand* getValidCommandTableauTableauNumCards(
+      std::uint8_t originTableauId, std::uint8_t destinationTableauId);
+   bool isMoveCommandInRecentCommandHistory(MoveCommand* moveCommand);
 
    std::uint16_t numMovementsM;
-   const std::uint16_t MAX_MOVEMENTS = 1000;
+   const std::uint16_t MAX_MOVEMENTS = 100;
 };
 
 }

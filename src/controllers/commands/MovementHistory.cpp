@@ -22,12 +22,12 @@ void MovementHistory::emptyHistory()
    emptyHistory(redoableHistoryM);
 }
 
-void MovementHistory::emptyHistory(std::stack<CardCommand*>& history)
+void MovementHistory::emptyHistory(std::deque<CardCommand*>& history)
 {
    while (not history.empty())
    {
-      CardCommand* command = history.top();
-      history.pop();
+      CardCommand* command = history.back();
+      history.pop_back();
       delete command;
    }
 }
@@ -47,14 +47,14 @@ void MovementHistory::visit(DrawCardCommand* drawCardCommand)
 {
    // A copy is done to make the memory handling easier
    DrawCardCommand* copy = new DrawCardCommand(*drawCardCommand);
-   undoableHistoryM.push(copy);
+   undoableHistoryM.push_back(copy);
 }
 
 void MovementHistory::visit(MoveCommand* moveCommand)
 {
    // A copy is done to make the memory handling easier
    MoveCommand* copy = new MoveCommand(*moveCommand);
-   undoableHistoryM.push(copy);
+   undoableHistoryM.push_back(copy);
 }
 
 bool MovementHistory::validateUndo() const
@@ -69,18 +69,32 @@ bool MovementHistory::validateRedo() const
 
 void MovementHistory::undo()
 {
-   CardCommand* command = undoableHistoryM.top();
-   undoableHistoryM.pop();
+   CardCommand* command = undoableHistoryM.back();
+   undoableHistoryM.pop_back();
    command->undo();
-   redoableHistoryM.push(command);
+   redoableHistoryM.push_back(command);
 }
 
 void MovementHistory::redo()
 {
-   CardCommand* command = redoableHistoryM.top();
-   redoableHistoryM.pop();
+   CardCommand* command = redoableHistoryM.back();
+   redoableHistoryM.pop_back();
    command->execute();
-   undoableHistoryM.push(command);
+   undoableHistoryM.push_back(command);
+}
+
+bool MovementHistory::isMoveCommandInRecentCommandHistory(MoveCommand* command,
+   std::uint32_t maxNumMovementsToCheck)
+{
+   std::uint32_t numMovements = 0;
+   for (std::deque<CardCommand*>::const_reverse_iterator rCommandIt =
+      undoableHistoryM.rbegin(); rCommandIt != undoableHistoryM.rend() and
+      numMovements < maxNumMovementsToCheck; ++rCommandIt, ++numMovements)
+   {
+      if (*command == *(*rCommandIt))
+         return true;
+   }
+   return false;
 }
 
 }

@@ -1,7 +1,7 @@
 #ifndef CONTROLLERS_COMMANDS_MOVEMENTHISTORY_HPP_
 #define CONTROLLERS_COMMANDS_MOVEMENTHISTORY_HPP_
 
-#include <stack>
+#include <deque>
 #include "CardCommand.hpp"
 #include "CardCommandVisitor.hpp"
 
@@ -30,14 +30,17 @@ public:
 
    void emptyHistory();
 
+   bool isMoveCommandInRecentCommandHistory(MoveCommand* command,
+      std::uint32_t maxNumMovementsToCheck);
+
    void visit(DrawCardCommand* drawCardCommand);
    void visit(MoveCommand* moveCommand);
 
 private:
-   void emptyHistory(std::stack<CardCommand*>& history);
+   void emptyHistory(std::deque<CardCommand*>& history);
 
-   std::stack<CardCommand*> undoableHistoryM;
-   std::stack<CardCommand*> redoableHistoryM;
+   std::deque<CardCommand*> undoableHistoryM;
+   std::deque<CardCommand*> redoableHistoryM;
 };
 
 }

@@ -36,6 +36,8 @@ public:
 
    void setAdditionalArguments(const std::vector<std::uint8_t>& additionalArguments);
 
+   bool operator==(const CardCommand& rhs);
+
 private:
    bool isValidOrigin() const;
    bool isValidDestination() const;

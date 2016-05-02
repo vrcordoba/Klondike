@@ -39,8 +39,6 @@ public:
 
 private:
    CardTableController cardTableControllerM;
-
-protected:
    MovementHistory movementHistoryM;
 };
 
