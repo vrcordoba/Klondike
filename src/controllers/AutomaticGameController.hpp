@@ -42,7 +42,7 @@ private:
    bool isMoveCommandInRecentCommandHistory(MoveCommand* moveCommand);
 
    std::uint16_t numMovementsM;
-   const std::uint16_t MAX_MOVEMENTS = 300;
+   const std::uint16_t MAX_MOVEMENTS = 500;
    const std::uint16_t NUM_MOVEMENTS_TO_CHECK_IN_HISTORY = 50;
 };
 

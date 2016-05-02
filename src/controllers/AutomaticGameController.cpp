@@ -36,13 +36,16 @@ void AutomaticGameController::accept(GameControllerVisitor* gameControllerVisito
 Command* AutomaticGameController::getValidCommand()
 {
    if (MAX_MOVEMENTS < ++numMovementsM)
+   {
+      numMovementsM = 0;
       return new LeaveCommand(LeaveCommand::Type::LEAVE_CLOSE);
+   }
    Command* command = getValidCommandTableauFoundation();
    command = (nullptr != command) ? command : getValidCommandWasteFoundation();
    command = (nullptr != command) ? command : getValidCommandWasteTableau();
    command = (nullptr != command) ? command : getValidCommandTableauTableau();
    command = (nullptr != command) ? command : getValidCommandDrawCard();
-   std::chrono::duration<std::uint16_t, std::milli> timeToSleep(1000);
+   std::chrono::seconds timeToSleep(1);
    std::this_thread::sleep_for(timeToSleep);
    return command;
 }

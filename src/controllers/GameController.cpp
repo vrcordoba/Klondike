@@ -32,7 +32,10 @@ void GameController::applyCommand(Command* command)
    command->setController(this);
    movementHistoryM.executeAndStoreIfUndoableCommand(command);
    if (Controller::isGameWon())
+   {
+      movementHistoryM.emptyHistory();
       Controller::setState(Models::State::CONTINUE);
+   }
 }
 
 bool GameController::isGameWon() const
