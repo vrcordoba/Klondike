@@ -8,6 +8,7 @@
 #include "Pile.hpp"
 #include "PileType.hpp"
 #include "Score.hpp"
+#include "CardCommandDiscriminator.hpp"
 
 namespace Controllers
 {
@@ -166,16 +167,19 @@ void MoveCommand::updateScore(bool upturnScore, bool negativeScore)
       negativeScore);
 }
 
-bool MoveCommand::operator==(const CardCommand& rhs)
+bool MoveCommand::operator==(CardCommand& rhs)
 {
-   const MoveCommand* rhsPtr = dynamic_cast<const MoveCommand*>(&rhs);
-   if (rhsPtr != 0)
+   CardCommandDiscriminator cardCommandDiscriminator(this);
+   if (cardCommandDiscriminator.isSameType(rhs))
+   {
+      const MoveCommand* rhsPtr = static_cast<const MoveCommand*>(&rhs);
       return (originPileTypeM == rhsPtr->originPileTypeM) and
          (originPileNumberM == rhsPtr->originPileNumberM) and
          (destinationPileTypeM == rhsPtr->destinationPileTypeM) and
          (destinationPileNumberM == rhsPtr->destinationPileNumberM) and
          (numCardsM == rhsPtr->numCardsM) and
          (previousCardInPileNotUpturnedM == rhsPtr->previousCardInPileNotUpturnedM);
+   }
    else
       return false;
 }

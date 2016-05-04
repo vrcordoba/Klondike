@@ -36,6 +36,7 @@ set(HEADER_FILES
    controllers/commands/Command.hpp
    controllers/commands/ValidationCommand.hpp
    controllers/commands/CardCommand.hpp
+   controllers/commands/CardCommandDiscriminator.hpp
    controllers/commands/CardCommandVisitor.hpp
    controllers/commands/DrawCardCommand.hpp
    controllers/commands/MoveCommand.hpp
@@ -119,6 +120,7 @@ set(SOURCE_FILES
    controllers/commands/Command.cpp
    controllers/commands/ValidationCommand.cpp
    controllers/commands/CardCommand.cpp
+   controllers/commands/CardCommandDiscriminator.cpp
    controllers/commands/DrawCardCommand.cpp
    controllers/commands/MoveCommand.cpp
    controllers/commands/LeaveCommand.cpp

@@ -36,7 +36,7 @@ public:
 
    void setAdditionalArguments(const std::vector<std::uint8_t>& additionalArguments);
 
-   bool operator==(const CardCommand& rhs);
+   bool operator==(CardCommand& rhs);
 
 private:
    bool isValidOrigin() const;
