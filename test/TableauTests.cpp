@@ -40,9 +40,3 @@ TEST(TableauTests, validDestinationEmptyTableau)
    EXPECT_TRUE(tableau.isValidDestination(card1));
    EXPECT_FALSE(tableau.isValidDestination(card2));
 }
-
-int main(int argc, char **argv)
-{
-   ::testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
-}

@@ -77,9 +77,3 @@ TEST(CardTests, isOneBelow)
    EXPECT_TRUE(card1.isOneBelow(card2));
    EXPECT_FALSE(card1.isOneBelow(card3));
 }
-
-int main(int argc, char **argv)
-{
-   ::testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
-}

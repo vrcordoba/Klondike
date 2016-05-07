@@ -41,9 +41,3 @@ TEST(FoundationTests, isFoundationComplete)
    foundation.appendCard(Models::Card(12, Models::Suit(3, 1)));
    EXPECT_TRUE(foundation.isFoundationComplete());
 }
-
-int main(int argc, char **argv)
-{
-   ::testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
-}

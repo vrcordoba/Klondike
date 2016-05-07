@@ -46,9 +46,3 @@ TEST(SuitTests, inequality)
    EXPECT_FALSE(suit1 == suit2);
    EXPECT_FALSE(suit1 == suit3);
 }
-
-int main(int argc, char **argv)
-{
-   ::testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
-}

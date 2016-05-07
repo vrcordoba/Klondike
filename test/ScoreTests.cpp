@@ -38,9 +38,3 @@ TEST(ScoreTests, recycleScore)
    score.rebootScore();
    EXPECT_TRUE(0 == score.getScore());
 }
-
-int main(int argc, char **argv)
-{
-   ::testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
-}
